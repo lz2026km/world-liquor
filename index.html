@@ -595,6 +595,8 @@
       justify-content: center;
       transition: var(--transition);
       flex-shrink: 0;
+      position: relative;
+      z-index: 10;
     }
     .modal-close:hover {
       background: rgba(255, 87, 34, 0.2);
@@ -1846,7 +1848,9 @@
 
   function updateCount(n) {
     const cntEl = document.getElementById('resultCount');
+    const totalEl = document.getElementById('totalCount');
     if (cntEl) cntEl.textContent = `共 ${n} 款`;
+    if (totalEl) totalEl.textContent = n;
   }
 
   function showEmpty(msg) {
@@ -2185,13 +2189,13 @@
     descEl.textContent = escHtml(d.description || '');
 
     // 图片
-    const imgEl = document.getElementById('modalImg');
+    const imgEl = document.getElementById('modalImage');
     if (d.image) {
-      imgEl.src = d.image;
-      imgEl.style.display = 'block';
-      imgEl.onerror = () => { imgEl.style.display = 'none'; };
+      imgEl.innerHTML = `<img src="${escHtml(d.image)}" alt="${escHtml(d.name)}" style="width:100%;height:100%;object-fit:cover;">`;
+      imgEl.style.fontSize = '0';
     } else {
-      imgEl.style.display = 'none';
+      imgEl.innerHTML = '🥃';
+      imgEl.style.fontSize = '80px';
     }
 
     // 收藏按钮状态
