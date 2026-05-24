@@ -244,6 +244,28 @@
       color: var(--amber-gold);
       box-shadow: var(--shadow-amber);
     }
+    .price-quick-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-left: 8px;
+    }
+    .price-chip {
+      padding: 3px 10px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 248, 231, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--amber-200);
+      font-size: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .price-chip:hover,
+    .price-chip.active {
+      background: rgba(255, 165, 0, 0.2);
+      border-color: var(--amber-orange);
+      color: var(--amber-gold);
+    }
     .filter-divider {
       width: 1px;
       height: 28px;
@@ -454,6 +476,350 @@
       background: rgba(212, 165, 116, 0.2);
       border-color: var(--amber-500);
       color: var(--amber-gold);
+    }
+
+    /* ===== List View ===== */
+    .card-grid.list-view {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .card-grid.list-view .liquor-card {
+      display: flex;
+      flex-direction: row;
+      height: 160px;
+    }
+    .card-grid.list-view .liquor-card-image {
+      width: 180px;
+      height: 100%;
+      flex-shrink: 0;
+    }
+    .card-grid.list-view .liquor-card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 16px 20px;
+    }
+    .card-grid.list-view .liquor-card-name {
+      font-size: 18px;
+    }
+    .card-grid.list-view .liquor-card-tags {
+      margin-bottom: 8px;
+    }
+    .card-grid.list-view .liquor-card-footer {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    /* ===== Compare Bar ===== */
+    .compare-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--amber-700);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 100;
+      transform: translateY(100%);
+      transition: transform var(--transition);
+    }
+    .compare-bar.active {
+      transform: translateY(0);
+    }
+    .compare-bar-title {
+      font-size: 14px;
+      color: var(--amber-gold);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .compare-items {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      overflow-x: auto;
+    }
+    .compare-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 248, 231, 0.08);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--amber-200);
+      white-space: nowrap;
+    }
+    .compare-item-remove {
+      cursor: pointer;
+      opacity: 0.6;
+      font-size: 14px;
+    }
+    .compare-item-remove:hover {
+      opacity: 1;
+      color: #FF6340;
+    }
+    .compare-btn {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
+      border: 1px solid var(--amber-700);
+      border-radius: var(--radius-md);
+      color: var(--amber-gold);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .compare-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-amber);
+    }
+
+    /* ===== Compare Modal ===== */
+    .compare-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 250;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .compare-modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .compare-modal {
+      background: linear-gradient(145deg, var(--brown-mid), var(--brown-dark));
+      border: 1px solid var(--amber-700);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-deep);
+      transform: scale(0.92);
+      transition: transform var(--transition);
+    }
+    .compare-modal-overlay.active .compare-modal {
+      transform: scale(1);
+    }
+    .compare-modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .compare-modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--amber-gold);
+    }
+    .compare-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--muted-text);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .compare-modal-close:hover {
+      background: rgba(255, 87, 34, 0.2);
+      border-color: #FF6340;
+      color: #FF6340;
+    }
+    .compare-modal-body {
+      padding: 20px 24px;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .compare-table th,
+    .compare-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .compare-table th {
+      font-size: 11px;
+      color: var(--amber-500);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: 100px;
+      background: rgba(255, 248, 231, 0.04);
+    }
+    .compare-table td {
+      font-size: 14px;
+      color: var(--amber-200);
+    }
+    .compare-table tr:last-child th,
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===== Tasting Notes ===== */
+    .tasting-form {
+      margin-top: 12px;
+    }
+    .star-rating {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .star-rating input {
+      display: none;
+    }
+    .star-rating label {
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--muted-text);
+      transition: color var(--transition);
+    }
+    .star-rating label:hover,
+    .star-rating label.active {
+      color: var(--amber-gold);
+    }
+    .star-rating label.active ~ label {
+      color: var(--amber-gold);
+    }
+    .tasting-textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      background: rgba(255, 248, 231, 0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--cream-text);
+      font-size: 13px;
+      font-family: inherit;
+      resize: none;
+    }
+    .tasting-textarea:focus {
+      border-color: var(--amber-400);
+      outline: none;
+    }
+    .tasting-save-btn {
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
+      border: 1px solid var(--amber-700);
+      border-radius: var(--radius-sm);
+      color: var(--amber-gold);
+      font-size: 13px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .tasting-save-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-amber);
+    }
+
+    /* ===== Notes Panel ===== */
+    .notes-item {
+      padding: 10px 12px;
+      background: rgba(255, 248, 231, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+    }
+    .notes-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .notes-item-name {
+      font-size: 14px;
+      color: var(--cream-text);
+      font-weight: 600;
+    }
+    .notes-item-rating {
+      color: var(--amber-gold);
+      font-size: 12px;
+    }
+    .notes-item-text {
+      font-size: 12px;
+      color: var(--amber-200);
+      line-height: 1.5;
+    }
+
+    /* ===== Language Toggle ===== */
+    .lang-btn {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 248, 231, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--cream-text);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .lang-btn:hover {
+      background: rgba(212, 165, 116, 0.2);
+      border-color: var(--amber-500);
+    }
+    .lang-btn.active {
+      background: rgba(212, 165, 116, 0.2);
+      border-color: var(--amber-500);
+      color: var(--amber-gold);
+    }
+
+    /* ===== Favorite Tags ===== */
+    .fav-tag-select {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .fav-tag-option {
+      padding: 3px 10px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 248, 231, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--amber-200);
+      font-size: 11px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .fav-tag-option:hover,
+    .fav-tag-option.active {
+      background: rgba(255, 165, 0, 0.2);
+      border-color: var(--amber-orange);
+      color: var(--amber-gold);
+    }
+
+    /* ===== Search Highlight ===== */
+    mark {
+      background: rgba(255, 165, 0, 0.4);
+      color: var(--amber-gold);
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    .compare-check input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--amber-600);
     }
 
     /* ===== Empty State ===== */
@@ -1397,10 +1763,32 @@
         <button class="header-btn" title="筛选" id="mobFilterBtn">☰</button>
         <button class="header-btn" title="收藏夹" id="favoritesBtn">❤️<span class="badge" id="favBadge">0</span></button>
         <button class="header-btn" title="历史记录" id="historyBtn">🕐</button>
+        <button class="header-btn" title="我的笔记" id="notesBtn">📝<span class="badge" id="notesBadge">0</span></button>
         <button class="header-btn" title="深色/浅色" id="themeBtn">🌙</button>
+        <button class="lang-btn active" id="langBtn">中</button>
       </div>
     </div>
   </header>
+
+  <!-- ========== COMPARE BAR ========== -->
+  <div class="compare-bar" id="compareBar">
+    <span class="compare-bar-title">对比 (<span id="compareCount">0</span>/3)</span>
+    <div class="compare-items" id="compareItems"></div>
+    <button class="compare-btn" id="compareBtn">开始对比</button>
+  </div>
+
+  <!-- ========== COMPARE MODAL ========== -->
+  <div class="compare-modal-overlay" id="compareModalOverlay">
+    <div class="compare-modal">
+      <div class="compare-modal-header">
+        <span class="compare-modal-title">酒款对比</span>
+        <button class="compare-modal-close" id="compareModalClose">✕</button>
+      </div>
+      <div class="compare-modal-body">
+        <table class="compare-table" id="compareTable"></table>
+      </div>
+    </div>
+  </div>
 
   <!-- ========== HERO BANNER ========== -->
   <section class="hero-banner">
@@ -1470,6 +1858,17 @@
         <button class="filter-chip" data-filter="price" data-value="1">¥500-1000</button>
         <button class="filter-chip" data-filter="price" data-value="2">¥1000-2000</button>
         <button class="filter-chip" data-filter="price" data-value="3">¥2000以上</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">快捷</span>
+        <div class="price-quick-chips">
+          <button class="price-chip" data-quick-price="0-100">0-100</button>
+          <button class="price-chip" data-quick-price="100-300">100-300</button>
+          <button class="price-chip" data-quick-price="300-500">300-500</button>
+          <button class="price-chip" data-quick-price="500-1000">500-1000</button>
+          <button class="price-chip" data-quick-price="1000+">1000+</button>
+        </div>
       </div>
       <div class="filter-sort">
         <select id="sortSelect">
@@ -1627,8 +2026,22 @@
           <div class="modal-section-title">简介</div>
           <p class="modal-desc" id="modalDesc">这是一款来自苏格兰高地区的优质单一麦芽威士忌，经过至少12年的橡木桶陈酿，呈现出复杂而平衡的风味。散发着泥煤烟熏与成熟水果的香气，口感圆润，余韵悠长。</p>
         </div>
+        <div class="modal-section">
+          <div class="modal-section-title">我的评分</div>
+          <div class="tasting-form">
+            <div class="star-rating" id="starRating">
+              <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+              <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+              <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+              <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+              <input type="radio" name="rating" id="star5" value="5"><label for="star5">★</label>
+            </div>
+            <textarea class="tasting-textarea" id="tastingNoteText" placeholder="写下你的品酒笔记..."></textarea>
+            <button class="tasting-save-btn" id="saveTastingNote">保存笔记</button>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
+<div class="modal-footer">
         <div class="modal-price">¥<strong id="modalPriceBig">0</strong></div>
         <div class="modal-abv"><strong id="modalAbvBig">46%</strong> vol</div>
         <div class="modal-nav">
@@ -1656,6 +2069,12 @@
       <div class="sidebar-panel" id="favoritesPanel">
         <div class="sidebar-section">
           <div class="sidebar-section-title">我的收藏 (<span id="favCount">0</span>)</div>
+          <div class="fav-tag-select" id="favTagSelect">
+            <span class="fav-tag-option active" data-tag="all">全部</span>
+            <span class="fav-tag-option" data-tag="日常">日常</span>
+            <span class="fav-tag-option" data-tag="送礼">送礼</span>
+            <span class="fav-tag-option" data-tag="收藏">收藏</span>
+          </div>
           <div id="favoritesList">
             <div class="sidebar-empty">暂无收藏，浏览并收藏心仪的烈酒吧</div>
           </div>
@@ -1679,6 +2098,15 @@
               <span class="history-query">Skyy Vodka</span>
               <span class="history-time">昨天 20:41</span>
             </div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Panel -->
+      <div class="sidebar-panel" id="notesPanel" style="display:none;">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">我的笔记 (<span id="notesCount">0</span>)</div>
+          <div id="notesList">
+            <div class="sidebar-empty">暂无品酒笔记</div>
           </div>
         </div>
       </div>
@@ -1726,6 +2154,21 @@
   let curQ = '';           // 当前搜索词
   let curSort = 'def';     // 排序方式
 
+  // 对比状态
+  let COMPARE_LIST = [];   // 对比ID列表，最多3个
+  const LS_COMPARE = 'wl_compare';
+
+  // 品酒笔记
+  let TASTING_NOTES = {};  // {id: {rating, text, date}}
+  const LS_TASTING = 'wl_tasting';
+
+  // 多语言
+  let CUR_LANG = 'zh';     // 'zh' or 'en'
+  const LS_LANG = 'wl_lang';
+
+  // 视图模式
+  let VIEW_MODE = 'grid'; // 'grid' or 'list'
+
   // DOM refs
   const mainEl = document.getElementById('mainContent');
   const mb = document.getElementById('modalOverlay');
@@ -1745,6 +2188,9 @@
       if (!resp.ok) throw new Error('Network response was not ok');
       DATA = await resp.json();
       FAVS = JSON.parse(localStorage.getItem(LS_FAVS) || '[]');
+      COMPARE_LIST = JSON.parse(localStorage.getItem(LS_COMPARE) || '[]');
+      TASTING_NOTES = JSON.parse(localStorage.getItem(LS_TASTING) || '{}');
+      CUR_LANG = localStorage.getItem(LS_LANG) || 'zh';
       buildTypeFilter();
       buildRegionFilter();
       buildEraFilter();
@@ -1753,6 +2199,9 @@
       apply();
       initCarousel();
       initTheme();
+      initLang();
+      updateCompareBar();
+      updateNotesBadge();
       checkUrlParam();
     } catch (err) {
       console.error('Failed to load data:', err);
@@ -1771,14 +2220,21 @@
   // ── 4) makeCard卡片函数 ──
   function makeCard(d, i) {
     const card = document.createElement('article');
-    card.className = 'liquor-card' + (isFaved(d.id) ? ' favored' : '');
+    card.className = 'liquor-card' + (isFaved(d.id) ? ' favored' : '') + (isComparing(d.id) ? ' comparing' : '');
     card.setAttribute('tabindex', '0');
     card.dataset.i = i;
     card.dataset.id = d.id;
 
+    // 图片处理：onerror显示彩色占位符
+    const firstLetter = d.name.charAt(0);
+    const placeholderBg = getColorForId(d.id);
     const imgHtml = d.image
-      ? `<img src="${escHtml(d.image)}" alt="${escHtml(d.name)}" loading="lazy" onerror="this.style.display='none'">`
-      : `<div class="liquor-card-ph">🍶</div>`;
+      ? `<img src="${escHtml(d.image)}" alt="${escHtml(d.name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         <div class="liquor-card-ph" style="display:none;background:${placeholderBg};">${escHtml(firstLetter)}</div>`
+      : `<div class="liquor-card-ph" style="background:${placeholderBg}">${escHtml(firstLetter)}</div>`;
+
+    // 搜索高亮
+    const nameHtml = curQ ? highlightText(escHtml(d.name), curQ) : escHtml(d.name);
 
     const favIcon = isFaved(d.id) ? '★' : '♡';
     const typeColor = TYPE_COLORS[d.type] || 'var(--amber-500)';
@@ -1787,7 +2243,7 @@
       <div class="liquor-card-img">${imgHtml}</div>
       <div class="liquor-card-body">
         <div class="liquor-card-region">${escHtml(d.region)}</div>
-        <h3 class="liquor-card-name">${escHtml(d.name)}</h3>
+        <h3 class="liquor-card-name">${nameHtml}</h3>
         <div class="liquor-card-name-en">${escHtml(d.ename || '')}</div>
         <div class="liquor-card-tags">
           <span class="liquor-tag" style="border-color:${typeColor};color:${typeColor}">${escHtml(d.type)}</span>
@@ -1796,6 +2252,9 @@
         <div class="liquor-card-footer">
           <div class="liquor-card-abv">参考价 <strong>¥${d.price}</strong></div>
           <div class="liquor-card-actions">
+            <label class="compare-check" title="加入对比">
+              <input type="checkbox" ${isComparing(d.id) ? 'checked' : ''} data-compare="${escHtml(d.id)}" onchange="toggleCompare('${escHtml(d.id)}')">
+            </label>
             <button class="fav-btn" title="${isFaved(d.id) ? '取消收藏' : '收藏'}" data-id="${escHtml(d.id)}">${favIcon}</button>
             <button class="share-btn" title="分享" data-id="${escHtml(d.id)}">↗</button>
           </div>
@@ -1838,6 +2297,11 @@
     }
 
     gridEl.innerHTML = '';
+    if (VIEW_MODE === 'list') {
+      gridEl.classList.add('list-view');
+    } else {
+      gridEl.classList.remove('list-view');
+    }
     displayList.forEach((d, i) => {
       gridEl.appendChild(makeCard(d, i));
     });
@@ -1957,8 +2421,7 @@
       lbl.innerHTML = `
         <input type="checkbox" data-type="${escHtml(type)}">
         <span class="filter-label-dot" style="background:${color}"></span>
-        <span>${escHtml(type)}</span>
-        <span class="filter-count">${typeCnt[type]}</span>`;
+        <span>${escHtml(type)}(${typeCnt[type]})</span>`;
       lbl.querySelector('input').checked = selTypes.includes(type);
       lbl.querySelector('input').onchange = () => toggleType(type, lbl.querySelector('input').checked);
       body.appendChild(lbl);
@@ -1983,8 +2446,7 @@
       const lbl = document.createElement('label');
       lbl.innerHTML = `
         <input type="checkbox" data-region="${escHtml(region)}">
-        <span>${escHtml(region)}</span>
-        <span class="filter-count">${regionCnt[region]}</span>`;
+        <span>${escHtml(region)}(${regionCnt[region]})</span>`;
       lbl.querySelector('input').checked = selRegions.includes(region);
       lbl.querySelector('input').onchange = () => toggleRegion(region, lbl.querySelector('input').checked);
       body.appendChild(lbl);
@@ -2009,8 +2471,7 @@
       const lbl = document.createElement('label');
       lbl.innerHTML = `
         <input type="checkbox" data-era="${escHtml(era)}">
-        <span>${escHtml(era)}</span>
-        <span class="filter-count">${eraCnt[era]}</span>`;
+        <span>${escHtml(era)}(${eraCnt[era]})</span>`;
       lbl.querySelector('input').checked = selEras.includes(era);
       lbl.querySelector('input').onchange = () => toggleEra(era, lbl.querySelector('input').checked);
       body.appendChild(lbl);
@@ -2160,6 +2621,7 @@
     document.getElementById('modalAbvBig').textContent = `${d.abv}%vol`;
     document.getElementById('modalFactory').textContent = escHtml(d.factory || '');
     document.getElementById('modalOrigin').textContent = escHtml(d.origin || '');
+    document.getElementById('modalAge').textContent = d.age ? `${d.age}年` : '—';
 
     // 品鉴指南
     const tastingEl = document.getElementById('modalTasting');
@@ -2205,6 +2667,9 @@
 
     // 收藏按钮状态
     updateModalFavBtn(d.id);
+
+    // 加载品酒笔记
+    loadTastingNote(d.id);
 
     // 导航按钮状态
     document.getElementById('modalPrev').disabled = mIdx <= 0;
@@ -2584,6 +3049,24 @@
   // ── 分享功能 ──
   function openShare(d) {
     const shareText = `🍶 ${d.name} (${d.ename || ''})\n📍 ${d.origin}\n🏷️ ${d.type} | ${d.abv}%vol\n💰 参考价: ¥${d.price}\n\n来自「世界烈酒图鉴」`;
+
+    // Web Share API (mobile)
+    if (navigator.share) {
+      navigator.share({
+        title: d.name,
+        text: shareText,
+        url: window.location.href + '?r=' + d.id
+      }).catch(() => {
+        // Fallback to popup
+        showSharePopup(shareText);
+      });
+    } else {
+      // Desktop: show popup
+      showSharePopup(shareText);
+    }
+  }
+
+  function showSharePopup(shareText) {
     const textarea = document.getElementById('shareText');
     if (textarea) textarea.value = shareText;
     const pop = document.getElementById('sharePopup');
@@ -2644,7 +3127,24 @@
   document.getElementById('modalPrev')?.addEventListener('click', () => { if (mIdx > 0) openM(filtered[mIdx - 1].id); });
   document.getElementById('modalNext')?.addEventListener('click', () => { if (mIdx < filtered.length - 1) openM(filtered[mIdx + 1].id); });
   document.getElementById('modalFavBtn')?.addEventListener('click', () => { if (filtered[mIdx]) toggleFav(filtered[mIdx].id); });
+  document.getElementById('modalShareBtn')?.addEventListener('click', () => { if (filtered[mIdx]) openShare(filtered[mIdx]); });
   document.getElementById('randomBtn')?.addEventListener('click', () => { if (filtered.length) { const ri = Math.floor(Math.random() * filtered.length); openM(filtered[ri].id); } });
+
+  // 对比功能
+  document.getElementById('compareBtn')?.addEventListener('click', openCompareModal);
+  document.getElementById('compareModalClose')?.addEventListener('click', closeCompareModal);
+  document.getElementById('compareModalOverlay')?.addEventListener('click', (e) => { if (e.target.id === 'compareModalOverlay') closeCompareModal(); });
+
+  // 品酒笔记
+  document.getElementById('saveTastingNote')?.addEventListener('click', () => { if (filtered[mIdx]) saveTastingNote(filtered[mIdx].id); });
+  document.getElementById('notesBtn')?.addEventListener('click', () => { openSidebar('notes'); renderNotesList(); });
+
+  // 多语言
+  document.getElementById('langBtn')?.addEventListener('click', toggleLang);
+
+  // 视图切换
+  document.getElementById('gridView')?.addEventListener('click', () => switchView('grid'));
+  document.getElementById('listView')?.addEventListener('click', () => switchView('list'));
 
   // 轮播控制
   document.getElementById('carouselPrev')?.addEventListener('click', () => { pauseCarousel(); carouselPrev(); startCarousel(); });
@@ -2691,9 +3191,11 @@
     const title = document.getElementById('sidebarTitle');
     const favPanel = document.getElementById('favoritesPanel');
     const histPanel = document.getElementById('historyPanel');
-    if (title) title.textContent = type === 'favorites' ? '收藏夹' : '历史记录';
+    const notesPanel = document.getElementById('notesPanel');
+    if (title) title.textContent = type === 'favorites' ? '收藏夹' : type === 'history' ? '历史记录' : '我的笔记';
     if (favPanel) favPanel.style.display = type === 'favorites' ? 'block' : 'none';
     if (histPanel) histPanel.style.display = type === 'history' ? 'block' : 'none';
+    if (notesPanel) notesPanel.style.display = type === 'notes' ? 'block' : 'none';
     document.getElementById('sidebar').classList.add('active');
     document.getElementById('sidebarOverlay').classList.add('active');
   }
@@ -2702,6 +3204,283 @@
     document.getElementById('sidebar').classList.remove('active');
     document.getElementById('sidebarOverlay').classList.remove('active');
   }
+
+  // ── 辅助函数 ──
+  function highlightText(text, keyword) {
+    if (!keyword) return text;
+    const regex = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+  }
+
+  function getColorForId(id) {
+    const colors = ['#8B4513', '#B8860B', '#228B22', '#20B2AA', '#8B008B', '#2F4F4F', '#CD853F', '#A0522D', '#DAA520', '#708090', '#6B8E23', '#8B7355'];
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+      hash = id.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return colors[Math.abs(hash) % colors.length];
+  }
+
+  // ── 对比功能 ──
+  function isComparing(id) {
+    return COMPARE_LIST.includes(id);
+  }
+
+  function toggleCompare(id) {
+    if (isComparing(id)) {
+      COMPARE_LIST = COMPARE_LIST.filter(c => c !== id);
+    } else {
+      if (COMPARE_LIST.length >= 3) {
+        alert('最多只能对比3款酒');
+        return;
+      }
+      COMPARE_LIST.push(id);
+    }
+    saveCompare();
+    updateCompareBar();
+    render();
+  }
+
+  function saveCompare() {
+    localStorage.setItem(LS_COMPARE, JSON.stringify(COMPARE_LIST));
+  }
+
+  function updateCompareBar() {
+    const bar = document.getElementById('compareBar');
+    const countEl = document.getElementById('compareCount');
+    const itemsEl = document.getElementById('compareItems');
+    if (!bar) return;
+
+    if (COMPARE_LIST.length > 0) {
+      bar.classList.add('active');
+      countEl.textContent = COMPARE_LIST.length;
+      itemsEl.innerHTML = COMPARE_LIST.map(id => {
+        const d = DATA.find(x => x.id === id);
+        if (!d) return '';
+        return `<div class="compare-item">
+          <span>${escHtml(d.name)}</span>
+          <span class="compare-item-remove" onclick="removeFromCompare('${escHtml(id)}')">×</span>
+        </div>`;
+      }).join('');
+    } else {
+      bar.classList.remove('active');
+    }
+  }
+
+  function removeFromCompare(id) {
+    COMPARE_LIST = COMPARE_LIST.filter(c => c !== id);
+    saveCompare();
+    updateCompareBar();
+    render();
+  }
+
+  function openCompareModal() {
+    if (COMPARE_LIST.length < 2) {
+      alert('请至少选择2款酒进行对比');
+      return;
+    }
+    const overlay = document.getElementById('compareModalOverlay');
+    const table = document.getElementById('compareTable');
+    const items = COMPARE_LIST.map(id => DATA.find(d => d.id === id)).filter(Boolean);
+
+    const fields = ['name', 'type', 'region', 'abv', 'price', 'factory', 'origin', 'age'];
+    const labels = { name: '名称', type: '类型', region: '产区', abv: '酒精度', price: '参考价', factory: '酒厂', origin: '产地', age: '陈年' };
+
+    let html = '<tr><th>对比项</th>';
+    items.forEach(d => {
+      html += `<td style="font-weight:600;color:var(--amber-gold);">${escHtml(d.name)}</td>`;
+    });
+    html += '</tr>';
+
+    fields.forEach(field => {
+      html += `<tr><th>${labels[field] || field}</th>`;
+      items.forEach(d => {
+        let val = d[field] || '—';
+        if (field === 'abv') val = `${val}%vol`;
+        if (field === 'price') val = `¥${val}`;
+        html += `<td>${escHtml(val)}</td>`;
+      });
+      html += '</tr>';
+    });
+
+    table.innerHTML = html;
+    overlay.classList.add('active');
+  }
+
+  function closeCompareModal() {
+    document.getElementById('compareModalOverlay').classList.remove('active');
+  }
+
+  // ── 品酒笔记 ──
+  function updateNotesBadge() {
+    const badge = document.getElementById('notesBadge');
+    const count = Object.keys(TASTING_NOTES).length;
+    if (badge) {
+      badge.textContent = count || '';
+      badge.style.display = count ? 'flex' : 'none';
+    }
+  }
+
+  function saveTastingNote(id) {
+    const ratingInput = document.querySelector('input[name="rating"]:checked');
+    const textArea = document.getElementById('tastingNoteText');
+    if (!textArea) return;
+
+    const rating = ratingInput ? parseInt(ratingInput.value) : 0;
+    const text = textArea.value.trim();
+
+    if (!rating && !text) {
+      delete TASTING_NOTES[id];
+    } else {
+      TASTING_NOTES[id] = { rating, text, date: new Date().toISOString() };
+    }
+    localStorage.setItem(LS_TASTING, JSON.stringify(TASTING_NOTES));
+    updateNotesBadge();
+  }
+
+  function loadTastingNote(id) {
+    const note = TASTING_NOTES[id];
+    if (!note) return;
+    const ratingInput = document.querySelector(`input[name="rating"][value="${note.rating}"]`);
+    if (ratingInput) ratingInput.checked = true;
+    const textArea = document.getElementById('tastingNoteText');
+    if (textArea && note.text) textArea.value = note.text;
+  }
+
+  function renderNotesList() {
+    const list = document.getElementById('notesList');
+    if (!list) return;
+    const notes = Object.entries(TASTING_NOTES);
+    if (!notes.length) {
+      list.innerHTML = '<div class="sidebar-empty">暂无品酒笔记</div>';
+      return;
+    }
+    list.innerHTML = notes.map(([id, note]) => {
+      const d = DATA.find(x => x.id === id);
+      if (!d) return '';
+      const stars = '★'.repeat(note.rating || 0) + '☆'.repeat(5 - (note.rating || 0));
+      return `<div class="notes-item" data-id="${escHtml(id)}">
+        <div class="notes-item-header">
+          <span class="notes-item-name">${escHtml(d.name)}</span>
+          <span class="notes-item-rating">${stars}</span>
+        </div>
+        ${note.text ? `<div class="notes-item-text">${escHtml(note.text)}</div>` : ''}
+      </div>`;
+    }).join('');
+
+    list.querySelectorAll('.notes-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const id = item.dataset.id;
+        if (id) {
+          openM(id);
+          sidebar.classList.remove('active');
+          sidebarOverlay.classList.remove('active');
+        }
+      });
+    });
+  }
+
+  // ── 多语言 ──
+  function initLang() {
+    const btn = document.getElementById('langBtn');
+    if (btn) {
+      btn.textContent = CUR_LANG === 'zh' ? '中' : 'EN';
+      btn.classList.toggle('active', CUR_LANG === 'zh');
+    }
+  }
+
+  function toggleLang() {
+    CUR_LANG = CUR_LANG === 'zh' ? 'en' : 'zh';
+    localStorage.setItem(LS_LANG, CUR_LANG);
+    initLang();
+    apply();
+  }
+
+// 视图切换
+  function switchView(mode) {
+    VIEW_MODE = mode;
+    const gridView = document.getElementById('gridView');
+    const listView = document.getElementById('listView');
+    if (gridView) gridView.classList.toggle('active', mode === 'grid');
+    if (listView) listView.classList.toggle('active', mode === 'list');
+    render();
+  }
+
+  // ── 快捷价格筛选 ──
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('price-chip')) {
+      const range = e.target.dataset.quickPrice;
+      applyQuickPriceFilter(range);
+    }
+  });
+
+  // 星级评分交互
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.star-rating')) {
+      const rating = e.target.closest('.star-rating');
+      const labels = rating.querySelectorAll('label');
+      const inputs = rating.querySelectorAll('input');
+      const idx = Array.from(labels).indexOf(e.target);
+      if (idx >= 0) {
+        inputs.forEach((inp, i) => { inp.checked = i <= idx; });
+        labels.forEach((lbl, i) => { lbl.classList.toggle('active', i <= idx); });
+      }
+    }
+  });
+
+  function applyQuickPriceFilter(range) {
+    let min = 0, max = Infinity;
+    if (range === '0-100') { min = 0; max = 100; }
+    else if (range === '100-300') { min = 100; max = 300; }
+    else if (range === '300-500') { min = 300; max = 500; }
+    else if (range === '500-1000') { min = 500; max = 1000; }
+    else if (range === '1000+') { min = 1000; max = Infinity; }
+
+    // Apply filter using special mechanism
+    const origFiltered = filtered;
+    filtered = DATA.filter(d => d.price >= min && d.price < max);
+    renderTags();
+    render();
+
+    // Update price quick chips active state
+    document.querySelectorAll('.price-chip').forEach(chip => {
+      chip.classList.toggle('active', chip.dataset.quickPrice === range);
+    });
+  }
+
+  // ── 键盘导航 ──
+  let focusedCardIndex = -1;
+  document.addEventListener('keydown', (e) => {
+    const cards = document.querySelectorAll('.liquor-card');
+    if (!cards.length) return;
+
+    // Only handle arrow keys when a card is focused
+    if (document.activeElement.classList.contains('liquor-card')) {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        focusedCardIndex = Math.min(focusedCardIndex + 1, cards.length - 1);
+        cards[focusedCardIndex].focus();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        focusedCardIndex = Math.max(focusedCardIndex - 1, 0);
+        cards[focusedCardIndex].focus();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const cols = Math.floor(document.querySelector('.card-grid').offsetWidth / 280);
+        focusedCardIndex = Math.min(focusedCardIndex + cols, cards.length - 1);
+        cards[focusedCardIndex].focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const cols = Math.floor(document.querySelector('.card-grid').offsetWidth / 280);
+        focusedCardIndex = Math.max(focusedCardIndex - cols, 0);
+        cards[focusedCardIndex].focus();
+      }
+    }
+  });
+
+  document.querySelectorAll('.liquor-card').forEach((card, idx) => {
+    card.addEventListener('focus', () => { focusedCardIndex = idx; });
+  });
 
   // ── 初始化 ──
   loadData();
