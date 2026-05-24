@@ -680,6 +680,73 @@
       color: var(--amber-gold);
       font-size: 20px;
     }
+    .modal-price {
+      font-size: 13px;
+      color: var(--muted-text);
+    }
+    .modal-price strong {
+      color: var(--amber-gold);
+      font-size: 20px;
+    }
+    .modal-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .modal-nav-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 248, 231, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--amber-300);
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .modal-nav-btn:hover:not(:disabled) {
+      background: rgba(255, 248, 231, 0.12);
+      border-color: var(--amber-500);
+    }
+    .modal-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .modal-step {
+      font-size: 12px;
+      color: var(--muted-text);
+      min-width: 50px;
+      text-align: center;
+    }
+    .tasting-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tasting-item {
+      padding: 10px 14px;
+      background: rgba(255, 248, 231, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--amber-200);
+      font-size: 13px;
+    }
+    .pairing-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pairing-tag {
+      padding: 6px 12px;
+      background: rgba(255, 248, 231, 0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--amber-200);
+      font-size: 12px;
+    }
     .modal-actions { display: flex; gap: 8px; }
     .btn-primary {
       padding: 10px 24px;
@@ -1060,6 +1127,7 @@
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
     <div class="modal" id="modal">
       <div class="modal-header">
+        <span class="modal-id" id="modalId">#001</span>
         <div class="modal-title-wrap">
           <div class="modal-region" id="modalRegion">苏格兰 · Scotland</div>
           <h2 class="modal-title" id="modalTitle">单一麦芽威士忌</h2>
@@ -1088,6 +1156,14 @@
               <div class="modal-info-label">陈年时间</div>
               <div class="modal-info-value" id="modalAge">12年</div>
             </div>
+            <div class="modal-info-item">
+              <div class="modal-info-label">酒厂</div>
+              <div class="modal-info-value" id="modalFactory">暂无信息</div>
+            </div>
+            <div class="modal-info-item">
+              <div class="modal-info-label">产地</div>
+              <div class="modal-info-value" id="modalOrigin">暂无信息</div>
+            </div>
           </div>
         </div>
         <div class="modal-section">
@@ -1100,12 +1176,40 @@
           </div>
         </div>
         <div class="modal-section">
+          <div class="modal-section-title">品鉴指南</div>
+          <div class="tasting-list" id="modalTasting">
+            <div class="tasting-item">暂无品鉴记录</div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">配餐建议</div>
+          <div class="pairing-list" id="modalPairing"></div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">酿造工艺</div>
+          <p class="modal-desc" id="modalCraft">暂无工艺信息</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">原料</div>
+          <p class="modal-desc" id="modalIngredient">暂无原料信息</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">历史背景</div>
+          <p class="modal-desc" id="modalHistory">暂无历史记录</p>
+        </div>
+        <div class="modal-section">
           <div class="modal-section-title">简介</div>
           <p class="modal-desc" id="modalDesc">这是一款来自苏格兰高地区的优质单一麦芽威士忌，经过至少12年的橡木桶陈酿，呈现出复杂而平衡的风味。散发着泥煤烟熏与成熟水果的香气，口感圆润，余韵悠长。</p>
         </div>
       </div>
       <div class="modal-footer">
-        <div class="modal-abv">酒精度 <strong id="modalAbvBig">46%</strong></div>
+        <div class="modal-price">¥<strong id="modalPriceBig">0</strong></div>
+        <div class="modal-abv"><strong id="modalAbvBig">46%</strong> vol</div>
+        <div class="modal-nav">
+          <button class="modal-nav-btn" id="modalPrev">◀</button>
+          <span class="modal-step" id="modalStep">1 / 1</span>
+          <button class="modal-nav-btn" id="modalNext">▶</button>
+        </div>
         <div class="modal-actions">
           <button class="btn-secondary" id="modalFavBtn">♡ 收藏</button>
           <button class="btn-primary" id="modalShareBtn">分享</button>
