@@ -2949,16 +2949,16 @@
     addToHistory(d.id);
 
     // 更新热门统计
-    updateHotItem(d.id);
+    if (typeof updateHotItem === 'function') updateHotItem(d.id);
 
     // 显示相关推荐
-    renderRelatedItems(d);
+    if (typeof renderRelatedItems === 'function') renderRelatedItems(d);
 
     // 显示原料图解
-    renderIngredientDiagram(d);
+    if (typeof renderIngredientDiagram === 'function') renderIngredientDiagram(d);
 
     // 记录访问
-    trackAccess(d.id);
+    if (typeof trackAccess === 'function') trackAccess(d.id);
   }
 
   function closeM() {
