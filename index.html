@@ -1199,6 +1199,7 @@
   const mainEl = document.getElementById('mainContent');
   const mb = document.getElementById('modalOverlay');
   const gridEl = document.getElementById('cardGrid');
+  if (!gridEl) console.error('cardGrid not found');
 
   // LocalStorage keys
   const LS_FAVS = 'wl_favs';
