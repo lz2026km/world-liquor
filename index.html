@@ -2530,6 +2530,9 @@
     } else {
       gridEl.classList.remove('list-view');
     }
+    // Direct update to avoid any timing race
+    const tc = document.getElementById('totalCount');
+    if (tc) tc.textContent = displayList.length;
     displayList.forEach((d, i) => {
       gridEl.appendChild(makeCard(d, i));
     });
