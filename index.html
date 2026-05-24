@@ -506,8 +506,15 @@
         </div>
       </div>
       <div class="import-export-btns">
-        <button class="import-btn" onclick="importNotes()">📥 导入</button>
-        <button class="export-btn" onclick="exportNotes()">📤 导出</button>
+        <button class="import-btn" onclick="importNotes()">📥 导入笔记</button>
+        <button class="export-btn" onclick="exportNotes()">📤 导出笔记</button>
+      </div>
+      <div class="import-export-btns">
+        <button class="import-btn" onclick="importAllData()">📥 导入数据</button>
+        <button class="export-btn" onclick="exportAllData()">📤 导出数据</button>
+      </div>
+      <div class="import-export-btns">
+        <button class="export-btn" onclick="exportFavoritesJSON()" style="flex:1">📤 导出收藏</button>
       </div>
     </div>
   </aside>
@@ -535,12 +542,14 @@
         <div class="search-bar">
           <span class="search-bar__icon">🔍</span>
           <input type="text" class="search-bar__input" id="searchInput" placeholder="搜索烈酒名称、类型、产地..." autocomplete="off">
+          <button class="search-bar__clear" onclick="document.getElementById('searchInput').value='';document.getElementById('searchInput').focus()">✕</button>
           <button class="search-bar__submit" onclick="performSearch()">搜索</button>
         </div>
         <div class="search-autocomplete" id="searchAutocomplete"></div>
       </div>
 
       <div class="header__actions">
+        <button class="random-btn" onclick="randomPick()" title="随机推荐">🎲</button>
         <button class="lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
       </div>
     </div>
@@ -656,6 +665,20 @@
     const LS_NOTES = 'liquor_tasting_v2';
     const LS_LANG = 'liquor_lang_v2';
 
+    // ── 自动暗色模式（23:00-06:00）──
+    function initAutoDarkMode() {
+      const hour = new Date().getHours();
+      if (hour >= 23 || hour < 6) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      setInterval(() => {
+        const h = new Date().getHours();
+        if ((h >= 23 || h < 6) && !document.documentElement.hasAttribute('data-theme')) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      }, 60000);
+    }
+
     // ── 工具函数 ──
     function escHtml(str) {
       if (!str) return '';
@@ -665,6 +688,108 @@
     function formatPrice(p) {
       if (p >= 10000) return Math.floor(p / 10000) + '万+';
       return p.toLocaleString();
+    }
+
+    // ── 随机推荐 ──
+    function randomPick() {
+      if (!DATA.length) return;
+      const item = DATA[Math.floor(Math.random() * DATA.length)];
+      openM(item.id);
+      showToast('🎲 随机推荐：' + item.name);
+    }
+
+    // ── 最近浏览 ──
+    const LS_RECENT = 'liquor_recent_v2';
+    function addToRecent(id) {
+      try {
+        let recent = JSON.parse(localStorage.getItem(LS_RECENT) || '[]');
+        recent = recent.filter(r => r !== id);
+        recent.unshift(id);
+        recent = recent.slice(0, 10);
+        localStorage.setItem(LS_RECENT, JSON.stringify(recent));
+      } catch (e) {}
+    }
+    function getRecent() {
+      try { return JSON.parse(localStorage.getItem(LS_RECENT) || '[]'); } catch (e) { return []; }
+    }
+
+    // ── 搜索关键词高亮 ──
+    function getHighlightedText(text, query) {
+      if (!query || !text) return escHtml(text || '');
+      const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      return escHtml(text).replace(regex, '<mark class="search-highlight">$1</mark>');
+    }
+
+    // ── 社交分享 ──
+    function shareItem(id) {
+      const d = DATA.find(x => x.id === id);
+      if (!d) return;
+      const text = '🍷 ' + d.name + '（' + (d.ename||'') + '）- 世界烈酒图鉴';
+      const url = window.location.href.split('?')[0] + '?id=' + id;
+      if (navigator.share) {
+        navigator.share({ title: d.name, text: text, url: url }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(text + ' ' + url).then(() => showToast('🔗 链接已复制'));
+      }
+    }
+
+    // ── 导出收藏JSON ──
+    function exportFavoritesJSON() {
+      const favs = Object.keys(favorites);
+      if (!favs.length) { showToast('暂无收藏'); return; }
+      const items = favs.map(id => DATA.find(d => d.id === id)).filter(Boolean);
+      const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'liquor_favorites_' + new Date().toISOString().slice(0,10) + '.json';
+      a.click(); URL.revokeObjectURL(url);
+      showToast('📤 收藏已导出');
+    }
+
+    // ── 导出/导入全部数据 ──
+    function exportAllData() {
+      const blob = new Blob([JSON.stringify(DATA, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'world_liquor_' + new Date().toISOString().slice(0,10) + '.json';
+      a.click(); URL.revokeObjectURL(url);
+      showToast('📤 全量数据已导出');
+    }
+    function importAllData() {
+      const input = document.createElement('input');
+      input.type = 'file'; input.accept = '.json';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const imported = JSON.parse(ev.target.result);
+            if (Array.isArray(imported)) {
+              DATA = imported; filtered = [...DATA];
+              initUI(); showToast('📥 导入 ' + DATA.length + ' 条数据');
+            } else { showToast('数据格式错误'); }
+          } catch (err) { showToast('导入失败'); }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    // ── 访问统计（本周热门）──
+    const LS_VISITS = 'liquor_visits_v2';
+    function updateVisitCount(id) {
+      try {
+        let visits = JSON.parse(localStorage.getItem(LS_VISITS) || '{}');
+        visits[id] = (visits[id] || 0) + 1;
+        localStorage.setItem(LS_VISITS, JSON.stringify(visits));
+      } catch (e) {}
+    }
+    function getTopVisited() {
+      try {
+        const visits = JSON.parse(localStorage.getItem(LS_VISITS) || '{}');
+        return Object.entries(visits).sort((a,b) => b[1]-a[1]).slice(0,5).map(e => e[0]);
+      } catch (e) { return []; }
     }
 
     // ── 数据加载 ──
@@ -705,6 +830,7 @@
 
     // ── UI初始化 ──
     function initUI() {
+      initAutoDarkMode();
       initLang();
       renderTypeFilters();
       renderRegionFilters();
@@ -903,22 +1029,26 @@
     function render() {
       const grid = document.getElementById('cardGrid');
       const currentFiltered = filtered.length ? filtered : DATA;
-      
+      const query = (document.getElementById('searchInput') || {}).value || '';
+
       grid.innerHTML = currentFiltered.map((d, i) => {
         const isFav = favorites[d.id];
         const tags = (d.flavor_tags || []).slice(0, 4).map(t => `<span class="liquor-tag">${escHtml(t)}</span>`).join('');
         const priceDisplay = formatPrice(d.price || 0);
-        
+        const nameHtml = query ? getHighlightedText(d.name, query) : escHtml(CUR_LANG === 'zh' ? d.name : (d.ename || d.name));
+        const descHtml = query && d.description ? getHighlightedText(d.description.slice(0, 30), query) : '';
+
         return `
-        <article class="liquor-card" data-id="${escHtml(d.id)}" style="animation-delay:${Math.min(i * 50, 300)}ms" tabindex="0">
+        <article class="liquor-card" data-id="${escHtml(d.id)}" style="animation-delay:${Math.min(i * 50, 300)}ms" tabindex="0" ondblclick="event.stopPropagation();toggleFav('${d.id}')">
           <div class="liquor-card-image">
             <span>🍷</span>
             ${d.price_tier === '高端' ? '<span class="liquor-card-badge">高端</span>' : ''}
           </div>
           <div class="liquor-card-body">
             <div class="liquor-card-region">${escHtml(d.region || '未知产区')}</div>
-            <h3 class="liquor-card-name">${escHtml(CUR_LANG === 'zh' ? d.name : (d.ename || d.name))}</h3>
+            <h3 class="liquor-card-name">${nameHtml}</h3>
             <p class="liquor-card-name-en">${escHtml(d.ename || '')}</p>
+            ${descHtml ? `<p class="liquor-card-desc">${descHtml}...</p>` : ''}
             <div class="liquor-card-tags">${tags}</div>
             <div class="liquor-card-footer">
               <div class="liquor-card-abv">酒精度 <strong>${d.abv || 0}%</strong></div>
@@ -934,6 +1064,9 @@
 
       grid.querySelectorAll('.liquor-card').forEach(card => {
         card.addEventListener('click', () => openM(card.dataset.id));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') openM(card.dataset.id);
+        });
       });
     }
 
@@ -941,6 +1074,10 @@
     function openM(id) {
       const d = DATA.find(x => x.id === id);
       if (!d) return;
+
+      addToRecent(id);
+      updateVisitCount(id);
+      document.body.style.overflow = 'hidden';
 
       const modal = document.getElementById('modal');
       const backdrop = document.getElementById('modalBackdrop');
@@ -968,6 +1105,10 @@
               <span class="modal__badge">${escHtml(d.region || '')}</span>
               <span class="modal__badge">${d.abv || 0}%vol</span>
             </div>
+          </div>
+          <div class="modal__actions">
+            <button class="modal__action-btn" onclick="shareItem('${d.id}')" title="分享">🔗</button>
+            <button class="modal__action-btn" onclick="toggleFav('${d.id}')" title="${favorites[d.id] ? '取消收藏' : '收藏'}">${favorites[d.id] ? '❤️' : '🤍'}</button>
           </div>
         </div>
 
