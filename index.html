@@ -954,7 +954,7 @@
       </a>
       <div class="header-search">
         <span class="search-icon">🔍</span>
-        <input type="search" placeholder="搜索烈酒名称、产区、风味…" autocomplete="off">
+        <input type="search" id="searchInput" placeholder="搜索烈酒名称、产区、风味…" autocomplete="off">
       </div>
       <div class="header-actions">
         <button class="header-btn" title="收藏夹" id="favoritesBtn">❤️<span class="badge" id="favBadge">0</span></button>
@@ -976,25 +976,33 @@
       <div class="filter-group">
         <span class="filter-label">类型</span>
         <button class="filter-chip active" data-filter="type" data-value="all">全部</button>
-        <button class="filter-chip" data-filter="type" data-value="whiskey">威士忌</button>
-        <button class="filter-chip" data-filter="type" data-value="brandy">白兰地</button>
-        <button class="filter-chip" data-filter="type" data-value="rum">朗姆酒</button>
-        <button class="filter-chip" data-filter="type" data-value="vodka">伏特加</button>
-        <button class="filter-chip" data-filter="type" data-value="gin">金酒</button>
-        <button class="filter-chip" data-filter="type" data-value="tequila">龙舌兰</button>
-        <button class="filter-chip" data-filter="type" data-value="baijiu">白酒</button>
+        <button class="filter-chip" data-filter="type" data-value="酱香型">酱香型</button>
+        <button class="filter-chip" data-filter="type" data-value="浓香型">浓香型</button>
+        <button class="filter-chip" data-filter="type" data-value="清香型">清香型</button>
+        <button class="filter-chip" data-filter="type" data-value="凤香型">凤香型</button>
+        <button class="filter-chip" data-filter="type" data-value="药香型">药香型</button>
+        <button class="filter-chip" data-filter="type" data-value="兼香型">兼香型</button>
+        <button class="filter-chip" data-filter="type" data-value="老白干型">老白干型</button>
+        <button class="filter-chip" data-filter="type" data-value="特香型">特香型</button>
+        <button class="filter-chip" data-filter="type" data-value="馥郁香型">馥郁香型</button>
+        <button class="filter-chip" data-filter="type" data-value="芝麻香型">芝麻香型</button>
+        <button class="filter-chip" data-filter="type" data-value="黄酒">黄酒</button>
       </div>
       <div class="filter-divider"></div>
       <div class="filter-group">
         <span class="filter-label">产区</span>
         <button class="filter-chip active" data-filter="region" data-value="all">全部</button>
-        <button class="filter-chip" data-filter="region" data-value="scotland">苏格兰</button>
-        <button class="filter-chip" data-filter="region" data-value="ireland">爱尔兰</button>
-        <button class="filter-chip" data-filter="region" data-value="usa">美国</button>
-        <button class="filter-chip" data-filter="region" data-value="japan">日本</button>
-        <button class="filter-chip" data-filter="region" data-value="france">法国</button>
-        <button class="filter-chip" data-filter="region" data-value="china">中国</button>
-        <button class="filter-chip" data-filter="region" data-value="cuba">古巴</button>
+        <button class="filter-chip" data-filter="region" data-value="苏格兰">苏格兰</button>
+        <button class="filter-chip" data-filter="region" data-value="爱尔兰">爱尔兰</button>
+        <button class="filter-chip" data-filter="region" data-value="美国">美国</button>
+        <button class="filter-chip" data-filter="region" data-value="日本">日本</button>
+        <button class="filter-chip" data-filter="region" data-value="法国">法国</button>
+        <button class="filter-chip" data-filter="region" data-value="中国">中国</button>
+        <button class="filter-chip" data-filter="region" data-value="瑞典">瑞典</button>
+        <button class="filter-chip" data-filter="region" data-value="墨西哥">墨西哥</button>
+        <button class="filter-chip" data-filter="region" data-value="牙买加">牙买加</button>
+        <button class="filter-chip" data-filter="region" data-value="波多黎各">波多黎各</button>
+        <button class="filter-chip" data-filter="region" data-value="德国">德国</button>
       </div>
       <div class="filter-divider"></div>
       <div class="filter-group">
@@ -1190,7 +1198,7 @@
   // DOM refs
   const mainEl = document.getElementById('mainContent');
   const mb = document.getElementById('modalOverlay');
-  const gridEl = document.getElementById('liquorGrid');
+  const gridEl = document.getElementById('cardGrid');
 
   // LocalStorage keys
   const LS_FAVS = 'wl_favs';
