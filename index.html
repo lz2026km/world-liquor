@@ -33,17 +33,16 @@
       --radius-md: 12px;
       --radius-lg: 20px;
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --brightness: 1;
     }
 
-    /* ===== Reset & Base ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Serif SC', 'Songti SC', serif;
       background: linear-gradient(135deg, var(--brown-deep) 0%, var(--brown-dark) 50%, var(--brown-mid) 100%);
       color: var(--cream-text);
       min-height: 100vh;
       line-height: 1.6;
+      filter: brightness(var(--brightness));
     }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; outline: none; }
@@ -135,6 +134,196 @@
       font-size: 14px;
       pointer-events: none;
     }
+    .search-autocomplete {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      margin-top: 4px;
+      z-index: 200;
+      display: none;
+      overflow: hidden;
+    }
+    .search-autocomplete.active { display: block; }
+    .search-autocomplete-item {
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--amber-200);
+      transition: var(--transition);
+    }
+    .search-autocomplete-item:hover { background: rgba(212, 165, 116, 0.15); }
+    .search-autocomplete-item .highlight { color: var(--amber-gold); font-weight: 600; }
+
+    .related-list {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .related-item {
+      flex-shrink: 0;
+      width: 140px;
+      padding: 10px;
+      background: rgba(255, 248, 231, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .related-item:hover {
+      background: rgba(212, 165, 116, 0.12);
+      border-color: var(--amber-600);
+    }
+    .related-item-name {
+      font-size: 13px;
+      color: var(--amber-200);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .related-item-meta {
+      font-size: 11px;
+      color: var(--muted-text);
+    }
+
+    /* ===== Card Hover Effects ===== */
+    .liquor-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-deep), 0 0 30px rgba(184, 134, 11, 0.3);
+      border-color: var(--amber-500);
+    }
+
+    /* ===== Toast Notification ===== */
+    .toast {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: var(--glass-bg);
+      border: 1px solid var(--amber-600);
+      border-radius: var(--radius-md);
+      padding: 12px 24px;
+      font-size: 14px;
+      color: var(--amber-gold);
+      z-index: 300;
+      opacity: 0;
+      transition: all var(--transition);
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===== Brightness Slider ===== */
+    .brightness-slider {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(255, 248, 231, 0.06);
+      border-radius: var(--radius-sm);
+    }
+    .brightness-slider label {
+      font-size: 12px;
+      color: var(--muted-text);
+    }
+    .brightness-slider input[type="range"] {
+      width: 80px;
+      accent-color: var(--amber-500);
+    }
+
+    /* ===== Ingredient Diagram ===== */
+    .ingredient-diagram {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .ingredient-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 248, 231, 0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      font-size: 12px;
+      color: var(--amber-200);
+    }
+    .ingredient-icon {
+      font-size: 16px;
+    }
+
+    /* ===== Import/Export Buttons ===== */
+    .import-export-btns {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .import-btn, .export-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .import-btn {
+      background: rgba(32, 178, 170, 0.2);
+      border: 1px solid rgba(32, 178, 170, 0.4);
+      color: #20B2AA;
+    }
+    .import-btn:hover { background: rgba(32, 178, 170, 0.3); }
+    .export-btn {
+      background: rgba(255, 165, 0, 0.2);
+      border: 1px solid rgba(255, 165, 0, 0.4);
+      color: var(--amber-orange);
+    }
+    .export-btn:hover { background: rgba(255, 165, 0, 0.3); }
+
+    /* ===== Hot This Week ===== */
+    .hot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hot-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      background: rgba(255, 248, 231, 0.04);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .hot-item:hover { background: rgba(212, 165, 116, 0.12); }
+    .hot-rank {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--amber-gold);
+      width: 20px;
+      text-align: center;
+    }
+    .hot-name {
+      flex: 1;
+      font-size: 13px;
+      color: var(--amber-200);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hot-count {
+      font-size: 11px;
+      color: var(--muted-text);
+    }
+
     .header-actions {
       display: flex;
       align-items: center;
@@ -1758,8 +1947,10 @@
       <div class="header-search">
         <span class="search-icon">🔍</span>
         <input type="search" id="searchInput" placeholder="搜索烈酒名称、产区、风味…" autocomplete="off">
+        <div class="search-autocomplete" id="searchAutocomplete"></div>
       </div>
       <div class="header-actions">
+        <button class="header-btn" title="随机推荐" id="randomBtn">🎲</button>
         <button class="header-btn" title="筛选" id="mobFilterBtn">☰</button>
         <button class="header-btn" title="收藏夹" id="favoritesBtn">❤️<span class="badge" id="favBadge">0</span></button>
         <button class="header-btn" title="历史记录" id="historyBtn">🕐</button>
@@ -1861,6 +2052,11 @@
       </div>
       <div class="filter-divider"></div>
       <div class="filter-group">
+        <span class="filter-label">香气</span>
+        <button class="filter-chip" id="filterAromaHdr" data-filter="aroma">▼ 香气</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
         <span class="filter-label">快捷</span>
         <div class="price-quick-chips">
           <button class="price-chip" data-quick-price="0-100">0-100</button>
@@ -1888,6 +2084,7 @@
     <div id="filterRegionBody" class="filter-group-body"></div>
     <div id="filterEraBody" class="filter-group-body"></div>
     <div id="filterPriceBody" class="filter-group-body"></div>
+    <div id="filterAromaBody" class="filter-group-body"></div>
     <!-- Active tags bar -->
     <div id="activeTags" class="filter-tags-bar"></div>
   </section>
@@ -1989,6 +2186,14 @@
               <div class="modal-info-label">产地</div>
               <div class="modal-info-value" id="modalOrigin">暂无信息</div>
             </div>
+            <div class="modal-info-item">
+              <div class="modal-info-label">年份</div>
+              <div class="modal-info-value" id="modalVintage">—</div>
+            </div>
+            <div class="modal-info-item">
+              <div class="modal-info-label">批次</div>
+              <div class="modal-info-value" id="modalBatch">—</div>
+            </div>
           </div>
         </div>
         <div class="modal-section">
@@ -2025,6 +2230,10 @@
         <div class="modal-section">
           <div class="modal-section-title">简介</div>
           <p class="modal-desc" id="modalDesc">这是一款来自苏格兰高地区的优质单一麦芽威士忌，经过至少12年的橡木桶陈酿，呈现出复杂而平衡的风味。散发着泥煤烟熏与成熟水果的香气，口感圆润，余韵悠长。</p>
+        </div>
+        <div class="modal-section" id="relatedSection">
+          <div class="modal-section-title">你可能也喜欢</div>
+          <div class="related-list" id="relatedList"></div>
         </div>
         <div class="modal-section">
           <div class="modal-section-title">我的评分</div>
@@ -2113,7 +2322,12 @@
     </div>
     <div class="sidebar-footer">
       <button class="sidebar-footer-btn" id="sidebarClearBtn">清空记录</button>
+      <div class="import-export-btns">
+        <button class="import-btn" id="importDataBtn">📥 导入</button>
+        <button class="export-btn" id="exportAllDataBtn">📤 导出</button>
+      </div>
     </div>
+    <input type="file" id="importFileInput" accept=".json" style="display:none">
   </aside>
 
   <!-- ========== FOOTER ========== -->
@@ -2130,6 +2344,12 @@
       <div class="footer-copy">© 2025 World Liquor Gallery · 琥珀酒韵配色 · 仅供学习交流</div>
     </div>
   </footer>
+
+  <!-- ========== TOAST ========== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ========== PWA MANIFEST ========== -->
+  <link rel="manifest" href="manifest.json">
 
   <script>
   // ═══════════════════════════════════════════════════════════
@@ -2179,6 +2399,13 @@
   const LS_FAVS = 'wl_favs';
   const LS_THEME = 'wl_theme';
   const LS_HIST = 'wl_hist';
+  const LS_RATINGS = 'wl_ratings';
+  const LS_HOT = 'wl_hot';
+  const LS_RECENT = 'wl_recent';
+
+  // Aroma filter state
+  let selAromas = [];
+  let autocompleteTimer = null;
 
   // ── 2) 数据加载fetch ──
   async function loadData() {
@@ -2195,6 +2422,7 @@
       buildRegionFilter();
       buildEraFilter();
       buildPriceFilter();
+      buildAromaFilter();
       renderTags();
       apply();
       initCarousel();
@@ -2383,6 +2611,11 @@
         if (selPriceRange === 3 && p < 2000) return false;
       }
 
+      // 香气类型过滤 (OR)
+      if (selAromas.length) {
+        if (!d.aroma || !selAromas.some(a => d.aroma.includes(a))) return false;
+      }
+
       return true;
     });
 
@@ -2512,6 +2745,35 @@
     });
   }
 
+  function buildAromaFilter() {
+    const body = document.getElementById('filterAromaBody');
+    // Collect all unique aromas from data
+    const aromaSet = new Set();
+    DATA.forEach(d => {
+      if (d.aroma && Array.isArray(d.aroma)) {
+        d.aroma.forEach(a => aromaSet.add(a));
+      }
+    });
+    const aromas = [...aromaSet].sort();
+    body.innerHTML = '';
+    aromas.forEach(aroma => {
+      const lbl = document.createElement('label');
+      lbl.innerHTML = `
+        <input type="checkbox" data-aroma="${escHtml(aroma)}">
+        <span>${escHtml(aroma)}</span>`;
+      lbl.querySelector('input').checked = selAromas.includes(aroma);
+      lbl.querySelector('input').onchange = () => toggleAroma(aroma, lbl.querySelector('input').checked);
+      body.appendChild(lbl);
+    });
+  }
+
+  function toggleAroma(aroma, on) {
+    if (on) selAromas.push(aroma);
+    else selAromas = selAromas.filter(a => a !== aroma);
+    updateFilterCount('aroma');
+    apply();
+  }
+
   function updateFilterCount(type) {
     const el = document.getElementById(type + 'Count');
     if (!el) return;
@@ -2520,6 +2782,7 @@
     else if (type === 'region') n = selRegions.length;
     else if (type === 'era') n = selEras.length;
     else if (type === 'price') n = selPriceRange !== null ? 1 : 0;
+    else if (type === 'aroma') n = selAromas.length;
     el.textContent = n || '';
     el.style.display = n ? 'inline' : 'none';
   }
@@ -2538,6 +2801,7 @@
   setupFilterPanel('filterRegionHdr', 'filterRegionBody');
   setupFilterPanel('filterEraHdr', 'filterEraBody');
   setupFilterPanel('filterPriceHdr', 'filterPriceBody');
+  setupFilterPanel('filterAromaHdr', 'filterAromaBody');
 
   // ── Tags标签栏 ──
   function renderTags() {
@@ -2622,6 +2886,8 @@
     document.getElementById('modalFactory').textContent = escHtml(d.factory || '');
     document.getElementById('modalOrigin').textContent = escHtml(d.origin || '');
     document.getElementById('modalAge').textContent = d.age ? `${d.age}年` : '—';
+    document.getElementById('modalVintage').textContent = d.vintage || '—';
+    document.getElementById('modalBatch').textContent = d.batch || '—';
 
     // 品鉴指南
     const tastingEl = document.getElementById('modalTasting');
@@ -2681,6 +2947,18 @@
 
     // 添加浏览历史
     addToHistory(d.id);
+
+    // 更新热门统计
+    updateHotItem(d.id);
+
+    // 显示相关推荐
+    renderRelatedItems(d);
+
+    // 显示原料图解
+    renderIngredientDiagram(d);
+
+    // 记录访问
+    trackAccess(d.id);
   }
 
   function closeM() {
