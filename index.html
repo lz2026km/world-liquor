@@ -6,239 +6,319 @@
   <title>世界烈酒图鉴 · World Liquor Gallery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    /* ===== CSS Variables · 琥珀酒韵配色 ===== */
-    :root {
-      --amber-100: #FFF8E7;
-      --amber-200: #F5E6D3;
-      --amber-300: #E8D5C4;
-      --amber-400: #D4A574;
-      --amber-500: #C4956A;
-      --amber-600: #B8860B;
-      --amber-700: #A0522D;
-      --amber-800: #8B4513;
-      --amber-900: #5C3317;
-      --amber-gold: #FFD700;
-      --amber-orange: #FFA500;
-      --brown-dark: #2C1810;
-      --brown-deep: #1A0F0A;
-      --brown-mid: #3D2317;
-      --cream-text: #F5E6D3;
-      --muted-text: #B8A090;
-      --glass-bg: rgba(44, 24, 16, 0.85);
-      --glass-border: rgba(212, 165, 116, 0.3);
-      --shadow-amber: 0 4px 20px rgba(184, 134, 11, 0.25);
-      --shadow-deep: 0 8px 32px rgba(0, 0, 0, 0.5);
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --brightness: 1;
-    }
-
+    /* ================================================
+       世界烈酒图鉴 v2.0 华丽UI
+       深邃藏蓝 + 鎏金奢华风格
+       ================================================ */
+    
+    /* ===== 内联Critical CSS ===== */
     body {
       font-family: 'Noto Serif SC', 'Songti SC', serif;
-      background: linear-gradient(135deg, var(--brown-deep) 0%, var(--brown-dark) 50%, var(--brown-mid) 100%);
-      color: var(--cream-text);
+      background: #050303;
+      color: #e8e0d8;
       min-height: 100vh;
       line-height: 1.6;
-      filter: brightness(var(--brightness));
     }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; outline: none; }
-    img { display: block; max-width: 100%; }
 
-    /* ===== Scrollbar ===== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--brown-deep); }
-    ::-webkit-scrollbar-thumb { background: var(--amber-800); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--amber-700); }
+    /* ===== Loading State ===== */
+    .initial-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 24px;
+    }
+    .initial-loading__icon {
+      font-size: 72px;
+      animation: float 2s ease-in-out infinite;
+    }
+    .initial-loading__text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #e8a829;
+      letter-spacing: 0.2em;
+    }
+    .initial-loading__bar {
+      width: 200px;
+      height: 3px;
+      background: rgba(232, 168, 41, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .initial-loading__bar::after {
+      content: '';
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, #e8a829, #f5cc6a);
+      border-radius: 2px;
+      animation: loading 1.2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
 
-    /* ===== Header ===== */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-deep);
-    }
-    .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 24px;
+    /* ===== Favorites Bar ===== */
+    .favorites-bar {
+      position: fixed;
+      left: 0;
+      top: 68px;
+      bottom: 0;
+      width: 48px;
+      background: rgba(13, 10, 8, 0.95);
+      border-right: 1px solid rgba(232, 168, 41, 0.2);
+      z-index: 90;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 32px;
-      height: 68px;
+      padding: 16px 0;
+      gap: 8px;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    .logo-icon {
+    .favorites-bar__btn {
       width: 36px;
       height: 36px;
-      background: linear-gradient(135deg, var(--amber-600), var(--amber-800));
-      border-radius: 50%;
+      border-radius: 8px;
+      background: rgba(26, 21, 18, 0.6);
+      border: 1px solid rgba(232, 168, 41, 0.2);
+      color: #9a8b7a;
+      font-size: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      box-shadow: var(--shadow-amber);
-    }
-    .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--amber-gold);
-      letter-spacing: 1px;
-    }
-    .logo-sub {
-      font-size: 11px;
-      color: var(--muted-text);
-      letter-spacing: 0.5px;
-      margin-top: -2px;
-    }
-    .header-search {
-      flex: 1;
-      max-width: 480px;
-      position: relative;
-    }
-    .header-search input {
-      width: 100%;
-      padding: 9px 16px 9px 42px;
-      background: rgba(255, 248, 231, 0.08);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      color: var(--cream-text);
-      font-size: 14px;
-      transition: var(--transition);
-    }
-    .header-search input:focus {
-      border-color: var(--amber-400);
-      background: rgba(255, 248, 231, 0.12);
-      box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
-    }
-    .header-search input::placeholder { color: var(--muted-text); }
-    .header-search .search-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted-text);
-      font-size: 14px;
-      pointer-events: none;
-    }
-    .search-autocomplete {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      margin-top: 4px;
-      z-index: 200;
-      display: none;
-      overflow: hidden;
-    }
-    .search-autocomplete.active { display: block; }
-    .search-autocomplete-item {
-      padding: 10px 16px;
       cursor: pointer;
-      font-size: 14px;
-      color: var(--amber-200);
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
-    .search-autocomplete-item:hover { background: rgba(212, 165, 116, 0.15); }
-    .search-autocomplete-item .highlight { color: var(--amber-gold); font-weight: 600; }
+    .favorites-bar__btn:hover {
+      background: rgba(232, 168, 41, 0.15);
+      border-color: #e8a829;
+      color: #e8a829;
+    }
+    .favorites-bar__btn.active {
+      background: rgba(232, 168, 41, 0.15);
+      border-color: #e8a829;
+      color: #e8a829;
+    }
 
-    .related-list {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-    }
-    .related-item {
-      flex-shrink: 0;
-      width: 140px;
-      padding: 10px;
-      background: rgba(255, 248, 231, 0.04);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
+    /* ===== Lang Toggle ===== */
+    .lang-btn {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(26, 21, 18, 0.6);
+      border: 1px solid rgba(232, 168, 41, 0.2);
+      color: #e8e0d8;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.3s ease;
+      font-weight: 600;
     }
-    .related-item:hover {
-      background: rgba(212, 165, 116, 0.12);
-      border-color: var(--amber-600);
+    .lang-btn:hover {
+      background: rgba(232, 168, 41, 0.2);
+      border-color: #e8a829;
+      color: #e8a829;
     }
-    .related-item-name {
-      font-size: 13px;
-      color: var(--amber-200);
+    .lang-btn.active {
+      background: rgba(232, 168, 41, 0.2);
+      border-color: #e8a829;
+      color: #e8a829;
+    }
+
+    /* ===== Notes Panel ===== */
+    .notes-item {
+      padding: 12px 14px;
+      background: rgba(26, 21, 18, 0.6);
+      border: 1px solid rgba(232, 168, 41, 0.15);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .notes-item:hover {
+      background: rgba(232, 168, 41, 0.08);
+      border-color: rgba(232, 168, 41, 0.3);
+    }
+    .notes-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 4px;
+    }
+    .notes-item-name {
+      font-size: 14px;
+      color: #e8e0d8;
+      font-weight: 600;
+    }
+    .notes-item-rating {
+      color: #e8a829;
+      font-size: 12px;
+    }
+    .notes-item-text {
+      font-size: 12px;
+      color: #9a8b7a;
+      line-height: 1.5;
+    }
+    .notes-item-date {
+      font-size: 11px;
+      color: #6b5d4d;
+      margin-top: 4px;
+    }
+    .sidebar-empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: #6b5d4d;
+    }
+    .sidebar-empty__icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+    .sidebar-empty__text {
+      font-size: 14px;
+    }
+
+    /* ===== Hot This Week ===== */
+    .hot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hot-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(26, 21, 18, 0.4);
+      border: 1px solid rgba(232, 168, 41, 0.1);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .hot-item:hover {
+      background: rgba(232, 168, 41, 0.08);
+      border-color: rgba(232, 168, 41, 0.25);
+    }
+    .hot-rank {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e8a829;
+      width: 24px;
+      text-align: center;
+    }
+    .hot-name {
+      flex: 1;
+      font-size: 13px;
+      color: #e8e0d8;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .related-item-meta {
+    .hot-count {
       font-size: 11px;
-      color: var(--muted-text);
+      color: #6b5d4d;
     }
 
-    /* ===== Card Hover Effects ===== */
-    .liquor-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-deep), 0 0 30px rgba(184, 134, 11, 0.3);
-      border-color: var(--amber-500);
+    /* ===== Tag Select ===== */
+    .fav-tag-select {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .fav-tag-option {
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(26, 21, 18, 0.6);
+      border: 1px solid rgba(232, 168, 41, 0.2);
+      color: #c9bfb5;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .fav-tag-option:hover,
+    .fav-tag-option.active {
+      background: rgba(232, 168, 41, 0.15);
+      border-color: #e8a829;
+      color: #e8a829;
     }
 
-    /* ===== Toast Notification ===== */
-    .toast {
-      position: fixed;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-20px);
-      background: var(--glass-bg);
-      border: 1px solid var(--amber-600);
-      border-radius: var(--radius-md);
-      padding: 12px 24px;
-      font-size: 14px;
-      color: var(--amber-gold);
-      z-index: 300;
-      opacity: 0;
-      transition: all var(--transition);
-      pointer-events: none;
+    /* ===== Import/Export ===== */
+    .import-export-btns {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ===== Brightness Slider ===== */
-    .brightness-slider {
+    .import-btn, .export-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      background: rgba(255, 248, 231, 0.06);
-      border-radius: var(--radius-sm);
+      justify-content: center;
+      gap: 6px;
     }
-    .brightness-slider label {
-      font-size: 12px;
-      color: var(--muted-text);
+    .import-btn {
+      background: rgba(32, 178, 170, 0.15);
+      border: 1px solid rgba(32, 178, 170, 0.3);
+      color: #5fbfb3;
     }
-    .brightness-slider input[type="range"] {
-      width: 80px;
-      accent-color: var(--amber-500);
+    .import-btn:hover {
+      background: rgba(32, 178, 170, 0.25);
+      border-color: rgba(32, 178, 170, 0.5);
+    }
+    .export-btn {
+      background: rgba(232, 168, 41, 0.1);
+      border: 1px solid rgba(232, 168, 41, 0.25);
+      color: #e8a829;
+    }
+    .export-btn:hover {
+      background: rgba(232, 168, 41, 0.2);
+      border-color: rgba(232, 168, 41, 0.4);
     }
 
-    /* ===== Ingredient Diagram ===== */
+    /* ===== Overlay ===== */
+    .sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 85;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .sidebar-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ===== Tasting Stars in Modal ===== */
+    .modal__stars {
+      display: flex;
+      gap: 4px;
+      margin: 8px 0;
+    }
+    .modal__stars span {
+      font-size: 20px;
+      color: #4a3f32;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .modal__stars span.active,
+    .modal__stars span:hover {
+      color: #e8a829;
+      transform: scale(1.15);
+    }
+
+    /* ===== Ingredient Tags ===== */
     .ingredient-diagram {
       display: flex;
       gap: 8px;
@@ -250,3521 +330,1048 @@
       align-items: center;
       gap: 6px;
       padding: 6px 12px;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
+      background: rgba(232, 168, 41, 0.06);
+      border: 1px solid rgba(232, 168, 41, 0.15);
+      border-radius: 20px;
       font-size: 12px;
-      color: var(--amber-200);
+      color: #c9bfb5;
     }
     .ingredient-icon {
       font-size: 16px;
     }
 
-    /* ===== Import/Export Buttons ===== */
-    .import-export-btns {
+    /* ===== Scene Tags ===== */
+    .scene-tags {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 8px;
     }
-    .import-btn, .export-btn {
-      flex: 1;
+    .scene-tag {
+      padding: 6px 14px;
+      background: rgba(139, 41, 66, 0.15);
+      border: 1px solid rgba(139, 41, 66, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      color: #da8a5f;
+    }
+
+    /* ===== Awards ===== */
+    .awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .award-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .import-btn {
-      background: rgba(32, 178, 170, 0.2);
-      border: 1px solid rgba(32, 178, 170, 0.4);
-      color: #20B2AA;
-    }
-    .import-btn:hover { background: rgba(32, 178, 170, 0.3); }
-    .export-btn {
-      background: rgba(255, 165, 0, 0.2);
-      border: 1px solid rgba(255, 165, 0, 0.4);
-      color: var(--amber-orange);
-    }
-    .export-btn:hover { background: rgba(255, 165, 0, 0.3); }
-
-    /* ===== Hot This Week ===== */
-    .hot-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .hot-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      background: rgba(255, 248, 231, 0.04);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .hot-item:hover { background: rgba(212, 165, 116, 0.12); }
-    .hot-rank {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--amber-gold);
-      width: 20px;
-      text-align: center;
-    }
-    .hot-name {
-      flex: 1;
+      background: rgba(232, 168, 41, 0.05);
+      border-radius: 8px;
       font-size: 13px;
-      color: var(--amber-200);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: #c9bfb5;
     }
-    .hot-count {
-      font-size: 11px;
-      color: var(--muted-text);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-    .header-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--cream-text);
+    .award-icon {
       font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      position: relative;
-    }
-    .header-btn:hover {
-      background: rgba(212, 165, 116, 0.2);
-      border-color: var(--amber-400);
-      transform: translateY(-1px);
-    }
-    .header-btn .badge {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      width: 16px;
-      height: 16px;
-      background: var(--amber-orange);
-      border-radius: 50%;
-      font-size: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--brown-deep);
-      font-weight: 700;
-      display: none;
     }
 
-    /* ===== Hero Banner ===== */
-    .hero-banner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 32px 24px 16px;
-      text-align: center;
-    }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 700;
-      color: var(--amber-gold);
-      text-shadow: 0 2px 12px rgba(255, 215, 0, 0.3);
-      margin-bottom: 8px;
-    }
-    .hero-subtitle {
-      font-size: 15px;
-      color: var(--muted-text);
-      letter-spacing: 2px;
-    }
-
-    /* ===== Filter Panel ===== */
-    .filter-panel {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 24px 20px;
-    }
-    .filter-bar {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-    .filter-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .filter-label {
-      font-size: 12px;
-      color: var(--muted-text);
-      white-space: nowrap;
-      letter-spacing: 1px;
-    }
-    .filter-chip {
-      padding: 5px 14px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--amber-200);
-      font-size: 13px;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    .filter-chip:hover,
-    .filter-chip.active {
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border-color: var(--amber-600);
-      color: var(--amber-gold);
-      box-shadow: var(--shadow-amber);
-    }
-    .price-quick-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-left: 8px;
-    }
-    .price-chip {
-      padding: 3px 10px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--amber-200);
-      font-size: 12px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .price-chip:hover,
-    .price-chip.active {
-      background: rgba(255, 165, 0, 0.2);
-      border-color: var(--amber-orange);
-      color: var(--amber-gold);
-    }
-    .filter-divider {
-      width: 1px;
-      height: 28px;
-      background: var(--glass-border);
-      margin: 0 4px;
-    }
-    .filter-sort {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: auto;
-    }
-    .filter-sort select {
-      padding: 6px 12px;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      color: var(--cream-text);
-      font-size: 13px;
-      font-family: inherit;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .filter-sort select:focus {
-      border-color: var(--amber-400);
-      outline: none;
-    }
-    .filter-sort select option { background: var(--brown-dark); }
-    .filter-clear {
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      background: transparent;
-      border: 1px solid rgba(255, 87, 34, 0.4);
-      color: #FF6340;
-      font-size: 12px;
-      transition: var(--transition);
-    }
-    .filter-clear:hover {
-      background: rgba(255, 87, 34, 0.15);
-      border-color: #FF6340;
-    }
-
-    /* ===== Card Container ===== */
-    .main-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 8px 24px 40px;
-    }
-    .cards-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      padding: 0 2px;
-    }
-    .cards-count {
-      font-size: 13px;
-      color: var(--muted-text);
-    }
-    .cards-count strong {
-      color: var(--amber-gold);
-      font-weight: 600;
-    }
-    .view-toggle {
-      display: flex;
-      gap: 4px;
-    }
-    .view-toggle button {
-      width: 34px;
-      height: 34px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--muted-text);
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    .view-toggle button.active {
-      background: rgba(212, 165, 116, 0.2);
-      border-color: var(--amber-500);
-      color: var(--amber-gold);
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    . liquor-card {
-      background: linear-gradient(145deg, rgba(61, 35, 23, 0.9), rgba(44, 24, 16, 0.95));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-    }
-    .liquor-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-deep), 0 0 20px rgba(184, 134, 11, 0.2);
-      border-color: var(--amber-600);
-    }
-    .liquor-card-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, var(--brown-mid), var(--brown-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      color: var(--amber-400);
-      position: relative;
-      overflow: hidden;
-    }
-    .liquor-card-image::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(to top, rgba(26, 15, 10, 0.8), transparent);
-    }
-    .liquor-card-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      padding: 3px 10px;
-      border-radius: var(--radius-lg);
-      background: rgba(139, 69, 19, 0.9);
-      border: 1px solid var(--amber-700);
-      color: var(--amber-gold);
-      font-size: 11px;
-      letter-spacing: 1px;
-      z-index: 2;
-    }
-    .liquor-card-body {
-      padding: 14px 16px 16px;
-    }
-    .liquor-card-region {
-      font-size: 11px;
-      color: var(--amber-500);
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-    .liquor-card-name {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--amber-200);
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-    .liquor-card-name-en {
-      font-size: 11px;
-      color: var(--muted-text);
-      margin-bottom: 8px;
-      font-style: italic;
-    }
-    .liquor-card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .liquor-tag {
-      padding: 2px 8px;
-      border-radius: var(--radius-lg);
-      background: rgba(212, 165, 116, 0.12);
-      border: 1px solid rgba(212, 165, 116, 0.2);
-      color: var(--amber-400);
-      font-size: 11px;
-    }
-    .liquor-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 10px;
-      border-top: 1px solid rgba(212, 165, 116, 0.1);
-    }
-    .liquor-card-abv {
-      font-size: 12px;
-      color: var(--amber-500);
-    }
-    .liquor-card-abv strong {
-      color: var(--amber-gold);
-      font-size: 15px;
-    }
-    .liquor-card-actions {
-      display: flex;
-      gap: 4px;
-    }
-    .liquor-card-actions button {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: var(--muted-text);
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    .liquor-card-actions button:hover {
-      background: rgba(212, 165, 116, 0.2);
-      border-color: var(--amber-500);
-      color: var(--amber-gold);
-    }
-
-    /* ===== List View ===== */
-    .card-grid.list-view {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .card-grid.list-view .liquor-card {
-      display: flex;
-      flex-direction: row;
-      height: 160px;
-    }
-    .card-grid.list-view .liquor-card-image {
-      width: 180px;
-      height: 100%;
-      flex-shrink: 0;
-    }
-    .card-grid.list-view .liquor-card-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 16px 20px;
-    }
-    .card-grid.list-view .liquor-card-name {
-      font-size: 18px;
-    }
-    .card-grid.list-view .liquor-card-tags {
-      margin-bottom: 8px;
-    }
-    .card-grid.list-view .liquor-card-footer {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    /* ===== Compare Bar ===== */
-    .compare-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--amber-700);
-      padding: 12px 24px;
+    /* ===== Score Display ===== */
+    .score-display {
       display: flex;
       align-items: center;
       gap: 16px;
-      z-index: 100;
-      transform: translateY(100%);
-      transition: transform var(--transition);
+      margin: 16px 0;
     }
-    .compare-bar.active {
-      transform: translateY(0);
-    }
-    .compare-bar-title {
-      font-size: 14px;
-      color: var(--amber-gold);
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-    .compare-items {
-      display: flex;
-      gap: 8px;
-      flex: 1;
-      overflow-x: auto;
-    }
-    .compare-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      background: rgba(255, 248, 231, 0.08);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      color: var(--amber-200);
-      white-space: nowrap;
-    }
-    .compare-item-remove {
-      cursor: pointer;
-      opacity: 0.6;
-      font-size: 14px;
-    }
-    .compare-item-remove:hover {
-      opacity: 1;
-      color: #FF6340;
-    }
-    .compare-btn {
-      padding: 8px 20px;
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border: 1px solid var(--amber-700);
-      border-radius: var(--radius-md);
-      color: var(--amber-gold);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      flex-shrink: 0;
-    }
-    .compare-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-amber);
-    }
-
-    /* ===== Compare Modal ===== */
-    .compare-modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      z-index: 250;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-    .compare-modal-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .compare-modal {
-      background: linear-gradient(145deg, var(--brown-mid), var(--brown-dark));
-      border: 1px solid var(--amber-700);
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 900px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: var(--shadow-deep);
-      transform: scale(0.92);
-      transition: transform var(--transition);
-    }
-    .compare-modal-overlay.active .compare-modal {
-      transform: scale(1);
-    }
-    .compare-modal-header {
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .compare-modal-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--amber-gold);
-    }
-    .compare-modal-close {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: var(--muted-text);
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    .compare-modal-close:hover {
-      background: rgba(255, 87, 34, 0.2);
-      border-color: #FF6340;
-      color: #FF6340;
-    }
-    .compare-modal-body {
-      padding: 20px 24px;
-    }
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .compare-table th,
-    .compare-table td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--glass-border);
-    }
-    .compare-table th {
-      font-size: 11px;
-      color: var(--amber-500);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      width: 100px;
-      background: rgba(255, 248, 231, 0.04);
-    }
-    .compare-table td {
-      font-size: 14px;
-      color: var(--amber-200);
-    }
-    .compare-table tr:last-child th,
-    .compare-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* ===== Tasting Notes ===== */
-    .tasting-form {
-      margin-top: 12px;
-    }
-    .star-rating {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 10px;
-    }
-    .star-rating input {
-      display: none;
-    }
-    .star-rating label {
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--muted-text);
-      transition: color var(--transition);
-    }
-    .star-rating label:hover,
-    .star-rating label.active {
-      color: var(--amber-gold);
-    }
-    .star-rating label.active ~ label {
-      color: var(--amber-gold);
-    }
-    .tasting-textarea {
-      width: 100%;
+    .score-circle {
+      width: 80px;
       height: 80px;
-      padding: 10px;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      color: var(--cream-text);
-      font-size: 13px;
-      font-family: inherit;
-      resize: none;
-    }
-    .tasting-textarea:focus {
-      border-color: var(--amber-400);
-      outline: none;
-    }
-    .tasting-save-btn {
-      margin-top: 8px;
-      padding: 8px 16px;
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border: 1px solid var(--amber-700);
-      border-radius: var(--radius-sm);
-      color: var(--amber-gold);
-      font-size: 13px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .tasting-save-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-amber);
-    }
-
-    /* ===== Notes Panel ===== */
-    .notes-item {
-      padding: 10px 12px;
-      background: rgba(255, 248, 231, 0.04);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      margin-bottom: 8px;
-    }
-    .notes-item-header {
+      border-radius: 50%;
+      background: linear-gradient(145deg, #2d2520, #1a1512);
+      border: 2px solid rgba(232, 168, 41, 0.3);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-    .notes-item-name {
-      font-size: 14px;
-      color: var(--cream-text);
-      font-weight: 600;
-    }
-    .notes-item-rating {
-      color: var(--amber-gold);
-      font-size: 12px;
-    }
-    .notes-item-text {
-      font-size: 12px;
-      color: var(--amber-200);
-      line-height: 1.5;
-    }
-
-    /* ===== Language Toggle ===== */
-    .lang-btn {
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--cream-text);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .lang-btn:hover {
-      background: rgba(212, 165, 116, 0.2);
-      border-color: var(--amber-500);
-    }
-    .lang-btn.active {
-      background: rgba(212, 165, 116, 0.2);
-      border-color: var(--amber-500);
-      color: var(--amber-gold);
-    }
-
-    /* ===== Favorite Tags ===== */
-    .fav-tag-select {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .fav-tag-option {
-      padding: 3px 10px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--amber-200);
-      font-size: 11px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .fav-tag-option:hover,
-    .fav-tag-option.active {
-      background: rgba(255, 165, 0, 0.2);
-      border-color: var(--amber-orange);
-      color: var(--amber-gold);
-    }
-
-    /* ===== Search Highlight ===== */
-    mark {
-      background: rgba(255, 165, 0, 0.4);
-      color: var(--amber-gold);
-      padding: 0 2px;
-      border-radius: 2px;
-    }
-
-    .compare-check input {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--amber-600);
-    }
-
-    /* ===== Empty State ===== */
-    .empty-state {
-      text-align: center;
-      padding: 80px 24px;
-      color: var(--muted-text);
-    }
-    .empty-state-icon {
-      font-size: 64px;
-      margin-bottom: 16px;
-      opacity: 0.5;
-    }
-    .empty-state-text {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-    .empty-state-hint {
-      font-size: 13px;
-      opacity: 0.7;
-    }
-
-    /* ===== Loading Skeleton ===== */
-    .skeleton-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .skeleton-card {
-      background: linear-gradient(145deg, rgba(61, 35, 23, 0.9), rgba(44, 24, 16, 0.95));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-    }
-    .skeleton {
-      background: linear-gradient(90deg, rgba(212, 165, 116, 0.08) 25%, rgba(212, 165, 116, 0.16) 50%, rgba(212, 165, 116, 0.08) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-      border-radius: var(--radius-sm);
-    }
-    .skeleton-img {
-      width: 100%;
-      height: 200px;
-    }
-    .skeleton-body { padding: 14px 16px; }
-    .skeleton-line {
-      height: 14px;
-      margin-bottom: 10px;
-    }
-    .skeleton-line.short { width: 50%; }
-    .skeleton-line.medium { width: 75%; }
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    /* ===== Modal ===== */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .modal {
-      background: linear-gradient(145deg, var(--brown-mid), var(--brown-dark));
-      border: 1px solid var(--amber-700);
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 680px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: var(--shadow-deep), 0 0 40px rgba(184, 134, 11, 0.2);
-      transform: scale(0.92) translateY(20px);
-      transition: transform var(--transition);
-    }
-    .modal-overlay.active .modal {
-      transform: scale(1) translateY(0);
-    }
-    .modal-header {
-      padding: 20px 24px 16px;
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      position: relative;
-    }
-    .modal-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--amber-800), var(--amber-600), var(--amber-800));
-    }
-    .modal-title-wrap { flex: 1; }
-    .modal-region {
-      font-size: 11px;
-      color: var(--amber-500);
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
+    .score-value {
+      font-size: 28px;
       font-weight: 700;
-      color: var(--amber-gold);
-      line-height: 1.2;
-    }
-    .modal-title-en {
-      font-size: 13px;
-      color: var(--muted-text);
-      font-style: italic;
-      margin-top: 4px;
-    }
-    .modal-close {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--muted-text);
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      flex-shrink: 0;
-      position: relative;
-      z-index: 10;
-    }
-    .modal-close:hover {
-      background: rgba(255, 87, 34, 0.2);
-      border-color: #FF6340;
-      color: #FF6340;
-    }
-    .modal-image {
-      width: 100%;
-      height: 260px;
-      background: linear-gradient(135deg, var(--brown-mid), var(--brown-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      color: var(--amber-400);
-    }
-    .modal-body {
-      padding: 20px 24px;
-    }
-    .modal-section {
-      margin-bottom: 20px;
-    }
-    .modal-section:last-child { margin-bottom: 0; }
-    .modal-section-title {
-      font-size: 12px;
-      color: var(--amber-500);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .modal-section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--glass-border);
-    }
-    .modal-info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .modal-info-item {
-      padding: 10px 14px;
-      background: rgba(255, 248, 231, 0.04);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-    }
-    .modal-info-label {
-      font-size: 11px;
-      color: var(--muted-text);
-      margin-bottom: 2px;
-    }
-    .modal-info-value {
-      font-size: 14px;
-      color: var(--cream-text);
-      font-weight: 600;
-    }
-    .modal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .modal-desc {
-      font-size: 14px;
-      color: var(--amber-200);
-      line-height: 1.8;
-    }
-    .modal-footer {
-      padding: 16px 24px 20px;
-      border-top: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .modal-abv {
-      font-size: 13px;
-      color: var(--muted-text);
-    }
-    .modal-abv strong {
-      color: var(--amber-gold);
-      font-size: 20px;
-    }
-    .modal-price {
-      font-size: 13px;
-      color: var(--muted-text);
-    }
-    .modal-price strong {
-      color: var(--amber-gold);
-      font-size: 20px;
-    }
-    .modal-nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .modal-nav-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--amber-300);
-      font-size: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    .modal-nav-btn:hover:not(:disabled) {
-      background: rgba(255, 248, 231, 0.12);
-      border-color: var(--amber-500);
-    }
-    .modal-nav-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-    .modal-step {
-      font-size: 12px;
-      color: var(--muted-text);
-      min-width: 50px;
-      text-align: center;
-    }
-    .tasting-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .tasting-item {
-      padding: 10px 14px;
-      background: rgba(255, 248, 231, 0.04);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      color: var(--amber-200);
-      font-size: 13px;
-    }
-    .pairing-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .pairing-tag {
-      padding: 6px 12px;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      color: var(--amber-200);
-      font-size: 12px;
-    }
-    .modal-actions { display: flex; gap: 8px; }
-    .btn-primary {
-      padding: 10px 24px;
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border: 1px solid var(--amber-700);
-      border-radius: var(--radius-md);
-      color: var(--amber-gold);
-      font-size: 14px;
-      font-weight: 600;
-      transition: var(--transition);
-      box-shadow: var(--shadow-amber);
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, var(--amber-700), var(--amber-800));
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(184, 134, 11, 0.35);
-    }
-    .btn-secondary {
-      padding: 10px 24px;
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      color: var(--cream-text);
-      font-size: 14px;
-      transition: var(--transition);
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 248, 231, 0.08);
-      border-color: var(--amber-500);
-    }
-
-    /* ===== Sidebar / Slide Panel ===== */
-    .sidebar-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 150;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-    .sidebar-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 360px;
-      max-width: 90vw;
-      height: 100vh;
-      background: linear-gradient(180deg, var(--brown-mid), var(--brown-dark));
-      border-left: 1px solid var(--amber-700);
-      z-index: 160;
-      transform: translateX(100%);
-      transition: transform var(--transition);
-      display: flex;
-      flex-direction: column;
-      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
-    }
-    .sidebar.active {
-      transform: translateX(0);
-    }
-    .sidebar-header {
-      padding: 20px 20px 16px;
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-    }
-    .sidebar-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--amber-gold);
-    }
-    .sidebar-close {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: var(--muted-text);
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    .sidebar-close:hover {
-      background: rgba(255, 87, 34, 0.2);
-      border-color: #FF6340;
-      color: #FF6340;
-    }
-    .sidebar-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px 20px;
-    }
-    .sidebar-section {
-      margin-bottom: 24px;
-    }
-    .sidebar-section-title {
-      font-size: 11px;
-      color: var(--amber-500);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--glass-border);
-    }
-    .fav-item {
-      display: flex;
-      gap: 12px;
-      padding: 10px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 248, 231, 0.04);
-      border: 1px solid transparent;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    .fav-item:hover {
-      background: rgba(212, 165, 116, 0.1);
-      border-color: var(--glass-border);
-    }
-    .fav-item-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      background: var(--brown-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: var(--amber-400);
-      flex-shrink: 0;
-    }
-    .fav-item-info { flex: 1; min-width: 0; }
-    .fav-item-name {
-      font-size: 14px;
-      color: var(--cream-text);
-      margin-bottom: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .fav-item-meta {
-      font-size: 11px;
-      color: var(--muted-text);
-    }
-    .history-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(212, 165, 116, 0.06);
-      cursor: pointer;
-    }
-    .history-item:last-child { border-bottom: none; }
-    .history-item:hover .history-time { color: var(--amber-gold); }
-    .history-time {
-      font-size: 11px;
-      color: var(--muted-text);
-      white-space: nowrap;
-      transition: var(--transition);
-    }
-    .history-query {
-      font-size: 13px;
-      color: var(--amber-200);
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .sidebar-empty {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--muted-text);
-      font-size: 13px;
-    }
-    .sidebar-footer {
-      padding: 16px 20px;
-      border-top: 1px solid var(--glass-border);
-      flex-shrink: 0;
-    }
-    .sidebar-footer-btn {
-      width: 100%;
-      padding: 10px;
-      border-radius: var(--radius-sm);
-      background: transparent;
-      border: 1px solid rgba(255, 87, 34, 0.3);
-      color: #FF6340;
-      font-size: 13px;
-      transition: var(--transition);
-    }
-    .sidebar-footer-btn:hover {
-      background: rgba(255, 87, 34, 0.1);
-    }
-
-    /* ===== Footer ===== */
-    .footer {
-      border-top: 1px solid var(--glass-border);
-      background: rgba(26, 15, 10, 0.8);
-      padding: 24px;
-      text-align: center;
-    }
-    .footer-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 16px;
-      color: var(--amber-gold);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-    .footer-desc {
-      font-size: 12px;
-      color: var(--muted-text);
-      margin-bottom: 12px;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      font-size: 12px;
-      color: var(--muted-text);
-      transition: var(--transition);
-    }
-    .footer-links a:hover { color: var(--amber-gold); }
-    .footer-copy {
-      font-size: 11px;
-      color: rgba(184, 160, 144, 0.5);
-    }
-
-    /* ===== Filter Group Body ===== */
-    .filter-group-body {
-      display: none;
-      background: rgba(255, 248, 231, 0.04);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      margin-top: 8px;
-    }
-    .filter-group-body.active {
-      display: block;
-    }
-    .filter-group-body label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 0;
-      cursor: pointer;
-      font-size: 13px;
-      color: var(--amber-200);
-    }
-    .filter-group-body input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--amber-600);
-    }
-    .filter-label-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .filter-count {
-      margin-left: auto;
-      font-size: 11px;
-      color: var(--muted-text);
-    }
-
-    /* ===== Filter Tags Bar ===== */
-    .filter-tags-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-      min-height: 32px;
-    }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border: 1px solid var(--amber-600);
-      color: var(--amber-gold);
-      font-size: 12px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .tag:hover {
-      background: linear-gradient(135deg, var(--amber-700), var(--amber-800));
-    }
-    .tag-remove {
-      font-size: 14px;
+      color: #e8a829;
       line-height: 1;
-      opacity: 0.7;
     }
-    .tag-remove:hover {
-      opacity: 1;
+    .score-label {
+      font-size: 10px;
+      color: #6b5d4d;
+      letter-spacing: 0.1em;
     }
-    .clear-all {
-      padding: 4px 14px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 87, 34, 0.15);
-      border: 1px solid rgba(255, 87, 34, 0.4);
-      color: #FF6340;
-      font-size: 12px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .clear-all:hover {
-      background: rgba(255, 87, 34, 0.25);
-    }
-
-    /* ===== Carousel ===== */
-    .carousel-track {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 16px 0 8px;
-      scrollbar-width: none;
-    }
-    .carousel-track::-webkit-scrollbar {
-      display: none;
-    }
-    .carousel-item {
-      flex-shrink: 0;
-      width: 200px;
-      background: linear-gradient(145deg, rgba(61, 35, 23, 0.9), rgba(44, 24, 16, 0.95));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .carousel-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-deep);
-      border-color: var(--amber-600);
-    }
-    .carousel-img {
-      width: 100%;
-      height: 120px;
-      background: linear-gradient(135deg, var(--brown-mid), var(--brown-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      color: var(--amber-400);
-    }
-    .carousel-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .carousel-ph {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .carousel-info {
-      padding: 10px 12px;
-    }
-    .carousel-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--amber-200);
-      margin-bottom: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .carousel-sub {
-      font-size: 11px;
-      color: var(--muted-text);
-    }
-    .carousel-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--amber-800);
-      transition: var(--transition);
-    }
-    .carousel-dot.active {
-      background: var(--amber-gold);
-    }
-
-    /* ===== Mobile Filter Panel ===== */
-    .mob-filter-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 150;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-    .mob-filter-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .mob-filter-panel {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(180deg, var(--brown-mid), var(--brown-dark));
-      border-top: 2px solid var(--amber-700);
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      z-index: 160;
-      transform: translateY(100%);
-      transition: transform var(--transition);
-      max-height: 80vh;
+    .score-bars {
+      flex: 1;
       display: flex;
       flex-direction: column;
+      gap: 6px;
     }
-    .mob-filter-panel.active {
-      transform: translateY(0);
-    }
-    .mob-filter-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-    }
-    .mob-filter-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--amber-gold);
-    }
-    .mob-filter-close {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: var(--muted-text);
-      font-size: 16px;
+    .score-bar-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    .mob-filter-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px 20px;
-    }
-    .mob-filter-section {
-      margin-bottom: 20px;
-    }
-    .mob-filter-section-title {
-      font-size: 13px;
-      color: var(--amber-500);
-      margin-bottom: 10px;
-    }
-    .mob-filter-chips {
-      display: flex;
-      flex-wrap: wrap;
       gap: 8px;
     }
-    .mob-chip {
-      padding: 6px 14px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      color: var(--amber-200);
-      font-size: 13px;
-      transition: var(--transition);
+    .score-bar-label {
+      width: 50px;
+      font-size: 11px;
+      color: #6b5d4d;
     }
-    .mob-chip.active {
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border-color: var(--amber-600);
-      color: var(--amber-gold);
-    }
-    .mob-filter-footer {
-      padding: 16px 20px;
-      border-top: 1px solid var(--glass-border);
-      display: flex;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-    .mob-filter-reset,
-    .mob-filter-apply {
+    .score-bar-track {
       flex: 1;
-      padding: 12px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 600;
-      transition: var(--transition);
+      height: 6px;
+      background: rgba(232, 168, 41, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
     }
-    .mob-filter-reset {
-      background: transparent;
-      border: 1px solid rgba(255, 87, 34, 0.4);
-      color: #FF6340;
+    .score-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #c4891a, #e8a829);
+      border-radius: 3px;
+      transition: width 0.5s ease;
     }
-    .mob-filter-reset:hover {
-      background: rgba(255, 87, 34, 0.15);
-    }
-    .mob-filter-apply {
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border: 1px solid var(--amber-700);
-      color: var(--amber-gold);
-    }
-    .mob-filter-apply:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-amber);
+    .score-bar-value {
+      width: 24px;
+      font-size: 11px;
+      color: #9a8b7a;
+      text-align: right;
     }
 
-    /* ===== Share Popup ===== */
-    .share-popup {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
+    /* ===== Cocktail Section ===== */
+    .cocktail-hint {
+      padding: 12px 16px;
+      background: rgba(32, 178, 170, 0.08);
+      border: 1px solid rgba(32, 178, 170, 0.2);
+      border-radius: 12px;
+      margin-top: 12px;
     }
-    .share-popup.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .share-popup-inner {
-      background: linear-gradient(145deg, var(--brown-mid), var(--brown-dark));
-      border: 1px solid var(--amber-700);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: var(--shadow-deep);
-    }
-    .share-popup-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .share-popup-header span {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--amber-gold);
-    }
-    .share-popup-close {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: var(--muted-text);
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    .share-popup-close:hover {
-      background: rgba(255, 87, 34, 0.2);
-      border-color: #FF6340;
-      color: #FF6340;
-    }
-    .share-popup-textarea {
-      width: 100%;
-      height: 120px;
-      padding: 12px;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      color: var(--cream-text);
-      font-size: 13px;
-      font-family: inherit;
-      resize: none;
-      margin-bottom: 12px;
-    }
-    .share-popup-copy {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, var(--amber-800), var(--amber-900));
-      border: 1px solid var(--amber-700);
-      border-radius: var(--radius-md);
-      color: var(--amber-gold);
+    .cocktail-name {
       font-size: 14px;
       font-weight: 600;
-      transition: var(--transition);
+      color: #5fbfb3;
+      margin-bottom: 4px;
     }
-    .share-popup-copy:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-amber);
+    .cocktail-method {
+      font-size: 12px;
+      color: #6b5d4d;
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width: 768px) {
-      .header-inner { gap: 12px; padding: 0 16px; }
-      .logo-text { font-size: 16px; }
-      .logo-sub { display: none; }
-      .header-search { display: none; }
-      .hero-banner { padding: 20px 16px 12px; }
-      .filter-bar { padding: 12px 14px; gap: 8px; }
-      .filter-divider { display: none; }
-      .filter-sort { width: 100%; margin-left: 0; }
-      .main-content { padding: 8px 16px 32px; }
-      .card-grid { grid-template-columns: 1fr; gap: 14px; }
-      .modal { max-width: 100%; border-radius: var(--radius-md); }
-      .modal-image { height: 200px; }
-      .modal-info-grid { grid-template-columns: 1fr; }
-      .footer { padding: 20px 16px; }
+    /* ===== Storage Info ===== */
+    .storage-hint {
+      padding: 10px 14px;
+      background: rgba(232, 168, 41, 0.05);
+      border-radius: 8px;
+      font-size: 12px;
+      color: #6b5d4d;
+      line-height: 1.6;
+    }
+
+    /* ===== History Quote ===== */
+    .history-quote {
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(232, 168, 41, 0.05), rgba(139, 41, 66, 0.03));
+      border-left: 3px solid #e8a829;
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      color: #9a8b7a;
+      margin: 16px 0;
     }
   </style>
 </head>
 <body>
+  <!-- 初始加载状态 -->
+  <div id="initialLoading" class="initial-loading">
+    <div class="initial-loading__icon">🍷</div>
+    <div class="initial-loading__text">世界烈酒图鉴</div>
+    <div class="initial-loading__bar"></div>
+  </div>
 
-  <!-- ========== HEADER ========== -->
+  <!-- 收藏侧边栏 -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__header">
+      <span class="sidebar__title">🍾 品酒笔记</span>
+      <button class="sidebar__close" onclick="closeSidebar()">✕</button>
+    </div>
+    <div class="sidebar__content">
+      <div id="notesList">
+        <div class="sidebar-empty">
+          <div class="sidebar-empty__icon">📝</div>
+          <div class="sidebar-empty__text">暂无品酒笔记</div>
+        </div>
+      </div>
+      <div class="import-export-btns">
+        <button class="import-btn" onclick="importNotes()">📥 导入</button>
+        <button class="export-btn" onclick="exportNotes()">📤 导出</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 收藏快捷栏 -->
+  <nav class="favorites-bar">
+    <button class="favorites-bar__btn" id="favBtn" onclick="toggleSidebar()" title="品酒笔记">📝</button>
+    <button class="favorites-bar__btn" id="compareOpenBtn" onclick="openCompare()" title="比较" style="display:none">⚖️</button>
+  </nav>
+
+  <!-- Header -->
   <header class="header">
-    <div class="header-inner">
-      <a href="#" class="logo">
-        <div class="logo-icon">🍶</div>
-        <div>
-          <div class="logo-text">World Liquor</div>
-          <div class="logo-sub">世界烈酒图鉴</div>
+    <div class="header__container">
+      <a href="#" class="header__brand">
+        <div class="header__logo">
+          <span class="header__logo-icon">🥃</span>
+        </div>
+        <div class="header__titles">
+          <span class="header__title">世界烈酒图鉴</span>
+          <span class="header__subtitle">World Liquor Gallery</span>
         </div>
       </a>
-      <div class="header-search">
-        <span class="search-icon">🔍</span>
-        <input type="search" id="searchInput" placeholder="搜索烈酒名称、产区、风味…" autocomplete="off">
+
+      <div class="header__search">
+        <div class="search-bar">
+          <span class="search-bar__icon">🔍</span>
+          <input type="text" class="search-bar__input" id="searchInput" placeholder="搜索烈酒名称、类型、产地..." autocomplete="off">
+          <button class="search-bar__submit" onclick="performSearch()">搜索</button>
+        </div>
         <div class="search-autocomplete" id="searchAutocomplete"></div>
       </div>
-      <div class="header-actions">
-        <button class="header-btn" title="随机推荐" id="randomBtn">🎲</button>
-        <button class="header-btn" title="筛选" id="mobFilterBtn">☰</button>
-        <button class="header-btn" title="收藏夹" id="favoritesBtn">❤️<span class="badge" id="favBadge">0</span></button>
-        <button class="header-btn" title="历史记录" id="historyBtn">🕐</button>
-        <button class="header-btn" title="我的笔记" id="notesBtn">📝<span class="badge" id="notesBadge">0</span></button>
-        <button class="header-btn" title="深色/浅色" id="themeBtn">🌙</button>
-        <button class="lang-btn active" id="langBtn">中</button>
+
+      <div class="header__actions">
+        <button class="lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
       </div>
     </div>
   </header>
 
-  <!-- ========== COMPARE BAR ========== -->
-  <div class="compare-bar" id="compareBar">
-    <span class="compare-bar-title">对比 (<span id="compareCount">0</span>/3)</span>
-    <div class="compare-items" id="compareItems"></div>
-    <button class="compare-btn" id="compareBtn">开始对比</button>
-  </div>
-
-  <!-- ========== COMPARE MODAL ========== -->
-  <div class="compare-modal-overlay" id="compareModalOverlay">
-    <div class="compare-modal">
-      <div class="compare-modal-header">
-        <span class="compare-modal-title">酒款对比</span>
-        <button class="compare-modal-close" id="compareModalClose">✕</button>
-      </div>
-      <div class="compare-modal-body">
-        <table class="compare-table" id="compareTable"></table>
-      </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero__title">世界烈酒图鉴</h1>
+    <p class="hero__subtitle">探索全球200款顶级烈酒的奥秘</p>
+    <div class="hero__divider">
+      <span class="hero__divider-icon">🥃</span>
     </div>
-  </div>
-
-  <!-- ========== HERO BANNER ========== -->
-  <section class="hero-banner">
-    <h1 class="hero-title">世界烈酒图鉴</h1>
-    <p class="hero-subtitle">WORLD LIQUOR GALLERY · 探索全球蒸馏酒文化</p>
-    <div id="carouselTrack" class="carousel-track"></div>
-    <div class="carousel-dots" id="carouselDots"></div>
   </section>
 
-  <!-- ========== FILTER PANEL ========== -->
+  <!-- Filter Panel -->
   <section class="filter-panel">
     <div class="filter-bar">
       <div class="filter-group">
-        <span class="filter-label">类型</span>
-        <button class="filter-chip active" data-filter="type" data-value="all">全部</button>
-        <button class="filter-chip" data-filter="type" data-value="酱香型">酱香型</button>
-        <button class="filter-chip" data-filter="type" data-value="浓香型">浓香型</button>
-        <button class="filter-chip" data-filter="type" data-value="清香型">清香型</button>
-        <button class="filter-chip" data-filter="type" data-value="凤香型">凤香型</button>
-        <button class="filter-chip" data-filter="type" data-value="药香型">药香型</button>
-        <button class="filter-chip" data-filter="type" data-value="兼香型">兼香型</button>
-        <button class="filter-chip" data-filter="type" data-value="老白干型">老白干型</button>
-        <button class="filter-chip" data-filter="type" data-value="特香型">特香型</button>
-        <button class="filter-chip" data-filter="type" data-value="馥郁香型">馥郁香型</button>
-        <button class="filter-chip" data-filter="type" data-value="芝麻香型">芝麻香型</button>
-        <button class="filter-chip" data-filter="type" data-value="黄酒">黄酒</button>
+        <span class="filter-group__label">类型</span>
+        <div id="typeFilters"></div>
       </div>
       <div class="filter-divider"></div>
       <div class="filter-group">
-        <span class="filter-label">产区</span>
-        <button class="filter-chip active" data-filter="region" data-value="all">全部</button>
-        <button class="filter-chip" data-filter="region" data-value="苏格兰">苏格兰</button>
-        <button class="filter-chip" data-filter="region" data-value="爱尔兰">爱尔兰</button>
-        <button class="filter-chip" data-filter="region" data-value="美国">美国</button>
-        <button class="filter-chip" data-filter="region" data-value="日本">日本</button>
-        <button class="filter-chip" data-filter="region" data-value="法国">法国</button>
-        <button class="filter-chip" data-filter="region" data-value="中国">中国</button>
-        <button class="filter-chip" data-filter="region" data-value="瑞典">瑞典</button>
-        <button class="filter-chip" data-filter="region" data-value="墨西哥">墨西哥</button>
-        <button class="filter-chip" data-filter="region" data-value="牙买加">牙买加</button>
-        <button class="filter-chip" data-filter="region" data-value="波多黎各">波多黎各</button>
-        <button class="filter-chip" data-filter="region" data-value="德国">德国</button>
+        <span class="filter-group__label">产区</span>
+        <div id="regionFilters"></div>
       </div>
       <div class="filter-divider"></div>
       <div class="filter-group">
-        <span class="filter-label">酒精度</span>
-        <button class="filter-chip active" data-filter="abv" data-value="all">不限</button>
-        <button class="filter-chip" data-filter="abv" data-value="40">40° 以下</button>
-        <button class="filter-chip" data-filter="abv" data-value="50">40-50°</button>
-        <button class="filter-chip" data-filter="abv" data-value="60">50-60°</button>
-        <button class="filter-chip" data-filter="abv" data-value="high">60°+</button>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-group">
-        <span class="filter-label">时代</span>
-        <button class="filter-chip" data-filter="era" data-value="all">全部</button>
-        <button class="filter-chip" data-filter="era" data-value="古代">古代</button>
-        <button class="filter-chip" data-filter="era" data-value="中世纪">中世纪</button>
-        <button class="filter-chip" data-filter="era" data-value="近代">近代</button>
-        <button class="filter-chip" data-filter="era" data-value="现代">现代</button>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-group">
-        <span class="filter-label">价格</span>
-        <button class="filter-chip" data-filter="price" data-value="all">不限</button>
-        <button class="filter-chip" data-filter="price" data-value="0">¥500以下</button>
-        <button class="filter-chip" data-filter="price" data-value="1">¥500-1000</button>
-        <button class="filter-chip" data-filter="price" data-value="2">¥1000-2000</button>
-        <button class="filter-chip" data-filter="price" data-value="3">¥2000以上</button>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-group">
-        <span class="filter-label">香气</span>
-        <button class="filter-chip" id="filterAromaHdr" data-filter="aroma">▼ 香气</button>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-group">
-        <span class="filter-label">快捷</span>
+        <span class="filter-group__label">价格</span>
         <div class="price-quick-chips">
-          <button class="price-chip" data-quick-price="0-100">0-100</button>
-          <button class="price-chip" data-quick-price="100-300">100-300</button>
-          <button class="price-chip" data-quick-price="300-500">300-500</button>
-          <button class="price-chip" data-quick-price="500-1000">500-1000</button>
-          <button class="price-chip" data-quick-price="1000+">1000+</button>
+          <span class="price-chip" data-quick-price="0-100">百元内</span>
+          <span class="price-chip" data-quick-price="100-300">100-300</span>
+          <span class="price-chip" data-quick-price="300-500">300-500</span>
+          <span class="price-chip" data-quick-price="500-1000">500-1k</span>
+          <span class="price-chip" data-quick-price="1000+">千元+</span>
         </div>
       </div>
       <div class="filter-sort">
-        <select id="sortSelect">
+        <select id="sortSelect" onchange="handleSort(this.value)">
           <option value="default">默认排序</option>
-          <option value="name">按名称</option>
-          <option value="abv-asc">酒精度 ↑</option>
-          <option value="abv-desc">酒精度 ↓</option>
           <option value="price-asc">价格 ↑</option>
           <option value="price-desc">价格 ↓</option>
-          <option value="region">按产区</option>
+          <option value="score-desc">评分最高</option>
+          <option value="abv-desc">酒精度数</option>
         </select>
-        <button class="filter-clear" id="clearFilters">清除筛选</button>
+        <button class="filter-clear" onclick="clearFilters()">重置</button>
       </div>
     </div>
-    <!-- Collapsible filter bodies -->
-    <div id="filterTypeBody" class="filter-group-body"></div>
-    <div id="filterRegionBody" class="filter-group-body"></div>
-    <div id="filterEraBody" class="filter-group-body"></div>
-    <div id="filterPriceBody" class="filter-group-body"></div>
-    <div id="filterAromaBody" class="filter-group-body"></div>
-    <!-- Active tags bar -->
-    <div id="activeTags" class="filter-tags-bar"></div>
   </section>
 
-  <!-- ========== CARD CONTAINER ========== -->
+  <!-- Main Content -->
   <main class="main-content">
     <div class="cards-header">
-      <div class="cards-count"><span id="resultCount"></span>共 <strong id="totalCount">0</strong> 款烈酒</div>
+      <span class="cards-count">共 <strong id="countDisplay">0</strong> 款烈酒</span>
       <div class="view-toggle">
-        <button class="active" id="gridView" title="网格视图">▦</button>
-        <button id="listView" title="列表视图">☰</button>
+        <button id="gridView" class="active" onclick="switchView('grid')" title="网格视图">⊞</button>
+        <button id="listView" onclick="switchView('list')" title="列表视图">☰</button>
       </div>
     </div>
-
-    <div class="card-grid" id="cardGrid">
-      <!-- ===== Skeleton Loading ===== -->
-      <div class="skeleton-grid" id="skeletonGrid">
-        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line medium"></div><div class="skeleton skeleton-line short"></div><div class="skeleton skeleton-line"></div></div></div>
-        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line medium"></div><div class="skeleton skeleton-line short"></div><div class="skeleton skeleton-line"></div></div></div>
-        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line medium"></div><div class="skeleton skeleton-line short"></div><div class="skeleton skeleton-line"></div></div></div>
-        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line medium"></div><div class="skeleton skeleton-line short"></div><div class="skeleton skeleton-line"></div></div></div>
-        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line medium"></div><div class="skeleton skeleton-line short"></div><div class="skeleton skeleton-line"></div></div></div>
-        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line medium"></div><div class="skeleton skeleton-line short"></div><div class="skeleton skeleton-line"></div></div></div>
-      </div>
-    </div>
-
-    <!-- ===== Empty State ===== -->
-    <div class="empty-state" id="emptyState" style="display:none;">
-      <div class="empty-state-icon">🍾</div>
-      <div class="empty-state-text">未找到匹配的烈酒</div>
-      <div class="empty-state-hint">尝试调整筛选条件</div>
-    </div>
+    <div class="card-grid" id="cardGrid"></div>
   </main>
 
-  <!-- ========== MOBILE FILTER PANEL ========== -->
-  <div class="mob-filter-overlay" id="mobFilterOverlay"></div>
-  <div class="mob-filter-panel" id="mobFilterPanel">
-    <div class="mob-filter-header">
-      <span class="mob-filter-title">筛选</span>
-      <button class="mob-filter-close" id="mobFilterClose">✕</button>
-    </div>
-    <div class="mob-filter-body" id="mobFilterBody"></div>
-    <div class="mob-filter-footer">
-      <button class="mob-filter-reset" id="mobFilterReset">重置</button>
-      <button class="mob-filter-apply" id="mobFilterApply">应用</button>
+  <!-- Compare Bar -->
+  <div class="compare-bar" id="compareBar">
+    <span class="compare-bar__title">
+      <span class="compare-bar__title-icon">⚖️</span>
+      比较 (<span id="compareCount">0</span>)
+    </span>
+    <div class="compare-items" id="compareItems"></div>
+    <button class="compare-btn" onclick="showCompareModal()">开始比较</button>
+  </div>
+
+  <!-- Compare Modal -->
+  <div class="compare-modal-overlay" id="compareModalOverlay">
+    <div class="compare-modal">
+      <div class="compare-modal__header">
+        <span class="compare-modal__title">烈酒比较</span>
+        <button class="compare-modal__close" onclick="closeCompareModal()">✕</button>
+      </div>
+      <div class="compare-modal__body" id="compareModalBody"></div>
     </div>
   </div>
 
-  <!-- ========== SHARE POPUP ========== -->
-  <div class="share-popup" id="sharePopup">
-    <div class="share-popup-inner">
-      <div class="share-popup-header">
-        <span>分享烈酒</span>
-        <button class="share-popup-close" id="closeShareBtn">✕</button>
-      </div>
-      <textarea id="shareText" class="share-popup-textarea" readonly></textarea>
-      <button class="share-popup-copy" id="copyShareBtn">复制</button>
-    </div>
+  <!-- Detail Modal -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal" id="modal">
+    <button class="modal__close" onclick="closeModal()">✕</button>
+    <div class="modal__image" id="modalImage">🍷</div>
+    <div class="modal__content" id="modalContent"></div>
   </div>
 
-  <!-- ========== MODAL ========== -->
-  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
-    <div class="modal" id="modal">
-      <div class="modal-header">
-        <span class="modal-id" id="modalId">#001</span>
-        <div class="modal-title-wrap">
-          <div class="modal-region" id="modalRegion">苏格兰 · Scotland</div>
-          <h2 class="modal-title" id="modalTitle">单一麦芽威士忌</h2>
-          <div class="modal-title-en" id="modalTitleEn">Single Malt Whiskey</div>
-        </div>
-        <button class="modal-close" id="modalClose">✕</button>
-      </div>
-      <div class="modal-image" id="modalImage">🥃</div>
-      <div class="modal-body">
-        <div class="modal-section">
-          <div class="modal-section-title">基本信息</div>
-          <div class="modal-info-grid">
-            <div class="modal-info-item">
-              <div class="modal-info-label">类型</div>
-              <div class="modal-info-value" id="modalType">单一麦芽威士忌</div>
-            </div>
-            <div class="modal-info-item">
-              <div class="modal-info-label">产区</div>
-              <div class="modal-info-value" id="modalRegion2">苏格兰高地</div>
-            </div>
-            <div class="modal-info-item">
-              <div class="modal-info-label">酒精度</div>
-              <div class="modal-info-value" id="modalAbv">46% ABV</div>
-            </div>
-            <div class="modal-info-item">
-              <div class="modal-info-label">陈年时间</div>
-              <div class="modal-info-value" id="modalAge">12年</div>
-            </div>
-            <div class="modal-info-item">
-              <div class="modal-info-label">酒厂</div>
-              <div class="modal-info-value" id="modalFactory">暂无信息</div>
-            </div>
-            <div class="modal-info-item">
-              <div class="modal-info-label">产地</div>
-              <div class="modal-info-value" id="modalOrigin">暂无信息</div>
-            </div>
-            <div class="modal-info-item">
-              <div class="modal-info-label">年份</div>
-              <div class="modal-info-value" id="modalVintage">—</div>
-            </div>
-            <div class="modal-info-item">
-              <div class="modal-info-label">批次</div>
-              <div class="modal-info-value" id="modalBatch">—</div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">风味特征</div>
-          <div class="modal-tags" id="modalTags">
-            <span class="liquor-tag">泥煤味</span>
-            <span class="liquor-tag">烟熏</span>
-            <span class="liquor-tag">果香</span>
-            <span class="liquor-tag">香草</span>
-          </div>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">品鉴指南</div>
-          <div class="tasting-list" id="modalTasting">
-            <div class="tasting-item">暂无品鉴记录</div>
-          </div>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">配餐建议</div>
-          <div class="pairing-list" id="modalPairing"></div>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">酿造工艺</div>
-          <p class="modal-desc" id="modalCraft">暂无工艺信息</p>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">原料</div>
-          <p class="modal-desc" id="modalIngredient">暂无原料信息</p>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">历史背景</div>
-          <p class="modal-desc" id="modalHistory">暂无历史记录</p>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">简介</div>
-          <p class="modal-desc" id="modalDesc">这是一款来自苏格兰高地区的优质单一麦芽威士忌，经过至少12年的橡木桶陈酿，呈现出复杂而平衡的风味。散发着泥煤烟熏与成熟水果的香气，口感圆润，余韵悠长。</p>
-        </div>
-        <div class="modal-section" id="relatedSection">
-          <div class="modal-section-title">你可能也喜欢</div>
-          <div class="related-list" id="relatedList"></div>
-        </div>
-        <div class="modal-section">
-          <div class="modal-section-title">我的评分</div>
-          <div class="tasting-form">
-            <div class="star-rating" id="starRating">
-              <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
-              <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
-              <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
-              <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
-              <input type="radio" name="rating" id="star5" value="5"><label for="star5">★</label>
-            </div>
-            <textarea class="tasting-textarea" id="tastingNoteText" placeholder="写下你的品酒笔记..."></textarea>
-            <button class="tasting-save-btn" id="saveTastingNote">保存笔记</button>
-          </div>
-        </div>
-      </div>
-<div class="modal-footer">
-        <div class="modal-price">¥<strong id="modalPriceBig">0</strong></div>
-        <div class="modal-abv"><strong id="modalAbvBig">46%</strong> vol</div>
-        <div class="modal-nav">
-          <button class="modal-nav-btn" id="modalPrev">◀</button>
-          <span class="modal-step" id="modalStep">1 / 1</span>
-          <button class="modal-nav-btn" id="modalNext">▶</button>
-        </div>
-        <div class="modal-actions">
-          <button class="btn-secondary" id="modalFavBtn">♡ 收藏</button>
-          <button class="btn-primary" id="modalShareBtn">分享</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== SIDEBAR / SLIDE PANEL ========== -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-  <aside class="sidebar" id="sidebar" role="complementary">
-    <div class="sidebar-header">
-      <h3 class="sidebar-title" id="sidebarTitle">收藏夹</h3>
-      <button class="sidebar-close" id="sidebarClose">✕</button>
-    </div>
-    <div class="sidebar-body" id="sidebarBody">
-      <!-- Favorites Panel -->
-      <div class="sidebar-panel" id="favoritesPanel">
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">我的收藏 (<span id="favCount">0</span>)</div>
-          <div class="fav-tag-select" id="favTagSelect">
-            <span class="fav-tag-option active" data-tag="all">全部</span>
-            <span class="fav-tag-option" data-tag="日常">日常</span>
-            <span class="fav-tag-option" data-tag="送礼">送礼</span>
-            <span class="fav-tag-option" data-tag="收藏">收藏</span>
-          </div>
-          <div id="favoritesList">
-            <div class="sidebar-empty">暂无收藏，浏览并收藏心仪的烈酒吧</div>
-          </div>
-          <button id="exportFavsBtn" class="sidebar-footer-btn" style="margin-top:12px;">导出 JSON</button>
-        </div>
-      </div>
-      <!-- History Panel -->
-      <div class="sidebar-panel" id="historyPanel" style="display:none;">
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">最近浏览</div>
-          <div id="historyList">
-            <div class="history-item">
-              <span class="history-query">Macallan 12 Year</span>
-              <span class="history-time">今天 14:23</span>
-            </div>
-            <div class="history-item">
-              <span class="history-query">Havana Club 7年</span>
-              <span class="history-time">今天 11:05</span>
-            </div>
-            <div class="history-item">
-              <span class="history-query">Skyy Vodka</span>
-              <span class="history-time">昨天 20:41</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Notes Panel -->
-      <div class="sidebar-panel" id="notesPanel" style="display:none;">
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">我的笔记 (<span id="notesCount">0</span>)</div>
-          <div id="notesList">
-            <div class="sidebar-empty">暂无品酒笔记</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sidebar-footer">
-      <button class="sidebar-footer-btn" id="sidebarClearBtn">清空记录</button>
-      <div class="import-export-btns">
-        <button class="import-btn" id="importDataBtn">📥 导入</button>
-        <button class="export-btn" id="exportAllDataBtn">📤 导出</button>
-      </div>
-    </div>
-    <input type="file" id="importFileInput" accept=".json" style="display:none">
-  </aside>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">World Liquor · 世界烈酒图鉴</div>
-      <p class="footer-desc">探索全球蒸馏酒文化 · 品味千年酿造智慧</p>
-      <div class="footer-links">
-        <a href="#">关于项目</a>
-        <a href="#">数据来源</a>
-        <a href="#">使用方法</a>
-        <a href="#">意见反馈</a>
-      </div>
-      <div class="footer-copy">© 2025 World Liquor Gallery · 琥珀酒韵配色 · 仅供学习交流</div>
-    </div>
-  </footer>
-
-  <!-- ========== TOAST ========== -->
+  <!-- Toast -->
   <div class="toast" id="toast"></div>
 
-  <!-- ========== PWA MANIFEST ========== -->
-  <link rel="manifest" href="manifest.json">
-
   <script>
-  // ═══════════════════════════════════════════════════════════
-  //  World Liquor Gallery · JavaScript Engine
-  //  参考菜谱js结构：全局状态 → 数据加载 → XSS防护 → 卡片函数
-  //  → 渲染 → 筛选 → 筛选构建 → 模态框 → 收藏 → 暗色模式
-  //  → 轮播 → 移动端筛选 → 键盘事件
-  // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════
+    // 世界烈酒图鉴 v2.0 - JavaScript Engine
+    // ═══════════════════════════════════════════
 
-  // ── 1) 全局状态 ──
-  let DATA = [];           // 全部数据
-  let filtered = [];       // 筛选后数据
-  let FAVS = [];           // 收藏ID列表
-  let mIdx = 0;            // 当前模态框索引
-  let curView = 'main';
+    // ── 全局状态 ──
+    let DATA = [];
+    let filtered = [];
+    let favorites = {};
+    let TASTING_NOTES = {};
+    let COMPARE_LIST = [];
+    let CUR_LANG = 'zh';
+    let VIEW_MODE = 'grid';
+    let ACTIVE_FILTERS = { type: null, region: null, priceMin: 0, priceMax: Infinity };
 
-  // 筛选状态
-  let selTypes = [];       // 已选香型
-  let selRegions = [];     // 已选产区
-  let selEras = [];        // 已选时代
-  let selPriceRange = null; // 价格区间
-  let curQ = '';           // 当前搜索词
-  let curSort = 'def';     // 排序方式
+    // ── 常量 ──
+    const DATA_FILE = 'baijiu_data.json';
+    const LS_FAV = 'liquor_favorites_v2';
+    const LS_NOTES = 'liquor_tasting_v2';
+    const LS_LANG = 'liquor_lang_v2';
 
-  // 对比状态
-  let COMPARE_LIST = [];   // 对比ID列表，最多3个
-  const LS_COMPARE = 'wl_compare';
-
-  // 品酒笔记
-  let TASTING_NOTES = {};  // {id: {rating, text, date}}
-  const LS_TASTING = 'wl_tasting';
-
-  // 多语言
-  let CUR_LANG = 'zh';     // 'zh' or 'en'
-  const LS_LANG = 'wl_lang';
-
-  // 视图模式
-  let VIEW_MODE = 'grid'; // 'grid' or 'list'
-
-  // DOM refs
-  const mainEl = document.getElementById('mainContent');
-  const mb = document.getElementById('modalOverlay');
-  const gridEl = document.getElementById('cardGrid');
-  if (!gridEl) console.error('cardGrid not found');
-
-  // LocalStorage keys
-  const LS_FAVS = 'wl_favs';
-  const LS_THEME = 'wl_theme';
-  const LS_HIST = 'wl_hist';
-  const LS_RATINGS = 'wl_ratings';
-  const LS_HOT = 'wl_hot';
-  const LS_RECENT = 'wl_recent';
-
-  // Aroma filter state
-  let selAromas = [];
-  let autocompleteTimer = null;
-
-  // ── 2) 数据加载fetch ──
-  async function loadData() {
-    showSk();
-    try {
-      const resp = await fetch('./baijiu_data.json');
-      if (!resp.ok) throw new Error('Network response was not ok');
-      DATA = await resp.json();
-      FAVS = JSON.parse(localStorage.getItem(LS_FAVS) || '[]');
-      COMPARE_LIST = JSON.parse(localStorage.getItem(LS_COMPARE) || '[]');
-      TASTING_NOTES = JSON.parse(localStorage.getItem(LS_TASTING) || '{}');
-      CUR_LANG = localStorage.getItem(LS_LANG) || 'zh';
-      buildTypeFilter();
-      buildRegionFilter();
-      buildEraFilter();
-      buildPriceFilter();
-      buildAromaFilter();
-      renderTags();
-      apply();
-      initCarousel();
-      initTheme();
-      initLang();
-      updateCompareBar();
-      updateNotesBadge();
-      checkUrlParam();
-    } catch (err) {
-      console.error('Failed to load data:', err);
-      showEmpty('数据加载失败，请刷新重试');
+    // ── 工具函数 ──
+    function escHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
-  }
 
-  // ── 3) escHtml / XSS防护 ──
-  function escHtml(str) {
-    if (str == null) return '';
-    const div = document.createElement('div');
-    div.textContent = String(str);
-    return div.innerHTML;
-  }
+    function formatPrice(p) {
+      if (p >= 10000) return Math.floor(p / 10000) + '万+';
+      return p.toLocaleString();
+    }
 
-  // ── 4) makeCard卡片函数 ──
-  function makeCard(d, i) {
-    const card = document.createElement('article');
-    card.className = 'liquor-card' + (isFaved(d.id) ? ' favored' : '') + (isComparing(d.id) ? ' comparing' : '');
-    card.setAttribute('tabindex', '0');
-    card.dataset.i = i;
-    card.dataset.id = d.id;
+    // ── 数据加载 ──
+    async function loadData() {
+      try {
+        const res = await fetch(DATA_FILE);
+        if (!res.ok) throw new Error('Failed to load data');
+        DATA = await res.json();
+        filtered = [...DATA];
+        loadFromStorage();
+        initUI();
+        hideInitialLoading();
+      } catch (err) {
+        console.error('数据加载失败:', err);
+        showToast('数据加载失败，请刷新重试');
+      }
+    }
 
-    // 图片处理：onerror显示彩色占位符
-    const firstLetter = d.name.charAt(0);
-    const placeholderBg = getColorForId(d.id);
-    const imgHtml = d.image
-      ? `<img src="${escHtml(d.image)}" alt="${escHtml(d.name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-         <div class="liquor-card-ph" style="display:none;background:${placeholderBg};">${escHtml(firstLetter)}</div>`
-      : `<div class="liquor-card-ph" style="background:${placeholderBg}">${escHtml(firstLetter)}</div>`;
+    function loadFromStorage() {
+      try {
+        const fav = localStorage.getItem(LS_FAV);
+        if (fav) favorites = JSON.parse(fav);
+        const notes = localStorage.getItem(LS_NOTES);
+        if (notes) TASTING_NOTES = JSON.parse(notes);
+        const lang = localStorage.getItem(LS_LANG);
+        if (lang) CUR_LANG = lang;
+      } catch (e) {}
+    }
 
-    // 搜索高亮
-    const nameHtml = curQ ? highlightText(escHtml(d.name), curQ) : escHtml(d.name);
+    function saveFavorites() {
+      localStorage.setItem(LS_FAV, JSON.stringify(favorites));
+      updateFavoritesBadge();
+    }
 
-    const favIcon = isFaved(d.id) ? '★' : '♡';
-    const typeColor = TYPE_COLORS[d.type] || 'var(--amber-500)';
+    function saveTastingNotes() {
+      localStorage.setItem(LS_NOTES, JSON.stringify(TASTING_NOTES));
+    }
 
-    card.innerHTML = `
-      <div class="liquor-card-img">${imgHtml}</div>
-      <div class="liquor-card-body">
-        <div class="liquor-card-region">${escHtml(d.region)}</div>
-        <h3 class="liquor-card-name">${nameHtml}</h3>
-        <div class="liquor-card-name-en">${escHtml(d.ename || '')}</div>
-        <div class="liquor-card-tags">
-          <span class="liquor-tag" style="border-color:${typeColor};color:${typeColor}">${escHtml(d.type)}</span>
-          <span class="liquor-tag">${d.abv}%vol</span>
-        </div>
-        <div class="liquor-card-footer">
-          <div class="liquor-card-abv">参考价 <strong>¥${d.price}</strong></div>
-          <div class="liquor-card-actions">
-            <label class="compare-check" title="加入对比">
-              <input type="checkbox" ${isComparing(d.id) ? 'checked' : ''} data-compare="${escHtml(d.id)}" onchange="toggleCompare('${escHtml(d.id)}')">
-            </label>
-            <button class="fav-btn" title="${isFaved(d.id) ? '取消收藏' : '收藏'}" data-id="${escHtml(d.id)}">${favIcon}</button>
-            <button class="share-btn" title="分享" data-id="${escHtml(d.id)}">↗</button>
+    // ── UI初始化 ──
+    function initUI() {
+      initLang();
+      renderTypeFilters();
+      renderRegionFilters();
+      renderTags();
+      applyFilters();
+      updateFavoritesBadge();
+      setupSearch();
+      setupKeyboardNav();
+    }
+
+    function hideInitialLoading() {
+      const el = document.getElementById('initialLoading');
+      if (el) el.style.display = 'none';
+    }
+
+    // ── 语言切换 ──
+    function initLang() {
+      const btn = document.getElementById('langBtn');
+      if (btn) btn.textContent = CUR_LANG === 'zh' ? '中' : 'EN';
+    }
+
+    function toggleLang() {
+      CUR_LANG = CUR_LANG === 'zh' ? 'en' : 'zh';
+      localStorage.setItem(LS_LANG, CUR_LANG);
+      initLang();
+      applyFilters();
+    }
+
+    // ── 筛选器 ──
+    function renderTypeFilters() {
+      const types = [...new Set(DATA.map(d => d.type))].filter(Boolean).sort();
+      const container = document.getElementById('typeFilters');
+      if (!container) return;
+      container.innerHTML = types.map(t => 
+        `<span class="filter-chip" data-type="${escHtml(t)}" onclick="toggleTypeFilter('${escHtml(t)}')">${escHtml(t)}</span>`
+      ).join('');
+    }
+
+    function renderRegionFilters() {
+      const regions = [...new Set(DATA.map(d => d.region))].filter(Boolean).sort();
+      const container = document.getElementById('regionFilters');
+      if (!container) return;
+      container.innerHTML = regions.map(r => 
+        `<span class="filter-chip" data-region="${escHtml(r)}" onclick="toggleRegionFilter('${escHtml(r)}')">${escHtml(r)}</span>`
+      ).join('');
+    }
+
+    function toggleTypeFilter(type) {
+      if (ACTIVE_FILTERS.type === type) {
+        ACTIVE_FILTERS.type = null;
+      } else {
+        ACTIVE_FILTERS.type = type;
+      }
+      document.querySelectorAll('#typeFilters .filter-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.type === ACTIVE_FILTERS.type);
+      });
+      applyFilters();
+    }
+
+    function toggleRegionFilter(region) {
+      if (ACTIVE_FILTERS.region === region) {
+        ACTIVE_FILTERS.region = null;
+      } else {
+        ACTIVE_FILTERS.region = region;
+      }
+      document.querySelectorAll('#regionFilters .filter-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.region === ACTIVE_FILTERS.region);
+      });
+      applyFilters();
+    }
+
+    function applyQuickPriceFilter(range) {
+      let min = 0, max = Infinity;
+      if (range === '0-100') { min = 0; max = 100; }
+      else if (range === '100-300') { min = 100; max = 300; }
+      else if (range === '300-500') { min = 300; max = 500; }
+      else if (range === '500-1000') { min = 500; max = 1000; }
+      else if (range === '1000+') { min = 1000; max = Infinity; }
+      
+      ACTIVE_FILTERS.priceMin = min;
+      ACTIVE_FILTERS.priceMax = max;
+
+      document.querySelectorAll('.price-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.quickPrice === range);
+      });
+      applyFilters();
+    }
+
+    function applyFilters() {
+      filtered = DATA.filter(d => {
+        if (ACTIVE_FILTERS.type && d.type !== ACTIVE_FILTERS.type) return false;
+        if (ACTIVE_FILTERS.region && d.region !== ACTIVE_FILTERS.region) return false;
+        if (d.price < ACTIVE_FILTERS.priceMin || d.price >= ACTIVE_FILTERS.priceMax) return false;
+        return true;
+      });
+      renderTags();
+      render();
+    }
+
+    function clearFilters() {
+      ACTIVE_FILTERS = { type: null, region: null, priceMin: 0, priceMax: Infinity };
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.price-chip').forEach(c => c.classList.remove('active'));
+      document.getElementById('sortSelect').value = 'default';
+      applyFilters();
+    }
+
+    function handleSort(value) {
+      if (value === 'price-asc') filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+      else if (value === 'price-desc') filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
+      else if (value === 'score-desc') filtered.sort((a, b) => (b.score || 0) - (a.score || 0));
+      else if (value === 'abv-desc') filtered.sort((a, b) => (b.abv || 0) - (a.abv || 0));
+      else filtered = [...DATA].filter(d => passesFilters(d));
+      render();
+    }
+
+    function passesFilters(d) {
+      if (ACTIVE_FILTERS.type && d.type !== ACTIVE_FILTERS.type) return false;
+      if (ACTIVE_FILTERS.region && d.region !== ACTIVE_FILTERS.region) return false;
+      if (d.price < ACTIVE_FILTERS.priceMin || d.price >= ACTIVE_FILTERS.priceMax) return false;
+      return true;
+    }
+
+    function renderTags() {
+      document.getElementById('countDisplay').textContent = filtered.length;
+    }
+
+    // ── 搜索 ──
+    function setupSearch() {
+      const input = document.getElementById('searchInput');
+      const autocomplete = document.getElementById('searchAutocomplete');
+      
+      input.addEventListener('input', (e) => {
+        const q = e.target.value.trim().toLowerCase();
+        if (!q) {
+          autocomplete.classList.remove('active');
+          return;
+        }
+        const matches = DATA.filter(d => 
+          d.name.toLowerCase().includes(q) || 
+          (d.ename && d.ename.toLowerCase().includes(q)) ||
+          (d.type && d.type.toLowerCase().includes(q))
+        ).slice(0, 8);
+
+        if (matches.length) {
+          autocomplete.innerHTML = matches.map(m => {
+            const highlighted = m.name.replace(new RegExp(`(${q})`, 'gi'), '<span class="highlight">$1</span>');
+            return `<div class="search-autocomplete__item" onclick="openM('${m.id}'); document.getElementById('searchInput').value=''; autocomplete.classList.remove('active');">
+              <span>🍷</span><span>${highlighted}</span><span style="color:#6b5d4d;font-size:12px">${escHtml(m.type || '')}</span>
+            </div>`;
+          }).join('');
+          autocomplete.classList.add('active');
+        } else {
+          autocomplete.classList.remove('active');
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          performSearch();
+          autocomplete.classList.remove('active');
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.header__search')) {
+          autocomplete.classList.remove('active');
+        }
+      });
+    }
+
+    function performSearch() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (!q) return;
+      
+      const match = DATA.find(d => 
+        d.name.toLowerCase().includes(q) || 
+        (d.ename && d.ename.toLowerCase().includes(q))
+      );
+      if (match) {
+        openM(match.id);
+        document.getElementById('searchInput').value = '';
+        document.getElementById('searchAutocomplete').classList.remove('active');
+      }
+    }
+
+    // ── 视图切换 ──
+    function switchView(mode) {
+      VIEW_MODE = mode;
+      document.getElementById('gridView').classList.toggle('active', mode === 'grid');
+      document.getElementById('listView').classList.toggle('active', mode === 'list');
+      document.getElementById('cardGrid').classList.toggle('list-view', mode === 'list');
+    }
+
+    // ── 卡片渲染 ──
+    function render() {
+      const grid = document.getElementById('cardGrid');
+      const currentFiltered = filtered.length ? filtered : DATA;
+      
+      grid.innerHTML = currentFiltered.map((d, i) => {
+        const isFav = favorites[d.id];
+        const tags = (d.flavor_tags || []).slice(0, 4).map(t => `<span class="liquor-tag">${escHtml(t)}</span>`).join('');
+        const priceDisplay = formatPrice(d.price || 0);
+        
+        return `
+        <article class="liquor-card" data-id="${escHtml(d.id)}" style="animation-delay:${Math.min(i * 50, 300)}ms" tabindex="0">
+          <div class="liquor-card-image">
+            <span>🍷</span>
+            ${d.price_tier === '高端' ? '<span class="liquor-card-badge">高端</span>' : ''}
+          </div>
+          <div class="liquor-card-body">
+            <div class="liquor-card-region">${escHtml(d.region || '未知产区')}</div>
+            <h3 class="liquor-card-name">${escHtml(CUR_LANG === 'zh' ? d.name : (d.ename || d.name))}</h3>
+            <p class="liquor-card-name-en">${escHtml(d.ename || '')}</p>
+            <div class="liquor-card-tags">${tags}</div>
+            <div class="liquor-card-footer">
+              <div class="liquor-card-abv">酒精度 <strong>${d.abv || 0}%</strong></div>
+              <div class="liquor-card-price">¥${priceDisplay}<span class="liquor-card-price-unit"></span></div>
+              <div class="liquor-card-actions">
+                <button onclick="event.stopPropagation(); toggleFav('${d.id}')" title="${isFav ? '取消收藏' : '收藏'}">${isFav ? '❤️' : '🤍'}</button>
+                <button onclick="event.stopPropagation(); addToCompare('${d.id}')" title="比较">⚖️</button>
+              </div>
+            </div>
+          </div>
+        </article>`;
+      }).join('');
+
+      grid.querySelectorAll('.liquor-card').forEach(card => {
+        card.addEventListener('click', () => openM(card.dataset.id));
+      });
+    }
+
+    // ── 详情模态框 ──
+    function openM(id) {
+      const d = DATA.find(x => x.id === id);
+      if (!d) return;
+
+      const modal = document.getElementById('modal');
+      const backdrop = document.getElementById('modalBackdrop');
+      const image = document.getElementById('modalImage');
+      const content = document.getElementById('modalContent');
+
+      image.innerHTML = '🍷';
+      
+      const score = d.score || 0;
+      const aroma = d.aroma || 0;
+      const body = d.body || 0;
+      const taste = d.taste || 0;
+      const afterglow = d.afterglow || 0;
+
+      const note = TASTING_NOTES[d.id] || {};
+      const stars = '★'.repeat(note.rating || 0) + '☆'.repeat(5 - (note.rating || 0));
+
+      content.innerHTML = `
+        <div class="modal__header">
+          <div class="modal__title-group">
+            <h2 class="modal__name">${escHtml(d.name)}</h2>
+            <p class="modal__ename">${escHtml(d.ename || '')}</p>
+            <div class="modal__badges">
+              <span class="modal__badge">${escHtml(d.type || '')}</span>
+              <span class="modal__badge">${escHtml(d.region || '')}</span>
+              <span class="modal__badge">${d.abv || 0}%vol</span>
+            </div>
           </div>
         </div>
-      </div>`;
 
-    // 收藏按钮事件
-    card.querySelector('.fav-btn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleFav(d.id);
-    });
-
-    // 分享按钮事件
-    card.querySelector('.share-btn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      openShare(d);
-    });
-
-    // 点击打开详情
-    card.addEventListener('click', () => openM(d.id));
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openM(d.id);
-      }
-    });
-
-    return card;
-  }
-
-  // ── 5) renderGrid渲染 ──
-  function render() {
-    if (curView !== 'main') return;
-    const displayList = getSorted(filtered);
-    updateCount(displayList.length);
-
-    if (!displayList.length) {
-      showEmpty('未找到符合条件的烈酒');
-      return;
-    }
-
-    gridEl.innerHTML = '';
-    if (VIEW_MODE === 'list') {
-      gridEl.classList.add('list-view');
-    } else {
-      gridEl.classList.remove('list-view');
-    }
-    // Direct update to avoid any timing race
-    const tc = document.getElementById('totalCount');
-    if (tc) tc.textContent = displayList.length;
-    displayList.forEach((d, i) => {
-      gridEl.appendChild(makeCard(d, i));
-    });
-  }
-
-  function getSorted(list) {
-    if (curSort === 'price-asc') return [...list].sort((a, b) => a.price - b.price);
-    if (curSort === 'price-desc') return [...list].sort((a, b) => b.price - a.price);
-    if (curSort === 'abv-desc') return [...list].sort((a, b) => b.abv - a.abv);
-    if (curSort === 'name') return [...list].sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'));
-    return list;
-  }
-
-  function updateCount(n) {
-    const cntEl = document.getElementById('resultCount');
-    const totalEl = document.getElementById('totalCount');
-    if (cntEl) cntEl.textContent = `共 ${n} 款`;
-    if (totalEl) totalEl.textContent = n;
-  }
-
-  function showEmpty(msg) {
-    gridEl.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-state-icon">🍶</div>
-        <div class="empty-state-text">${escHtml(msg)}</div>
-        <div class="empty-state-hint">试试调整筛选条件</div>
-      </div>`;
-  }
-
-  function showSk() {
-    gridEl.innerHTML = `
-      <div class="skeleton-grid">
-        ${Array.from({ length: 8 }, () => `
-          <div class="skeleton-card">
-            <div class="skeleton skeleton-img"></div>
-            <div class="skeleton-body">
-              <div class="skeleton skeleton-line"></div>
-              <div class="skeleton skeleton-line medium"></div>
-              <div class="skeleton skeleton-line short"></div>
+        <div class="score-display">
+          <div class="score-circle">
+            <span class="score-value">${score.toFixed(1)}</span>
+            <span class="score-label">综合评分</span>
+          </div>
+          <div class="score-bars">
+            <div class="score-bar-item">
+              <span class="score-bar-label">香气</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:${aroma * 10}%"></div></div>
+              <span class="score-bar-value">${aroma}</span>
             </div>
-          </div>`).join('')}
-      </div>`;
-  }
-
-  // ── 6) 筛选apply函数 ──
-  function apply() {
-    const q = curQ.toLowerCase().trim();
-    filtered = DATA.filter(d => {
-      // 搜索过滤
-      if (q) {
-        const matchName = d.name.toLowerCase().includes(q);
-        const matchEname = (d.ename || '').toLowerCase().includes(q);
-        const matchType = d.type.toLowerCase().includes(q);
-        const matchOrigin = (d.origin || '').toLowerCase().includes(q);
-        if (!matchName && !matchEname && !matchType && !matchOrigin) return false;
-      }
-
-      // 香型过滤 (OR)
-      if (selTypes.length) {
-        if (!selTypes.includes(d.type)) return false;
-      }
-
-      // 产区过滤 (OR)
-      if (selRegions.length) {
-        if (!selRegions.includes(d.region)) return false;
-      }
-
-      // 时代过滤 (OR)
-      if (selEras.length) {
-        if (!selEras.includes(d.era)) return false;
-      }
-
-      // 价格区间过滤
-      if (selPriceRange !== null) {
-        const p = d.price;
-        if (selPriceRange === 0 && p >= 500) return false;
-        if (selPriceRange === 1 && (p < 500 || p >= 1000)) return false;
-        if (selPriceRange === 2 && (p < 1000 || p >= 2000)) return false;
-        if (selPriceRange === 3 && p < 2000) return false;
-      }
-
-      // 香气类型过滤 (OR)
-      if (selAromas.length) {
-        if (!d.aroma || !selAromas.some(a => d.aroma.includes(a))) return false;
-      }
-
-      return true;
-    });
-
-    renderTags();
-    render();
-  }
-
-  // ── 7) buildXxxFilter筛选构建 ──
-
-  // 香型颜色映射
-  const TYPE_COLORS = {
-    '酱香型': '#8B4513',
-    '浓香型': '#B8860B',
-    '清香型': '#228B22',
-    '凤香型': '#20B2AA',
-    '馥郁香型': '#8B008B',
-    '董香型': '#2F4F4F',
-    '兼香型': '#CD853F',
-    '老白干香型': '#A0522D',
-    '米香型': '#DAA520',
-    '豉香型': '#708090',
-    '特香型': '#6B8E23',
-    '芝麻香型': '#8B7355',
-  };
-
-  function buildTypeFilter() {
-    const body = document.getElementById('filterTypeBody');
-    const types = [...new Set(DATA.map(d => d.type))].sort();
-    const typeCnt = {};
-    DATA.forEach(d => { typeCnt[d.type] = (typeCnt[d.type] || 0) + 1; });
-
-    body.innerHTML = '';
-    types.forEach(type => {
-      const color = TYPE_COLORS[type] || 'var(--amber-500)';
-      const lbl = document.createElement('label');
-      lbl.innerHTML = `
-        <input type="checkbox" data-type="${escHtml(type)}">
-        <span class="filter-label-dot" style="background:${color}"></span>
-        <span>${escHtml(type)}(${typeCnt[type]})</span>`;
-      lbl.querySelector('input').checked = selTypes.includes(type);
-      lbl.querySelector('input').onchange = () => toggleType(type, lbl.querySelector('input').checked);
-      body.appendChild(lbl);
-    });
-  }
-
-  function toggleType(type, on) {
-    if (on) selTypes.push(type);
-    else selTypes = selTypes.filter(t => t !== type);
-    updateFilterCount('type');
-    apply();
-  }
-
-  function buildRegionFilter() {
-    const body = document.getElementById('filterRegionBody');
-    const regions = [...new Set(DATA.map(d => d.region))].sort();
-    const regionCnt = {};
-    DATA.forEach(d => { regionCnt[d.region] = (regionCnt[d.region] || 0) + 1; });
-
-    body.innerHTML = '';
-    regions.forEach(region => {
-      const lbl = document.createElement('label');
-      lbl.innerHTML = `
-        <input type="checkbox" data-region="${escHtml(region)}">
-        <span>${escHtml(region)}(${regionCnt[region]})</span>`;
-      lbl.querySelector('input').checked = selRegions.includes(region);
-      lbl.querySelector('input').onchange = () => toggleRegion(region, lbl.querySelector('input').checked);
-      body.appendChild(lbl);
-    });
-  }
-
-  function toggleRegion(region, on) {
-    if (on) selRegions.push(region);
-    else selRegions = selRegions.filter(r => r !== region);
-    updateFilterCount('region');
-    apply();
-  }
-
-  function buildEraFilter() {
-    const body = document.getElementById('filterEraBody');
-    const eras = [...new Set(DATA.map(d => d.era))].sort();
-    const eraCnt = {};
-    DATA.forEach(d => { eraCnt[d.era] = (eraCnt[d.era] || 0) + 1; });
-
-    body.innerHTML = '';
-    eras.forEach(era => {
-      const lbl = document.createElement('label');
-      lbl.innerHTML = `
-        <input type="checkbox" data-era="${escHtml(era)}">
-        <span>${escHtml(era)}(${eraCnt[era]})</span>`;
-      lbl.querySelector('input').checked = selEras.includes(era);
-      lbl.querySelector('input').onchange = () => toggleEra(era, lbl.querySelector('input').checked);
-      body.appendChild(lbl);
-    });
-  }
-
-  function toggleEra(era, on) {
-    if (on) selEras.push(era);
-    else selEras = selEras.filter(e => e !== era);
-    updateFilterCount('era');
-    apply();
-  }
-
-  function buildPriceFilter() {
-    const body = document.getElementById('filterPriceBody');
-    const priceRanges = [
-      { label: '¥500以下', value: 0 },
-      { label: '¥500-1000', value: 1 },
-      { label: '¥1000-2000', value: 2 },
-      { label: '¥2000以上', value: 3 },
-    ];
-    body.innerHTML = '';
-    priceRanges.forEach(pr => {
-      const lbl = document.createElement('label');
-      lbl.innerHTML = `
-        <input type="radio" name="price" data-price="${pr.value}">
-        <span>${pr.label}</span>`;
-      lbl.querySelector('input').checked = selPriceRange === pr.value;
-      lbl.querySelector('input').onchange = () => {
-        selPriceRange = selPriceRange === pr.value ? null : pr.value;
-        document.querySelectorAll('#filterPriceBody input').forEach(i => {
-          i.checked = parseInt(i.dataset.price) === selPriceRange;
-        });
-        updateFilterCount('price');
-        apply();
-      };
-      body.appendChild(lbl);
-    });
-  }
-
-  function buildAromaFilter() {
-    const body = document.getElementById('filterAromaBody');
-    // Collect all unique aromas from data
-    const aromaSet = new Set();
-    DATA.forEach(d => {
-      if (d.aroma && Array.isArray(d.aroma)) {
-        d.aroma.forEach(a => aromaSet.add(a));
-      }
-    });
-    const aromas = [...aromaSet].sort();
-    body.innerHTML = '';
-    aromas.forEach(aroma => {
-      const lbl = document.createElement('label');
-      lbl.innerHTML = `
-        <input type="checkbox" data-aroma="${escHtml(aroma)}">
-        <span>${escHtml(aroma)}</span>`;
-      lbl.querySelector('input').checked = selAromas.includes(aroma);
-      lbl.querySelector('input').onchange = () => toggleAroma(aroma, lbl.querySelector('input').checked);
-      body.appendChild(lbl);
-    });
-  }
-
-  function toggleAroma(aroma, on) {
-    if (on) selAromas.push(aroma);
-    else selAromas = selAromas.filter(a => a !== aroma);
-    updateFilterCount('aroma');
-    apply();
-  }
-
-  function updateFilterCount(type) {
-    const el = document.getElementById(type + 'Count');
-    if (!el) return;
-    let n = 0;
-    if (type === 'type') n = selTypes.length;
-    else if (type === 'region') n = selRegions.length;
-    else if (type === 'era') n = selEras.length;
-    else if (type === 'price') n = selPriceRange !== null ? 1 : 0;
-    else if (type === 'aroma') n = selAromas.length;
-    el.textContent = n || '';
-    el.style.display = n ? 'inline' : 'none';
-  }
-
-  // 筛选面板折叠
-  function setupFilterPanel(hdrId, bodyId) {
-    const hdr = document.getElementById(hdrId);
-    const body = document.getElementById(bodyId);
-    if (!hdr || !body) return;
-    hdr.addEventListener('click', () => {
-      hdr.classList.toggle('active');
-      body.classList.toggle('active');
-    });
-  }
-  setupFilterPanel('filterTypeHdr', 'filterTypeBody');
-  setupFilterPanel('filterRegionHdr', 'filterRegionBody');
-  setupFilterPanel('filterEraHdr', 'filterEraBody');
-  setupFilterPanel('filterPriceHdr', 'filterPriceBody');
-  setupFilterPanel('filterAromaHdr', 'filterAromaBody');
-
-  // ── Tags标签栏 ──
-  function renderTags() {
-    const bar = document.getElementById('activeTags');
-    let html = '';
-
-    selTypes.forEach(t => {
-      html += `<span class="tag" data-type="type" data-val="${escHtml(t)}">${escHtml(t)} <span class="tag-remove">×</span></span>`;
-    });
-    selRegions.forEach(r => {
-      html += `<span class="tag tag-region" data-type="region" data-val="${escHtml(r)}">${escHtml(r)} <span class="tag-remove">×</span></span>`;
-    });
-    selEras.forEach(e => {
-      html += `<span class="tag tag-era" data-type="era" data-val="${escHtml(e)}">${escHtml(e)} <span class="tag-remove">×</span></span>`;
-    });
-    if (selPriceRange !== null) {
-      const priceLabels = ['¥500以下', '¥500-1000', '¥1000-2000', '¥2000以上'];
-      html += `<span class="tag tag-price" data-type="price">${priceLabels[selPriceRange]} <span class="tag-remove">×</span></span>`;
-    }
-    if (curQ) {
-      html += `<span class="tag tag-search" data-type="search">🔤 ${escHtml(curQ)} <span class="tag-remove">×</span></span>`;
-    }
-    if (html) {
-      html += `<button class="clear-all" id="clearAllTags">清除全部</button>`;
-    }
-
-    bar.innerHTML = html;
-    bar.querySelectorAll('.tag').forEach(tag => {
-      tag.addEventListener('click', () => {
-        const type = tag.dataset.type;
-        const val = tag.dataset.val;
-        removeFilter(type, val);
-      });
-    });
-    const clearBtn = document.getElementById('clearAllTags');
-    if (clearBtn) clearBtn.addEventListener('click', clearAll);
-  }
-
-  function removeFilter(type, val) {
-    if (type === 'type') selTypes = selTypes.filter(t => t !== val);
-    else if (type === 'region') selRegions = selRegions.filter(r => r !== val);
-    else if (type === 'era') selEras = selEras.filter(e => e !== val);
-    else if (type === 'price') selPriceRange = null;
-    else if (type === 'search') curQ = '';
-
-    // 同步侧边栏checkbox状态
-    if (type !== 'search') {
-      const input = document.querySelector(`#filter${type.charAt(0).toUpperCase() + type.slice(1)}Body input[data-${type}="${val}"]`);
-      if (input) input.checked = false;
-    } else {
-      document.getElementById('searchInput').value = '';
-    }
-
-    updateFilterCount(type);
-    apply();
-  }
-
-  function clearAll() {
-    selTypes = []; selRegions = []; selEras = []; selPriceRange = null; curQ = '';
-    document.getElementById('searchInput').value = '';
-    document.querySelectorAll('.filter-section input[type="checkbox"], .filter-section input[type="radio"]').forEach(i => i.checked = false);
-    document.querySelectorAll('#activeTags .tag').forEach(t => t.remove());
-    document.getElementById('clearAllTags')?.remove();
-    updateFilterCount('type'); updateFilterCount('region'); updateFilterCount('era'); updateFilterCount('price');
-    apply();
-  }
-
-  // ── 8) 模态框openM / closeM ──
-  function openM(id) {
-    const realIdx = filtered.findIndex(d => d.id === id);
-    if (realIdx < 0) return;
-    mIdx = realIdx;
-    const d = filtered[mIdx];
-
-    // 更新模态框内容
-    document.getElementById('modalId').textContent = `#${d.id}`;
-    document.getElementById('modalRegion').textContent = escHtml(d.region);
-    document.getElementById('modalTitle').textContent = escHtml(d.name);
-    document.getElementById('modalTitleEn').textContent = escHtml(d.ename || '');
-    document.getElementById('modalPriceBig').textContent = `¥${d.price}`;
-    document.getElementById('modalAbvBig').textContent = `${d.abv}%vol`;
-    document.getElementById('modalFactory').textContent = escHtml(d.factory || '');
-    document.getElementById('modalOrigin').textContent = escHtml(d.origin || '');
-    document.getElementById('modalAge').textContent = d.age ? `${d.age}年` : '—';
-    document.getElementById('modalVintage').textContent = d.vintage || '—';
-    document.getElementById('modalBatch').textContent = d.batch || '—';
-
-    // 品鉴指南
-    const tastingEl = document.getElementById('modalTasting');
-    if (d.tasting && d.tasting.length) {
-      tastingEl.innerHTML = d.tasting.map(t => `<div class="tasting-item">${escHtml(t)}</div>`).join('');
-    } else {
-      tastingEl.innerHTML = '<div class="tasting-item">暂无品鉴记录</div>';
-    }
-
-    // 配餐
-    const pairingEl = document.getElementById('modalPairing');
-    if (d.pairing && d.pairing.length) {
-      pairingEl.innerHTML = d.pairing.map(p => `<span class="pairing-tag">${escHtml(p)}</span>`).join('');
-    } else {
-      pairingEl.innerHTML = '';
-    }
-
-    // 工艺
-    const craftEl = document.getElementById('modalCraft');
-    craftEl.textContent = escHtml(d.工艺 || '暂无工艺信息');
-
-    // 原料
-    const ingredientEl = document.getElementById('modalIngredient');
-    ingredientEl.textContent = escHtml(d.原料 || '暂无原料信息');
-
-    // 历史
-    const historyEl = document.getElementById('modalHistory');
-    historyEl.textContent = escHtml(d.history || '暂无历史记录');
-
-    // 描述
-    const descEl = document.getElementById('modalDesc');
-    descEl.textContent = escHtml(d.description || '');
-
-    // 图片
-    const imgEl = document.getElementById('modalImage');
-    if (d.image) {
-      imgEl.innerHTML = `<img src="${escHtml(d.image)}" alt="${escHtml(d.name)}" style="width:100%;height:100%;object-fit:cover;">`;
-      imgEl.style.fontSize = '0';
-    } else {
-      imgEl.innerHTML = '🥃';
-      imgEl.style.fontSize = '80px';
-    }
-
-    // 收藏按钮状态
-    updateModalFavBtn(d.id);
-
-    // 加载品酒笔记
-    loadTastingNote(d.id);
-
-    // 导航按钮状态
-    document.getElementById('modalPrev').disabled = mIdx <= 0;
-    document.getElementById('modalNext').disabled = mIdx >= filtered.length - 1;
-    document.getElementById('modalStep').textContent = `${mIdx + 1} / ${filtered.length}`;
-
-    mb.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    // 添加浏览历史
-    addToHistory(d.id);
-
-    // 更新热门统计
-    if (typeof updateHotItem === 'function') updateHotItem(d.id);
-
-    // 显示相关推荐
-    if (typeof renderRelatedItems === 'function') renderRelatedItems(d);
-
-    // 显示原料图解
-    if (typeof renderIngredientDiagram === 'function') renderIngredientDiagram(d);
-
-    // 记录访问
-    if (typeof trackAccess === 'function') trackAccess(d.id);
-  }
-
-  function closeM() {
-    mb.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  function updateModalFavBtn(id) {
-    const btn = document.getElementById('modalFavBtn');
-    if (!btn) return;
-    const faved = isFaved(id);
-    btn.textContent = faved ? '★ 已收藏' : '♡ 收藏';
-    btn.classList.toggle('faved', faved);
-  }
-
-  // ── 9) 收藏toggleFav / saveFavs ──
-  function isFaved(id) {
-    return FAVS.includes(id);
-  }
-
-  function toggleFav(id) {
-    if (isFaved(id)) {
-      FAVS = FAVS.filter(f => f !== id);
-    } else {
-      FAVS.push(id);
-    }
-    saveFavs();
-    // 更新卡片收藏图标
-    document.querySelectorAll(`.fav-btn[data-id="${id}"]`).forEach(btn => {
-      btn.textContent = isFaved(id) ? '★' : '♡';
-    });
-    // 更新模态框按钮
-    updateModalFavBtn(id);
-    // 更新收藏计数
-    updateFavBadge();
-    // 更新卡片样式
-    document.querySelectorAll(`.liquor-card[data-id="${id}"]`).forEach(card => {
-      card.classList.toggle('favored', isFaved(id));
-    });
-  }
-
-  function saveFavs() {
-    localStorage.setItem(LS_FAVS, JSON.stringify(FAVS));
-  }
-
-  function updateFavBadge() {
-    const badge = document.getElementById('favBadge');
-    if (badge) {
-      badge.textContent = FAVS.length || '';
-      badge.style.display = FAVS.length ? 'flex' : 'none';
-    }
-  }
-
-  // ── 10) 暗色模式applyTheme ──
-  function initTheme() {
-    const saved = localStorage.getItem(LS_THEME);
-    if (saved) {
-      applyTheme(saved);
-    } else {
-      // 自动暗色模式：23点-早上6点
-      const hour = new Date().getHours();
-      if (hour >= 23 || hour < 6) {
-        applyTheme('dark');
-      }
-    }
-    // 每分钟检测时间变化
-    setInterval(() => {
-      const hour = new Date().getHours();
-      const current = document.documentElement.getAttribute('data-theme') || 'dark';
-      if (hour >= 23 || hour < 6) {
-        if (current !== 'dark') applyTheme('dark');
-      } else {
-        if (current !== 'light') applyTheme('light');
-      }
-    }, 60000);
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    const btn = document.getElementById('themeBtn');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem(LS_THEME, theme);
-  }
-
-  function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme') || 'dark';
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  }
-
-  // ── 11) 随机轮播carousel ──
-  let carouselTimer = null;
-  let carouselItems = [];
-  let carouselIdx = 0;
-
-  function initCarousel() {
-    if (!DATA.length) return;
-    // 随机选5款
-    const shuffled = [...DATA].sort(() => Math.random() - 0.5).slice(0, 5);
-    carouselItems = shuffled;
-    carouselIdx = 0;
-    renderCarousel();
-    startCarousel();
-  }
-
-  function renderCarousel() {
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
-    track.innerHTML = carouselItems.map((d, i) => `
-      <div class="carousel-item" data-id="${escHtml(d.id)}">
-        <div class="carousel-img">${d.image ? `<img src="${escHtml(d.image)}" alt="${escHtml(d.name)}" onerror="this.parentElement.innerHTML='🍶'">` : '<div class="carousel-ph">🍶</div>'}</div>
-        <div class="carousel-info">
-          <div class="carousel-name">${escHtml(d.name)}</div>
-          <div class="carousel-sub">${escHtml(d.type)} · ${d.abv}%vol</div>
+            <div class="score-bar-item">
+              <span class="score-bar-label">酒体</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:${body * 10}%"></div></div>
+              <span class="score-bar-value">${body}</span>
+            </div>
+            <div class="score-bar-item">
+              <span class="score-bar-label">口感</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:${taste * 10}%"></div></div>
+              <span class="score-bar-value">${taste}</span>
+            </div>
+            <div class="score-bar-item">
+              <span class="score-bar-label">余韵</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:${afterglow * 10}%"></div></div>
+              <span class="score-bar-value">${afterglow}</span>
+            </div>
+          </div>
         </div>
-      </div>`).join('');
 
-    track.querySelectorAll('.carousel-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const id = item.dataset.id;
-        if (id) openM(id);
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">📜</span>简介</h4>
+          <p style="color:#c9bfb5;line-height:1.7">${escHtml(d.description || d.history || '暂无描述')}</p>
+        </div>
+
+        ${d.history && d.history.length > 50 ? `
+        <div class="history-quote">"${escHtml(d.history.slice(0, 100))}..."</div>
+        ` : ''}
+
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">📊</span>基本信息</h4>
+          <div class="modal__info-grid">
+            <div class="modal__info-item">
+              <span class="modal__info-label">产地</span>
+              <span class="modal__info-value">${escHtml(d.origin || d.origin_story || '未知')}</span>
+            </div>
+            <div class="modal__info-item">
+              <span class="modal__info-label">价格</span>
+              <span class="modal__info-value" style="color:#e8a829">¥${formatPrice(d.price || 0)}</span>
+            </div>
+            <div class="modal__info-item">
+              <span class="modal__info-label">酒厂</span>
+              <span class="modal__info-value">${escHtml(d.factory || d.distillery || '未知')}</span>
+            </div>
+            <div class="modal__info-item">
+              <span class="modal__info-label">年份</span>
+              <span class="modal__info-value">${escHtml(d.age || d.aging || '未知')}</span>
+            </div>
+          </div>
+        </div>
+
+        ${(d.flavor_tags && d.flavor_tags.length) ? `
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">🏷️</span>风味标签</h4>
+          <div class="ingredient-diagram">
+            ${d.flavor_tags.map(t => `<span class="ingredient-item"><span class="ingredient-icon">✦</span>${escHtml(t)}</span>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${(d.tasting && d.tasting.length) ? `
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">👅</span>品鉴指南</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            ${d.tasting.map(t => `<div style="padding:8px 12px;background:rgba(26,21,18,0.4);border-radius:8px;font-size:13px;color:#c9bfb5">${escHtml(t)}</div>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${(d.pairing && d.pairing.length) ? `
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">🍽️</span>配餐建议</h4>
+          <div class="scene-tags">
+            ${d.pairing.map(p => `<span class="scene-tag">${escHtml(p)}</span>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${(d.awards && d.awards.length) ? `
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">🏆</span>获奖荣誉</h4>
+          <div class="awards-list">
+            ${d.awards.map(a => `<div class="award-item"><span class="award-icon">🏅</span>${escHtml(a)}</div>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${(d.scene && d.scene.length) ? `
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">🎯</span>适用场景</h4>
+          <div class="scene-tags">
+            ${d.scene.map(s => `<span class="scene-tag">${escHtml(s)}</span>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${d.cocktail ? `
+        <div class="cocktail-hint">
+          <div class="cocktail-name">🍸 创意调酒: ${escHtml(d.cocktail.name || '自定义')}</div>
+          <div class="cocktail-method">${escHtml(d.cocktail.method || '')}</div>
+        </div>
+        ` : ''}
+
+        ${d.storage ? `
+        <div class="storage-hint">
+          <strong>💡 存储建议:</strong> ${escHtml(d.storage)}
+        </div>
+        ` : ''}
+
+        <div class="modal__section">
+          <h4 class="modal__section-title"><span class="modal__section-title-icon">📝</span>我的品鉴</h4>
+          <div class="tasting-form">
+            <div class="modal__stars">
+              ${[1,2,3,4,5].map(n => `<span onclick="setRating(${n})" class="${n <= (note.rating || 0) ? 'active' : ''}">★</span>`).join('')}
+              <span style="margin-left:8px;font-size:12px;color:#6b5d4d">${stars}</span>
+            </div>
+            <textarea class="tasting-textarea" id="tastingNoteText" placeholder="记录你的品鉴感受...">${escHtml(note.text || '')}</textarea>
+            <button class="tasting-btn" onclick="saveTastingNote('${d.id}')">保存笔记</button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.add('active');
+      backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function setRating(n) {
+      const stars = document.querySelectorAll('.modal__stars span:first-child ~ span:not([onclick])');
+      document.querySelectorAll('.modal__stars span[onclick]').forEach((sp, i) => {
+        sp.classList.toggle('active', i < n);
       });
-    });
-
-    updateCarouselDots();
-  }
-
-  function startCarousel() {
-    if (carouselTimer) clearInterval(carouselTimer);
-    carouselTimer = setInterval(() => {
-      carouselIdx = (carouselIdx + 1) % carouselItems.length;
-      updateCarouselPos();
-    }, 4000);
-  }
-
-  function pauseCarousel() {
-    if (carouselTimer) {
-      clearInterval(carouselTimer);
-      carouselTimer = null;
     }
-  }
 
-  function updateCarouselPos() {
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
-    const itemWidth = 220 + 14; // card width + gap
-    track.style.transform = `translateX(-${carouselIdx * itemWidth}px)`;
-    updateCarouselDots();
-  }
-
-  function updateCarouselDots() {
-    const dotsContainer = document.getElementById('carouselDots');
-    if (!dotsContainer) return;
-    dotsContainer.innerHTML = carouselItems.map((_, i) =>
-      `<span class="carousel-dot${i === carouselIdx ? ' active' : ''}"></span>`
-    ).join('');
-  }
-
-  function carouselPrev() {
-    carouselIdx = (carouselIdx - 1 + carouselItems.length) % carouselItems.length;
-    updateCarouselPos();
-  }
-
-  function carouselNext() {
-    carouselIdx = (carouselIdx + 1) % carouselItems.length;
-    updateCarouselPos();
-  }
-
-  // ── 12) 移动端筛选面板 ──
-  const mobFilterBtn = document.getElementById('mobFilterBtn');
-  const mobFilterPanel = document.getElementById('mobFilterPanel');
-  const mobFilterOverlay = document.getElementById('mobFilterOverlay');
-  const mobFilterClose = document.getElementById('mobFilterClose');
-  let mobSelTypes = [], mobSelRegions = [], mobSelEras = [], mobSelPrice = null;
-
-  function openMobFilter() {
-    mobSelTypes = [...selTypes];
-    mobSelRegions = [...selRegions];
-    mobSelEras = [...selEras];
-    mobSelPrice = selPriceRange;
-    renderMobFilterBody();
-    mobFilterPanel.classList.add('active');
-    mobFilterOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    if (mobFilterBtn) mobFilterBtn.classList.add('active');
-  }
-
-  function closeMobFilter() {
-    mobFilterPanel.classList.remove('active');
-    mobFilterOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-    if (mobFilterBtn) mobFilterBtn.classList.remove('active');
-  }
-
-  function renderMobFilterBody() {
-    const body = document.getElementById('mobFilterBody');
-    if (!body) return;
-
-    // 获取各筛选项的计数
-    const typeCnt = {}; DATA.forEach(d => { typeCnt[d.type] = (typeCnt[d.type] || 0) + 1; });
-    const regionCnt = {}; DATA.forEach(d => { regionCnt[d.region] = (regionCnt[d.region] || 0) + 1; });
-    const eraCnt = {}; DATA.forEach(d => { eraCnt[d.era] = (eraCnt[d.era] || 0) + 1; });
-
-    const types = [...new Set(DATA.map(d => d.type))].sort();
-    const regions = [...new Set(DATA.map(d => d.region))].sort();
-    const eras = [...new Set(DATA.map(d => d.era))].sort();
-
-    let html = '';
-
-    // 香型
-    html += `<div class="mob-filter-section">
-      <div class="mob-filter-section-title">🍶 香型</div>
-      <div class="mob-filter-chips">`;
-    types.forEach(t => {
-      const color = TYPE_COLORS[t] || 'var(--amber-500)';
-      html += `<span class="mob-chip${mobSelTypes.includes(t) ? ' active' : ''}" data-mtype="type" data-mval="${escHtml(t)}" style="border-color:${color}">${escHtml(t)} (${typeCnt[t]})</span>`;
-    });
-    html += `</div></div>`;
-
-    // 产区
-    html += `<div class="mob-filter-section">
-      <div class="mob-filter-section-title">📍 产区</div>
-      <div class="mob-filter-chips">`;
-    regions.forEach(r => {
-      html += `<span class="mob-chip${mobSelRegions.includes(r) ? ' active' : ''}" data-mtype="region" data-mval="${escHtml(r)}">${escHtml(r)} (${regionCnt[r]})</span>`;
-    });
-    html += `</div></div>`;
-
-    // 时代
-    html += `<div class="mob-filter-section">
-      <div class="mob-filter-section-title">📅 时代</div>
-      <div class="mob-filter-chips">`;
-    eras.forEach(e => {
-      html += `<span class="mob-chip${mobSelEras.includes(e) ? ' active' : ''}" data-mtype="era" data-mval="${escHtml(e)}">${escHtml(e)} (${eraCnt[e]})</span>`;
-    });
-    html += `</div></div>`;
-
-    // 价格
-    const priceLabels = ['¥500以下', '¥500-1000', '¥1000-2000', '¥2000以上'];
-    html += `<div class="mob-filter-section">
-      <div class="mob-filter-section-title">💰 价格</div>
-      <div class="mob-filter-chips">`;
-    priceLabels.forEach((l, i) => {
-      html += `<span class="mob-chip${mobSelPrice === i ? ' active' : ''}" data-mtype="price" data-mval="${i}">${l}</span>`;
-    });
-    html += `</div></div>`;
-
-    body.innerHTML = html;
-
-    // 绑定点击事件
-    body.querySelectorAll('.mob-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const mt = chip.dataset.mtype;
-        const mv = chip.dataset.mval;
-        if (mt === 'type') {
-          if (mobSelTypes.includes(mv)) mobSelTypes = mobSelTypes.filter(t => t !== mv);
-          else mobSelTypes.push(mv);
-        } else if (mt === 'region') {
-          if (mobSelRegions.includes(mv)) mobSelRegions = mobSelRegions.filter(r => r !== mv);
-          else mobSelRegions.push(mv);
-        } else if (mt === 'era') {
-          if (mobSelEras.includes(mv)) mobSelEras = mobSelEras.filter(e => e !== mv);
-          else mobSelEras.push(mv);
-        } else if (mt === 'price') {
-          mobSelPrice = mobSelPrice === parseInt(mv) ? null : parseInt(mv);
-        }
-        renderMobFilterBody();
-      });
-    });
-  }
-
-  function applyMobFilter() {
-    selTypes = [...mobSelTypes];
-    selRegions = [...mobSelRegions];
-    selEras = [...mobSelEras];
-    selPriceRange = mobSelPrice;
-
-    // 同步侧边栏checkbox状态
-    document.querySelectorAll('#filterTypeBody input').forEach(i => {
-      i.checked = selTypes.includes(i.dataset.type);
-    });
-    document.querySelectorAll('#filterRegionBody input').forEach(i => {
-      i.checked = selRegions.includes(i.dataset.region);
-    });
-    document.querySelectorAll('#filterEraBody input').forEach(i => {
-      i.checked = selEras.includes(i.dataset.era);
-    });
-    document.querySelectorAll('#filterPriceBody input').forEach(i => {
-      i.checked = parseInt(i.dataset.price) === selPriceRange;
-    });
-
-    updateFilterCount('type');
-    updateFilterCount('region');
-    updateFilterCount('era');
-    updateFilterCount('price');
-
-    apply();
-    closeMobFilter();
-  }
-
-  function resetMobFilter() {
-    mobSelTypes = []; mobSelRegions = []; mobSelEras = []; mobSelPrice = null;
-    renderMobFilterBody();
-  }
-
-  // ── 13) 键盘事件 ──
-  document.addEventListener('keydown', (e) => {
-    // ESC 关闭模态框/移动端筛选面板
-    if (e.key === 'Escape') {
-      if (mb.classList.contains('active')) closeM();
-      if (mobFilterPanel?.classList.contains('active')) closeMobFilter();
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+      document.getElementById('modalBackdrop').classList.remove('active');
+      document.body.style.overflow = '';
     }
-    // 左右箭头切换模态框
-    if (mb.classList.contains('active')) {
-      if (e.key === 'ArrowLeft' && mIdx > 0) openM(filtered[mIdx - 1].id);
-      if (e.key === 'ArrowRight' && mIdx < filtered.length - 1) openM(filtered[mIdx + 1].id);
-    }
-  });
 
-  // ── 浏览历史 ──
-  function getHistory() {
-    return JSON.parse(localStorage.getItem(LS_HIST) || '[]');
-  }
-
-  function addToHistory(id) {
-    let hist = getHistory();
-    hist = hist.filter(h => h !== id);
-    hist.unshift(id);
-    hist = hist.slice(0, 20); // 最多20条
-    localStorage.setItem(LS_HIST, JSON.stringify(hist));
-    renderHistory();
-  }
-
-  function renderHistory() {
-    const list = document.getElementById('historyList');
-    if (!list) return;
-    const hist = getHistory();
-    if (!hist.length) {
-      list.innerHTML = '<div class="sidebar-empty">暂无浏览记录</div>';
-      return;
-    }
-    const now = new Date();
-    list.innerHTML = hist.slice(0, 10).map((id, i) => {
-      const d = DATA.find(x => x.id === id);
-      if (!d) return '';
-      const time = new Date(now - i * 3600000);
-      const timeStr = i === 0 ? '刚刚' : `${time.getHours()}:${String(time.getMinutes()).padStart(2, '0')}`;
-      return `
-        <div class="history-item" data-id="${escHtml(id)}">
-          <span class="history-query">${escHtml(d.name)}</span>
-          <span class="history-time">${timeStr}</span>
-        </div>`;
-    }).join('');
-
-    list.querySelectorAll('.history-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const id = item.dataset.id;
-        if (id) {
-          openM(id);
-          sidebar.classList.remove('active');
-          sidebarOverlay.classList.remove('active');
-        }
-      });
-    });
-  }
-
-  // ── 分享功能 ──
-  function openShare(d) {
-    const shareText = `🍶 ${d.name} (${d.ename || ''})\n📍 ${d.origin}\n🏷️ ${d.type} | ${d.abv}%vol\n💰 参考价: ¥${d.price}\n\n来自「世界烈酒图鉴」`;
-
-    // Web Share API (mobile)
-    if (navigator.share) {
-      navigator.share({
-        title: d.name,
-        text: shareText,
-        url: window.location.href + '?r=' + d.id
-      }).catch(() => {
-        // Fallback to popup
-        showSharePopup(shareText);
-      });
-    } else {
-      // Desktop: show popup
-      showSharePopup(shareText);
-    }
-  }
-
-  function showSharePopup(shareText) {
-    const textarea = document.getElementById('shareText');
-    if (textarea) textarea.value = shareText;
-    const pop = document.getElementById('sharePopup');
-    if (pop) pop.classList.add('active');
-  }
-
-  function closeShare() {
-    const pop = document.getElementById('sharePopup');
-    if (pop) pop.classList.remove('active');
-  }
-
-  function copyShareText() {
-    const textarea = document.getElementById('shareText');
-    if (!textarea) return;
-    navigator.clipboard.writeText(textarea.value).then(() => {
-      const btn = document.getElementById('copyShareBtn');
-      if (btn) {
-        btn.textContent = '已复制 ✓';
-        setTimeout(() => { btn.textContent = '复制'; }, 1500);
+    // ── 收藏 ──
+    function toggleFav(id) {
+      if (favorites[id]) {
+        delete favorites[id];
+      } else {
+        favorites[id] = { date: new Date().toISOString() };
       }
-    });
-  }
-
-  // ── URL参数检测 ──
-  function checkUrlParam() {
-    const params = new URLSearchParams(location.search);
-    const r = params.get('r');
-    if (r && DATA.length) {
-      const idx = DATA.findIndex(d => d.id === r);
-      if (idx >= 0) setTimeout(() => openM(r), 300);
+      saveFavorites();
+      render();
+      showToast(favorites[id] ? '已添加到收藏' : '已取消收藏');
     }
-  }
 
-  // ── 搜索防抖 ──
-  let searchTimer = null;
-  function handleSearchInput(e) {
-    const val = e.target.value.trim();
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {
-      curQ = val;
-      apply();
-    }, 300);
-  }
-
-  // ── 排序变更 ──
-  function handleSortChange(e) {
-    curSort = e.target.value;
-    apply();
-  }
-
-  // ── 事件绑定 ──
-  document.getElementById('themeBtn')?.addEventListener('click', toggleTheme);
-  document.getElementById('searchInput')?.addEventListener('input', handleSearchInput);
-  document.getElementById('sortSelect')?.addEventListener('change', handleSortChange);
-  document.getElementById('clearFilters')?.addEventListener('click', clearAll);
-  document.getElementById('modalClose')?.addEventListener('click', closeM);
-  mb?.addEventListener('click', (e) => { if (e.target === mb) closeM(); });
-  document.getElementById('modalPrev')?.addEventListener('click', () => { if (mIdx > 0) openM(filtered[mIdx - 1].id); });
-  document.getElementById('modalNext')?.addEventListener('click', () => { if (mIdx < filtered.length - 1) openM(filtered[mIdx + 1].id); });
-  document.getElementById('modalFavBtn')?.addEventListener('click', () => { if (filtered[mIdx]) toggleFav(filtered[mIdx].id); });
-  document.getElementById('modalShareBtn')?.addEventListener('click', () => { if (filtered[mIdx]) openShare(filtered[mIdx]); });
-  document.getElementById('randomBtn')?.addEventListener('click', () => { if (filtered.length) { const ri = Math.floor(Math.random() * filtered.length); openM(filtered[ri].id); } });
-
-  // 对比功能
-  document.getElementById('compareBtn')?.addEventListener('click', openCompareModal);
-  document.getElementById('compareModalClose')?.addEventListener('click', closeCompareModal);
-  document.getElementById('compareModalOverlay')?.addEventListener('click', (e) => { if (e.target.id === 'compareModalOverlay') closeCompareModal(); });
-
-  // 品酒笔记
-  document.getElementById('saveTastingNote')?.addEventListener('click', () => { if (filtered[mIdx]) saveTastingNote(filtered[mIdx].id); });
-  document.getElementById('notesBtn')?.addEventListener('click', () => { openSidebar('notes'); renderNotesList(); });
-
-  // 多语言
-  document.getElementById('langBtn')?.addEventListener('click', toggleLang);
-
-  // 视图切换
-  document.getElementById('gridView')?.addEventListener('click', () => switchView('grid'));
-  document.getElementById('listView')?.addEventListener('click', () => switchView('list'));
-
-  // 轮播控制
-  document.getElementById('carouselPrev')?.addEventListener('click', () => { pauseCarousel(); carouselPrev(); startCarousel(); });
-  document.getElementById('carouselNext')?.addEventListener('click', () => { pauseCarousel(); carouselNext(); startCarousel(); });
-
-  // 移动端筛选
-  mobFilterBtn?.addEventListener('click', openMobFilter);
-  mobFilterClose?.addEventListener('click', closeMobFilter);
-  mobFilterOverlay?.addEventListener('click', closeMobFilter);
-  document.getElementById('mobFilterReset')?.addEventListener('click', resetMobFilter);
-  document.getElementById('mobFilterApply')?.addEventListener('click', applyMobFilter);
-
-  // 分享弹窗
-  document.getElementById('sharePopup')?.addEventListener('click', (e) => { if (e.target.id === 'sharePopup') closeShare(); });
-  document.getElementById('closeShareBtn')?.addEventListener('click', closeShare);
-  document.getElementById('copyShareBtn')?.addEventListener('click', copyShareText);
-
-  // 侧边栏
-  document.getElementById('favoritesBtn')?.addEventListener('click', () => openSidebar('favorites'));
-  document.getElementById('historyBtn')?.addEventListener('click', () => { openSidebar('history'); renderHistory(); });
-  document.getElementById('sidebarClose')?.addEventListener('click', closeSidebar);
-  document.getElementById('sidebarOverlay')?.addEventListener('click', closeSidebar);
-  document.getElementById('sidebarClearBtn')?.addEventListener('click', () => {
-    if (confirm('确定清空历史记录？')) {
-      localStorage.setItem(LS_HIST, '[]');
-      renderHistory();
+    function updateFavoritesBadge() {
+      const btn = document.getElementById('favBtn');
+      const count = Object.keys(favorites).length;
+      if (count > 0) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
     }
-  });
 
-  // 导出收藏JSON
-  document.getElementById('exportFavsBtn')?.addEventListener('click', () => {
-    const favIds = JSON.parse(localStorage.getItem(LS_FAVS) || '[]');
-    const favData = favIds.map(id => DATA.find(d => d.id === id)).filter(Boolean);
-    const blob = new Blob([JSON.stringify(favData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'world-liquor-favorites.json';
-    a.click();
-    URL.revokeObjectURL(url);
-  });
+    // ── 笔记 ──
+    function saveTastingNote(id) {
+      const stars = document.querySelectorAll('.modal__stars span[onclick]');
+      const activeCount = [...stars].filter(s => s.classList.contains('active')).length;
+      const textArea = document.getElementById('tastingNoteText');
+      const text = textArea ? textArea.value.trim() : '';
 
-  function openSidebar(type) {
-    const title = document.getElementById('sidebarTitle');
-    const favPanel = document.getElementById('favoritesPanel');
-    const histPanel = document.getElementById('historyPanel');
-    const notesPanel = document.getElementById('notesPanel');
-    if (title) title.textContent = type === 'favorites' ? '收藏夹' : type === 'history' ? '历史记录' : '我的笔记';
-    if (favPanel) favPanel.style.display = type === 'favorites' ? 'block' : 'none';
-    if (histPanel) histPanel.style.display = type === 'history' ? 'block' : 'none';
-    if (notesPanel) notesPanel.style.display = type === 'notes' ? 'block' : 'none';
-    document.getElementById('sidebar').classList.add('active');
-    document.getElementById('sidebarOverlay').classList.add('active');
-  }
-
-  function closeSidebar() {
-    document.getElementById('sidebar').classList.remove('active');
-    document.getElementById('sidebarOverlay').classList.remove('active');
-  }
-
-  // ── 辅助函数 ──
-  function highlightText(text, keyword) {
-    if (!keyword) return text;
-    const regex = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-    return text.replace(regex, '<mark>$1</mark>');
-  }
-
-  function getColorForId(id) {
-    const colors = ['#8B4513', '#B8860B', '#228B22', '#20B2AA', '#8B008B', '#2F4F4F', '#CD853F', '#A0522D', '#DAA520', '#708090', '#6B8E23', '#8B7355'];
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) {
-      hash = id.charCodeAt(i) + ((hash << 5) - hash);
+      if (!activeCount && !text) {
+        delete TASTING_NOTES[id];
+      } else {
+        TASTING_NOTES[id] = { rating: activeCount, text, date: new Date().toISOString() };
+      }
+      saveTastingNotes();
+      renderNotesList();
+      showToast('笔记已保存');
     }
-    return colors[Math.abs(hash) % colors.length];
-  }
 
-  // ── 对比功能 ──
-  function isComparing(id) {
-    return COMPARE_LIST.includes(id);
-  }
+    function renderNotesList() {
+      const list = document.getElementById('notesList');
+      if (!list) return;
 
-  function toggleCompare(id) {
-    if (isComparing(id)) {
-      COMPARE_LIST = COMPARE_LIST.filter(c => c !== id);
-    } else {
-      if (COMPARE_LIST.length >= 3) {
-        alert('最多只能对比3款酒');
+      const notes = Object.entries(TASTING_NOTES);
+      if (!notes.length) {
+        list.innerHTML = '<div class="sidebar-empty"><div class="sidebar-empty__icon">📝</div><div class="sidebar-empty__text">暂无品酒笔记</div></div>';
         return;
       }
-      COMPARE_LIST.push(id);
-    }
-    saveCompare();
-    updateCompareBar();
-    render();
-  }
 
-  function saveCompare() {
-    localStorage.setItem(LS_COMPARE, JSON.stringify(COMPARE_LIST));
-  }
-
-  function updateCompareBar() {
-    const bar = document.getElementById('compareBar');
-    const countEl = document.getElementById('compareCount');
-    const itemsEl = document.getElementById('compareItems');
-    if (!bar) return;
-
-    if (COMPARE_LIST.length > 0) {
-      bar.classList.add('active');
-      countEl.textContent = COMPARE_LIST.length;
-      itemsEl.innerHTML = COMPARE_LIST.map(id => {
+      list.innerHTML = notes.map(([id, note]) => {
         const d = DATA.find(x => x.id === id);
         if (!d) return '';
-        return `<div class="compare-item">
-          <span>${escHtml(d.name)}</span>
-          <span class="compare-item-remove" onclick="removeFromCompare('${escHtml(id)}')">×</span>
+        const stars = '★'.repeat(note.rating || 0) + '☆'.repeat(5 - (note.rating || 0));
+        const date = new Date(note.date).toLocaleDateString('zh-CN');
+        return `<div class="notes-item" data-id="${escHtml(id)}">
+          <div class="notes-item-header">
+            <span class="notes-item-name">${escHtml(d.name)}</span>
+            <span class="notes-item-rating">${stars}</span>
+          </div>
+          ${note.text ? `<div class="notes-item-text">${escHtml(note.text)}</div>` : ''}
+          <div class="notes-item-date">${date}</div>
         </div>`;
       }).join('');
-    } else {
-      bar.classList.remove('active');
-    }
-  }
 
-  function removeFromCompare(id) {
-    COMPARE_LIST = COMPARE_LIST.filter(c => c !== id);
-    saveCompare();
-    updateCompareBar();
-    render();
-  }
-
-  function openCompareModal() {
-    if (COMPARE_LIST.length < 2) {
-      alert('请至少选择2款酒进行对比');
-      return;
-    }
-    const overlay = document.getElementById('compareModalOverlay');
-    const table = document.getElementById('compareTable');
-    const items = COMPARE_LIST.map(id => DATA.find(d => d.id === id)).filter(Boolean);
-
-    const fields = ['name', 'type', 'region', 'abv', 'price', 'factory', 'origin', 'age'];
-    const labels = { name: '名称', type: '类型', region: '产区', abv: '酒精度', price: '参考价', factory: '酒厂', origin: '产地', age: '陈年' };
-
-    let html = '<tr><th>对比项</th>';
-    items.forEach(d => {
-      html += `<td style="font-weight:600;color:var(--amber-gold);">${escHtml(d.name)}</td>`;
-    });
-    html += '</tr>';
-
-    fields.forEach(field => {
-      html += `<tr><th>${labels[field] || field}</th>`;
-      items.forEach(d => {
-        let val = d[field] || '—';
-        if (field === 'abv') val = `${val}%vol`;
-        if (field === 'price') val = `¥${val}`;
-        html += `<td>${escHtml(val)}</td>`;
+      list.querySelectorAll('.notes-item').forEach(item => {
+        item.addEventListener('click', () => {
+          openM(item.dataset.id);
+          closeSidebar();
+        });
       });
-      html += '</tr>';
-    });
-
-    table.innerHTML = html;
-    overlay.classList.add('active');
-  }
-
-  function closeCompareModal() {
-    document.getElementById('compareModalOverlay').classList.remove('active');
-  }
-
-  // ── 品酒笔记 ──
-  function updateNotesBadge() {
-    const badge = document.getElementById('notesBadge');
-    const count = Object.keys(TASTING_NOTES).length;
-    if (badge) {
-      badge.textContent = count || '';
-      badge.style.display = count ? 'flex' : 'none';
     }
-  }
 
-  function saveTastingNote(id) {
-    const ratingInput = document.querySelector('input[name="rating"]:checked');
-    const textArea = document.getElementById('tastingNoteText');
-    if (!textArea) return;
-
-    const rating = ratingInput ? parseInt(ratingInput.value) : 0;
-    const text = textArea.value.trim();
-
-    if (!rating && !text) {
-      delete TASTING_NOTES[id];
-    } else {
-      TASTING_NOTES[id] = { rating, text, date: new Date().toISOString() };
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+      if (sidebar.classList.contains('active')) {
+        renderNotesList();
+      }
     }
-    localStorage.setItem(LS_TASTING, JSON.stringify(TASTING_NOTES));
-    updateNotesBadge();
-  }
 
-  function loadTastingNote(id) {
-    const note = TASTING_NOTES[id];
-    if (!note) return;
-    const ratingInput = document.querySelector(`input[name="rating"][value="${note.rating}"]`);
-    if (ratingInput) ratingInput.checked = true;
-    const textArea = document.getElementById('tastingNoteText');
-    if (textArea && note.text) textArea.value = note.text;
-  }
-
-  function renderNotesList() {
-    const list = document.getElementById('notesList');
-    if (!list) return;
-    const notes = Object.entries(TASTING_NOTES);
-    if (!notes.length) {
-      list.innerHTML = '<div class="sidebar-empty">暂无品酒笔记</div>';
-      return;
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('active');
+      document.getElementById('sidebarOverlay').classList.remove('active');
     }
-    list.innerHTML = notes.map(([id, note]) => {
-      const d = DATA.find(x => x.id === id);
-      if (!d) return '';
-      const stars = '★'.repeat(note.rating || 0) + '☆'.repeat(5 - (note.rating || 0));
-      return `<div class="notes-item" data-id="${escHtml(id)}">
-        <div class="notes-item-header">
-          <span class="notes-item-name">${escHtml(d.name)}</span>
-          <span class="notes-item-rating">${stars}</span>
-        </div>
-        ${note.text ? `<div class="notes-item-text">${escHtml(note.text)}</div>` : ''}
-      </div>`;
-    }).join('');
 
-    list.querySelectorAll('.notes-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const id = item.dataset.id;
-        if (id) {
-          openM(id);
-          sidebar.classList.remove('active');
-          sidebarOverlay.classList.remove('active');
+    function importNotes() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      input.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const data = JSON.parse(text);
+          if (typeof data === 'object') {
+            TASTING_NOTES = { ...TASTING_NOTES, ...data };
+            saveTastingNotes();
+            renderNotesList();
+            showToast('导入成功');
+          }
+        } catch (err) {
+          showToast('导入失败');
+        }
+      };
+      input.click();
+    }
+
+    function exportNotes() {
+      const blob = new Blob([JSON.stringify(TASTING_NOTES, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'liquor_tasting_notes.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('导出成功');
+    }
+
+    // ── 比较 ──
+    function addToCompare(id) {
+      if (COMPARE_LIST.includes(id)) {
+        COMPARE_LIST = COMPARE_LIST.filter(x => x !== id);
+      } else if (COMPARE_LIST.length < 4) {
+        COMPARE_LIST.push(id);
+      } else {
+        showToast('最多比较4款');
+        return;
+      }
+      updateCompareBar();
+      render();
+    }
+
+    function updateCompareBar() {
+      const bar = document.getElementById('compareBar');
+      const countEl = document.getElementById('compareCount');
+      const itemsEl = document.getElementById('compareItems');
+      const openBtn = document.getElementById('compareOpenBtn');
+
+      if (COMPARE_LIST.length > 0) {
+        bar.classList.add('active');
+        openBtn.style.display = 'flex';
+        countEl.textContent = COMPARE_LIST.length;
+        itemsEl.innerHTML = COMPARE_LIST.map(id => {
+          const d = DATA.find(x => x.id === id);
+          if (!d) return '';
+          return `<div class="compare-item">
+            <span>${escHtml(d.name)}</span>
+            <span class="compare-item__remove" onclick="event.stopPropagation(); removeFromCompare('${id}')">✕</span>
+          </div>`;
+        }).join('');
+      } else {
+        bar.classList.remove('active');
+        openBtn.style.display = 'none';
+      }
+    }
+
+    function removeFromCompare(id) {
+      COMPARE_LIST = COMPARE_LIST.filter(x => x !== id);
+      updateCompareBar();
+      render();
+    }
+
+    function openCompare() {
+      if (COMPARE_LIST.length >= 2) {
+        showCompareModal();
+      }
+    }
+
+    function showCompareModal() {
+      const overlay = document.getElementById('compareModalOverlay');
+      const body = document.getElementById('compareModalBody');
+      
+      const items = COMPARE_LIST.map(id => DATA.find(x => x.id === id)).filter(Boolean);
+
+      const fields = [
+        { key: 'type', label: '类型' },
+        { key: 'abv', label: '酒精度' },
+        { key: 'origin', label: '产地' },
+        { key: 'factory', label: '酒厂' },
+        { key: 'price', label: '价格', format: v => '¥' + formatPrice(v) },
+        { key: 'aging', label: '年份' },
+        { key: 'score', label: '评分' },
+        { key: 'aroma', label: '香气' },
+        { key: 'taste', label: '口感' },
+        { key: 'description', label: '描述' },
+        { key: 'tasting', label: '品鉴', format: v => Array.isArray(v) ? v.join(' / ') : v },
+        { key: 'pairing', label: '配餐', format: v => Array.isArray(v) ? v.join(', ') : v }
+      ];
+
+      body.innerHTML = `
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>属性</th>
+              ${items.map(d => `<th>${escHtml(d.name)}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${fields.map(f => `
+              <tr>
+                <th>${f.label}</th>
+                ${items.map(d => {
+                  let val = d[f.key];
+                  if (f.format) val = f.format(val);
+                  return `<td>${escHtml(val || '-')}</td>`;
+                }).join('')}
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+
+      overlay.classList.add('active');
+    }
+
+    function closeCompareModal() {
+      document.getElementById('compareModalOverlay').classList.remove('active');
+    }
+
+    // ── Toast ──
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // ── 键盘导航 ──
+    function setupKeyboardNav() {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          closeCompareModal();
+          closeSidebar();
         }
       });
-    });
-  }
 
-  // ── 多语言 ──
-  function initLang() {
-    const btn = document.getElementById('langBtn');
-    if (btn) {
-      btn.textContent = CUR_LANG === 'zh' ? '中' : 'EN';
-      btn.classList.toggle('active', CUR_LANG === 'zh');
+      document.getElementById('modalBackdrop').addEventListener('click', closeModal);
     }
-  }
 
-  function toggleLang() {
-    CUR_LANG = CUR_LANG === 'zh' ? 'en' : 'zh';
-    localStorage.setItem(LS_LANG, CUR_LANG);
-    initLang();
-    apply();
-  }
-
-// 视图切换
-  function switchView(mode) {
-    VIEW_MODE = mode;
-    const gridView = document.getElementById('gridView');
-    const listView = document.getElementById('listView');
-    if (gridView) gridView.classList.toggle('active', mode === 'grid');
-    if (listView) listView.classList.toggle('active', mode === 'list');
-    render();
-  }
-
-  // ── 快捷价格筛选 ──
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('price-chip')) {
-      const range = e.target.dataset.quickPrice;
-      applyQuickPriceFilter(range);
-    }
-  });
-
-  // 星级评分交互
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('.star-rating')) {
-      const rating = e.target.closest('.star-rating');
-      const labels = rating.querySelectorAll('label');
-      const inputs = rating.querySelectorAll('input');
-      const idx = Array.from(labels).indexOf(e.target);
-      if (idx >= 0) {
-        inputs.forEach((inp, i) => { inp.checked = i <= idx; });
-        labels.forEach((lbl, i) => { lbl.classList.toggle('active', i <= idx); });
+    // ── 价格快捷筛选 ──
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('price-chip')) {
+        applyQuickPriceFilter(e.target.dataset.quickPrice);
       }
-    }
-  });
-
-  function applyQuickPriceFilter(range) {
-    let min = 0, max = Infinity;
-    if (range === '0-100') { min = 0; max = 100; }
-    else if (range === '100-300') { min = 100; max = 300; }
-    else if (range === '300-500') { min = 300; max = 500; }
-    else if (range === '500-1000') { min = 500; max = 1000; }
-    else if (range === '1000+') { min = 1000; max = Infinity; }
-
-    // Apply filter using special mechanism
-    const origFiltered = filtered;
-    filtered = DATA.filter(d => d.price >= min && d.price < max);
-    renderTags();
-    render();
-
-    // Update price quick chips active state
-    document.querySelectorAll('.price-chip').forEach(chip => {
-      chip.classList.toggle('active', chip.dataset.quickPrice === range);
     });
-  }
 
-  // ── 键盘导航 ──
-  let focusedCardIndex = -1;
-  document.addEventListener('keydown', (e) => {
-    const cards = document.querySelectorAll('.liquor-card');
-    if (!cards.length) return;
-
-    // Only handle arrow keys when a card is focused
-    if (document.activeElement.classList.contains('liquor-card')) {
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        focusedCardIndex = Math.min(focusedCardIndex + 1, cards.length - 1);
-        cards[focusedCardIndex].focus();
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        focusedCardIndex = Math.max(focusedCardIndex - 1, 0);
-        cards[focusedCardIndex].focus();
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        const cols = Math.floor(document.querySelector('.card-grid').offsetWidth / 280);
-        focusedCardIndex = Math.min(focusedCardIndex + cols, cards.length - 1);
-        cards[focusedCardIndex].focus();
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        const cols = Math.floor(document.querySelector('.card-grid').offsetWidth / 280);
-        focusedCardIndex = Math.max(focusedCardIndex - cols, 0);
-        cards[focusedCardIndex].focus();
-      }
-    }
-  });
-
-  document.querySelectorAll('.liquor-card').forEach((card, idx) => {
-    card.addEventListener('focus', () => { focusedCardIndex = idx; });
-  });
-
-  // ── 初始化 ──
-  loadData();
+    // ── 初始化 ──
+    loadData();
   </script>
 </body>
 </html>
