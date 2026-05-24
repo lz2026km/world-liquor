@@ -1394,6 +1394,7 @@
         <input type="search" id="searchInput" placeholder="搜索烈酒名称、产区、风味…" autocomplete="off">
       </div>
       <div class="header-actions">
+        <button class="header-btn" title="筛选" id="mobFilterBtn">☰</button>
         <button class="header-btn" title="收藏夹" id="favoritesBtn">❤️<span class="badge" id="favBadge">0</span></button>
         <button class="header-btn" title="历史记录" id="historyBtn">🕐</button>
         <button class="header-btn" title="深色/浅色" id="themeBtn">🌙</button>
@@ -1406,6 +1407,7 @@
     <h1 class="hero-title">世界烈酒图鉴</h1>
     <p class="hero-subtitle">WORLD LIQUOR GALLERY · 探索全球蒸馏酒文化</p>
     <div id="carouselTrack" class="carousel-track"></div>
+    <div class="carousel-dots" id="carouselDots"></div>
   </section>
 
   <!-- ========== FILTER PANEL ========== -->
@@ -1475,6 +1477,8 @@
           <option value="name">按名称</option>
           <option value="abv-asc">酒精度 ↑</option>
           <option value="abv-desc">酒精度 ↓</option>
+          <option value="price-asc">价格 ↑</option>
+          <option value="price-desc">价格 ↓</option>
           <option value="region">按产区</option>
         </select>
         <button class="filter-clear" id="clearFilters">清除筛选</button>
@@ -1655,6 +1659,7 @@
           <div id="favoritesList">
             <div class="sidebar-empty">暂无收藏，浏览并收藏心仪的烈酒吧</div>
           </div>
+          <button id="exportFavsBtn" class="sidebar-footer-btn" style="margin-top:12px;">导出 JSON</button>
         </div>
       </div>
       <!-- History Panel -->
@@ -2267,8 +2272,25 @@
   // ── 10) 暗色模式applyTheme ──
   function initTheme() {
     const saved = localStorage.getItem(LS_THEME);
-    if (saved) applyTheme(saved);
-    else applyTheme('dark');
+    if (saved) {
+      applyTheme(saved);
+    } else {
+      // 自动暗色模式：23点-早上6点
+      const hour = new Date().getHours();
+      if (hour >= 23 || hour < 6) {
+        applyTheme('dark');
+      }
+    }
+    // 每分钟检测时间变化
+    setInterval(() => {
+      const hour = new Date().getHours();
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      if (hour >= 23 || hour < 6) {
+        if (current !== 'dark') applyTheme('dark');
+      } else {
+        if (current !== 'light') applyTheme('light');
+      }
+    }, 60000);
   }
 
   function applyTheme(theme) {
@@ -2344,10 +2366,11 @@
   }
 
   function updateCarouselDots() {
-    const dots = document.querySelectorAll('.carousel-dot');
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === carouselIdx);
-    });
+    const dotsContainer = document.getElementById('carouselDots');
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = carouselItems.map((_, i) =>
+      `<span class="carousel-dot${i === carouselIdx ? ' active' : ''}"></span>`
+    ).join('');
   }
 
   function carouselPrev() {
@@ -2649,6 +2672,19 @@
       localStorage.setItem(LS_HIST, '[]');
       renderHistory();
     }
+  });
+
+  // 导出收藏JSON
+  document.getElementById('exportFavsBtn')?.addEventListener('click', () => {
+    const favIds = JSON.parse(localStorage.getItem(LS_FAVS) || '[]');
+    const favData = favIds.map(id => DATA.find(d => d.id === id)).filter(Boolean);
+    const blob = new Blob([JSON.stringify(favData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'world-liquor-favorites.json';
+    a.click();
+    URL.revokeObjectURL(url);
   });
 
   function openSidebar(type) {
