@@ -1,0 +1,978 @@
+[2026-05-25T07:04:36.161Z] 🔧 Plugin config hook triggered - initializing 0xRay integration
+[2026-05-25T07:04:36.161Z] ✅ Plugin config hook completed
+[2026-05-25T07:51:24.063Z] 🔧 Plugin config hook triggered - initializing 0xRay integration
+[2026-05-25T07:51:24.063Z] ✅ Plugin config hook completed
+[2026-05-25T07:51:54.550Z] 🔧 Plugin config hook triggered - initializing 0xRay integration
+[2026-05-25T07:51:54.550Z] ✅ Plugin config hook completed
+[2026-05-25T07:51:59.496Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:51:59.497Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:51:59.496Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e18b6bffepBiqOp1r6gw91W","callID":"call_00_B5XIAGvDuuqJEuLzDm3O2036"}
+[2026-05-25T07:51:59.510Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:51:59.510Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:51:59.510Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:51:59.510Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:51:59.510Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:51:59.573Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:51:59.573Z] ✅ Quality gate passed for read
+[2026-05-25T07:51:59.759Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:51:59.759Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e18b6bffepBiqOp1r6gw91W","callID":"call_01_BwK68Nad4b400OZqOxJE1763"}
+[2026-05-25T07:51:59.759Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:51:59.770Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:51:59.770Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:51:59.770Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:51:59.770Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:51:59.770Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:51:59.772Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:51:59.772Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:00.058Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:00.058Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:00.058Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e18b6bffepBiqOp1r6gw91W","callID":"call_02_CUaayev7fGkCaYyxrOQ57135"}
+[2026-05-25T07:52:00.068Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.068Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.068Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:00.068Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.068Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:00.097Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:00.097Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:00.207Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:00.207Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.207Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.207Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:00.207Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.207Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:00.211Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","limit":200},"hasResult":false}
+[2026-05-25T07:52:00.466Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:00.466Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e18b6bffepBiqOp1r6gw91W","callID":"call_03_CY7DyScybcN1Mryq4hZy0341"}
+[2026-05-25T07:52:00.466Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:00.476Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.476Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:00.476Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.476Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:00.476Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.480Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:00.480Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:00.494Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:00.495Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","limit":150},"hasResult":false}
+[2026-05-25T07:52:00.494Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.494Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:00.494Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:00.494Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:00.494Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:12.724Z] 🔧 Plugin config hook triggered - initializing 0xRay integration
+[2026-05-25T07:52:12.724Z] ✅ Plugin config hook completed
+[2026-05-25T07:52:17.480Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:17.481Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:17.481Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_y7NBLXEnQIbyddJtE2IT3829"}
+[2026-05-25T07:52:17.493Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:17.493Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:17.493Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:17.493Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:17.493Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:17.530Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:17.530Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:18.106Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:18.106Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:18.106Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_z9iHfYrerTdI7OHnWEk49423"}
+[2026-05-25T07:52:18.115Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.115Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:18.115Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.115Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:18.118Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.129Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:18.129Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:18.134Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:18.134Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_02_rVd3e7kE8PPpD0D3p4AZ5812"}
+[2026-05-25T07:52:18.134Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:18.142Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.142Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:18.142Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.142Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:18.142Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.164Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:18.165Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:18.214Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:18.214Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.214Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:18.214Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.214Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:18.214Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.219Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","limit":200},"hasResult":false}
+[2026-05-25T07:52:18.519Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_03_O2tMmHOBLRWtmQh8J8EW7455"}
+[2026-05-25T07:52:18.519Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:18.519Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:18.531Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.531Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:18.531Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.531Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:18.531Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.533Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:18.533Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:18.600Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:18.600Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","limit":150},"hasResult":false}
+[2026-05-25T07:52:18.600Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.600Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:18.600Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:18.600Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:18.600Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.361Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:23.361Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_491pXHcD1OgpoMdOmY0I4041"}
+[2026-05-25T07:52:23.361Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:23.372Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.373Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.373Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:23.373Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.372Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:23.389Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:23.389Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:23.531Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:23.531Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","offset":200,"limit":300},"hasResult":false}
+[2026-05-25T07:52:23.531Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.531Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:23.531Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.531Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:23.531Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.821Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:23.822Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:23.821Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_BPzLN2MnJgtJm45E99bj5326"}
+[2026-05-25T07:52:23.830Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.830Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.830Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:23.830Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.830Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:23.842Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:23.842Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:23.876Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:23.877Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","offset":150,"limit":300},"hasResult":false}
+[2026-05-25T07:52:23.877Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.877Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:23.877Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:23.876Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:23.876Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:28.739Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:28.740Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:28.739Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_etztdn6rLUZvRCNbQdMx4687"}
+[2026-05-25T07:52:28.762Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:28.762Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:28.762Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:28.762Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:28.762Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:28.779Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:28.779Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:28.812Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:28.813Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:28.813Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:28.813Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:28.813Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:28.813Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:28.814Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","offset":450,"limit":400},"hasResult":false}
+[2026-05-25T07:52:29.217Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:29.217Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_xdeyrHZcOnwBBXLkSEvW7391"}
+[2026-05-25T07:52:29.217Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:29.227Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:29.227Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:29.228Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:29.228Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:29.228Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:29.242Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:29.242Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:29.279Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:29.279Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","offset":500,"limit":300},"hasResult":false}
+[2026-05-25T07:52:29.279Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:29.279Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:29.279Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:29.279Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:29.279Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.330Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:33.331Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:33.331Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_cHgTgWA3hXMZ11lbU0nx3036"}
+[2026-05-25T07:52:33.338Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:33.338Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.337Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:33.337Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.340Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.341Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:33.341Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:33.351Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:33.351Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"offset":850,"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","limit":400},"hasResult":false}
+[2026-05-25T07:52:33.351Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.351Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:33.351Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.351Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:33.351Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.785Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:33.785Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:33.785Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_DSu4fUh1bmQ55Gezx1gv2710"}
+[2026-05-25T07:52:33.793Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.793Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:33.793Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.792Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:33.792Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.809Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:33.809Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:33.843Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:33.843Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"offset":800,"filePath":"/home/admin/hermes/projects/world-liquor/index.html","limit":400},"hasResult":false}
+[2026-05-25T07:52:33.843Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.843Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:33.843Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.843Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:33.843Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:39.108Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:39.108Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:39.108Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_AYBwtcgLI9QWW0mItaoI3379"}
+[2026-05-25T07:52:39.116Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.116Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:39.116Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.116Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:39.116Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.128Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:39.128Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:39.149Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:39.149Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.149Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:39.149Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.149Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.149Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:39.149Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"offset":1250,"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","limit":400},"hasResult":false}
+[2026-05-25T07:52:39.850Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:39.850Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_iGwpzZPSWaLQ4EevXPbn1410"}
+[2026-05-25T07:52:39.850Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:39.859Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.859Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.859Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:39.859Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.859Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:39.876Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:39.876Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:39.904Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:39.904Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"offset":1200,"filePath":"/home/admin/hermes/projects/world-liquor/index.html","limit":400},"hasResult":false}
+[2026-05-25T07:52:39.904Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.904Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:39.904Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:39.904Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:39.904Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.228Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:44.228Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:44.228Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_vdO9Oy9JCdRwlL8O0oqK6152"}
+[2026-05-25T07:52:44.242Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.240Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:44.240Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.239Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:44.239Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.248Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:44.248Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:44.280Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:44.280Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:44.280Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.280Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"offset":2000,"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","limit":400},"hasResult":false}
+[2026-05-25T07:52:44.280Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:44.280Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.280Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.812Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:44.812Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_Fg9lmRmBzZLaZ8YKUVtb6767"}
+[2026-05-25T07:52:44.812Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:44.819Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.819Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:44.819Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.819Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:44.822Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.833Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:44.833Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:44.855Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:44.855Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.855Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:44.855Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.855Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:44.855Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:44.856Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"offset":3350,"filePath":"/home/admin/hermes/projects/world-liquor/index.html","limit":200},"hasResult":false}
+[2026-05-25T07:52:45.191Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:45.191Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_02_vMUKkQ7E07BO45YvQEJp8265"}
+[2026-05-25T07:52:45.191Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:45.199Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:45.199Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:45.199Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:45.199Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:45.199Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:45.200Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:45.200Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:45.230Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:45.230Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"offset":2400,"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","limit":300},"hasResult":false}
+[2026-05-25T07:52:45.230Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:45.230Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:45.230Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:45.230Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:45.230Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.695Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: glob
+[2026-05-25T07:52:51.695Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:51.695Z] 📥 Full input: {"tool":"glob","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_hDOBHMDG3fphMt6LA3Ji2459"}
+[2026-05-25T07:52:51.704Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:51.704Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.704Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:51.704Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.707Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.713Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:51.713Z] ✅ Quality gate passed for glob
+[2026-05-25T07:52:51.726Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:52:51.726Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:51.726Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_GtjmODQglH5jL2TqjmsZ6002"}
+[2026-05-25T07:52:51.736Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.736Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.736Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:51.736Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.736Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:51.738Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:51.739Z] ✅ Quality gate passed for grep
+[2026-05-25T07:52:51.787Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:51.787Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.787Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:51.787Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.787Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:51.787Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.787Z] 📥 After hook input: {"tool":"glob","hasArgs":true,"args":{"pattern":"**/design-systems/**/*"},"hasResult":false}
+[2026-05-25T07:52:51.794Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"pattern":"v3\\.\\d+\\.\\d+","include":"index.html"},"hasResult":false}
+[2026-05-25T07:52:51.794Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.794Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:51.794Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.794Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:51.794Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:51.794Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:55.646Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:55.646Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_Lb76d5MMtpgnjpGWI1oS5996"}
+[2026-05-25T07:52:55.646Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:55.655Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:55.655Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:55.655Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:55.655Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:55.655Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:55.656Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:55.657Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:55.667Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:55.667Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:55.667Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:55.667Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:55.667Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:55.667Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:55.667Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/.opencode/design-systems/DESIGN.md"},"hasResult":false}
+[2026-05-25T07:52:56.286Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:52:56.286Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_01_3f4s3Tzd2T1IQE2QySwS4462"}
+[2026-05-25T07:52:56.286Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:56.293Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:56.293Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:56.293Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:56.293Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:56.293Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:56.295Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:52:56.295Z] ✅ Quality gate passed for read
+[2026-05-25T07:52:56.300Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:52:56.301Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/.opencode/design-systems/tokens.css"},"hasResult":false}
+[2026-05-25T07:52:56.300Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:56.300Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:52:56.300Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:52:56.300Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:52:56.300Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:01.994Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: todowrite
+[2026-05-25T07:53:01.994Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:53:01.994Z] 📥 Full input: {"tool":"todowrite","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_6rjdUtIU26NTe3Ma1Bjv3137"}
+[2026-05-25T07:53:02.001Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:02.001Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:53:02.001Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:02.001Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:53:02.001Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:02.002Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:53:02.002Z] ✅ Quality gate passed for todowrite
+[2026-05-25T07:53:02.009Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:53:02.009Z] 📥 After hook input: {"tool":"todowrite","hasArgs":true,"args":{"todos":[{"content":"Create SPEC.md for World Liquor Gallery v3.2.0","status":"in_progress","priority":"high"},{"content":"Rewrite styles.css with luxury des
+[2026-05-25T07:53:02.009Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:02.009Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:53:02.009Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:02.009Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:53:02.009Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:24.758Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: write
+[2026-05-25T07:53:24.758Z] 📥 Full input: {"tool":"write","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_vUIkIIRDOtNtGyXTXv1F8374"}
+[2026-05-25T07:53:24.758Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:53:24.768Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:24.768Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:53:24.769Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:24.769Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:53:24.769Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:24.772Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:53:24.773Z] ✅ Quality gate passed for write
+[2026-05-25T07:53:24.773Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:53:24.782Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:53:24.782Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:24.782Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:53:24.782Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:24.782Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:53:24.782Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:24.782Z] 📥 After hook input: {"tool":"write","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/SPEC.md","content":"# World Liquor Gallery v3.2.0 — SPEC\n\n> 黑髪漆面 · 香槟金蕴 · 奢华酒款图鉴\n> Black Lacquer · Champa
+[2026-05-25T07:53:48.743Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: todowrite
+[2026-05-25T07:53:48.743Z] 📥 Full input: {"tool":"todowrite","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_xdbC3ZcReR00WkxdZSfz3438"}
+[2026-05-25T07:53:48.743Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:53:48.750Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:48.750Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:53:48.751Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:48.751Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:53:48.751Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:48.752Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:53:48.752Z] ✅ Quality gate passed for todowrite
+[2026-05-25T07:53:48.756Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:53:48.756Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:48.756Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:53:48.756Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:48.756Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:53:48.756Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:53:48.757Z] 📥 After hook input: {"tool":"todowrite","hasArgs":true,"args":{"todos":[{"priority":"high","content":"Create SPEC.md for World Liquor Gallery v3.2.0","status":"completed"},{"priority":"high","content":"Rewrite styles.css
+[2026-05-25T07:54:30.926Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:54:30.926Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_mNqHJK9Dh2c8cXPbmiQb1884"}
+[2026-05-25T07:54:30.926Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:54:30.933Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:30.933Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:54:30.933Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:30.933Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:54:30.933Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:30.938Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:54:30.939Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:54:30.939Z] ✅ Quality gate passed for edit
+[2026-05-25T07:54:31.005Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:54:31.005Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:31.005Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:54:31.005Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:31.005Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:54:31.005Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:31.005Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","oldString":"/* ================================================\n   世界烈酒图鉴 v3.1.0\n   商业级深色主题 · 
+[2026-05-25T07:54:46.755Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:54:46.755Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_avcfJnHEltGln5ePgB0z8588"}
+[2026-05-25T07:54:46.755Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:54:46.763Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:46.763Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:54:46.763Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:46.763Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:54:46.763Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:46.781Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:54:46.781Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:54:46.781Z] ✅ Quality gate passed for edit
+[2026-05-25T07:54:46.806Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:54:46.806Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:46.806Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:54:46.806Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:46.806Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:54:46.806Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:54:46.806Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","oldString":"/* 细腻背景渐变 */\nbody::before {\n  content: '';\n  position: fixed;\n  inset: 0;\n  bac
+[2026-05-25T07:55:06.217Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:55:06.218Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1e14458ffeIP7DtvRpWSSVjK","callID":"call_00_16p3512tYL5PB12apO6E4810"}
+[2026-05-25T07:55:06.218Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:06.226Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:06.226Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:06.226Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:06.226Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:06.226Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:06.233Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:55:06.233Z] ✅ Quality gate passed for edit
+[2026-05-25T07:55:06.233Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:55:06.273Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:06.273Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:06.273Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:06.273Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:06.273Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:06.273Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:06.273Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","oldString":"::-webkit-scrollbar-thumb {\n  background: var(--border-default);\n  border-radius: 
+[2026-05-25T07:55:38.038Z] 🔧 Plugin config hook triggered - initializing 0xRay integration
+[2026-05-25T07:55:38.038Z] ✅ Plugin config hook completed
+[2026-05-25T07:55:45.435Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:55:45.436Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:45.435Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_VeB9lCmTCJ4wKPt1udMZ3517"}
+[2026-05-25T07:55:45.449Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:45.449Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:45.449Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:45.449Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:45.449Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:45.488Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:55:45.488Z] ✅ Quality gate passed for read
+[2026-05-25T07:55:45.569Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:45.569Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:45.569Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:45.569Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:45.569Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:45.569Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:45.573Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/SPEC.md"},"hasResult":false}
+[2026-05-25T07:55:46.120Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:55:46.120Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:46.120Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_01_07XScmczOeL5CpNyHOJ91597"}
+[2026-05-25T07:55:46.133Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.133Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:46.133Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.133Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:46.133Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.171Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:55:46.171Z] ✅ Quality gate passed for grep
+[2026-05-25T07:55:46.194Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:46.194Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.194Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:46.194Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.194Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:46.194Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.194Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"pattern":"0f7cf5|3b99ff|bad4ff|0d68e0|0b52bb","path":"/home/admin/hermes/projects/world-liquor","include":"styles.css"},"hasResult":false}
+[2026-05-25T07:55:46.821Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:55:46.821Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:46.821Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_02_h5zb3vJb6yp6wyK9hbD73273"}
+[2026-05-25T07:55:46.834Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.835Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.835Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:46.835Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.834Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:46.841Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:55:46.841Z] ✅ Quality gate passed for grep
+[2026-05-25T07:55:46.853Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:55:46.854Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.854Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:55:46.854Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.854Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:55:46.854Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:55:46.854Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"pattern":"0f7cf5|3b99ff|bad4ff|0d68e0|0b52bb","path":"/home/admin/hermes/projects/world-liquor","include":"index.html"},"hasResult":false}
+[2026-05-25T07:56:10.394Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:56:10.394Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:10.394Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_yIcA7ztU8k8ZAJn8UeD15208"}
+[2026-05-25T07:56:10.407Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:10.407Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:10.407Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:10.407Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:10.407Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:10.410Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:56:10.411Z] ✅ Quality gate passed for read
+[2026-05-25T07:56:10.442Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:10.442Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:10.442Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:10.442Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:10.442Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:10.442Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:10.443Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","offset":1,"limit":60},"hasResult":false}
+[2026-05-25T07:56:11.185Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:56:11.185Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:11.185Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_01_se4KmiAxbd3Nw5Ss5sCl9029"}
+[2026-05-25T07:56:11.195Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:11.195Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:11.195Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:11.195Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:11.195Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:11.197Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:56:11.197Z] ✅ Quality gate passed for grep
+[2026-05-25T07:56:11.209Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:11.210Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:11.210Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:11.210Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:11.210Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:11.210Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:11.210Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"pattern":"v3\\.1\\.0|v2\\.6\\.0|v3\\.0\\.6|v3\\.0\\.1","include":"index.html","path":"/home/admin/hermes/projects/world-liquor"},"hasResult":false}
+[2026-05-25T07:56:23.758Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:56:23.758Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_EGS7KUF9ERy5gHGRGZQC2307"}
+[2026-05-25T07:56:23.758Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:23.767Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:23.767Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:23.767Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:23.767Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:23.767Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:23.769Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:56:23.769Z] ✅ Quality gate passed for read
+[2026-05-25T07:56:23.780Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:23.780Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/styles.css","limit":100},"hasResult":false}
+[2026-05-25T07:56:23.780Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:23.780Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:23.780Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:23.780Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:23.780Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:31.276Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:56:31.276Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_60zMTtEJTFaDP2npf4UT8088"}
+[2026-05-25T07:56:31.276Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:31.283Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:31.284Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:31.284Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:31.284Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:31.284Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:31.294Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:56:31.294Z] ✅ Quality gate passed for read
+[2026-05-25T07:56:31.315Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:31.315Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:31.315Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:31.315Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:31.315Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:31.315Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:31.315Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","offset":60,"limit":60},"hasResult":false}
+[2026-05-25T07:56:52.253Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: todowrite
+[2026-05-25T07:56:52.253Z] 📥 Full input: {"tool":"todowrite","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_wB4U1nUrfsTBjukeN3Kc1191"}
+[2026-05-25T07:56:52.253Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:52.261Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:52.261Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:52.262Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:52.262Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:52.262Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:52.265Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:56:52.265Z] ✅ Quality gate passed for todowrite
+[2026-05-25T07:56:52.274Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:56:52.274Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:52.274Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:56:52.274Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:52.274Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:56:52.274Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:56:52.274Z] 📥 After hook input: {"tool":"todowrite","hasArgs":true,"args":{"todos":[{"content":"Replace inline :root CSS variables (blue → gold theme) in index.html lines 20-99","status":"pending","priority":"high"},{"content":"Upda
+[2026-05-25T07:57:07.832Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: todowrite
+[2026-05-25T07:57:07.832Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:07.832Z] 📥 Full input: {"tool":"todowrite","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_xcUL6CDFx66BFmTdiFr49042"}
+[2026-05-25T07:57:07.840Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:07.841Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:07.841Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:07.841Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:07.840Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:07.842Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:07.842Z] ✅ Quality gate passed for todowrite
+[2026-05-25T07:57:07.848Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:07.849Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:07.849Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:07.849Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:07.849Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:07.849Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:07.849Z] 📥 After hook input: {"tool":"todowrite","hasArgs":true,"args":{"todos":[{"priority":"high","content":"Replace inline :root CSS variables (blue → gold theme) in index.html lines 20-99","status":"in_progress"},{"priority":
+[2026-05-25T07:57:08.612Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:08.612Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_01_RQf0OuImNXsnfyrf0r7D8646"}
+[2026-05-25T07:57:08.612Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:08.620Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:08.620Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:08.620Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:08.620Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:08.620Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:08.621Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:08.621Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:08.621Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:08.674Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:08.674Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:08.674Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:08.674Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:08.674Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:08.674Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:08.674Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"       世界烈酒图鉴 v3.1.0\n       商业级深色主题 · Commercial Dark Theme","newString":"       世界
+[2026-05-25T07:57:25.488Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:25.489Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_02_5viCW0OyUCZPEY6JXhJj5204"}
+[2026-05-25T07:57:25.489Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:25.500Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:25.500Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:25.500Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:25.500Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:25.505Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:25.509Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:25.509Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:25.509Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:25.545Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:25.545Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"      /* 主背景 - 深邃藏青黑 */\n      --bg-deepest: #0c0d10;\n      --bg-deep: #12141a;\n  
+[2026-05-25T07:57:25.545Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:25.545Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:25.545Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:25.545Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:25.545Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:27.931Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:27.931Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_03_ILzXLLCY8q4Q0M60Lymv6447"}
+[2026-05-25T07:57:27.931Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:27.939Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:27.939Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:27.939Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:27.939Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:27.942Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:27.953Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:27.953Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:27.953Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:27.981Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:27.982Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"    body::before { content: ''; position: fixed; inset: 0; background: radial-gradie
+[2026-05-25T07:57:27.981Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:27.981Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:27.981Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:27.981Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:27.981Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:29.417Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:29.417Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:29.417Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_04_0oAxyD6rwNj586XynIMf6213"}
+[2026-05-25T07:57:29.427Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:29.427Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:29.426Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:29.426Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:29.432Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:29.436Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:29.436Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:29.436Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:29.460Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:29.460Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-600
+[2026-05-25T07:57:29.460Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:29.460Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:29.460Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:29.460Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:29.460Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:32.715Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:32.715Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_05_UVy6Olovn0WmqezAwoBN0969"}
+[2026-05-25T07:57:32.715Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:32.723Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:32.723Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:32.723Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:32.723Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:32.728Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:32.733Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:32.733Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:32.733Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:32.758Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:32.758Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"    .initial-loading__text { font-family: var(--font-accent); font-size: 1.5rem; col
+[2026-05-25T07:57:32.758Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:32.758Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:32.758Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:32.758Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:32.758Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.010Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:33.010Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_06_cs1iV2LiIhGXubzfb1rn3055"}
+[2026-05-25T07:57:33.010Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:33.018Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:33.018Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.018Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:33.017Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.021Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.024Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:33.024Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:33.024Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:33.043Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:33.044Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"<span class=\"header__version\">v2.6.0</span>","newString":"<span class=\"header__ve
+[2026-05-25T07:57:33.044Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.044Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:33.044Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.044Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:33.044Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.897Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:33.898Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_07_yDwwg7gizZNYB6A3Ai595559"}
+[2026-05-25T07:57:33.898Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:33.908Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:33.908Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.908Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:33.908Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.912Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.916Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:33.916Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:33.916Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:33.939Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:33.939Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"    // 世界烈酒图鉴 v3.0.6 - 最终优化版本","newString":"    // 世界烈酒图鉴 v3.2.0 - 黑髪漆面·香槟金蕴"},"hasR
+[2026-05-25T07:57:33.939Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.939Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:33.939Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:33.939Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:33.939Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:34.647Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:34.647Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_08_BDettFZq9Iwksf3HI2u08662"}
+[2026-05-25T07:57:34.647Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:34.656Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:34.656Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:34.656Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:34.656Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:34.656Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:34.658Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:34.658Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:34.658Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:35.133Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:35.133Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_09_M0pqhALlZ0P3kyOlOkUJ4572"}
+[2026-05-25T07:57:35.133Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:35.140Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:35.140Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:35.140Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:35.140Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:35.140Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:35.142Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:35.142Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:35.142Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:35.162Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:35.162Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:35.162Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:35.162Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:35.162Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:35.162Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:35.162Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"        // v3.0.6: Setup loading timeout first","newString":"        // v3.2.0: Setu
+[2026-05-25T07:57:36.295Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:36.295Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:36.295Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_10_gPFvHiPgkm68H3tprxW85247"}
+[2026-05-25T07:57:36.302Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:36.302Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:36.302Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:36.302Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:36.306Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:36.321Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:36.321Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:36.321Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:36.350Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:36.350Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:36.350Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:36.350Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:36.350Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:36.350Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:36.350Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"        // v3.0.6: Initialize new features","newString":"        // v3.2.0: Initiali
+[2026-05-25T07:57:38.498Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:38.498Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:38.498Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_11_mWlLSgBtj0Cl7b26oeTU3899"}
+[2026-05-25T07:57:38.509Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:38.509Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:38.510Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:38.510Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:38.510Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:38.512Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:38.512Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:38.512Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:38.542Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:38.542Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:38.542Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:38.542Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:38.542Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:38.542Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:38.542Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"    function f157_showAbout() { alert('🥃 世界烈酒图鉴 v3.0.1\\n\\n探索全球顶级烈酒\\n包含品鉴笔记、风味雷达图
+[2026-05-25T07:57:39.211Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:57:39.211Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_12_TU8EjUEnQ5Ng5KsgbeZJ0573"}
+[2026-05-25T07:57:39.211Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:39.220Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:39.220Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:39.220Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:39.220Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:39.220Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:39.225Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:57:39.225Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:57:39.225Z] ✅ Quality gate passed for edit
+[2026-05-25T07:57:39.246Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:57:39.246Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:39.246Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:57:39.246Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:39.246Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:57:39.246Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:57:39.246Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"    // v3.0.6 新增功能绑定","newString":"    // v3.2.0 新增功能绑定"},"hasResult":false}
+[2026-05-25T07:58:00.473Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:58:00.473Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_44AFh5yeRw9xkuuo5Mzd2256"}
+[2026-05-25T07:58:00.473Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:00.480Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:00.480Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:00.480Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:00.480Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:00.481Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:00.486Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:00.486Z] ✅ Quality gate passed for grep
+[2026-05-25T07:58:00.513Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:00.513Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:00.513Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:00.513Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:00.513Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:00.513Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:00.513Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"include":"index.html","pattern":"v3\\.0\\.6 新增功能","path":"/home/admin/hermes/projects/world-liquor"},"hasResult":false}
+[2026-05-25T07:58:13.074Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:58:13.074Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_ns8LvtmYit3cO3aKwnyT6861"}
+[2026-05-25T07:58:13.074Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:13.081Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.081Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:13.081Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.081Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:13.081Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.085Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:13.085Z] ✅ Quality gate passed for read
+[2026-05-25T07:58:13.099Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:13.099Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.099Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:13.099Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.099Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:13.099Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.100Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","offset":1268,"limit":8},"hasResult":false}
+[2026-05-25T07:58:13.826Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: read
+[2026-05-25T07:58:13.826Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:13.826Z] 📥 Full input: {"tool":"read","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_01_1dsF73nhuqEX9onRcrrS8025"}
+[2026-05-25T07:58:13.832Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.832Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:13.833Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.833Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:13.833Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.834Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:13.834Z] ✅ Quality gate passed for read
+[2026-05-25T07:58:13.847Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:13.848Z] 📥 After hook input: {"tool":"read","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","offset":3470,"limit":5},"hasResult":false}
+[2026-05-25T07:58:13.848Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.847Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:13.847Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:13.847Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:13.847Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:23.688Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: edit
+[2026-05-25T07:58:23.689Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:23.688Z] 📥 Full input: {"tool":"edit","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_iJXgAB4jhc4SjVn6n2cW1333"}
+[2026-05-25T07:58:23.696Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:23.697Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:23.697Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:23.697Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:23.697Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:23.698Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:23.698Z] ✅ Quality gate passed for edit
+[2026-05-25T07:58:23.698Z] ERROR: ProcessorManager or StrRayStateManager not loaded
+[2026-05-25T07:58:23.722Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:23.722Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:23.722Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:23.722Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:23.722Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:23.722Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:23.722Z] 📥 After hook input: {"tool":"edit","hasArgs":true,"args":{"filePath":"/home/admin/hermes/projects/world-liquor/index.html","oldString":"    // ═══════════════════════════════════════════════════════════════════\n    // v
+[2026-05-25T07:58:31.686Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: todowrite
+[2026-05-25T07:58:31.686Z] 📥 Full input: {"tool":"todowrite","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_00_r5IgiAQfQcVWaYrDd4FC9519"}
+[2026-05-25T07:58:31.686Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:31.693Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:31.693Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:31.693Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:31.693Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:31.696Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:31.709Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:31.713Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:31.713Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:31.713Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:31.713Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:31.713Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:31.713Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:31.709Z] ✅ Quality gate passed for todowrite
+[2026-05-25T07:58:31.714Z] 📥 After hook input: {"tool":"todowrite","hasArgs":true,"args":{"todos":[{"priority":"high","content":"Replace inline :root CSS variables (blue → gold theme) in index.html lines 20-99","status":"completed"},{"priority":"h
+[2026-05-25T07:58:32.432Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:58:32.432Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_01_v6ZyF7ZxCqOqivFhyWYr2802"}
+[2026-05-25T07:58:32.432Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:32.439Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:32.439Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:32.439Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:32.439Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:32.442Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:32.446Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:32.446Z] ✅ Quality gate passed for grep
+[2026-05-25T07:58:32.454Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:32.454Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"include":"index.html","pattern":"0f7cf5|3b99ff|bad4ff|0d68e0|0b52bb","path":"/home/admin/hermes/projects/world-liquor"},"hasResult":false}
+[2026-05-25T07:58:32.454Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:32.454Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:32.454Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:32.454Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:32.454Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.274Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:58:33.275Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_02_nARoje6M8giA4c48i2Zc3227"}
+[2026-05-25T07:58:33.275Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:33.284Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.284Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:33.284Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.284Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:33.287Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.289Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:33.289Z] ✅ Quality gate passed for grep
+[2026-05-25T07:58:33.322Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:33.322Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.323Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"include":"index.html","pattern":"v3\\.0\\.[16]|v2\\.6\\.0","path":"/home/admin/hermes/projects/world-liquor"},"hasResult":false}
+[2026-05-25T07:58:33.322Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.322Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:33.322Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.322Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:33.774Z] 🚀 TOOL EXECUTE BEFORE HOOK FIRED: grep
+[2026-05-25T07:58:33.774Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:33.774Z] 📥 Full input: {"tool":"grep","sessionID":"ses_1a1de2282ffesVxTpmwGjLFWRA","callID":"call_03_baSb0PWAx8go9kn946FP9425"}
+[2026-05-25T07:58:33.780Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.780Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:33.780Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.780Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:33.781Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.784Z] ✅ Quality Gate PASSED (0 warning(s))
+[2026-05-25T07:58:33.784Z] ✅ Quality gate passed for grep
+[2026-05-25T07:58:33.792Z] 🔄 Attempting to load from cwd/dist/
+[2026-05-25T07:58:33.793Z] 📥 After hook input: {"tool":"grep","hasArgs":true,"args":{"include":"styles.css","pattern":"0f7cf5|3b99ff|bad4ff|0d68e0|0b52bb","path":"/home/admin/hermes/projects/world-liquor"},"hasResult":false}
+[2026-05-25T07:58:33.792Z] ❌ Failed to load from node_modules/strray-framework/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-framework/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.792Z] 🔄 Attempting to load from node_modules/strray-framework/dist/
+[2026-05-25T07:58:33.792Z] ❌ Failed to load from node_modules/strray-ai/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/node_modules/strray-ai/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
+[2026-05-25T07:58:33.792Z] 🔄 Attempting to load from node_modules/strray-ai/dist/
+[2026-05-25T07:58:33.792Z] ❌ Failed to load from cwd/dist/: ResolveMessage: Cannot find module '/home/admin/hermes/projects/world-liquor/dist/processors/processor-manager.js' from '/home/admin/.cache/opencode/packages/strray-ai@latest/node_modules/strray-ai/dist/plugin/strray-codex-injection.js'
