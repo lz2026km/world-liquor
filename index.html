@@ -628,6 +628,10 @@
           <button class="header__btn" id="achieveHeaderBtn" onclick="showAchievements()" title="成就">🏆</button>
           <button class="header__btn lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
           <button class="header__btn" onclick="randomPick()" title="随机推荐">🎲</button>
+          <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
+            <span class="theme-toggle__icon sun">☀️</span>
+            <span class="theme-toggle__icon moon">🌙</span>
+          </button>
         </div>
       </div>
     </header>
@@ -809,11 +813,37 @@
 
         <!-- Empty State -->
         <div class="empty-state" id="emptyState" style="display:none">
-          <div class="empty-state__icon">🔍</div>
+          <div class="empty-state__illustration">🍷</div>
           <div class="empty-state__title">未找到匹配结果</div>
-          <div class="empty-state__text">尝试调整筛选条件或搜索关键词</div>
+          <div class="empty-state__text">尝试调整筛选条件或搜索关键词，找到您心仪的烈酒</div>
+          <button class="empty-state__action" onclick="clearFilters()">清除所有筛选</button>
         </div>
       </main>
+    </div>
+
+    <!-- Bottom Tab Navigation (Mobile) -->
+    <nav class="bottom-tabs" id="bottomTabs">
+      <button class="bottom-tabs__item active" data-tab="home" onclick="switchBottomTab('home')">
+        <span class="bottom-tabs__item-icon">🏠</span>
+        <span>首页</span>
+      </button>
+      <button class="bottom-tabs__item" data-tab="filter" onclick="switchBottomTab('filter')">
+        <span class="bottom-tabs__item-icon">🔥</span>
+        <span>筛选</span>
+      </button>
+      <button class="bottom-tabs__item" data-tab="favorites" onclick="switchBottomTab('favorites')">
+        <span class="bottom-tabs__item-icon">❤️</span>
+        <span>收藏</span>
+      </button>
+      <button class="bottom-tabs__item" data-tab="notes" onclick="switchBottomTab('notes')">
+        <span class="bottom-tabs__item-icon">📝</span>
+        <span>笔记</span>
+      </button>
+    </nav>
+
+    <!-- Loading Progress -->
+    <div class="loading-progress" id="loadingProgress">
+      <div class="loading-progress__bar" id="loadingProgressBar"></div>
     </div>
 
     <!-- Compare Bar -->
@@ -1162,6 +1192,12 @@
       if (compare) window.COMPARE_LIST = compare; 
       const history = f12_loadFromStorage(window.LS_SEARCH_HISTORY); 
       if (history) window.SEARCH_HISTORY = history;
+      // Load view mode from localStorage
+      const savedView = localStorage.getItem('liquor_view_mode_v303');
+      if (savedView) window.VIEW_MODE = savedView;
+      // Load theme preference
+      const savedTheme = localStorage.getItem('liquor_theme_v303');
+      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
     }
     
     function f15_saveAllStorage() { 
@@ -1172,13 +1208,40 @@
       f11_saveToStorage(window.LS_ACHIEVE, window.ACHIEVEMENTS); 
       f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); 
       f11_saveToStorage(window.LS_SEARCH_HISTORY, window.SEARCH_HISTORY);
+      // Save view mode
+      localStorage.setItem('liquor_view_mode_v303', window.VIEW_MODE);
+      // Save theme preference
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      localStorage.setItem('liquor_theme_v303', currentTheme);
     }
     
     function f16_exportState() { return { version: '3.0.1', timestamp: Date.now(), favorites: window.FAVORITES, favoriteFolders: window.FAVORITE_FOLDERS, tastingNotes: window.TASTING_NOTES, achievements: window.ACHIEVEMENTS, compareList: window.COMPARE_LIST, lang: window.CUR_LANG, searchHistory: window.SEARCH_HISTORY }; }
     function f17_importState(state) { if (!state || !state.version) return false; window.FAVORITES = state.favorites || {}; window.FAVORITE_FOLDERS = state.favoriteFolders || {}; window.TASTING_NOTES = state.tastingNotes || {}; window.ACHIEVEMENTS = state.achievements || {}; window.COMPARE_LIST = state.compareList || []; window.CUR_LANG = state.lang || 'zh'; window.SEARCH_HISTORY = state.searchHistory || []; f15_saveAllStorage(); return true; }
     function f18_getStateSize() { return JSON.stringify(window._state).length; }
     function f19_clearAllState() { window.DATA = []; window.FILTERED = []; window.FAVORITES = {}; window.FAVORITE_FOLDERS = {}; window.TASTING_NOTES = {}; window.ACHIEVEMENTS = {}; window.COMPARE_LIST = []; window.SEARCH_HISTORY = []; }
-    function f20_initAutoDarkMode() { const hour = new Date().getHours(); if (hour >= 23 || hour < 6) { document.documentElement.setAttribute('data-theme', 'dark'); } setInterval(() => { const h = new Date().getHours(); if ((h >= 23 || h < 6) && !document.documentElement.hasAttribute('data-theme')) { document.documentElement.setAttribute('data-theme', 'dark'); } }, 60000); }
+    function f20_initAutoDarkMode() { 
+      // Check if user has a saved theme preference first
+      const savedTheme = localStorage.getItem('liquor_theme_v303');
+      if (savedTheme) { document.documentElement.setAttribute('data-theme', savedTheme); return; }
+      // Otherwise apply auto dark mode based on time
+      const hour = new Date().getHours(); 
+      if (hour >= 23 || hour < 6) { document.documentElement.setAttribute('data-theme', 'dark'); } 
+      setInterval(() => { 
+        const h = new Date().getHours(); 
+        if ((h >= 23 || h < 6) && !document.documentElement.hasAttribute('data-theme')) { document.documentElement.setAttribute('data-theme', 'dark'); } 
+      }, 60000); 
+    }
+    
+    function f20b_toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('liquor_theme_v303', newTheme);
+    }
+    
+    // Alias for onclick handler
+    function toggleTheme() { f20b_toggleTheme(); }
 
     // ═══════════════════════════════════════════════════════════════════
     // 2. 数据加载与初始化 (Functions 21-45)
@@ -1421,7 +1484,16 @@
       }); 
     }
     
-    function f37_hideLoading() { const el = document.getElementById('initialLoading'); if (el) el.style.display = 'none'; const app = document.getElementById('app'); if (app) app.style.display = 'block'; }
+    function f37_hideLoading() { 
+      const el = document.getElementById('initialLoading'); 
+      if (el) el.style.display = 'none'; 
+      const app = document.getElementById('app'); 
+      if (app) app.style.display = 'block'; 
+      // Apply saved view mode on initial load
+      if (window.VIEW_MODE === 'list') {
+        f99_switchView('list');
+      }
+    }
     function f38_showLoading() { const el = document.getElementById('initialLoading'); if (el) el.style.display = 'flex'; const app = document.getElementById('app'); if (app) app.style.display = 'none'; }
     
     function f39_renderCards() { 
@@ -1748,7 +1820,22 @@
       </div>`; 
     }
     
-    function f99_switchView(mode) { window.VIEW_MODE = mode; const grid = document.getElementById('cardGrid'); const gridBtn = document.getElementById('gridViewBtn'); const listBtn = document.getElementById('listViewBtn'); if (mode === 'grid') { grid.classList.remove('list-view'); gridBtn.classList.add('active'); listBtn.classList.remove('active'); } else { grid.classList.add('list-view'); gridBtn.classList.remove('active'); listBtn.classList.add('active'); } }
+    function f99_switchView(mode) { 
+      window.VIEW_MODE = mode; 
+      localStorage.setItem('liquor_view_mode_v303', mode);
+      const grid = document.getElementById('cardGrid'); 
+      const gridBtn = document.getElementById('gridViewBtn'); 
+      const listBtn = document.getElementById('listViewBtn'); 
+      if (mode === 'grid') { 
+        grid.classList.remove('list-view'); 
+        gridBtn.classList.add('active'); 
+        listBtn.classList.remove('active'); 
+      } else { 
+        grid.classList.add('list-view'); 
+        gridBtn.classList.remove('active'); 
+        listBtn.classList.add('active'); 
+      } 
+    }
     function f100_renderCards() { f39_renderCards(); }
     function f101_updateCardFavState(id) { const card = document.querySelector(`.liquor-card[data-id="${id}"]`); if (!card) return; const btn = card.querySelector('.liquor-card-fav'); const isFav = f70_isFavorited(id); if (btn) btn.textContent = isFav ? '❤️' : '🤍'; btn.classList.toggle('active', isFav); }
     function f102_getCardImage(d) { return d.image || ''; }
@@ -2744,6 +2831,7 @@
     window.clearFilters = f81_clearFilters;
     window.handleSort = f95_handleSort;
     window.switchView = f99_switchView;
+    window.toggleTheme = f20b_toggleTheme;
     window.openCompare = f110_openCompare;
     window.showCompareModal = f114_showCompareModal;
     window.closeCompareModal = f115_closeCompareModal;
