@@ -1177,7 +1177,8 @@
     function f13_clearStorage(key) { try { localStorage.removeItem(key); } catch (e) { console.error('Storage clear failed:', e); } }
     
     function f14_initStorage() { 
-      f01_initGlobalState(); 
+      // Note: f01_initGlobalState() intentionally NOT called here - it resets DATA to []
+      // f01 should only be called on fresh app start, not when restoring from storage
       f02_initConstants(); 
       const fav = f12_loadFromStorage(window.LS_FAV); 
       if (fav) window.FAVORITES = fav; 
@@ -1836,7 +1837,7 @@
       f35_bindGlobalEvents();
       f301_initRegionSelector(); // 初始化三级产区选择器
       f304_updateFavBadge(); // 更新收藏徽章
-      f303_renderFavRanking(); // 渲染收藏排行
+      f305_renderFavRanking(); // 渲染收藏排行
       // P1增强: 侧边栏内容
       f425_renderSidebarEnhancements();
     }
@@ -2425,7 +2426,7 @@
       f11_saveToStorage(window.LS_FAV, window.FAVORITES); 
       f101_updateCardFavState(id); 
       f32_updateStats(); 
-      f303_renderFavRanking();
+      f305_renderFavRanking();
       f122_updateCompareBarVisibility(); 
     }
     
