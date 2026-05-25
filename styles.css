@@ -615,8 +615,8 @@ input, select, textarea {
    7. Sidebar
    ================================================ */
 .sidebar {
-  width: 300px;
-  min-width: 300px;
+  width: 260px;
+  min-width: 260px;
   background: var(--bg-glass);
   backdrop-filter: blur(16px);
   border-right: 1px solid var(--border-subtle);
@@ -633,8 +633,8 @@ input, select, textarea {
 }
 
 .sidebar.collapsed {
-  width: 64px;
-  min-width: 64px;
+  width: 56px;
+  min-width: 56px;
 }
 
 .sidebar.collapsed .sidebar__section {
