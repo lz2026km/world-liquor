@@ -15,8 +15,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
   <style>
     /* ================================================
-       世界烈酒图鉴 v4.0.0
+       世界烈酒图鉴 v4.1.0
        黑髪漆面 · 香槟金蕴 · Luxury Edition
+       Phase 2: 3D 动态 UI (30 项功能: f770-f799)
        ================================================ */
     :root {
       /* 主背景 - 黑髪漆面 */
@@ -7382,6 +7383,1001 @@
     window.getRecommendations = f718_getRecommendations;
     window.renderRecommendations = f718_renderRecommendations;
     window.compare3Liquors = f719_compare3Liquors;
+
+    // ═══════════════════════════════════════════════════════════════════
+    // v4.1.0 Phase 2: 3D 动态 UI 功能 (f770-f799)
+    // ═══════════════════════════════════════════════════════════════════
+
+    // ───────────────────────────────────────────────────────────────────
+    // f770: 3D 酒瓶旋转展示 (Bottle 3D Rotate)
+    // ───────────────────────────────────────────────────────────────────
+    function f770_initBottle3DRotate(selector = '.bottle-3d-rotate') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1000px';
+        el.style.transformStyle = 'preserve-3d';
+        let isAnimating = false;
+        el.addEventListener('mouseenter', () => {
+          if (!isAnimating) {
+            isAnimating = true;
+            el.style.animation = 'bottle3dRotate 8s linear infinite';
+          }
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.animation = 'none';
+          el.style.transform = 'rotateY(0deg)';
+          isAnimating = false;
+        });
+      });
+      // Inject keyframes if not exists
+      if (!document.getElementById('f770-keyframes')) {
+        const style = document.createElement('style');
+        style.id = 'f770-keyframes';
+        style.textContent = `
+          @keyframes bottle3dRotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f771: 酒液动态效果 (Liquid Wave)
+    // ───────────────────────────────────────────────────────────────────
+    function f771_initLiquidWave(selector = '.liquid-wave') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.position = 'relative';
+        el.style.overflow = 'hidden';
+        const wave = document.createElement('div');
+        wave.className = 'liquid-wave-inner';
+        wave.style.cssText = `
+          position: absolute; bottom: 0; left: -10%; width: 120%; height: 60%;
+          background: linear-gradient(180deg, transparent 0%, rgba(198,161,91,0.3) 50%, rgba(198,161,91,0.5) 100%);
+          border-radius: 50% 50% 0 0;
+          animation: liquidWave 3s ease-in-out infinite;
+        `;
+        el.appendChild(wave);
+        // Inject keyframes
+        if (!document.getElementById('f771-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f771-keyframes';
+          style.textContent = `
+            @keyframes liquidWave {
+              0%, 100% { transform: translateY(0) scaleY(1); }
+              50% { transform: translateY(-15px) scaleY(1.1); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f772: 3D 产区地形图 (Region 3D Terrain)
+    // ───────────────────────────────────────────────────────────────────
+    function f772_initRegion3DTerrain(selector = '.region-3d-terrain') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1200px';
+        el.style.perspectiveOrigin = 'center center';
+        const terrain = el.querySelector('.terrain-inner') || el;
+        terrain.style.transformStyle = 'preserve-3d';
+        terrain.style.transform = 'rotateX(45deg) rotateZ(-15deg)';
+        // Add subtle auto rotation
+        terrain.style.animation = 'terrainRotate 20s ease-in-out infinite alternate';
+        if (!document.getElementById('f772-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f772-keyframes';
+          style.textContent = `
+            @keyframes terrainRotate {
+              0% { transform: rotateX(45deg) rotateZ(-15deg) scale(1); }
+              100% { transform: rotateX(55deg) rotateZ(-10deg) scale(1.05); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f773: 香气粒子系统 (Aroma Particles)
+    // ───────────────────────────────────────────────────────────────────
+    function f773_initAromaParticles(containerSelector = '.aroma-particles', options = {}) {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+      container.style.position = 'relative';
+      container.style.overflow = 'hidden';
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+      container.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animationId = null;
+      const colors = ['#c6a15b', '#d8b87a', '#9a7a3f', '#e8d4a0'];
+      const defaults = { count: 30, speed: 0.5, size: 3 };
+      const opts = { ...defaults, ...options };
+
+      function resize() {
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: canvas.height + 10,
+          vx: (Math.random() - 0.5) * opts.speed,
+          vy: -(Math.random() * opts.speed + 0.5),
+          size: Math.random() * opts.size + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: Math.random() * 0.5 + 0.3,
+          life: 0,
+          maxLife: Math.random() * 200 + 100
+        };
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (particles.length < opts.count) particles.push(createParticle());
+        particles = particles.filter(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life++;
+          p.alpha = Math.max(0, 1 - p.life / p.maxLife);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + Math.floor(p.alpha * 255).toString(16).padStart(2, '0');
+          ctx.fill();
+          return p.life < p.maxLife && p.y > -10;
+        });
+        animationId = requestAnimationFrame(animate);
+      }
+      animate();
+      container._f773Stop = () => { if (animationId) cancelAnimationFrame(animationId); };
+      return container;
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f774: 品鉴杯碰撞 (Glass Collision)
+    // ───────────────────────────────────────────────────────────────────
+    function f774_initGlassCollision(selector = '.glass-collision') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '800px';
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', () => {
+          el.style.animation = 'glassShake 0.5s ease-out';
+          setTimeout(() => { el.style.animation = ''; }, 500);
+        });
+        if (!document.getElementById('f774-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f774-keyframes';
+          style.textContent = `
+            @keyframes glassShake {
+              0% { transform: rotate(0deg); }
+              20% { transform: rotate(-15deg); }
+              40% { transform: rotate(12deg); }
+              60% { transform: rotate(-8deg); }
+              80% { transform: rotate(5deg); }
+              100% { transform: rotate(0deg); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f775: 3D 价格走势图 (Price 3D Chart)
+    // ───────────────────────────────────────────────────────────────────
+    function f775_initPrice3DChart(selector = '.price-3d-chart') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1000px';
+        const bars = el.querySelectorAll('.chart-bar');
+        bars.forEach((bar, i) => {
+          bar.style.transition = `transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 0.05}s`;
+          bar.style.transformStyle = 'preserve-3d';
+          bar.style.transform = 'translateZ(0px)';
+          // Animate on scroll into view
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                bar.style.transform = `translateZ(${Math.random() * 20 + 10}px)`;
+                observer.unobserve(bar);
+              }
+            });
+          }, { threshold: 0.5 });
+          observer.observe(bar);
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f776: 3D 卡片悬浮 (Card 3D Hover)
+    // ───────────────────────────────────────────────────────────────────
+    function f776_initCard3DHover(selector = '.card-3d-hover') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1000px';
+        el.style.transformStyle = 'preserve-3d';
+        el.addEventListener('mousemove', e => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f777: 3D 粒子背景 (Particle Background)
+    // ───────────────────────────────────────────────────────────────────
+    function f777_initParticleBG(selector = '.particle-bg') {
+      const container = document.querySelector(selector);
+      if (!container) return;
+      container.style.position = 'fixed';
+      container.style.top = '0';
+      container.style.left = '0';
+      container.style.width = '100%';
+      container.style.height = '100%';
+      container.style.pointerEvents = 'none';
+      container.style.zIndex = '-1';
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'width:100%;height:100%;';
+      container.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animationId = null;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 0.5,
+          alpha: Math.random() * 0.3 + 0.1
+        };
+      }
+      for (let i = 0; i < 50; i++) particles.push(createParticle());
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(198, 161, 91, ${p.alpha})`;
+          ctx.fill();
+        });
+        animationId = requestAnimationFrame(animate);
+      }
+      animate();
+      container._f777Stop = () => { if (animationId) cancelAnimationFrame(animationId); };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f778: 3D 酒架展示 (Bottle Rack 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f778_initBottleRack3D(selector = '.bottle-rack-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1200px';
+        el.style.transformStyle = 'preserve-3d';
+        el.style.transform = 'rotateX(-20deg) rotateY(-30deg)';
+        let isDragging = false, startX, startY, rotX = -20, rotY = -30;
+        el.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; startY = e.clientY; });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        window.addEventListener('mousemove', e => {
+          if (!isDragging) return;
+          const deltaX = e.clientX - startX;
+          const deltaY = e.clientY - startY;
+          rotY += deltaX * 0.5;
+          rotX -= deltaY * 0.5;
+          el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          startX = e.clientX;
+          startY = e.clientY;
+        });
+        if (!document.getElementById('f778-style')) {
+          const style = document.createElement('style');
+          style.id = 'f778-style';
+          style.textContent = `
+            .bottle-rack-3d { transition: transform 0.1s ease-out; user-select: none; }
+            .bottle-rack-3d .rack-cell { background: rgba(198,161,91,0.1); border: 1px solid rgba(198,161,91,0.2); border-radius: 8px; }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f779: 碰杯音效粒子 (Toast Collision Particles)
+    // ───────────────────────────────────────────────────────────────────
+    function f779_initToastCollision(selector = '.toast-collision') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.position = 'relative';
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', e => {
+          // Create particle burst
+          for (let i = 0; i < 12; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+              position: absolute; width: 6px; height: 6px; border-radius: 50%;
+              background: #c6a15b; pointer-events: none;
+              left: 50%; top: 50%;
+              animation: toastParticle${i} 0.6s ease-out forwards;
+            `;
+            const angle = (i / 12) * Math.PI * 2;
+            const distance = 30 + Math.random() * 20;
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance;
+            const keyframes = `
+              @keyframes toastParticle${i} {
+                0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                100% { transform: translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0); opacity: 0; }
+              }
+            `;
+            if (!document.getElementById('f779-keyframes')) {
+              const style = document.createElement('style');
+              style.id = 'f779-keyframes';
+              document.head.appendChild(style);
+            }
+            document.getElementById('f779-keyframes').textContent += keyframes;
+            el.appendChild(particle);
+            setTimeout(() => particle.remove(), 600);
+          }
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f780: 倒酒动画 (Pouring Animation)
+    // ───────────────────────────────────────────────────────────────────
+    function f780_initPouringAnimation(selector = '.pouring-animation') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.position = 'relative';
+        el.style.overflow = 'hidden';
+        const stream = document.createElement('div');
+        stream.className = 'pour-stream';
+        stream.style.cssText = `
+          position: absolute; width: 4px; height: 0;
+          background: linear-gradient(180deg, rgba(198,161,91,0.8), rgba(198,161,91,0.3));
+          border-radius: 2px;
+          left: 50%; top: 0;
+          opacity: 0;
+          transition: height 0.3s, opacity 0.3s;
+        `;
+        el.appendChild(stream);
+        el.addEventListener('mouseenter', () => {
+          stream.style.height = '60%';
+          stream.style.opacity = '1';
+          stream.style.animation = 'pourFlow 0.5s linear infinite';
+        });
+        el.addEventListener('mouseleave', () => {
+          stream.style.height = '0';
+          stream.style.opacity = '0';
+        });
+        if (!document.getElementById('f780-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f780-keyframes';
+          style.textContent = `
+            @keyframes pourFlow {
+              0% { background-position: 0 0; }
+              100% { background-position: 0 20px; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f781: 开瓶特效 (Open Bottle Effect)
+    // ───────────────────────────────────────────────────────────────────
+    function f781_initOpenBottleEffect(selector = '.open-bottle-effect') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.position = 'relative';
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', () => {
+          const cap = el.querySelector('.bottle-cap') || document.createElement('div');
+          cap.className = 'bottle-cap';
+          if (!el.contains(cap)) {
+            cap.style.cssText = `
+              position: absolute; top: -5px; right: 30%; width: 20px; height: 10px;
+              background: linear-gradient(135deg, #c6a15b, #9a7a3f);
+              border-radius: 2px 2px 0 0;
+              transition: transform 0.5s ease;
+            `;
+            el.appendChild(cap);
+          }
+          cap.style.transform = 'translateY(-30px) rotate(45deg)';
+          cap.style.opacity = '0';
+          setTimeout(() => {
+            cap.style.transform = '';
+            cap.style.opacity = '';
+          }, 1000);
+          // Flash effect
+          const flash = document.createElement('div');
+          flash.style.cssText = `
+            position: absolute; inset: 0; background: rgba(198,161,91,0.3);
+            border-radius: inherit; pointer-events: none;
+            animation: bottleFlash 0.3s ease-out forwards;
+          `;
+          el.appendChild(flash);
+          setTimeout(() => flash.remove(), 300);
+          if (!document.getElementById('f781-keyframes')) {
+            const style = document.createElement('style');
+            style.id = 'f781-keyframes';
+            style.textContent = `
+              @keyframes bottleFlash {
+                0% { opacity: 1; }
+                100% { opacity: 0; }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f782: 标签展开 3D (Tag 3D Expand)
+    // ───────────────────────────────────────────────────────────────────
+    function f782_initTag3DExpand(selector = '.tag-3d-expand') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '600px';
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', () => {
+          el.style.animation = 'tagExpand 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+          setTimeout(() => {
+            el.style.animation = 'tagCollapse 0.3s ease forwards';
+          }, 2000);
+        });
+        if (!document.getElementById('f782-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f782-keyframes';
+          style.textContent = `
+            @keyframes tagExpand {
+              0% { transform: scale3d(1, 1, 1); }
+              50% { transform: scale3d(1.5, 1.5, 1.5); }
+              100% { transform: scale3d(1, 1, 1); }
+            }
+            @keyframes tagCollapse {
+              0% { transform: scale3d(1, 1, 1); }
+              100% { transform: scale3d(0.9, 0.9, 0.9); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f783: 3D 数据可视化 (Data Viz 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f783_initDataViz3D(selector = '.data-viz-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1000px';
+        const chartEl = el.querySelector('.viz-inner') || el;
+        chartEl.style.transformStyle = 'preserve-3d';
+        let rotX = 20, rotY = 0;
+        function rotate() {
+          rotY += 0.3;
+          chartEl.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          requestAnimationFrame(rotate);
+        }
+        // Start rotation on first hover
+        el.addEventListener('mouseenter', () => { rotate(); }, { once: true });
+        if (!document.getElementById('f783-style')) {
+          const style = document.createElement('style');
+          style.id = 'f783-style';
+          style.textContent = `
+            .data-viz-3d .viz-bar { transform-style: preserve-3d; transition: height 0.5s ease; }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f784: 3D 酒厂全景 (Distillery Panorama)
+    // ───────────────────────────────────────────────────────────────────
+    function f784_initDistilleryPanorama(selector = '.distillery-panorama') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1500px';
+        el.style.overflow = 'hidden';
+        const panorama = el.querySelector('.panorama-inner') || el;
+        panorama.style.transformStyle = 'preserve-3d';
+        panorama.style.transform = 'rotateY(0deg)';
+        let startX = 0, isDragging = false;
+        el.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        window.addEventListener('mousemove', e => {
+          if (!isDragging) return;
+          const delta = e.clientX - startX;
+          const currentRot = parseFloat(panorama.style.transform.replace('rotateY(', '').replace('deg)', '')) || 0;
+          panorama.style.transform = `rotateY(${currentRot + delta * 0.3}deg)`;
+          startX = e.clientX;
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f785: 酒杯冰块融化 (Ice Cube Melt)
+    // ───────────────────────────────────────────────────────────────────
+    function f785_initIceCubeMelt(selector = '.ice-cube-melt') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.position = 'relative';
+        const iceCube = document.createElement('div');
+        iceCube.className = 'ice-cube';
+        iceCube.style.cssText = `
+          position: absolute; width: 20px; height: 20px;
+          background: rgba(255,255,255,0.6);
+          border: 1px solid rgba(255,255,255,0.8);
+          border-radius: 4px;
+          top: 10px; right: 10px;
+          animation: iceFloat 2s ease-in-out infinite, iceMelt 4s ease-in-out infinite;
+          box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        `;
+        el.appendChild(iceCube);
+        if (!document.getElementById('f785-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f785-keyframes';
+          style.textContent = `
+            @keyframes iceFloat {
+              0%, 100% { transform: translateY(0) rotate(0deg); }
+              50% { transform: translateY(-5px) rotate(5deg); }
+            }
+            @keyframes iceMelt {
+              0% { opacity: 1; transform: scale(1); }
+              80% { opacity: 0.5; transform: scale(0.8); }
+              100% { opacity: 0; transform: scale(0.3); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f786: 3D 嗅觉地图 (Smell Map 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f786_initSmellMap3D(selector = '.smell-map-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1000px';
+        const mapEl = el.querySelector('.smell-map-inner') || el;
+        mapEl.style.transformStyle = 'preserve-3d';
+        mapEl.style.transform = 'rotateX(60deg) rotateZ(-10deg)';
+        mapEl.style.animation = 'smellMapRotate 15s ease-in-out infinite alternate';
+        if (!document.getElementById('f786-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f786-keyframes';
+          style.textContent = `
+            @keyframes smellMapRotate {
+              0% { transform: rotateX(60deg) rotateZ(-10deg); }
+              100% { transform: rotateX(70deg) rotateZ(10deg); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f787: 3D 时间轴 (Timeline 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f787_initTimeline3D(selector = '.timeline-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1200px';
+        el.style.overflowX = 'auto';
+        const timeline = el.querySelector('.timeline-inner') || el;
+        timeline.style.transformStyle = 'preserve-3d';
+        timeline.style.display = 'flex';
+        timeline.style.gap = '20px';
+        let isDragging = false, startX = 0, scrollLeft = 0;
+        el.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; scrollLeft = el.scrollLeft; });
+        window.addEventListener('mouseup', () => { isDragging = false; el.style.cursor = 'grab'; });
+        window.addEventListener('mousemove', e => {
+          if (!isDragging) return;
+          el.style.cursor = 'grabbing';
+          const delta = e.clientX - startX;
+          el.scrollLeft = scrollLeft - delta;
+        });
+        timeline.querySelectorAll('.timeline-item').forEach((item, i) => {
+          item.style.transition = `transform 0.3s ${i * 0.05}s`;
+          item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateZ(30px) scale(1.1)';
+          });
+          item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateZ(0) scale(1)';
+          });
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f788: 3D 手势操作 (Gesture 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f788_initGesture3D(selector = '.gesture-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.touchAction = 'none';
+        let lastDist = 0, lastAngle = 0, rotX = 0, rotY = 0;
+        el.addEventListener('touchstart', e => {
+          if (e.touches.length === 2) {
+            lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            lastAngle = Math.atan2(e.touches[0].clientY - e.touches[1].clientY, e.touches[0].clientX - e.touches[1].clientX);
+          }
+        });
+        el.addEventListener('touchmove', e => {
+          if (e.touches.length === 2) {
+            const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            const angle = Math.atan2(e.touches[0].clientY - e.touches[1].clientY, e.touches[0].clientX - e.touches[1].clientX);
+            const scale = dist / lastDist;
+            const rotDelta = (angle - lastAngle) * 30;
+            const current = el.style.transform || '';
+            el.style.transform = current + ` scale(${scale > 0.5 && scale < 2 ? scale : 1}) rotateZ(${rotDelta}deg) `;
+            lastDist = dist;
+            lastAngle = angle;
+          }
+        });
+        // Mouse drag for desktop
+        let isDragging = false, startX, startY;
+        el.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; startY = e.clientY; });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        window.addEventListener('mousemove', e => {
+          if (!isDragging) return;
+          rotY += (e.clientX - startX) * 0.5;
+          rotX -= (e.clientY - startY) * 0.5;
+          el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          startX = e.clientX;
+          startY = e.clientY;
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f789: AR 展示 (AR Display)
+    // ───────────────────────────────────────────────────────────────────
+    function f789_initARDisplay(selector = '.ar-display') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.position = 'relative';
+        const overlay = document.createElement('div');
+        overlay.className = 'ar-overlay';
+        overlay.style.cssText = `
+          position: absolute; inset: 0; pointer-events: none;
+          border: 2px solid rgba(198,161,91,0.5);
+          border-radius: inherit;
+          opacity: 0;
+          transition: opacity 0.3s;
+        `;
+        el.appendChild(overlay);
+        const label = document.createElement('div');
+        label.className = 'ar-label';
+        label.style.cssText = `
+          position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+          background: rgba(198,161,91,0.9); color: #080706;
+          padding: 4px 12px; border-radius: 20px; font-size: 12px;
+          white-space: nowrap; opacity: 0;
+          transition: opacity 0.3s;
+        `;
+        label.textContent = '📱 AR 模式已激活';
+        el.appendChild(label);
+        el.addEventListener('click', () => {
+          overlay.style.opacity = '1';
+          label.style.opacity = '1';
+          // Simulate AR detection
+          if (navigator.vibrate) navigator.vibrate(100);
+          setTimeout(() => {
+            overlay.style.opacity = '0';
+            label.style.opacity = '0';
+          }, 2000);
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f790: 3D 卡片正面 (Card Front 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f790_initCardFront3D(selector = '.card-front-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1200px';
+        const inner = el.querySelector('.card-inner') || el;
+        inner.style.transformStyle = 'preserve-3d';
+        inner.style.transition = 'transform 0.8s';
+        inner.style.transform = 'rotateY(0deg)';
+        el.addEventListener('click', () => {
+          const currentRot = parseFloat(inner.style.transform.replace('rotateY(', '').replace('deg)', '')) || 0;
+          inner.style.transform = `rotateY(${currentRot + 180}deg)`;
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f791: 3D 卡片背面 (Card Back 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f791_initCardBack3D(selector = '.card-back-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.backfaceVisibility = 'hidden';
+        el.style.position = 'absolute';
+        el.style.inset = '0';
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f792: 3D 翻页效果 (Page Flip 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f792_initPageFlip3D(selector = '.page-flip-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '2000px';
+        el.style.transformStyle = 'preserve-3d';
+        let isOpen = false;
+        el.addEventListener('click', () => {
+          el.style.animation = isOpen ? 'pageClose 0.6s ease forwards' : 'pageOpen 0.6s ease forwards';
+          isOpen = !isOpen;
+        });
+        if (!document.getElementById('f792-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f792-keyframes';
+          style.textContent = `
+            @keyframes pageOpen {
+              0% { transform: rotateY(0deg); }
+              100% { transform: rotateY(-180deg); }
+            }
+            @keyframes pageClose {
+              0% { transform: rotateY(-180deg); }
+              100% { transform: rotateY(0deg); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f793: 3D 漂浮元素 (Floating Elements 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f793_initFloating3D(selector = '.floating-3d') {
+      document.querySelectorAll(selector).forEach((el, i) => {
+        el.style.animation = `floatUp${i % 3} ${3 + i * 0.5}s ease-in-out infinite alternate`;
+        if (!document.getElementById('f793-keyframes')) {
+          const style = document.createElement('style');
+          style.id = 'f793-keyframes';
+          style.textContent = `
+            @keyframes floatUp0 { 0% { transform: translateY(0px) rotateZ(0deg); } 100% { transform: translateY(-15px) rotateZ(3deg); } }
+            @keyframes floatUp1 { 0% { transform: translateY(0px) rotateZ(0deg); } 100% { transform: translateY(-10px) rotateZ(-3deg); } }
+            @keyframes floatUp2 { 0% { transform: translateY(0px) rotateZ(0deg); } 100% { transform: translateY(-20px) rotateZ(2deg); } }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f794: 3D 渐入渐出 (Fade Scale 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f794_initFadeScale3D(selector = '.fadescale-3d') {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'scale3d(1, 1, 1)';
+          } else {
+            entry.target.style.opacity = '0';
+            entry.target.style.transform = 'scale3d(0.8, 0.8, 0.8)';
+          }
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.transition = 'opacity 0.5s, transform 0.5s';
+        el.style.transform = 'scale3d(0.8, 0.8, 0.8)';
+        el.style.opacity = '0';
+        observer.observe(el);
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f795: 3D 旋转木马 (Carousel 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f795_initCarousel3D(selector = '.carousel-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1200px';
+        const track = el.querySelector('.carousel-track') || el;
+        track.style.transformStyle = 'preserve-3d';
+        track.style.transition = 'transform 0.8s ease';
+        let current = 0;
+        const items = track.querySelectorAll('.carousel-item');
+        if (items.length === 0) return;
+        function updateCarousel() {
+          const angle = current * (360 / items.length);
+          track.style.transform = `rotateY(${angle}deg)`;
+          items.forEach((item, i) => {
+            const itemAngle = i * (360 / items.length);
+            const diff = ((itemAngle - angle) % 360 + 540) % 360 - 180;
+            item.style.opacity = Math.abs(diff) < 90 ? '1' : '0.3';
+            item.style.transform = `rotateY(${itemAngle - angle}deg) translateZ(200px)`;
+          });
+        }
+        updateCarousel();
+        el._nextSlide = () => { current++; updateCarousel(); };
+        el._prevSlide = () => { current--; updateCarousel(); };
+        if (!document.getElementById('f795-style')) {
+          const style = document.createElement('style');
+          style.id = 'f795-style';
+          style.textContent = `
+            .carousel-item { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; }
+          `;
+          document.head.appendChild(style);
+        }
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f796: 3D 视差层 (Parallax Layers 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f796_initParallax3D(selector = '.parallax-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        const layers = el.querySelectorAll('.parallax-layer');
+        if (layers.length === 0) return;
+        window.addEventListener('scroll', () => {
+          const rect = el.getBoundingClientRect();
+          const viewHeight = window.innerHeight;
+          const progress = (viewHeight - rect.top) / (viewHeight + rect.height);
+          layers.forEach((layer, i) => {
+            const speed = (i + 1) * 0.3;
+            layer.style.transform = `translateZ(${i * 20}px) translateY(${progress * speed * 50}px)`;
+          });
+        }, { passive: true });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f797: 3D 文字效果 (Text 3D Effect)
+    // ───────────────────────────────────────────────────────────────────
+    function f797_initText3D(selector = '.text-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.transformStyle = 'preserve-3d';
+        el.style.perspective = '800px';
+        const depth = el.dataset.depth || '20px';
+        el.innerHTML = el.textContent.split('').map(char => {
+          const span = document.createElement('span');
+          span.textContent = char === ' ' ? '\u00A0' : char;
+          span.style.display = 'inline-block';
+          span.style.transformStyle = 'preserve-3d';
+          span.style.transform = `translateZ(${depth})`;
+          span.style.transition = 'transform 0.3s';
+          span.addEventListener('mouseenter', () => { span.style.transform = `translateZ(${depth}) rotateX(10deg) scale(1.1)`; });
+          span.addEventListener('mouseleave', () => { span.style.transform = `translateZ(${depth})`; });
+          return span;
+        }).join('');
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f798: 3D 拖拽排序 (Drag Sort 3D)
+    // ───────────────────────────────────────────────────────────────────
+    function f798_initDragSort3D(selector = '.drag-sort-3d') {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.perspective = '1000px';
+        el.style.display = 'flex';
+        el.style.flexWrap = 'wrap';
+        el.style.gap = '10px';
+        let dragged = null;
+        el.querySelectorAll('.sort-item').forEach(item => {
+          item.style.cursor = 'grab';
+          item.style.transition = 'transform 0.2s, box-shadow 0.2s';
+          item.addEventListener('dragstart', e => {
+            dragged = item;
+            item.style.opacity = '0.5';
+            item.style.transform = 'scale(1.1) rotateZ(3deg)';
+          });
+          item.addEventListener('dragend', () => {
+            item.style.opacity = '1';
+            item.style.transform = '';
+            dragged = null;
+          });
+          item.addEventListener('dragover', e => { e.preventDefault(); });
+          item.addEventListener('drop', () => {
+            if (dragged && dragged !== item) {
+              const rect = item.getBoundingClientRect();
+              const next = e.clientX > rect.left + rect.width / 2;
+              el.insertBefore(dragged, next ? item.nextSibling : item);
+            }
+          });
+        });
+      });
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f799: 初始化所有 3D 效果 (Init All 3D Effects)
+    // ───────────────────────────────────────────────────────────────────
+    function f799_initAll3DEffects() {
+      f770_initBottle3DRotate();
+      f771_initLiquidWave();
+      f772_initRegion3DTerrain();
+      f773_initAromaParticles();
+      f774_initGlassCollision();
+      f775_initPrice3DChart();
+      f776_initCard3DHover();
+      f777_initParticleBG();
+      f778_initBottleRack3D();
+      f779_initToastCollision();
+      f780_initPouringAnimation();
+      f781_initOpenBottleEffect();
+      f782_initTag3DExpand();
+      f783_initDataViz3D();
+      f784_initDistilleryPanorama();
+      f785_initIceCubeMelt();
+      f786_initSmellMap3D();
+      f787_initTimeline3D();
+      f788_initGesture3D();
+      f789_initARDisplay();
+      f790_initCardFront3D();
+      f791_initCardBack3D();
+      f792_initPageFlip3D();
+      f793_initFloating3D();
+      f794_initFadeScale3D();
+      f795_initCarousel3D();
+      f796_initParallax3D();
+      f797_initText3D();
+      f798_initDragSort3D();
+    }
+
+    // Auto-init when DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', f799_initAll3DEffects);
+    } else {
+      f799_initAll3DEffects();
+    }
+
+    // Window bindings for 3D features
+    window.initBottle3DRotate = f770_initBottle3DRotate;
+    window.initLiquidWave = f771_initLiquidWave;
+    window.initRegion3DTerrain = f772_initRegion3DTerrain;
+    window.initAromaParticles = f773_initAromaParticles;
+    window.initGlassCollision = f774_initGlassCollision;
+    window.initPrice3DChart = f775_initPrice3DChart;
+    window.initCard3DHover = f776_initCard3DHover;
+    window.initParticleBG = f777_initParticleBG;
+    window.initBottleRack3D = f778_initBottleRack3D;
+    window.initToastCollision = f779_initToastCollision;
+    window.initPouringAnimation = f780_initPouringAnimation;
+    window.initOpenBottleEffect = f781_initOpenBottleEffect;
+    window.initTag3DExpand = f782_initTag3DExpand;
+    window.initDataViz3D = f783_initDataViz3D;
+    window.initDistilleryPanorama = f784_initDistilleryPanorama;
+    window.initIceCubeMelt = f785_initIceCubeMelt;
+    window.initSmellMap3D = f786_initSmellMap3D;
+    window.initTimeline3D = f787_initTimeline3D;
+    window.initGesture3D = f788_initGesture3D;
+    window.initARDisplay = f789_initARDisplay;
+    window.initCardFront3D = f790_initCardFront3D;
+    window.initCardBack3D = f791_initCardBack3D;
+    window.initPageFlip3D = f792_initPageFlip3D;
+    window.initFloating3D = f793_initFloating3D;
+    window.initFadeScale3D = f794_initFadeScale3D;
+    window.initCarousel3D = f795_initCarousel3D;
+    window.initParallax3D = f796_initParallax3D;
+    window.initText3D = f797_initText3D;
+    window.initDragSort3D = f798_initDragSort3D;
+    window.initAll3DEffects = f799_initAll3DEffects;
   </script>
 </body>
 </html>

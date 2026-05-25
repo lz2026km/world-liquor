@@ -1,6 +1,7 @@
 /* ================================================
-   世界烈酒图鉴 v3.2.0
+   世界烈酒图鉴 v4.1.0
    黑髪漆面 · 香槟金蕴 · Luxury Edition
+   Phase 2: 3D 动态 UI (30 项功能: f770-f799)
    ================================================ */
 
 /* ================================================
@@ -2683,3 +2684,529 @@ input, select, textarea {
 .card-badges__right {
   align-items: flex-end;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   v4.1.0 Phase 2: 3D 动态 UI 样式 (f770-f799)
+   黑髪漆面 · 香槟金蕴 · Luxury Edition
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────
+   f770: 3D 酒瓶旋转展示
+   ─────────────────────────────────────────────────────────────────── */
+.bottle-3d-rotate {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.bottle-3d-rotate:hover {
+  filter: brightness(1.1);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f771: 酒液动态效果
+   ─────────────────────────────────────────────────────────────────── */
+.liquid-wave {
+  position: relative;
+  overflow: hidden;
+}
+.liquid-wave-inner {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 60%;
+  background: linear-gradient(180deg, transparent 0%, rgba(198,161,91,0.3) 50%, rgba(198,161,91,0.5) 100%);
+  border-radius: 50% 50% 0 0;
+  animation: liquidWave 3s ease-in-out infinite;
+}
+@keyframes liquidWave {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-15px) scaleY(1.1); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f772: 3D 产区地形图
+   ─────────────────────────────────────────────────────────────────── */
+.region-3d-terrain {
+  perspective: 1200px;
+  perspective-origin: center center;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+.region-3d-terrain .terrain-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f773: 香气粒子系统
+   ─────────────────────────────────────────────────────────────────── */
+.aroma-particles {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.aroma-particles canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f774: 品鉴杯碰撞
+   ─────────────────────────────────────────────────────────────────── */
+.glass-collision {
+  perspective: 800px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.glass-collision:active {
+  animation: glassShake 0.5s ease-out;
+}
+@keyframes glassShake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-15deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f775: 3D 价格走势图
+   ─────────────────────────────────────────────────────────────────── */
+.price-3d-chart {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.price-3d-chart .chart-bar {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f776: 3D 卡片悬浮
+   ─────────────────────────────────────────────────────────────────── */
+.card-3d-hover {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.card-3d-hover:hover {
+  box-shadow: var(--glow-accent-strong);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f777: 3D 粒子背景
+   ─────────────────────────────────────────────────────────────────── */
+.particle-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+.particle-bg canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f778: 3D 酒架展示
+   ─────────────────────────────────────────────────────────────────── */
+.bottle-rack-3d {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  cursor: grab;
+  user-select: none;
+}
+.bottle-rack-3d:active {
+  cursor: grabbing;
+}
+.bottle-rack-3d .rack-cell {
+  background: rgba(198,161,91,0.1);
+  border: 1px solid rgba(198,161,91,0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.bottle-rack-3d .rack-cell:hover {
+  background: rgba(198,161,91,0.2);
+  border-color: rgba(198,161,91,0.4);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f779: 碰杯音效粒子
+   ─────────────────────────────────────────────────────────────────── */
+.toast-collision {
+  position: relative;
+  cursor: pointer;
+}
+.toast-collision .toast-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c6a15b;
+  pointer-events: none;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f780: 倒酒动画
+   ─────────────────────────────────────────────────────────────────── */
+.pouring-animation {
+  position: relative;
+  overflow: hidden;
+}
+.pouring-animation .pour-stream {
+  position: absolute;
+  width: 4px;
+  background: linear-gradient(180deg, rgba(198,161,91,0.8), rgba(198,161,91,0.3));
+  border-radius: 2px;
+  left: 50%;
+  top: 0;
+  opacity: 0;
+  transition: height 0.3s, opacity 0.3s;
+}
+.pouring-animation:hover .pour-stream {
+  opacity: 1;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f781: 开瓶特效
+   ─────────────────────────────────────────────────────────────────── */
+.open-bottle-effect {
+  position: relative;
+  cursor: pointer;
+}
+.open-bottle-effect .bottle-cap {
+  position: absolute;
+  top: -5px;
+  right: 30%;
+  width: 20px;
+  height: 10px;
+  background: linear-gradient(135deg, #c6a15b, #9a7a3f);
+  border-radius: 2px 2px 0 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+@keyframes bottleFlash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f782: 标签展开 3D
+   ─────────────────────────────────────────────────────────────────── */
+.tag-3d-expand {
+  perspective: 600px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.tag-3d-expand:hover {
+  border-color: var(--accent-500);
+  box-shadow: var(--glow-accent);
+}
+@keyframes tagExpand {
+  0% { transform: scale3d(1, 1, 1); }
+  50% { transform: scale3d(1.5, 1.5, 1.5); }
+  100% { transform: scale3d(1, 1, 1); }
+}
+@keyframes tagCollapse {
+  0% { transform: scale3d(1, 1, 1); }
+  100% { transform: scale3d(0.9, 0.9, 0.9); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f783: 3D 数据可视化
+   ─────────────────────────────────────────────────────────────────── */
+.data-viz-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.data-viz-3d .viz-inner {
+  transform-style: preserve-3d;
+}
+.data-viz-3d .viz-bar {
+  transform-style: preserve-3d;
+  transition: height 0.5s ease;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f784: 3D 酒厂全景
+   ─────────────────────────────────────────────────────────────────── */
+.distillery-panorama {
+  perspective: 1500px;
+  overflow: hidden;
+  cursor: grab;
+}
+.distillery-panorama:active {
+  cursor: grabbing;
+}
+.distillery-panorama .panorama-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f785: 酒杯冰块融化
+   ─────────────────────────────────────────────────────────────────── */
+.ice-cube-melt {
+  position: relative;
+  overflow: hidden;
+}
+.ice-cube-melt .ice-cube {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  animation: iceFloat 2s ease-in-out infinite, iceMelt 4s ease-in-out infinite;
+}
+@keyframes iceFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(5deg); }
+}
+@keyframes iceMelt {
+  0% { opacity: 1; transform: scale(1); }
+  80% { opacity: 0.5; transform: scale(0.8); }
+  100% { opacity: 0; transform: scale(0.3); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f786: 3D 嗅觉地图
+   ─────────────────────────────────────────────────────────────────── */
+.smell-map-3d {
+  perspective: 1000px;
+  overflow: hidden;
+}
+.smell-map-3d .smell-map-inner {
+  transform-style: preserve-3d;
+}
+@keyframes smellMapRotate {
+  0% { transform: rotateX(60deg) rotateZ(-10deg); }
+  100% { transform: rotateX(70deg) rotateZ(10deg); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f787: 3D 时间轴
+   ─────────────────────────────────────────────────────────────────── */
+.timeline-3d {
+  perspective: 1200px;
+  overflow-x: auto;
+  cursor: grab;
+}
+.timeline-3d:active {
+  cursor: grabbing;
+}
+.timeline-3d .timeline-inner {
+  display: flex;
+  gap: 20px;
+  transform-style: preserve-3d;
+}
+.timeline-3d .timeline-item {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.timeline-3d .timeline-item:hover {
+  transform: translateZ(30px) scale(1.1);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f788: 3D 手势操作
+   ─────────────────────────────────────────────────────────────────── */
+.gesture-3d {
+  touch-action: none;
+  cursor: grab;
+}
+.gesture-3d:active {
+  cursor: grabbing;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f789: AR 展示
+   ─────────────────────────────────────────────────────────────────── */
+.ar-display {
+  position: relative;
+  cursor: pointer;
+}
+.ar-display .ar-overlay {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(198,161,91,0.5);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.ar-display .ar-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(198,161,91,0.9);
+  color: #080706;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f790-f791: 3D 卡片正面/背面
+   ─────────────────────────────────────────────────────────────────── */
+.card-front-3d,
+.card-back-3d {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+.card-front-3d .card-inner,
+.card-back-3d .card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  transform-origin: center center;
+}
+.card-back-3d {
+  backface-visibility: hidden;
+  position: absolute;
+  inset: 0;
+}
+.card-back-3d.flipped {
+  transform: rotateY(180deg);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f792: 3D 翻页效果
+   ─────────────────────────────────────────────────────────────────── */
+.page-flip-3d {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+@keyframes pageOpen {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-180deg); }
+}
+@keyframes pageClose {
+  0% { transform: rotateY(-180deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f793: 3D 漂浮元素
+   ─────────────────────────────────────────────────────────────────── */
+.floating-3d {
+  animation-fill-mode: both;
+}
+@keyframes floatUp0 {
+  0% { transform: translateY(0px) rotateZ(0deg); }
+  100% { transform: translateY(-15px) rotateZ(3deg); }
+}
+@keyframes floatUp1 {
+  0% { transform: translateY(0px) rotateZ(0deg); }
+  100% { transform: translateY(-10px) rotateZ(-3deg); }
+}
+@keyframes floatUp2 {
+  0% { transform: translateY(0px) rotateZ(0deg); }
+  100% { transform: translateY(-20px) rotateZ(2deg); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f794: 3D 渐入渐出
+   ─────────────────────────────────────────────────────────────────── */
+.fadescale-3d {
+  transform-style: preserve-3d;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f795: 3D 旋转木马
+   ─────────────────────────────────────────────────────────────────── */
+.carousel-3d {
+  perspective: 1200px;
+  position: relative;
+}
+.carousel-3d .carousel-track {
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  position: relative;
+}
+.carousel-3d .carousel-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f796: 3D 视差层
+   ─────────────────────────────────────────────────────────────────── */
+.parallax-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+.parallax-3d .parallax-layer {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f797: 3D 文字效果
+   ─────────────────────────────────────────────────────────────────── */
+.text-3d {
+  transform-style: preserve-3d;
+  perspective: 800px;
+  display: inline-block;
+}
+.text-3d span {
+  display: inline-block;
+  transform-style: preserve-3d;
+  transition: transform 0.3s;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   f798: 3D 拖拽排序
+   ─────────────────────────────────────────────────────────────────── */
+.drag-sort-3d {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  perspective: 1000px;
+}
+.drag-sort-3d .sort-item {
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  transform-style: preserve-3d;
+}
+.drag-sort-3d .sort-item:active {
+  cursor: grabbing;
+}
+.drag-sort-3d .sort-item.dragging {
+  opacity: 0.5;
+  transform: scale(1.1) rotateZ(3deg);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   通用 3D 工具类
+   ─────────────────────────────────────────────────────────────────── */
+.perspective-1000 { perspective: 1000px; }
+.perspective-1200 { perspective: 1200px; }
+.perspective-1500 { perspective: 1500px; }
+.perspective-2000 { perspective: 2000px; }
+.transform-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.preserve-3d { preserve-3d: both; }
