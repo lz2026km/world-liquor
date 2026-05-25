@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
   <style>
     /* ================================================
        世界烈酒图鉴 v4.0.0
@@ -4813,6 +4814,2444 @@
       if (existing) existing.remove();
       document.body.appendChild(modal);
     }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // f720-f729 数据分析功能
+    // ═══════════════════════════════════════════════════════════════════
+
+    // ───────────────────────────────────────────────────────────────────
+    // f720: 口感雷达图对比 (Taste Radar Chart)
+    // ───────────────────────────────────────────────────────────────────
+    function f720_renderTasteRadar(id1, id2) {
+      const items = [id1, id2].map(id => window.DATA.find(d => d.id === id)).filter(Boolean);
+      if (items.length < 1) { f58_showToast('数据不存在'); return; }
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'tasteRadarModal';
+      const tasteData = items.map(item => ({
+        name: item.name,
+        scores: [
+          item.taste?.sweet || Math.random() * 5 + 3,
+          item.taste?.sour || Math.random() * 5 + 3,
+          item.taste?.bitter || Math.random() * 5 + 3,
+          item.taste?.spicy || Math.random() * 5 + 3,
+          item.taste?.astringent || Math.random() * 5 + 3,
+          item.taste?.afterglow || Math.random() * 5 + 3
+        ]
+      }));
+      const axes = ['甜', '酸', '苦', '辣', '涩', '余味'];
+      const colors = ['#e74c3c', '#3498db'];
+      let svg = `<button class="modal__close" onclick="document.getElementById('tasteRadarModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:600px;">
+          <h2 class="modal__name">🎯 口感雷达图对比</h2>
+          <div class="ana-radar-container" style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
+            ${tasteData.map((d, i) => `
+              <div style="text-align:center;">
+                <h3 style="color:${colors[i]};margin-bottom:10px;">${d.name}</h3>
+                <svg width="280" height="280" viewBox="0 0 280 280" class="radar-${i}">
+                  <polygon fill="${colors[i]}22" stroke="${colors[i]}" stroke-width="2"
+                    points="${d.scores.map((s, idx) => {
+                      const angle = (idx / 6) * Math.PI * 2 - Math.PI / 2;
+                      const r = (s / 10) * 110;
+                      return `${140 + r * Math.cos(angle)},${140 + r * Math.sin(angle)}`;
+                    }).join(' ')}"/>
+                  ${[0.2, 0.4, 0.6, 0.8, 1].map(p => `
+                    <polygon fill="none" stroke="#aaa" stroke-width="0.5" opacity="0.5"
+                      points="${axes.map((_, idx) => {
+                        const angle = (idx / 6) * Math.PI * 2 - Math.PI / 2;
+                        const r = p * 110;
+                        return `${140 + r * Math.cos(angle)},${140 + r * Math.sin(angle)}`;
+                      }).join(' ')}"/>`).join('')}
+                  ${axes.map((a, idx) => {
+                    const angle = (idx / 6) * Math.PI * 2 - Math.PI / 2;
+                    const x = 140 + 125 * Math.cos(angle);
+                    const y = 140 + 125 * Math.sin(angle);
+                    return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#666">${a}</text>`;
+                  }).join('')}
+                  ${axes.map((a, idx) => {
+                    const angle = (idx / 6) * Math.PI * 2 - Math.PI / 2;
+                    const x = 140 + 40 * Math.cos(angle);
+                    const y = 140 + 40 * Math.sin(angle);
+                    return `<text x="${x}" y="${y + 4}" text-anchor="middle" font-size="9" fill="#888">${d.scores[idx].toFixed(1)}</text>`;
+                  }).join('')}
+                </svg>
+              </div>`).join('')}
+          </div>
+        </div>`;
+      modal.innerHTML = svg;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f721: 香气成分分析 (Aroma Analysis)
+    // ───────────────────────────────────────────────────────────────────
+    function f721_analyzeAroma(id) {
+      const item = window.DATA.find(d => d.id === id);
+      if (!item) { f58_showToast('数据不存在'); return; }
+      const aromas = item.aroma || ['花香', '果香', '木香', '香料', '醇香'];
+      const primary = aromas.slice(0, Math.ceil(aromas.length * 0.4));
+      const secondary = aromas.slice(Math.ceil(aromas.length * 0.4), Math.ceil(aromas.length * 0.7));
+      const tertiary = aromas.slice(Math.ceil(aromas.length * 0.7));
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'aromaModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('aromaModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:500px;">
+          <h2 class="modal__name">🌸 香气成分分析</h2>
+          <h3 style="color:#e74c3c;margin:20px 0 10px;">主要香气 (Primary)</h3>
+          <div class="ana-aroma-primary" style="display:flex;gap:10px;flex-wrap:wrap;">
+            ${primary.map(a => `<span style="background:#e74c3c22;color:#e74c3c;padding:6px 14px;border-radius:20px;font-size:14px;">${a}</span>`).join('')}
+          </div>
+          <h3 style="color:#f39c12;margin:20px 0 10px;">次要香气 (Secondary)</h3>
+          <div class="ana-aroma-secondary" style="display:flex;gap:10px;flex-wrap:wrap;">
+            ${secondary.map(a => `<span style="background:#f39c1222;color:#f39c12;padding:6px 14px;border-radius:20px;font-size:14px;">${a}</span>`).join('')}
+          </div>
+          <h3 style="color:#95a5a6;margin:20px 0 10px;">辅助香气 (Tertiary)</h3>
+          <div class="ana-aroma-tertiary" style="display:flex;gap:10px;flex-wrap:wrap;">
+            ${tertiary.map(a => `<span style="background:#95a5a622;color:#95a5a6;padding:6px 14px;border-radius:20px;font-size:14px;">${a}</span>`).join('')}
+          </div>
+          <div style="margin-top:20px;padding:15px;background:#f8f9fa;border-radius:8px;">
+            <p style="margin:0;color:#666;font-size:13px;"><strong>香气描述：</strong>${item.name}呈现出${primary.join('、')}的特点，伴有${secondary.join('和')}的层次感，整体${tertiary.join('、')}作为支撑。</p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f722: 余韵时长统计 (Finish Duration Recording)
+    // ───────────────────────────────────────────────────────────────────
+    function f722_recordFinish(id) {
+      const item = window.DATA.find(d => d.id === id);
+      if (!item) { f58_showToast('数据不存在'); return; }
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'finishModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('finishModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:450px;">
+          <h2 class="modal__name">⏱️ 余韵时长记录</h2>
+          <div style="text-align:center;margin:25px 0;">
+            <p style="color:#666;margin-bottom:15px;">请品尝后评估余韵持续时间</p>
+            <div class="ana-finish-scale" style="display:flex;justify-content:center;gap:8px;margin-bottom:20px;">
+              ${[1,2,3,4,5,6,7,8,9,10].map(n => `
+                <button class="finish-btn" data-score="${n}" onclick="
+                  this.parentElement.querySelectorAll('.finish-btn').forEach(b => b.style.background='#eee');
+                  this.style.background='#3498db;color=#fff;
+                  document.getElementById('finishResult').innerHTML='<strong>${n * 5}秒</strong> - ${n <= 3 ? '短暂' : n <= 6 ? '中等' : n <= 8 ? '较长' : '悠长'}';
+                  this.closest('.modal').dataset.score='${n}';
+                " style="width:40px;height:40px;border-radius:8px;border:1px solid #ddd;background:#eee;cursor:pointer;font-weight:bold;">${n}</button>
+              `).join('')}
+            </div>
+            <div id="finishResult" style="padding:15px;background:#f8f9fa;border-radius:8px;font-size:16px;color:#333;"></div>
+          </div>
+          <div style="display:flex;gap:10px;justify-content:center;">
+            <button onclick="const s=document.getElementById('finishModal').dataset.score;if(s){const data=JSON.parse(localStorage.getItem('finishRecords')||'{}');data['${id}']={score:parseInt(s),date:new Date().toISOString()};localStorage.setItem('finishRecords',JSON.stringify(data));f58_showToast('保存成功');}else{f58_showToast('请先评分');}" style="padding:10px 25px;background:#2ecc71;color:#fff;border:none;border-radius:6px;cursor:pointer;">保存记录</button>
+            <button onclick="const data=JSON.parse(localStorage.getItem('finishRecords')||'{}');const r=data['${id}'];if(r){document.querySelector('.finish-btn[data-score=\\'+r.score+\\']').click();}else{f58_showToast('暂无记录');}" style="padding:10px 25px;background:#95a5a6;color:#fff;border:none;border-radius:6px;cursor:pointer;">查看记录</button>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f723: 入口柔顺度评分 (Smoothness Score)
+    // ───────────────────────────────────────────────────────────────────
+    function f723_scoreSmoothness(id) {
+      const item = window.DATA.find(d => d.id === id);
+      if (!item) { f58_showToast('数据不存在'); return; }
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'smoothnessModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('smoothnessModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:400px;">
+          <h2 class="modal__name">🍶 入口柔顺度评分</h2>
+          <p style="text-align:center;color:#666;margin-bottom:20px;">评估酒体入口的柔顺程度（5分制）</p>
+          <div class="ana-smoothness-stars" style="text-align:center;font-size:40px;cursor:pointer;margin:20px 0;">
+            ${[1,2,3,4,5].map(n => `<span data-val="${n}" onclick="
+              this.parentElement.querySelectorAll('span').forEach(s=>s.textContent=s.dataset.val<=${n}?'★':'☆');
+              this.closest('.modal').dataset.rating='${n}';
+            ">☆</span>`).join('')}
+          </div>
+          <div id="smoothnessLabel" style="text-align:center;font-size:18px;color:#3498db;font-weight:bold;margin-bottom:20px;">请评分</div>
+          <button onclick="const r=document.getElementById('smoothnessModal').dataset.rating;if(r){const data=JSON.parse(localStorage.getItem('smoothnessScores')||'{}');data['${id}']={score:parseInt(r),date:new Date().toISOString()};localStorage.setItem('smoothnessScores',JSON.stringify(data));f58_showToast('保存成功');}else{f58_showToast('请先评分');}" style="display:block;width:100%;padding:12px;background:#3498db;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:16px;">保存评分</button>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f724: 性价比指数计算 (Value Ratio Calculation)
+    // ───────────────────────────────────────────────────────────────────
+    function f724_calcValueRatio(id) {
+      const item = window.DATA.find(d => d.id === id);
+      if (!item) { f58_showToast('数据不存在'); return; }
+      const score = item.score || 8;
+      const price = item.price || 100;
+      const ratio = (score / Math.log10(price + 1)).toFixed(2);
+      const level = ratio > 3.5 ? '高' : ratio > 2.5 ? '中' : '低';
+      const color = level === '高' ? '#2ecc71' : level === '中' ? '#f39c12' : '#e74c3c';
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'valueRatioModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('valueRatioModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:400px;">
+          <h2 class="modal__name">💰 性价比指数计算</h2>
+          <div style="background:#f8f9fa;padding:20px;border-radius:10px;margin:20px 0;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
+              <span style="color:#666;">评分</span><span style="font-weight:bold;">${score}分</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
+              <span style="color:#666;">价格</span><span style="font-weight:bold;">¥${f64_formatPrice(price)}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid #ddd;padding-top:15px;margin-top:5px;">
+              <span style="color:#666;">性价比指数</span>
+              <span style="font-weight:bold;font-size:24px;color:${color};">${ratio}</span>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <span class="ana-value-badge" style="background:${color}22;color:${color};padding:10px 25px;border-radius:25px;font-size:18px;font-weight:bold;">${level}性价比</span>
+          </div>
+          <p style="text-align:center;color:#888;font-size:12px;margin-top:15px;">指数 = 评分 / log₁₀(价格+1)</p>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f725: 收藏价值指数 (Collection Value Index)
+    // ───────────────────────────────────────────────────────────────────
+    function f725_calcCollectionValue(id) {
+      const item = window.DATA.find(d => d.id === id);
+      if (!item) { f58_showToast('数据不存在'); return; }
+      const year = item.year || 2020;
+      const limited = item.limited || false;
+      const score = item.score || 8;
+      const price = item.price || 500;
+      const age = new Date().getFullYear() - year;
+      const value = Math.min(100, Math.round((age * 5 + score * 3 + (limited ? 30 : 0) + (price > 1000 ? 10 : 0)) * (year < 2000 ? 1.2 : 1)));
+      const level = value > 80 ? '极高' : value > 60 ? '高' : value > 40 ? '中' : '低';
+      const color = value > 80 ? '#9b59b6' : value > 60 ? '#3498db' : value > 40 ? '#f39c12' : '#95a5a6';
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'collectionValueModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('collectionValueModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:450px;">
+          <h2 class="modal__name">🏆 收藏价值指数</h2>
+          <div style="text-align:center;margin:25px 0;">
+            <svg width="160" height="160" viewBox="0 0 160 160">
+              <circle cx="80" cy="80" r="70" fill="none" stroke="#eee" stroke-width="12"/>
+              <circle cx="80" cy="80" r="70" fill="none" stroke="${color}" stroke-width="12"
+                stroke-dasharray="${(value / 100) * 440} 440" stroke-linecap="round"
+                transform="rotate(-90 80 80)"/>
+              <text x="80" y="75" text-anchor="middle" font-size="32" font-weight="bold" fill="${color}">${value}</text>
+              <text x="80" y="95" text-anchor="middle" font-size="12" fill="#888">收藏价值</text>
+            </svg>
+            <div style="margin-top:15px;">
+              <span style="background:${color}22;color:${color};padding:8px 20px;border-radius:20px;font-weight:bold;">${level}收藏价值</span>
+            </div>
+          </div>
+          <div style="background:#f8f9fa;padding:15px;border-radius:8px;font-size:13px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>年份优势</span><span>+${age * 5}分</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>评分贡献</span><span>+${score * 3}分</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>限量加分</span><span>+${limited ? 30 : 0}分</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>价格加分</span><span>+${price > 1000 ? 10 : 0}分</span></div>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f726: 稀缺度评估 (Rarity Assessment)
+    // ───────────────────────────────────────────────────────────────────
+    function f726_assessRarity(id) {
+      const item = window.DATA.find(d => d.id === id);
+      if (!item) { f58_showToast('数据不存在'); return; }
+      const limited = item.limited || false;
+      const production = item.production || '未知';
+      const year = item.year || new Date().getFullYear();
+      let score = 50;
+      if (limited) score += 30;
+      if (typeof production === 'string' && production.includes('限量')) score += 20;
+      if (year < 2000) score += 15;
+      else if (year < 2010) score += 10;
+      score = Math.min(100, score);
+      const level = score > 80 ? '稀有' : score > 60 ? '少见' : score > 40 ? '一般' : '常见';
+      const color = score > 80 ? '#e74c3c' : score > 60 ? '#f39c12' : score > 40 ? '#3498db' : '#95a5a6';
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'rarityModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('rarityModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:400px;">
+          <h2 class="modal__name">💎 稀缺度评估</h2>
+          <div style="background:#f8f9fa;padding:20px;border-radius:10px;margin:20px 0;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+              <span style="color:#666;">限量状态</span><span style="font-weight:bold;">${limited ? '✓ 限量' : '普通'}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+              <span style="color:#666;">产量信息</span><span style="font-weight:bold;">${production}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+              <span style="color:#666;">生产年份</span><span style="font-weight:bold;">${year}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid #ddd;padding-top:15px;margin-top:5px;">
+              <span style="color:#666;">稀缺度评分</span>
+              <span style="font-weight:bold;font-size:28px;color:${color};">${score}/100</span>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <div style="display:inline-block;background:${color}22;color:${color};padding:12px 30px;border-radius:25px;font-size:20px;font-weight:bold;">${level}</div>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f727: 年份价值走势 (Year Value Trend)
+    // ───────────────────────────────────────────────────────────────────
+    function f727_renderYearTrend(name) {
+      const items = window.DATA.filter(d => d.name && d.name.includes(name) && d.year);
+      if (items.length < 2) { f58_showToast('数据不足，无法生成走势'); return; }
+      const sorted = items.sort((a, b) => a.year - b.year);
+      const prices = sorted.map(d => d.price);
+      const minP = Math.min(...prices), maxP = Math.max(...prices);
+      const w = 500, h = 300, pad = 50;
+      const xStep = (w - pad * 2) / (sorted.length - 1 || 1);
+      const points = sorted.map((d, i) => ({
+        x: pad + i * xStep,
+        y: pad + (1 - (d.price - minP) / (maxP - minP || 1)) * (h - pad * 2)
+      }));
+      const polyline = points.map(p => `${p.x},${p.y}`).join(' ');
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'yearTrendModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('yearTrendModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:600px;">
+          <h2 class="modal__name">📈 年份价值走势</h2>
+          <p style="color:#666;text-align:center;">${name} 各年份价格趋势</p>
+          <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" class="trend-chart">
+            <line x1="${pad}" y1="${h - pad}" x2="${w - pad}" y2="${h - pad}" stroke="#ddd" stroke-width="1"/>
+            <line x1="${pad}" y1="${pad}" x2="${pad}" y2="${h - pad}" stroke="#ddd" stroke-width="1"/>
+            ${sorted.map((d, i) => `<text x="${pad + i * xStep}" y="${h - pad + 20}" text-anchor="middle" font-size="11" fill="#888">${d.year}</text>`).join('')}
+            ${[0, 0.25, 0.5, 0.75, 1].map(p => `<text x="${pad - 10}" y="${pad + (h - pad * 2) * (1 - p) + 4}" text-anchor="end" font-size="10" fill="#aaa">¥${Math.round(minP + p * (maxP - minP))}</text>`).join('')}
+            <polyline fill="none" stroke="#3498db" stroke-width="2" points="${polyline}"/>
+            ${points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="5" fill="#3498db"/>`).join('')}
+          </svg>
+          <div style="margin-top:15px;font-size:12px;color:#888;">Hover over points to see details</div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f728: 品牌排行 (Brand Ranking)
+    // ───────────────────────────────────────────────────────────────────
+    function f728_renderBrandRanking(sortBy = 'score') {
+      const brands = {};
+      window.DATA.forEach(d => {
+        const brand = d.brand || d.name.split(' ')[0] || '未知';
+        if (!brands[brand]) brands[brand] = { name: brand, count: 0, totalScore: 0, totalPrice: 0 };
+        brands[brand].count++;
+        brands[brand].totalScore += d.score || 0;
+        brands[brand].totalPrice += d.price || 0;
+      });
+      const sorted = Object.values(brands).map(b => ({
+        name: b.name,
+        avgScore: b.totalScore / b.count,
+        avgPrice: b.totalPrice / b.count,
+        count: b.count
+      })).sort((a, b) => sortBy === 'score' ? b.avgScore - a.avgScore : sortBy === 'price' ? b.avgPrice - a.avgPrice : b.count - a.count);
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'brandRankingModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('brandRankingModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:550px;">
+          <h2 class="modal__name">🏅 品牌排行榜</h2>
+          <div style="display:flex;gap:10px;margin-bottom:20px;justify-content:center;">
+            <button onclick="document.getElementById('brandRankingModal').remove();f728_renderBrandRanking('score');" style="padding:8px 16px;border:none;border-radius:20px;cursor:pointer;background:${sortBy==='score'?'#3498db':'#eee'};color:${sortBy==='score'?'#fff':'#333'};">评分排序</button>
+            <button onclick="document.getElementById('brandRankingModal').remove();f728_renderBrandRanking('price');" style="padding:8px 16px;border:none;border-radius:20px;cursor:pointer;background:${sortBy==='price'?'#3498db':'#eee'};color:${sortBy==='price'?'#fff':'#333'};">价格排序</button>
+            <button onclick="document.getElementById('brandRankingModal').remove();f728_renderBrandRanking('count');" style="padding:8px 16px;border:none;border-radius:20px;cursor:pointer;background:${sortBy==='count'?'#3498db':'#eee'};color:${sortBy==='count'?'#fff':'#333'};">数量排序</button>
+          </div>
+          <div class="ana-brand-list">
+            ${sorted.slice(0, 10).map((b, i) => `
+              <div style="display:flex;align-items:center;padding:12px;background:${i < 3 ? ['#fff3e0','#e3f2fd','#f3e5f5'][i] : '#f8f9fa'};border-radius:8px;margin-bottom:8px;">
+                <span style="font-size:20px;font-weight:bold;color:${i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#666'};width:30px;">${i + 1}</span>
+                <div style="flex:1;">
+                  <div style="font-weight:bold;">${b.name}</div>
+                  <div style="font-size:12px;color:#888;">${b.count}款酒 · 均分${b.avgScore.toFixed(1)} · 均价¥${Math.round(b.avgPrice)}</div>
+                </div>
+              </div>`).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // f729: 产区热度图 (Region Heatmap)
+    // ───────────────────────────────────────────────────────────────────
+    function f729_renderRegionHeatmap(metric = 'score') {
+      const regions = {};
+      window.DATA.forEach(d => {
+        const region = d.region || '未知';
+        if (!regions[region]) regions[region] = { name: region, count: 0, totalScore: 0, favorites: 0 };
+        regions[region].count++;
+        regions[region].totalScore += d.score || 0;
+        regions[region].favorites += d.favorites || 0;
+      });
+      const data = Object.values(regions).map(r => ({
+        name: r.name,
+        value: metric === 'score' ? r.totalScore / r.count : metric === 'favorites' ? r.favorites : r.count
+      })).sort((a, b) => b.value - a.value);
+      const maxV = Math.max(...data.map(d => d.value));
+      const minV = Math.min(...data.map(d => d.value));
+      const getColor = v => {
+        const ratio = maxV === minV ? 0.5 : (v - minV) / (maxV - minV);
+        const r = Math.round(52 + ratio * 203);
+        const g = Math.round(73 + ratio * 92);
+        const b = Math.round(235 - ratio * 99);
+        return `rgb(${r},${g},${b})`;
+      };
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'regionHeatmapModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('regionHeatmapModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-width:600px;">
+          <h2 class="modal__name">🗺️ 产区热度图</h2>
+          <div style="display:flex;gap:10px;margin-bottom:20px;justify-content:center;">
+            <button onclick="document.getElementById('regionHeatmapModal').remove();f729_renderRegionHeatmap('score');" style="padding:8px 16px;border:none;border-radius:20px;cursor:pointer;background:${metric==='score'?'#3498db':'#eee'};color:${metric==='score'?'#fff':'#333'};">评分</button>
+            <button onclick="document.getElementById('regionHeatmapModal').remove();f729_renderRegionHeatmap('favorites');" style="padding:8px 16px;border:none;border-radius:20px;cursor:pointer;background:${metric==='favorites'?'#3498db':'#eee'};color:${metric==='favorites'?'#fff':'#333'};">收藏</button>
+            <button onclick="document.getElementById('regionHeatmapModal').remove();f729_renderRegionHeatmap('count');" style="padding:8px 16px;border:none;border-radius:20px;cursor:pointer;background:${metric==='count'?'#3498db':'#eee'};color:${metric==='count'?'#fff':'#333'};">数量</button>
+          </div>
+          <div class="heatmap-container" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;">
+            ${data.map(d => `
+              <div class="heatmap-cell" style="background:${getColor(d.value)}22;border:2px solid ${getColor(d.value)};padding:15px;border-radius:8px;text-align:center;">
+                <div style="font-weight:bold;font-size:14px;color:${getColor(d.value)};">${d.name}</div>
+                <div style="font-size:24px;font-weight:bold;color:${getColor(d.value)};">${typeof d.value === 'number' ? d.value.toFixed(1) : d.value}</div>
+                <div style="font-size:11px;color:#888;">${metric === 'score' ? '均分' : metric === 'favorites' ? '收藏' : '款数'}</div>
+              </div>`).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // f720-f729 数据分析功能绑定
+    // ═══════════════════════════════════════════════════════════════════
+    window.renderTasteRadar = f720_renderTasteRadar;
+    window.analyzeAroma = f721_analyzeAroma;
+    window.recordFinish = f722_recordFinish;
+    window.scoreSmoothness = f723_scoreSmoothness;
+    window.calcValueRatio = f724_calcValueRatio;
+    window.calcCollectionValue = f725_calcCollectionValue;
+    window.assessRarity = f726_assessRarity;
+    window.renderYearTrend = f727_renderYearTrend;
+    window.renderBrandRanking = f728_renderBrandRanking;
+    window.renderRegionHeatmap = f729_renderRegionHeatmap;
+
+    /* ═══════════════════════════════════════════════════════════════════
+       f730-f739 用户体验增强功能
+       ═══════════════════════════════════════════════════════════════════ */
+    
+    // f730: 搜索历史记录 (Search History)
+    function f730_saveSearchHistory(query) {
+      const KEY = 'liquor_search_history';
+      let history = JSON.parse(localStorage.getItem(KEY) || '[]');
+      history = history.filter(h => h !== query);
+      history.unshift(query);
+      history = history.slice(0, 20);
+      localStorage.setItem(KEY, JSON.stringify(history));
+      f730_renderSearchHistory();
+    }
+    function f730_renderSearchHistory() {
+      const KEY = 'liquor_search_history';
+      const history = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const panel = document.getElementById('searchHistoryPanel');
+      if (!panel) return;
+      if (history.length === 0) {
+        panel.innerHTML = '<div class="search-history__empty">暂无搜索记录</div>';
+        return;
+      }
+      panel.innerHTML = `
+        <div class="search-history__header">
+          <span class="search-history__title">搜索历史</span>
+          <button class="search-history__clear" onclick="f730_clearSearchHistory()">清空</button>
+        </div>
+        <div class="search-history__list">
+          ${history.map(h => `
+            <div class="search-history__item" onclick="f730_useHistory('${h}')">
+              <span class="search-history__item-icon">🕐</span>
+              <span>${h}</span>
+            </div>`).join('')}
+        </div>`;
+    }
+    function f730_clearSearchHistory() {
+      localStorage.removeItem('liquor_search_history');
+      f730_renderSearchHistory();
+    }
+    function f730_useHistory(query) {
+      document.querySelector('.search-bar__input').value = query;
+      performSearch(query);
+    }
+
+    // f731: 最近浏览快速入口 (Recent Views)
+    function f731_showRecentViews() {
+      const KEY = 'liquor_recent_views';
+      let views = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'recentViewsModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('recentViewsModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🕐 最近浏览</h2>
+          ${views.length === 0 ? '<div class="empty-state"><div class="empty-state__icon">📭</div><div>暂无浏览记录</div></div>' : `
+          <div class="ranking-list">
+            ${views.slice(0, 10).map((v, i) => `
+              <div class="fav-ranking__item" onclick="f731_openLiquor('${v.id}')">
+                <div class="fav-ranking__rank">${i + 1}</div>
+                <div class="fav-ranking__info">
+                  <div class="fav-ranking__name">${v.name}</div>
+                  <div class="fav-ranking__meta">${v.time}</div>
+                </div>
+              </div>`).join('')}
+          </div>`}
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    function f731_addRecentView(id, name) {
+      const KEY = 'liquor_recent_views';
+      let views = JSON.parse(localStorage.getItem(KEY) || '[]');
+      views = views.filter(v => v.id !== id);
+      views.unshift({ id, name, time: new Date().toLocaleString('zh-CN') });
+      views = views.slice(0, 10);
+      localStorage.setItem(KEY, JSON.stringify(views));
+    }
+    function f731_openLiquor(id) {
+      const item = window.DATA.find(d => d.id === id);
+      if (item) {
+        document.getElementById('recentViewsModal').remove();
+        document.getElementById('modalBackdrop').classList.remove('show');
+        openDetailModal(item);
+      }
+    }
+
+    // f732: 自定义标签功能 (Custom Tags)
+    function f732_createCustomTag(liquorId, tagName, tagColor = '#3498db') {
+      const KEY = `liquor_custom_tags_${liquorId}`;
+      let tags = JSON.parse(localStorage.getItem(KEY) || '[]');
+      if (tags.find(t => t.name === tagName)) return;
+      tags.push({ name: tagName, color: tagColor, createdAt: Date.now() });
+      localStorage.setItem(KEY, JSON.stringify(tags));
+      f732_renderTags(liquorId);
+    }
+    function f732_removeCustomTag(liquorId, tagName) {
+      const KEY = `liquor_custom_tags_${liquorId}`;
+      let tags = JSON.parse(localStorage.getItem(KEY) || '[]');
+      tags = tags.filter(t => t.name !== tagName);
+      localStorage.setItem(KEY, JSON.stringify(tags));
+      f732_renderTags(liquorId);
+    }
+    function f732_renderTags(liquorId) {
+      const KEY = `liquor_custom_tags_${liquorId}`;
+      const tags = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const el = document.getElementById(`customTags-${liquorId}`);
+      if (el) {
+        el.innerHTML = tags.map(t => `<span class="liquor-tag tag-custom" style="background:${t.color}22;border-color:${t.color};color:${t.color};" onclick="f732_removeCustomTag('${liquorId}','${t.name}')">${t.name} ×</span>`).join('');
+      }
+    }
+    function f732_getTags(liquorId) {
+      const KEY = `liquor_custom_tags_${liquorId}`;
+      return JSON.parse(localStorage.getItem(KEY) || '[]');
+    }
+
+    // f733: 酒款备注功能 (Notes for Liquor)
+    function f733_addNote(liquorId, noteText) {
+      const KEY = 'liquor_notes';
+      let notes = JSON.parse(localStorage.getItem(KEY) || '{}');
+      notes[liquorId] = { text: noteText, updatedAt: Date.now() };
+      localStorage.setItem(KEY, JSON.stringify(notes));
+      f733_showNoteModal(liquorId);
+    }
+    function f733_getNote(liquorId) {
+      const KEY = 'liquor_notes';
+      const notes = JSON.parse(localStorage.getItem(KEY) || '{}');
+      return notes[liquorId] || null;
+    }
+    function f733_showNoteModal(liquorId) {
+      const note = f733_getNote(liquorId);
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'noteModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('noteModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">📝 酒款备注</h2>
+          <textarea id="noteTextarea" class="tasting-form__textarea" placeholder="添加备注..." style="width:100%;min-height:120px;margin-bottom:16px;">${note ? note.text : ''}</textarea>
+          <div style="display:flex;gap:12px;justify-content:flex-end;">
+            <button class="tasting-form__btn cancel" onclick="document.getElementById('noteModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">取消</button>
+            <button class="tasting-form__btn save" onclick="f733_saveNote('${liquorId}')">保存</button>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    function f733_saveNote(liquorId) {
+      const text = document.getElementById('noteTextarea').value;
+      f733_addNote(liquorId, text);
+      document.getElementById('noteModal').remove();
+      document.getElementById('modalBackdrop').classList.remove('show');
+      showToast('备注已保存');
+    }
+
+    // f734: 批注功能 (Annotations with Score 1-5)
+    function f734_addAnnotation(liquorId, score, comment) {
+      const KEY = 'liquor_annotations';
+      let annotations = JSON.parse(localStorage.getItem(KEY) || '[]');
+      annotations.push({ liquorId, score: Math.min(5, Math.max(1, score)), comment, timestamp: Date.now() });
+      localStorage.setItem(KEY, JSON.stringify(annotations));
+      f734_showAnnotations(liquorId);
+    }
+    function f734_getAnnotations(liquorId) {
+      const KEY = 'liquor_annotations';
+      const annotations = JSON.parse(localStorage.getItem(KEY) || '[]');
+      return annotations.filter(a => a.liquorId === liquorId);
+    }
+    function f734_showAnnotationModal(liquorId) {
+      const annotations = f734_getAnnotations(liquorId);
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'annotationModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('annotationModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">✏️ 批注</h2>
+          <div class="tasting-form__stars" style="margin-bottom:16px;">
+            ${[1,2,3,4,5].map(n => `<span class="tasting-form__star" data-rating="${n}" onclick="f734_setScore(this)">☆</span>`).join('')}
+          </div>
+          <textarea id="annotationComment" class="tasting-form__textarea" placeholder="添加批注..." style="width:100%;min-height:80px;margin-bottom:16px;"></textarea>
+          <div style="display:flex;gap:12px;justify-content:flex-end;">
+            <button class="tasting-form__btn cancel" onclick="document.getElementById('annotationModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">取消</button>
+            <button class="tasting-form__btn save" onclick="f734_saveAnnotation('${liquorId}')">保存</button>
+          </div>
+          ${annotations.length > 0 ? `<div style="margin-top:20px;border-top:1px solid var(--border-accent);padding-top:16px;">
+            <h4 style="font-size:14px;color:var(--accent-600);margin-bottom:12px;">历史批注</h4>
+            ${annotations.map(a => `<div class="comment-item">
+              <div class="comment-header">
+                <span class="comment-rating">${'★'.repeat(a.score)}${'☆'.repeat(5-a.score)}</span>
+                <span class="comment-date">${new Date(a.timestamp).toLocaleString('zh-CN')}</span>
+              </div>
+              <div class="comment-body">${a.comment}</div>
+            </div>`).join('')}
+          </div>` : ''}
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    function f734_setScore(el) {
+      const rating = parseInt(el.dataset.rating);
+      document.querySelectorAll('.tasting-form__star').forEach((s, i) => {
+        s.textContent = i < rating ? '★' : '☆';
+        s.classList.toggle('active', i < rating);
+      });
+      el.dataset.selectedRating = rating;
+    }
+    function f734_saveAnnotation(liquorId) {
+      const stars = document.querySelectorAll('.tasting-form__star');
+      let score = 3;
+      stars.forEach(s => { if (s.classList.contains('active')) score = parseInt(s.dataset.rating); });
+      const comment = document.getElementById('annotationComment').value;
+      f734_addAnnotation(liquorId, score, comment);
+      document.getElementById('annotationModal').remove();
+      document.getElementById('modalBackdrop').classList.remove('show');
+      showToast('批注已保存');
+    }
+    function f734_showAnnotations(liquorId) {
+      const annotations = f734_getAnnotations(liquorId);
+      const el = document.getElementById(`annotations-${liquorId}`);
+      if (el && annotations.length > 0) {
+        const avg = (annotations.reduce((s, a) => s + a.score, 0) / annotations.length).toFixed(1);
+        el.innerHTML = `<span class="star-rating">${'★'.repeat(Math.round(avg))}${avg < 5 ? '☆'.repeat(5-Math.round(avg)) : ''}</span> (${annotations.length})`;
+      }
+    }
+
+    // f735: 夜间模式定时开关 (Scheduled Night Mode)
+    function f735_scheduleNightMode(startHour = 22, endHour = 7) {
+      const KEY = 'liquor_night_mode_schedule';
+      const schedule = { startHour, endHour, enabled: true };
+      localStorage.setItem(KEY, JSON.stringify(schedule));
+      f735_applyScheduledNightMode();
+      showToast(`夜间模式已设置为 ${startHour}:00 - ${endHour}:00`);
+    }
+    function f735_applyScheduledNightMode() {
+      const KEY = 'liquor_night_mode_schedule';
+      const schedule = JSON.parse(localStorage.getItem(KEY) || '{}');
+      if (!schedule.enabled) return;
+      const now = new Date();
+      const currentHour = now.getHours();
+      const isNight = schedule.startHour > schedule.endHour
+        ? (currentHour >= schedule.startHour || currentHour < schedule.endHour)
+        : (currentHour >= schedule.startHour && currentHour < schedule.endHour);
+      const html = document.documentElement;
+      if (isNight) {
+        html.setAttribute('data-theme', 'dark');
+        document.getElementById('themeToggleBtn')?.classList.add('active');
+      } else {
+        html.removeAttribute('data-theme');
+        document.getElementById('themeToggleBtn')?.classList.remove('active');
+      }
+    }
+    function f735_cancelSchedule() {
+      localStorage.removeItem('liquor_night_mode_schedule');
+      showToast('定时夜间模式已取消');
+    }
+    function f735_showScheduleModal() {
+      const schedule = JSON.parse(localStorage.getItem('liquor_night_mode_schedule') || '{}');
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'nightModeModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('nightModeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🌙 夜间模式定时</h2>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <label style="width:60px;color:var(--text-muted);">开始</label>
+              <select id="nightStartHour" class="tasting-form__select" style="flex:1;">
+                ${[...Array(24)].map((_, h) => `<option value="${h}" ${schedule.startHour === h ? 'selected' : ''}>${h}:00</option>`).join('')}
+              </select>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <label style="width:60px;color:var(--text-muted);">结束</label>
+              <select id="nightEndHour" class="tasting-form__select" style="flex:1;">
+                ${[...Array(24)].map((_, h) => `<option value="${h}" ${schedule.endHour === h ? 'selected' : ''}>${h}:00</option>`).join('')}
+              </select>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:8px;">
+              <button class="tasting-form__btn save" style="flex:1;" onclick="f735_saveSchedule()">保存</button>
+              <button class="tasting-form__btn cancel" style="flex:1;" onclick="f735_cancelSchedule();document.getElementById('nightModeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">取消定时</button>
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    function f735_saveSchedule() {
+      const startHour = parseInt(document.getElementById('nightStartHour').value);
+      const endHour = parseInt(document.getElementById('nightEndHour').value);
+      f735_scheduleNightMode(startHour, endHour);
+      document.getElementById('nightModeModal').remove();
+      document.getElementById('modalBackdrop').classList.remove('show');
+    }
+    // Check every minute
+    setInterval(f735_applyScheduledNightMode, 60000);
+
+    // f736: 自定义主题色 (Custom Theme Color)
+    const f736_themeColors = [
+      { name: '香槟金', color: '#c6a15b', bg: '#080706' },
+      { name: '翡翠绿', color: '#27ae60', bg: '#060a08' },
+      { name: '宝石蓝', color: '#3498db', bg: '#060810' },
+      { name: '玫瑰红', color: '#e74c3c', bg: '#0a0608' },
+      { name: '星空紫', color: '#9b59b6', bg: '#090810' }
+    ];
+    function f736_customThemeColor(colorIndex = 0) {
+      const theme = f736_themeColors[colorIndex] || f736_themeColors[0];
+      const root = document.documentElement;
+      root.style.setProperty('--accent-500', theme.color);
+      root.style.setProperty('--accent-400', theme.color + 'aa');
+      root.style.setProperty('--bg-deepest', theme.bg);
+      localStorage.setItem('liquor_custom_theme', JSON.stringify({ colorIndex, ...theme }));
+      showToast(`主题已切换为 ${theme.name}`);
+    }
+    function f736_loadCustomTheme() {
+      const saved = JSON.parse(localStorage.getItem('liquor_custom_theme') || '{}');
+      if (saved.colorIndex !== undefined) {
+        f736_customThemeColor(saved.colorIndex);
+      }
+    }
+    function f736_showThemeModal() {
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'themeModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('themeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🎨 自定义主题色</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:12px;">
+            ${f736_themeColors.map((t, i) => `
+              <div class="ux-theme-option" onclick="f736_customThemeColor(${i});document.getElementById('themeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');" style="padding:16px;text-align:center;cursor:pointer;border-radius:12px;background:${t.bg};border:2px solid ${t.color};">
+                <div style="width:40px;height:40px;background:${t.color};border-radius:50%;margin:0 auto 8px;"></div>
+                <div style="color:${t.color};font-size:13px;">${t.name}</div>
+              </div>`).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    f736_loadCustomTheme();
+
+    // f737: 界面字体大小调节 (Font Size Adjustment)
+    const f737_fontSizes = { small: '13px', medium: '15px', large: '17px', xlarge: '20px' };
+    function f737_changeFontSize(size = 'medium') {
+      const root = document.documentElement;
+      root.style.setProperty('--font-size-base', f737_fontSizes[size] || '15px');
+      document.body.style.fontSize = f737_fontSizes[size] || '15px';
+      localStorage.setItem('liquor_font_size', size);
+      document.querySelectorAll('.font-size-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === size);
+      });
+    }
+    function f737_loadFontSize() {
+      const saved = localStorage.getItem('liquor_font_size') || 'medium';
+      f737_changeFontSize(saved);
+    }
+    function f737_showFontSizeModal() {
+      const current = localStorage.getItem('liquor_font_size') || 'medium';
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'fontSizeModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('fontSizeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🔤 字体大小</h2>
+          <div style="display:flex;gap:12px;justify-content:center;">
+            ${['small', 'medium', 'large', 'xlarge'].map(s => `
+              <button class="font-size-btn ${current === s ? 'active' : ''}" data-size="${s}" onclick="f737_changeFontSize('${s}');document.getElementById('fontSizeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');" style="padding:12px 20px;border-radius:8px;background:${current === s ? 'var(--accent-700)' : 'var(--bg-card)'};border:1px solid var(--border-accent);color:${current === s ? 'var(--accent-200)' : 'var(--text-muted)'};cursor:pointer;font-size:${f737_fontSizes[s]};">${s === 'small' ? '小' : s === 'medium' ? '中' : s === 'large' ? '大' : '特大'}</button>
+            `).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    f737_loadFontSize();
+
+    // f738: 卡片布局预设保存 (Card Layout Presets)
+    function f738_saveLayoutPreset(name, config) {
+      const KEY = 'liquor_layout_presets';
+      let presets = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const existing = presets.findIndex(p => p.name === name);
+      if (existing >= 0) presets[existing] = { name, config, updatedAt: Date.now() };
+      else presets.push({ name, config, createdAt: Date.now() });
+      localStorage.setItem(KEY, JSON.stringify(presets));
+      showToast(`布局预设 "${name}" 已保存`);
+    }
+    function f738_loadLayoutPreset(name) {
+      const KEY = 'liquor_layout_presets';
+      const presets = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const preset = presets.find(p => p.name === name);
+      if (preset) {
+        const { columns, gap, viewMode } = preset.config;
+        if (columns) document.querySelector('.card-grid').style.gridTemplateColumns = `repeat(auto-fill, minmax(${columns}px, 1fr))`;
+        if (gap) document.querySelector('.card-grid').style.gap = gap;
+        if (viewMode) switchView(viewMode);
+      }
+    }
+    function f738_getPresets() {
+      const KEY = 'liquor_layout_presets';
+      return JSON.parse(localStorage.getItem(KEY) || '[]');
+    }
+    function f738_deletePreset(name) {
+      const KEY = 'liquor_layout_presets';
+      let presets = JSON.parse(localStorage.getItem(KEY) || '[]');
+      presets = presets.filter(p => p.name !== name);
+      localStorage.setItem(KEY, JSON.stringify(presets));
+    }
+    function f738_captureCurrentLayout() {
+      const grid = document.querySelector('.card-grid');
+      const computed = window.getComputedStyle(grid);
+      return {
+        columns: parseInt(computed.gridTemplateColumns.split(' ')[0]),
+        gap: computed.gap,
+        viewMode: grid.classList.contains('list-view') ? 'list' : grid.classList.contains('masonry-view') ? 'masonry' : 'grid'
+      };
+    }
+    function f738_showPresetModal() {
+      const presets = f738_getPresets();
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'presetModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('presetModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">📐 卡片布局预设</h2>
+          <div style="margin-bottom:16px;">
+            <input id="presetNameInput" class="tasting-form__input" placeholder="输入预设名称" style="width:100%;margin-bottom:8px;">
+            <button onclick="f738_saveNewPreset()" class="tasting-form__btn save" style="width:100%;">保存当前布局</button>
+          </div>
+          ${presets.length === 0 ? '<div class="empty-state"><div class="empty-state__icon">📭</div><div>暂无保存的预设</div></div>' : `
+          <div class="folder-list">
+            ${presets.map(p => `
+              <div class="folder-item preset-item">
+                <div class="folder-item__info" onclick="f738_loadLayoutPreset('${p.name}')">
+                  <div class="folder-item__name">${p.name}</div>
+                  <div class="folder-item__count">${p.config.columns}列 · ${p.config.viewMode}视图</div>
+                </div>
+                <div class="folder-item__actions">
+                  <button class="folder-item__btn delete" onclick="f738_deletePreset('${p.name}');f738_showPresetModal();">🗑️</button>
+                </div>
+              </div>`).join('')}
+          </div>`}
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    function f738_saveNewPreset() {
+      const name = document.getElementById('presetNameInput').value.trim();
+      if (!name) return;
+      const config = f738_captureCurrentLayout();
+      f738_saveLayoutPreset(name, config);
+      f738_showPresetModal();
+    }
+
+    // f739: 使用习惯统计 (Usage Statistics Tracking)
+    function f739_trackUsageStats(action, details = {}) {
+      const KEY = 'liquor_usage_stats';
+      let stats = JSON.parse(localStorage.getItem(KEY) || '{}');
+      if (!stats.daily) stats.daily = {};
+      if (!stats.actions) stats.actions = {};
+      const today = new Date().toISOString().split('T')[0];
+      stats.daily[today] = stats.daily[today] || { count: 0, duration: 0 };
+      stats.daily[today].count++;
+      if (details.duration) stats.daily[today].duration += details.duration;
+      stats.actions[action] = stats.actions[action] || 0;
+      stats.actions[action]++;
+      stats.lastActive = Date.now();
+      localStorage.setItem(KEY, JSON.stringify(stats));
+    }
+    function f739_getUsageStats() {
+      const KEY = 'liquor_usage_stats';
+      return JSON.parse(localStorage.getItem(KEY) || '{}');
+    }
+    function f739_showUsageStats() {
+      const stats = f739_getUsageStats();
+      const today = new Date().toISOString().split('T')[0];
+      const recentDays = Object.keys(stats.daily || {}).sort().slice(-7);
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'usageStatsModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('usageStatsModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">📊 使用统计</h2>
+          <div class="modal__section">
+            <h4 style="font-size:14px;color:var(--accent-600);margin-bottom:12px;">近7日活动</h4>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;">
+              ${recentDays.map(day => {
+                const d = stats.daily[day];
+                const height = Math.min(100, (d.count / 10) * 100);
+                return `<div style="text-align:center;">
+                  <div style="background:var(--accent-700);height:${height}px;border-radius:4px;margin-bottom:4px;"></div>
+                  <div style="font-size:10px;color:var(--text-muted);">${day.slice(5)}</div>
+                  <div style="font-size:10px;color:var(--accent-500);">${d.count}次</div>
+                </div>`;
+              }).join('')}
+            </div>
+          </div>
+          <div class="modal__section">
+            <h4 style="font-size:14px;color:var(--accent-600);margin-bottom:12px;">功能使用排行</h4>
+            <div class="ranking-list">
+              ${Object.entries(stats.actions || {}).sort((a,b) => b[1]-a[1]).slice(0, 5).map(([action, count], i) => `
+                <div class="fav-ranking__item">
+                  <div class="fav-ranking__rank">${i + 1}</div>
+                  <div class="fav-ranking__info">
+                    <div class="fav-ranking__name">${action}</div>
+                  </div>
+                  <div class="fav-ranking__count">${count}次</div>
+                </div>`).join('')}
+            </div>
+          </div>
+          <div class="modal__grid" style="margin-top:16px;">
+            <div class="modal__grid-item">
+              <div class="modal__grid-label">总浏览天数</div>
+              <div class="modal__grid-value">${Object.keys(stats.daily || {}).length}天</div>
+            </div>
+            <div class="modal__grid-item">
+              <div class="modal__grid-label">最后活跃</div>
+              <div class="modal__grid-value">${stats.lastActive ? new Date(stats.lastActive).toLocaleString('zh-CN') : '-'}</div>
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+    // Track page views
+    f739_trackUsageStats('page_view');
+
+    // ═══════════════════════════════════════════════════════════════════
+    // f740-f749 内容扩充功能
+    // ═══════════════════════════════════════════════════════════════════
+
+    // f740: 年份知识库 (Year Knowledge Base)
+    function f740_showYearKnowledge(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const yearData = d.year ? [
+        { label: '蒸馏年份', value: d.year.distill || '1970年代', desc: '酒液蒸馏的年份，影响陈酿潜力' },
+        { label: '装瓶年份', value: d.year.bottle || '2020年', desc: '装瓶时间，决定适饮期起点' },
+        { label: '陈酿年限', value: d.year.age || '25年', desc: '橡木桶陈酿时长，越长越珍贵' },
+        { label: '限量编号', value: d.year.number || '#188/300', desc: '稀缺性标识，影响收藏价值' }
+      ] : [
+        { label: '经典年份', value: '1980s-2000s', desc: '最佳批次年份区间' },
+        { label: '世纪限量', value: '1999', desc: '千禧年特别版' },
+        { label: '鉴赏级', value: '1996', desc: '拍卖会热门' }
+      ];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'yearKnowledgeModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('yearKnowledgeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">📅 ${d.name} - 年份知识库</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">了解酒的年份背后的故事与价值</p>
+          <div class="modal__grid">
+            ${yearData.map(item => `
+              <div class="modal__grid-item">
+                <div class="modal__grid-label">${item.label}</div>
+                <div class="modal__grid-value" style="font-size:1.2rem;color:var(--accent-500);">${item.value}</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;">${item.desc}</div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="modal__story" style="margin-top:20px;">
+            <h4 style="color:var(--accent-600);margin-bottom:8px;">🏆 年份评级</h4>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="modal__badge" style="background:rgba(198,161,91,0.15);">WA 95</span>
+              <span class="modal__badge" style="background:rgba(198,161,91,0.15);">WS 97</span>
+              <span class="modal__badge" style="background:rgba(198,161,91,0.15);">JS 96</span>
+            </div>
+          </div>
+          <div style="margin-top:16px;padding:12px;background:var(--bg-elevated);border-radius:8px;border:1px solid var(--border-accent);">
+            <h4 style="color:var(--accent-600);margin-bottom:8px;">💰 收藏价值趋势</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.6;">
+              ${d.name}的年份款在过去10年中平均升值约<span style="color:var(--accent-500);font-weight:bold;">280%</span>，
+              其中<strong style="color:var(--text-cream);">1996-1998年</strong>的陈酿款最受拍卖市场青睐，
+              建议收藏家重点关注。
+            </p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f741: 酿造工艺详解 (Brewing Process Details)
+    function f741_showBrewingProcess(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const type = d.type || 'whisky';
+      const processes = {
+        'whisky': [
+          { step: '1. 糖化', icon: '🌾', desc: '将麦芽磨碎与热水混合，提取麦芽糖', time: '1-2小时' },
+          { step: '2. 发酵', icon: '🦠', desc: '加入酵母将麦芽糖转化为酒精', time: '48-96小时' },
+          { step: '3. 蒸馏', icon: '🔴', desc: '铜制壶式蒸馏器进行双重蒸馏', time: '12-24小时' },
+          { step: '4. 陈酿', icon: '🪵', desc: '放入橡木桶中陈酿数年', time: '3-50年' },
+          { step: '5. 装瓶', icon: '🧴', desc: '稀释至目标酒精度后装瓶', time: '1-3天' }
+        ],
+        'brandy': [
+          { step: '1. 压榨', icon: '🍇', desc: '精选葡萄压榨取汁', time: '2-4小时' },
+          { step: '2. 发酵', icon: '🦠', desc: '自然发酵或加入酵母', time: '1-2周' },
+          { step: '3. 蒸馏', icon: '🔴', desc: '夏朗德壶式蒸馏器双重蒸馏', time: '24小时' },
+          { step: '4. 陈酿', icon: '🪵', desc: '橡木桶陈酿，至少2年', time: '2-50年' },
+          { step: '5. 调配', icon: '✨', desc: '调酒师精心调配后装瓶', time: '3-7天' }
+        ],
+        'rum': [
+          { step: '1. 甘蔗', icon: '🎋', desc: '收割甘蔗并提取糖蜜', time: '1-2天' },
+          { step: '2. 发酵', icon: '🦠', desc: '添加酵母发酵糖蜜', time: '24-72小时' },
+          { step: '3. 蒸馏', icon: '🔴', desc: '连续蒸馏或壶式蒸馏', time: '8-12小时' },
+          { step: '4. 陈酿', icon: '🪵', desc: '橡木桶中陈酿', time: '1-25年' },
+          { step: '5. 调配', icon: '✨', desc: '调配不同年份原酒', time: '2-5天' }
+        ]
+      };
+      const steps = processes[type] || processes['whisky'];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'brewingProcessModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('brewingProcessModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">⚗️ ${d.name} - 酿造工艺详解</h2>
+          <p style="color:var(--text-muted);margin-bottom:24px;">探索从原料到成品的神奇旅程</p>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            ${steps.map((s, i) => `
+              <div style="display:flex;align-items:flex-start;gap:16px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);position:relative;">
+                <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--accent-700),var(--accent-700));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">${s.icon}</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+                    <span style="font-weight:bold;color:var(--text-cream);">${s.step}</span>
+                    <span style="font-size:12px;color:var(--accent-600);background:rgba(198,161,91,0.1);padding:2px 8px;border-radius:4px;">⏱ ${s.time}</span>
+                  </div>
+                  <p style="color:var(--text-muted);font-size:0.9rem;margin:0;">${s.desc}</p>
+                </div>
+                ${i < steps.length - 1 ? '<div style="position:absolute;left:40px;top:60px;width:2px;height:20px;background:var(--border-accent);"></div>' : ''}
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f742: 酒厂历史介绍 (Distillery History)
+    function f742_showDistilleryHistory(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const history = {
+        'Macallan': { founded: '1824', founder: 'Alexander Reid', location: '斯佩塞, 苏格兰', milestones: ['1824年 - 创立于苏格兰高地', '1980年代 - 成为单一麦芽威士忌标杆', '2000年 - 推出珍稀年份系列', '2018年 - 新蒸馏厂落成'] },
+        'Martell': { founded: '1715', founder: 'Jean Martell', location: '干邑, 法国', milestones: ['1715年 - 创立于干邑产区', '1831年 - 推出首款VSOP', '1912年 - 发明Cordon Bleu蓝带', '1989年 - 加入保乐力加集团'] },
+        'default': { founded: '19世纪', founder: '传奇酿酒师', location: d.region || '未知产区', milestones: ['19世纪中期 - 酒厂创立', '20世纪初 - 首次出口海外', '1970年代 - 现代化改造', '21世纪 - 走向全球'] }
+      };
+      const info = history[d.ename?.split(' ')[0]] || history['default'];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'distilleryHistoryModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('distilleryHistoryModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🏭 ${d.name} - 酒厂历史</h2>
+          <div class="modal__grid" style="margin:20px 0;">
+            <div class="modal__grid-item">
+              <div class="modal__grid-label">创立年份</div>
+              <div class="modal__grid-value">${info.founded}</div>
+            </div>
+            <div class="modal__grid-item">
+              <div class="modal__grid-label">创始人</div>
+              <div class="modal__grid-value">${info.founder}</div>
+            </div>
+            <div class="modal__grid-item">
+              <div class="modal__grid-label">产区</div>
+              <div class="modal__grid-value">${info.location}</div>
+            </div>
+            <div class="modal__grid-item">
+              <div class="modal__grid-label">地位</div>
+              <div class="modal__grid-value" style="color:var(--accent-500);">🌟 行业标杆</div>
+            </div>
+          </div>
+          <div class="modal__section">
+            <h4 class="modal__section-title">📜 发展里程碑</h4>
+            <div class="fav-ranking" style="margin-top:12px;">
+              ${info.milestones.map((m, i) => `
+                <div class="fav-ranking__item">
+                  <div class="fav-ranking__rank">${i + 1}</div>
+                  <div class="fav-ranking__info">
+                    <div class="fav-ranking__name">${m}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f743: 产区风土说明 (Terroir Description)
+    function f743_showTerroir(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const terroirData = {
+        'Scotland': { climate: '温带海洋性气候', soil: '泥煤、花岗岩、页岩', water: '富含矿物质的泉水', influence: '独特的泥煤烟熏风味，伴随海盐与海藻气息' },
+        'Cognac': { climate: '温和的海洋性气候', soil: '白垩土、黏土', water: '大西洋雨水与地下水', influence: '优雅的花香与果香，酒体圆润' },
+        'Jiangxi': { climate: '亚热带季风气候', soil: '紫土、黄土', water: '赤水河水系', influence: '酱香突出，醇厚绵柔' },
+        'default': { climate: '多样气候条件', soil: '优质土壤', water: '天然水源', influence: '独特的风味特征，产区分辨度高' }
+      };
+      const region = d.region?.includes('苏格兰') ? 'Scotland' : d.region?.includes('干邑') ? 'Cognac' : d.region?.includes('贵州') ? 'Jiangxi' : 'default';
+      const t = terroirData[region];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'terroirModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('terroirModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🌍 ${d.name} - 产区风土</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">风土是决定烈酒风味的核心因素</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:20px;">
+            <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);text-align:center;">
+              <div style="font-size:32px;margin-bottom:8px;">🌡️</div>
+              <div style="color:var(--accent-600);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">气候</div>
+              <div style="color:var(--text-cream);font-weight:600;margin-top:4px;">${t.climate}</div>
+            </div>
+            <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);text-align:center;">
+              <div style="font-size:32px;margin-bottom:8px;">🏔️</div>
+              <div style="color:var(--accent-600);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">土壤</div>
+              <div style="color:var(--text-cream);font-weight:600;margin-top:4px;">${t.soil}</div>
+            </div>
+            <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);text-align:center;">
+              <div style="font-size:32px;margin-bottom:8px;">💧</div>
+              <div style="color:var(--accent-600);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">水源</div>
+              <div style="color:var(--text-cream);font-weight:600;margin-top:4px;">${t.water}</div>
+            </div>
+            <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);text-align:center;">
+              <div style="font-size:32px;margin-bottom:8px;">🍯</div>
+              <div style="color:var(--accent-600);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">口感特征</div>
+              <div style="color:var(--text-cream);font-weight:600;margin-top:4px;">风味浓郁</div>
+            </div>
+          </div>
+          <div class="modal__story">
+            <h4 style="color:var(--accent-600);margin-bottom:8px;">✨ 风土影响</h4>
+            <p style="color:var(--text-cream);line-height:1.8;">${t.influence}</p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f744: 酒杯选择指南 (Glass Guide)
+    function f744_showGlassGuide(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const glasses = [
+        { name: '古典杯 (Old Fashioned)', icon: '🥃', desc: '最适合加冰纯饮，杯壁厚实', best: true, liquid: '40ml' },
+        { name: '高球杯 (Highball)', icon: '🥛', desc: '适合调酒或加冰稀释饮用', best: false, liquid: '240ml' },
+        { name: '白兰地杯 (Snifter)', icon: '🍷', desc: '适合手持加温，聚集香气', best: false, liquid: '60ml' },
+        { name: '烈酒杯 (Shot Glass)', icon: '⚡', desc: '适合快速品鉴高度数酒款', best: false, liquid: '30ml' }
+      ];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'glassGuideModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('glassGuideModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🍸 ${d.name} - 酒杯选择指南</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">选对酒杯，让品鉴体验提升至新境界</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            ${glasses.map(g => `
+              <div style="display:flex;align-items:center;gap:16px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid ${g.best ? 'var(--accent-500)' : 'var(--border-accent)'};${g.best ? 'box-shadow:var(--glow-accent);' : ''}">
+                <div style="font-size:36px;${g.best ? 'filter:drop-shadow(0 0 8px var(--accent-500));' : ''}">${g.icon}</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                    <span style="font-weight:bold;color:var(--text-cream);">${g.name}</span>
+                    ${g.best ? '<span style="font-size:11px;background:var(--accent-700);color:var(--accent-200);padding:2px 8px;border-radius:4px;">推荐</span>' : ''}
+                  </div>
+                  <p style="color:var(--text-muted);font-size:0.85rem;margin:0;">${g.desc}</p>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:11px;color:var(--text-subtle);">容量</div>
+                  <div style="color:var(--accent-500);font-weight:600;">${g.liquid}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="modal__story" style="margin-top:20px;">
+            <h4 style="color:var(--accent-600);margin-bottom:8px;">💡 专业建议</h4>
+            <p style="color:var(--text-cream);font-size:0.9rem;">对于${d.name}，强烈建议使用<strong>古典杯</strong>加<strong>大块老冰</strong>纯饮，让酒液慢慢绽放香气。</p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f745: 品鉴温度建议 (Serving Temperature)
+    function f745_showServingTemp(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const temps = [
+        { temp: '16-18°C', desc: '室温品鉴', icon: '🏠', best: true, note: '最佳品鉴温度' },
+        { temp: '20-22°C', desc: '温暖环境', icon: '☀️', best: false, note: '冬季适宜' },
+        { temp: '12-14°C', desc: '轻度冰镇', icon: '❄️', best: false, note: '夏季可选' },
+        { temp: '8-10°C', desc: '冷藏状态', icon: '🧊', best: false, note: '调酒适用' }
+      ];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'servingTempModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('servingTempModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🌡️ ${d.name} - 品鉴温度建议</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">温度对酒的风味表现有着决定性影响</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:20px;">
+            ${temps.map(t => `
+              <div style="padding:20px;background:var(--bg-elevated);border-radius:12px;border:2px solid ${t.best ? 'var(--accent-500)' : 'var(--border-accent)'};${t.best ? 'box-shadow:var(--glow-accent);' : ''}text-align:center;">
+                <div style="font-size:40px;margin-bottom:8px;">${t.icon}</div>
+                <div style="font-size:1.5rem;font-weight:bold;color:${t.best ? 'var(--accent-500)' : 'var(--text-cream)'};margin-bottom:4px;">${t.temp}</div>
+                <div style="color:var(--text-cream);font-weight:600;margin-bottom:4px;">${t.desc}</div>
+                <div style="font-size:12px;color:var(--text-muted);">${t.note}</div>
+                ${t.best ? '<div style="margin-top:8px;font-size:11px;color:var(--accent-200);">★ 推荐</div>' : ''}
+              </div>
+            `).join('')}
+          </div>
+          <div class="modal__story">
+            <h4 style="color:var(--accent-600);margin-bottom:8px;">🍷 品鉴技巧</h4>
+            <p style="color:var(--text-cream);line-height:1.8;">
+              品鉴${d.name}时，建议将其从<span style="color:var(--accent-500);">16-18°C</span>的恒温酒柜中取出，
+              倒入古典杯中静置<strong>2-3分钟</strong>，让酒液与空气接触后，风味会更加复杂饱满。
+            </p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f746: 醒酒时间建议 (Decanting Time)
+    function f746_showDecantingTime(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const times = [
+        { range: '0-5年', time: '15-30分钟', desc: '年轻酒款，需要较短时间唤醒', icon: '🌱' },
+        { range: '6-15年', time: '30-60分钟', desc: '中期酒款，风味开始绽放', icon: '🌿' },
+        { range: '16-25年', time: '60-90分钟', desc: '老年酒款，需要充分呼吸', icon: '🌳' },
+        { range: '25年+', time: '90-120分钟', desc: '珍稀老酒，小心唤醒沉睡的风味', icon: '🏆' }
+      ];
+      const abv = parseFloat(d.abv) || 40;
+      const recommended = abv > 50 ? times[2] : abv > 40 ? times[1] : times[0];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'decantingTimeModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('decantingTimeModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">⏳ ${d.name} - 醒酒时间建议</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">让酒液与空气充分接触，释放全部风味</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            ${times.map(t => `
+              <div style="display:flex;align-items:center;gap:16px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid ${t.icon === recommended.icon ? 'var(--accent-500)' : 'var(--border-accent)'};${t.icon === recommended.icon ? 'box-shadow:var(--glow-accent);' : ''}">
+                <div style="font-size:32px;">${t.icon}</div>
+                <div style="flex:1;">
+                  <div style="color:var(--accent-500);font-weight:bold;font-size:1.1rem;">${t.time}</div>
+                  <div style="color:var(--text-cream);font-weight:600;">${t.range}</div>
+                  <div style="color:var(--text-muted);font-size:0.85rem;">${t.desc}</div>
+                </div>
+                ${t.icon === recommended.icon ? '<span style="background:var(--accent-700);color:var(--accent-200);padding:4px 12px;border-radius:20px;font-size:12px;">推荐</span>' : ''}
+              </div>
+            `).join('')}
+          </div>
+          <div style="margin-top:20px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);">
+            <h4 style="color:var(--accent-600);margin-bottom:12px;">💡 专业醒酒建议</h4>
+            <p style="color:var(--text-cream);line-height:1.8;font-size:0.9rem;">
+              对于这款<strong>${d.abv}%</strong>的${d.name}，建议使用<span style="color:var(--accent-500);">${recommended.time}</span>的醒酒时间。
+              可以使用专业的醒酒器，或直接在古典杯中静置，期间轻轻摇晃可以加速醒酒过程。
+            </p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f747: 配餐禁忌 (Pairing Warnings)
+    function f747_showPairingWarning(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const warnings = [
+        { food: '薄荷味甜点', reason: '薄荷的清凉感会掩盖酒的细腻风味', severity: 'high' },
+        { food: '柑橘类水果', reason: '酸性物质会破坏酒体平衡', severity: 'medium' },
+        { food: '巧克力甜点', reason: '单宁与可可结合产生苦涩感', severity: 'high' },
+        { food: '辛辣川菜', reason: '辣味与酒精双重刺激，伤害味蕾', severity: 'medium' },
+        { food: '生蚝/海鲜', reason: '金属味与酒产生不愉快反应', severity: 'low' }
+      ];
+      const goodPairings = [
+        { food: '陈年奶酪', desc: '蓝纹奶酪、帕玛森' },
+        { food: '坚果', desc: '烤杏仁、核桃' },
+        { food: '雪茄', desc: '温和的古巴雪茄' },
+        { food: '深色巧克力', desc: '70%以上黑巧克力' }
+      ];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'pairingWarningModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('pairingWarningModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">⚠️ ${d.name} - 配餐禁忌</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">避开这些搭配，让品鉴体验更完美</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+            ${warnings.map(w => `
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;background:rgba(232,90,90,0.1);border-radius:8px;border:1px solid rgba(232,90,90,0.3);">
+                <span style="font-size:20px;">🚫</span>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                    <span style="font-weight:bold;color:var(--text-cream);">${w.food}</span>
+                    <span style="font-size:10px;padding:2px 6px;border-radius:4px;background:${w.severity === 'high' ? 'rgba(232,90,90,0.3)' : 'rgba(232,90,90,0.15)'};color:${w.severity === 'high' ? '#e85a5a' : 'var(--text-muted)'};">${w.severity === 'high' ? '强烈不建议' : '建议避免'}</span>
+                  </div>
+                  <p style="color:var(--text-muted);font-size:0.85rem;margin:0;">${w.reason}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="modal__section">
+            <h4 class="modal__section-title">✅ 推荐搭配</h4>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;">
+              ${goodPairings.map(p => `
+                <div style="padding:12px;background:var(--bg-elevated);border-radius:8px;border:1px solid var(--border-accent);">
+                  <div style="color:var(--text-cream);font-weight:600;margin-bottom:2px;">${p.food}</div>
+                  <div style="color:var(--text-muted);font-size:0.8rem;">${p.desc}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f748: 保存方法指南 (Storage Guide)
+    function f748_showStorageGuide(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const conditions = [
+        { label: '温度', value: '12-18°C', icon: '🌡️', desc: '恒温避免波动', danger: '高温会加速成熟' },
+        { label: '湿度', value: '60-80%', icon: '💧', desc: '防止软木塞干裂', danger: '过于干燥导致渗漏' },
+        { label: '光线', value: '避光存放', icon: '🌙', desc: '远离阳光直射', danger: '紫外线破坏风味' },
+        { label: '摆放', value: '卧放保存', icon: '🗜️', desc: '保持木塞湿润', danger: '直立放置易干裂' }
+      ];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'storageGuideModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('storageGuideModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🏠 ${d.name} - 保存方法指南</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">正确的保存方式能保持酒的品质</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:20px;">
+            ${conditions.map(c => `
+              <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                  <span style="font-size:28px;">${c.icon}</span>
+                  <div>
+                    <div style="color:var(--accent-500);font-size:1.1rem;font-weight:bold;">${c.value}</div>
+                    <div style="color:var(--text-cream);font-size:0.9rem;">${c.label}</div>
+                  </div>
+                </div>
+                <p style="color:var(--text-muted);font-size:0.85rem;margin:0 0 8px;">${c.desc}</p>
+                <p style="color:#e85a5a;font-size:0.8rem;margin:0;">⚠️ ${c.danger}</p>
+              </div>
+            `).join('')}
+          </div>
+          <div class="modal__story">
+            <h4 style="color:var(--accent-600);margin-bottom:8px;">📌 专业建议</h4>
+            <ul style="color:var(--text-cream);margin:0;padding-left:20px;line-height:2;">
+              <li>开瓶后的酒建议在<span style="color:var(--accent-500);">2-3周内</span>饮用完毕</li>
+              <li>使用真空泵可以延长保存时间</li>
+              <li>避免与气味强烈的物品存放在一起</li>
+              <li>震动会影响酒的成熟过程</li>
+            </ul>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f749: 选购技巧 (Buying Tips)
+    function f749_showBuyingTips(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const tips = [
+        { title: '防伪验证', icon: '🔍', items: ['检查包装上的防伪标签', '扫描二维码验证真伪', '核对产品序列号'] },
+        { title: '购买渠道', icon: '🛒', items: ['官方旗舰店或直营店', '授权经销商', '大型免税店'] },
+        { title: '价格参考', icon: '💰', items: [`市场均价: ¥${d.price || '2000-5000'}`, '警惕价格过低的商品', '关注正规促销活动'] },
+        { title: '年份选择', icon: '📅', items: ['了解各年份特点', '关注权威评分机构', '选择可靠批号'] }
+      ];
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'buyingTipsModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('buyingTipsModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">💎 ${d.name} - 选购技巧</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">掌握这些技巧，买到正品好酒</p>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            ${tips.map(t => `
+              <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                  <span style="font-size:24px;">${t.icon}</span>
+                  <span style="font-weight:bold;color:var(--text-cream);font-size:1rem;">${t.title}</span>
+                </div>
+                <ul style="margin:0;padding-left:36px;color:var(--text-muted);line-height:1.8;">
+                  ${t.items.map(item => `<li style="font-size:0.9rem;">${item}</li>`).join('')}
+                </ul>
+              </div>
+            `).join('')}
+          </div>
+          <div style="margin-top:20px;padding:16px;background:linear-gradient(135deg,rgba(198,161,91,0.1),transparent);border-radius:12px;border:1px solid var(--accent-700);">
+            <h4 style="color:var(--accent-500);margin-bottom:8px;">✨ 温馨提示</h4>
+            <p style="color:var(--text-cream);font-size:0.9rem;line-height:1.6;">
+              购买${d.name}时，请务必选择正规渠道，切勿贪图便宜购买来路不明的商品。
+              建议保留购买凭证，以便日后维权或投资变现。
+            </p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // f750-f759 社交增强功能
+    // ═══════════════════════════════════════════════════════════════════
+
+    // f750: 点赞功能 (Like Toggle)
+    function f750_toggleLike(liquorId) {
+      const likes = JSON.parse(localStorage.getItem('social_likes') || '{}');
+      const userLikes = JSON.parse(localStorage.getItem('social_user_likes') || '[]');
+      const isLiked = userLikes.includes(liquorId);
+      
+      if (isLiked) {
+        userLikes.splice(userLikes.indexOf(liquorId), 1);
+        likes[liquorId] = Math.max((likes[liquorId] || 1) - 1, 0);
+      } else {
+        userLikes.push(liquorId);
+        likes[liquorId] = (likes[liquorId] || 0) + 1;
+      }
+      
+      localStorage.setItem('social_likes', JSON.stringify(likes));
+      localStorage.setItem('social_user_likes', JSON.stringify(userLikes));
+      
+      const d = f69_findById(liquorId);
+      const count = likes[liquorId] || 0;
+      const heartIcon = document.querySelector(`.like-btn-${liquorId}`);
+      if (heartIcon) {
+        heartIcon.textContent = isLiked ? '🤍' : '❤️';
+        heartIcon.classList.toggle('liked', !isLiked);
+        heartIcon.style.transform = 'scale(1.3)';
+        setTimeout(() => heartIcon.style.transform = 'scale(1)', 200);
+      }
+      
+      f754_updateUserLevel();
+      return { liked: !isLiked, count: count };
+    }
+
+    // f751: 收藏量统计 (Favorite Count Statistics)
+    function f751_showFavoriteCount(liquorId) {
+      const likes = JSON.parse(localStorage.getItem('social_likes') || '{}');
+      const allLikes = Object.entries(likes).sort((a, b) => b[1] - a[1]);
+      const provinceStats = {}, typeStats = {};
+      
+      allLikes.forEach(([id, count]) => {
+        const d = f69_findById(id);
+        if (d) {
+          provinceStats[d.province] = (provinceStats[d.province] || 0) + count;
+          typeStats[d.type] = (typeStats[d.type] || 0) + count;
+        }
+      });
+      
+      const topProvinces = Object.entries(provinceStats).sort((a, b) => b[1] - a[1]).slice(0, 5);
+      const topTypes = Object.entries(typeStats).sort((a, b) => b[1] - a[1]).slice(0, 5);
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'favoriteCountModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('favoriteCountModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">⭐ 收藏量统计</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">查看全网用户收藏数据</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);">
+              <h4 style="color:var(--accent-500);margin-bottom:12px;">📍 省份排行</h4>
+              ${topProvinces.map((p, i) => `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);color:var(--text-muted);font-size:0.9rem;"><span>${i + 1}. ${p[0]}</span><span style="color:var(--accent-500);">${p[1]}</span></div>`).join('')}
+            </div>
+            <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);">
+              <h4 style="color:var(--accent-500);margin-bottom:12px;">🏷️ 类型排行</h4>
+              ${topTypes.map((t, i) => `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);color:var(--text-muted);font-size:0.9rem;"><span>${i + 1}. ${t[0]}</span><span style="color:var(--accent-500);">${t[1]}</span></div>`).join('')}
+            </div>
+          </div>
+          <div style="margin-top:20px;padding:16px;background:linear-gradient(135deg,rgba(198,161,91,0.1),transparent);border-radius:12px;border:1px solid var(--accent-700);text-align:center;">
+            <p style="color:var(--text-cream);font-size:0.9rem;">总收藏次数: <span style="color:var(--accent-500);font-size:1.2rem;font-weight:bold;">${allLikes.reduce((s, v) => s + v[1], 0)}</span></p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f752: 浏览量统计 (View Count Statistics)
+    function f752_showViewCount(liquorId) {
+      const views = JSON.parse(localStorage.getItem('social_views') || '{}');
+      const userViews = JSON.parse(localStorage.getItem('social_user_views') || '[]');
+      const d = f69_findById(liquorId);
+      const totalViews = Object.values(views).reduce((s, v) => s + v, 0);
+      const userViewCount = userViews.filter(id => id === liquorId).length;
+      const liquorViews = views[liquorId] || 0;
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'viewCountModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('viewCountModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">👁️ 浏览量统计</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">${d ? d.name : '全网浏览数据'}</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="padding:24px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);text-align:center;">
+              <p style="color:var(--text-muted);font-size:0.9rem;">本款浏览量</p>
+              <p style="color:var(--accent-500);font-size:2rem;font-weight:bold;">${liquorViews}</p>
+            </div>
+            <div style="padding:24px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);text-align:center;">
+              <p style="color:var(--text-muted);font-size:0.9rem;">您的浏览次数</p>
+              <p style="color:var(--accent-500);font-size:2rem;font-weight:bold;">${userViewCount}</p>
+            </div>
+          </div>
+          <div style="margin-top:20px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);text-align:center;">
+            <p style="color:var(--text-muted);font-size:0.9rem;">全站总浏览量</p>
+            <p style="color:var(--accent-500);font-size:1.5rem;font-weight:bold;">${totalViews}</p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f752: 增加浏览次数
+    function f752_addView(liquorId) {
+      const views = JSON.parse(localStorage.getItem('social_views') || '{}');
+      const userViews = JSON.parse(localStorage.getItem('social_user_views') || '[]');
+      views[liquorId] = (views[liquorId] || 0) + 1;
+      userViews.push(liquorId);
+      localStorage.setItem('social_views', JSON.stringify(views));
+      localStorage.setItem('social_user_views', JSON.stringify(userViews));
+      f754_updateUserLevel();
+    }
+
+    // f753: 分享排行榜 (Share Ranking)
+    function f753_showShareRanking(period = 'day') {
+      const shares = JSON.parse(localStorage.getItem('social_shares_' + period) || '{}');
+      const ranking = Object.entries(shares).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'shareRankingModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('shareRankingModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🏆 分享排行榜</h2>
+          <div style="display:flex;gap:8px;margin-bottom:20px;">
+            <button onclick="document.getElementById('shareRankingModal').remove();document.getElementById('modalBackdrop').classList.remove('show');setTimeout(() => f753_showShareRanking('day'), 100);" style="flex:1;padding:8px 16px;border-radius:8px;border:1px solid var(--border-accent);background:${period === 'day' ? 'var(--accent-700)' : 'var(--bg-elevated)'};color:var(--text-cream);cursor:pointer;font-size:0.9rem;">今日</button>
+            <button onclick="document.getElementById('shareRankingModal').remove();document.getElementById('modalBackdrop').classList.remove('show');setTimeout(() => f753_showShareRanking('week'), 100);" style="flex:1;padding:8px 16px;border-radius:8px;border:1px solid var(--border-accent);background:${period === 'week' ? 'var(--accent-700)' : 'var(--bg-elevated)'};color:var(--text-cream);cursor:pointer;font-size:0.9rem;">本周</button>
+            <button onclick="document.getElementById('shareRankingModal').remove();document.getElementById('modalBackdrop').classList.remove('show');setTimeout(() => f753_showShareRanking('month'), 100);" style="flex:1;padding:8px 16px;border-radius:8px;border:1px solid var(--border-accent);background:${period === 'month' ? 'var(--accent-700)' : 'var(--bg-elevated)'};color:var(--text-cream);cursor:pointer;font-size:0.9rem;">本月</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            ${ranking.length === 0 ? '<p style="text-align:center;color:var(--text-muted);padding:40px;">暂无数据</p>' : ranking.map((item, i) => {
+              const d = f69_findById(item[0]);
+              const medal = ['🥇', '🥈', '🥉'][i] || `${i + 1}`;
+              return `<div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-elevated);border-radius:8px;border:1px solid var(--border);">
+                <span style="font-size:1.2rem;">${medal}</span>
+                <div style="flex:1;">
+                  <p style="color:var(--text-cream);font-size:0.9rem;margin:0;">${d ? d.name : '未知酒款'}</p>
+                </div>
+                <span style="color:var(--accent-500);font-weight:bold;">${item[1]}次</span>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f753: 增加分享次数
+    function f753_addShare(liquorId) {
+      const now = new Date();
+      ['day', 'week', 'month'].forEach(period => {
+        const shares = JSON.parse(localStorage.getItem('social_shares_' + period) || '{}');
+        shares[liquorId] = (shares[liquorId] || 0) + 1;
+        localStorage.setItem('social_shares_' + period, JSON.stringify(shares));
+      });
+      f754_updateUserLevel();
+    }
+
+    // f754: 用户等级系统 (User Level System)
+    function f754_updateUserLevel() {
+      const views = JSON.parse(localStorage.getItem('social_user_views') || '[]').length;
+      const likes = JSON.parse(localStorage.getItem('social_user_likes') || '[]').length;
+      const checkins = JSON.parse(localStorage.getItem('social_checkins') || '{}');
+      const checkinDays = Object.keys(checkins).length;
+      const points = f754_calculatePoints();
+      
+      let level = 1;
+      if (points >= 5000) level = 10;
+      else if (points >= 3000) level = 9;
+      else if (points >= 2000) level = 8;
+      else if (points >= 1500) level = 7;
+      else if (points >= 1000) level = 6;
+      else if (points >= 700) level = 5;
+      else if (points >= 400) level = 4;
+      else if (points >= 200) level = 3;
+      else if (points >= 50) level = 2;
+      
+      const levelData = { level, points, views, likes, checkinDays };
+      localStorage.setItem('social_user_level', JSON.stringify(levelData));
+      return levelData;
+    }
+
+    function f754_calculatePoints() {
+      const views = JSON.parse(localStorage.getItem('social_user_views') || '[]').length;
+      const likes = JSON.parse(localStorage.getItem('social_user_likes') || '[]').length;
+      const checkins = JSON.parse(localStorage.getItem('social_checkins') || '{}');
+      const checkinDays = Object.keys(checkins).length;
+      const streak = parseInt(localStorage.getItem('social_checkin_streak') || '0');
+      return views + likes * 2 + checkinDays * 5 + streak * 3;
+    }
+
+    function f754_showLevelBadge() {
+      const levelData = JSON.parse(localStorage.getItem('social_user_level') || '{"level":1,"points":0}');
+      return `<span class="level-badge" style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:linear-gradient(135deg,var(--accent-700),var(--accent-500));border-radius:12px;font-size:0.75rem;font-weight:bold;color:var(--bg);">LV.${levelData.level}</span>`;
+    }
+
+    // f755: 每日签到 (Daily Check-in)
+    function f755_dailyCheckIn() {
+      const today = new Date().toDateString();
+      const checkins = JSON.parse(localStorage.getItem('social_checkins') || '{}');
+      const streak = parseInt(localStorage.getItem('social_checkin_streak') || '0');
+      const lastCheckin = localStorage.getItem('social_last_checkin');
+      
+      if (lastCheckin === today) {
+        return { success: false, message: '今日已签到', streak };
+      }
+      
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      const newStreak = lastCheckin === yesterday ? streak + 1 : 1;
+      
+      checkins[today] = { streak: newStreak, points: 5 + newStreak * 2 };
+      localStorage.setItem('social_checkins', JSON.stringify(checkins));
+      localStorage.setItem('social_last_checkin', today);
+      localStorage.setItem('social_checkin_streak', newStreak.toString());
+      
+      const points = f754_calculatePoints();
+      const levelData = f754_updateUserLevel();
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'checkinModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('checkinModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="text-align:center;">
+          <h2 class="modal__name">🎉 签到成功</h2>
+          <div style="font-size:4rem;margin:20px 0;">✨</div>
+          <p style="color:var(--text-muted);margin-bottom:16px;">连续签到 <span style="color:var(--accent-500);font-weight:bold;font-size:1.2rem;">${newStreak}</span> 天</p>
+          <p style="color:var(--accent-500);font-size:1.5rem;font-weight:bold;margin-bottom:8px;">+${checkins[today].points} 积分</p>
+          <p style="color:var(--text-muted);font-size:0.9rem;">当前等级: LV.${levelData.level}</p>
+          <div style="margin-top:20px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border-accent);">
+            <p style="color:var(--text-muted);font-size:0.85rem;">连续签到奖励:</p>
+            <p style="color:var(--text-cream);font-size:0.9rem;">3天+10 | 7天+30 | 30天+100</p>
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+      
+      return { success: true, streak: newStreak, points: checkins[today].points };
+    }
+
+    // f756: 积分商城 (Points Mall)
+    function f756_showPointsMall() {
+      const points = f754_calculatePoints();
+      const items = [
+        { id: 1, name: '专属头像框', icon: '🖼️', points: 100, desc: '展示独特身份标识' },
+        { id: 2, name: '昵称高亮', icon: '✨', points: 200, desc: '让你的名字更醒目' },
+        { id: 3, name: 'VIP评论权', icon: '💬', points: 500, desc: '优先展示你的评论' },
+        { id: 4, name: '隐藏浏览记录', icon: '🙈', points: 300, desc: '保护你的隐私' },
+        { id: 5, name: '年度限定徽章', icon: '🏅', points: 1000, desc: '收藏级荣誉象征' }
+      ];
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'pointsMallModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('pointsMallModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🏪 积分商城</h2>
+          <div style="padding:12px 16px;background:linear-gradient(135deg,rgba(198,161,91,0.2),transparent);border-radius:12px;margin-bottom:20px;text-align:center;">
+            <p style="color:var(--text-muted);font-size:0.85rem;">我的积分</p>
+            <p style="color:var(--accent-500);font-size:2rem;font-weight:bold;">${points}</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            ${items.map(item => `
+              <div style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border);">
+                <span style="font-size:2rem;">${item.icon}</span>
+                <div style="flex:1;">
+                  <p style="color:var(--text-cream);font-weight:bold;margin:0;font-size:0.95rem;">${item.name}</p>
+                  <p style="color:var(--text-muted);font-size:0.8rem;margin:4px 0 0;">${item.desc}</p>
+                </div>
+                <div style="text-align:right;">
+                  <p style="color:var(--accent-500);font-weight:bold;margin:0;">${item.points}</p>
+                  <button onclick="f756_redeem(${item.id}, ${item.points})" style="margin-top:4px;padding:4px 12px;background:var(--accent-700);border:none;border-radius:6px;color:var(--bg);font-size:0.8rem;cursor:pointer;">兑换</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    function f756_redeem(itemId, cost) {
+      alert('兑换功能演示: 物品ID=' + itemId + ', 消耗积分=' + cost);
+    }
+
+    // f757: 好友推荐 (Friend Recommendations)
+    function f757_recommendFriend() {
+      const likes = JSON.parse(localStorage.getItem('social_user_likes') || '[]');
+      const recommendations = [
+        { id: 'f1', name: '白酒爱好者', avatar: '🍶', commonLikes: 5, desc: '喜欢浓香型白酒' },
+        { id: 'f2', name: '威士忌达人', avatar: '🥃', commonLikes: 3, desc: '收藏各地产区威士忌' },
+        { id: 'f3', name: '品酒师老王', avatar: '🍷', commonLikes: 7, desc: '专注高端酒款' },
+        { id: 'f4', name: '清酒研究者', avatar: '🍶', commonLikes: 2, desc: '探索日本清酒文化' }
+      ];
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'friendRecModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('friendRecModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">👥 好友推荐</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">基于您的喜好推荐</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            ${recommendations.map(f => `
+              <div style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border);">
+                <div style="width:48px;height:48px;border-radius:50%;background:var(--accent-700);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">${f.avatar}</div>
+                <div style="flex:1;">
+                  <p style="color:var(--text-cream);font-weight:bold;margin:0;font-size:0.95rem;">${f.name}</p>
+                  <p style="color:var(--text-muted);font-size:0.8rem;margin:4px 0 0;">${f.desc}</p>
+                </div>
+                <div style="text-align:right;">
+                  <p style="color:var(--accent-500);font-size:0.8rem;margin:0;">共同喜好 ${f.commonLikes} 款</p>
+                  <button style="margin-top:4px;padding:4px 12px;background:var(--accent-700);border:none;border-radius:6px;color:var(--bg);font-size:0.8rem;cursor:pointer;">加好友</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f758: 邀请奖励 (Invite Rewards)
+    function f758_showInviteReward() {
+      const inviteCode = btoa(localStorage.getItem('social_user_id') || 'user_' + Date.now()).substring(0, 8);
+      const inviteCount = parseInt(localStorage.getItem('social_invite_count') || '0');
+      const rewards = [
+        { count: 1, reward: '+20积分', desc: '首次邀请奖励' },
+        { count: 3, reward: '+50积分', desc: '邀请3人奖励' },
+        { count: 5, reward: '+100积分+专属徽章', desc: '邀请5人奖励' },
+        { count: 10, reward: '+200积分+VIP头像框', desc: '邀请10人奖励' }
+      ];
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'inviteRewardModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('inviteRewardModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content">
+          <h2 class="modal__name">🎁 邀请奖励</h2>
+          <p style="color:var(--text-muted);margin-bottom:20px;">邀请好友获得积分奖励</p>
+          <div style="padding:16px;background:linear-gradient(135deg,rgba(198,161,91,0.2),transparent);border-radius:12px;margin-bottom:20px;">
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:8px;">您的邀请码</p>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <code style="flex:1;padding:12px;background:var(--bg-elevated);border-radius:8px;color:var(--accent-500);font-size:1.2rem;font-weight:bold;letter-spacing:2px;">${inviteCode}</code>
+              <button onclick="f758_copyCode('${inviteCode}')" style="padding:12px 16px;background:var(--accent-700);border:none;border-radius:8px;color:var(--bg);cursor:pointer;font-size:0.9rem;">复制</button>
+            </div>
+          </div>
+          <p style="color:var(--text-muted);margin-bottom:12px;">已邀请: <span style="color:var(--accent-500);font-weight:bold;">${inviteCount}</span> 人</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            ${rewards.map(r => `
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--bg-elevated);border-radius:8px;border:1px solid ${inviteCount >= r.count ? 'var(--accent-700)' : 'var(--border)'};">
+                <div>
+                  <p style="color:var(--text-cream);font-size:0.9rem;margin:0;">邀请 ${r.count} 人</p>
+                  <p style="color:var(--text-muted);font-size:0.8rem;margin:4px 0 0;">${r.desc}</p>
+                </div>
+                <span style="color:${inviteCount >= r.count ? 'var(--accent-500)' : 'var(--text-muted)'};font-weight:bold;">${r.reward}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    function f758_copyCode(code) {
+      navigator.clipboard.writeText(code).then(() => alert('邀请码已复制!'));
+    }
+
+    // f759: 社区讨论区 (Community Discussion)
+    function f759_showCommunity() {
+      const topics = [
+        { id: 1, title: '茅台和五粮液的口感差异', hot: true, comments: 328, time: '2小时前' },
+        { id: 2, title: '有哪些值得收藏的白酒？', hot: true, comments: 256, time: '5小时前' },
+        { id: 3, title: '第一次喝威士忌求推荐', hot: false, comments: 89, time: '1天前' },
+        { id: 4, title: '中国十二香型入门指南', hot: false, comments: 167, time: '2天前' },
+        { id: 5, title: '日本清酒配餐搭配', hot: false, comments: 74, time: '3天前' }
+      ];
+      
+      const posts = [
+        { id: 1, user: '品酒师小李', content: '今天开了一瓶1988年的茅台，入口绵柔，回味悠长...', likes: 56, time: '30分钟前' },
+        { id: 2, user: '酒文化爱好者', content: '求问各位老酒友，存放了30年的白酒还能喝吗？', likes: 23, time: '2小时前' },
+        { id: 3, user: '收藏家老张', content: '分享一下我的酒柜，都是这些年攒的好东西', likes: 89, time: '4小时前' }
+      ];
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'communityModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('communityModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-height:80vh;overflow-y:auto;">
+          <h2 class="modal__name">💬 社区讨论区</h2>
+          <div style="display:flex;gap:8px;margin-bottom:20px;">
+            <button style="flex:1;padding:8px;background:var(--accent-700);border:none;border-radius:8px;color:var(--bg);cursor:pointer;font-size:0.9rem;">🔥 热门话题</button>
+            <button style="flex:1;padding:8px;background:var(--bg-elevated);border:1px solid var(--border-accent);border-radius:8px;color:var(--text-cream);cursor:pointer;font-size:0.9rem;">💬 最新帖子</button>
+          </div>
+          <div style="margin-bottom:20px;">
+            <h4 style="color:var(--accent-500);margin-bottom:12px;">🔥 热门话题</h4>
+            ${topics.map(t => `
+              <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-elevated);border-radius:8px;margin-bottom:8px;cursor:pointer;">
+                <span style="color:${t.hot ? 'var(--accent-500)' : 'var(--text-muted)'};font-size:0.85rem;">${t.hot ? '🔥' : '💬'}</span>
+                <div style="flex:1;">
+                  <p style="color:var(--text-cream);font-size:0.9rem;margin:0;">${t.title}</p>
+                </div>
+                <span style="color:var(--text-muted);font-size:0.75rem;">${t.comments}评 · ${t.time}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div>
+            <h4 style="color:var(--accent-500);margin-bottom:12px;">💬 最新帖子</h4>
+            ${posts.map(p => `
+              <div style="padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border);margin-bottom:12px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                  <span style="color:var(--accent-500);font-weight:bold;font-size:0.9rem;">${p.user}</span>
+                  <span style="color:var(--text-muted);font-size:0.75rem;">${p.time}</span>
+                </div>
+                <p style="color:var(--text-cream);font-size:0.9rem;line-height:1.5;margin:0 0 12px;">${p.content}</p>
+                <div style="display:flex;gap:16px;">
+                  <span style="color:var(--text-muted);font-size:0.8rem;">❤️ ${p.likes}</span>
+                  <span style="color:var(--text-muted);font-size:0.8rem;">💬 回复</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // f760-f764 技术优化功能
+    // ═══════════════════════════════════════════════════════════════════
+
+    // f760: 数据压缩传输 (Data Compression)
+    function f760_compressData(key, data) {
+      try {
+        const jsonStr = JSON.stringify(data);
+        const compressed = LZString.compressToUTF16(jsonStr);
+        localStorage.setItem(key, compressed);
+        const originalSize = new Blob([jsonStr]).size;
+        const compressedSize = new Blob([compressed]).size;
+        return {
+          success: true,
+          originalSize: originalSize,
+          compressedSize: compressedSize,
+          ratio: ((1 - compressedSize / originalSize) * 100).toFixed(2)
+        };
+      } catch (e) {
+        f762_reportError('f760_compressData', e.message);
+        return { success: false, error: e.message };
+      }
+    }
+
+    function f760_decompressData(key) {
+      try {
+        const compressed = localStorage.getItem(key);
+        if (!compressed) return null;
+        const jsonStr = LZString.decompressFromUTF16(compressed);
+        return JSON.parse(jsonStr);
+      } catch (e) {
+        f762_reportError('f760_decompressData', e.message);
+        return null;
+      }
+    }
+
+    // f761: 增量更新机制 (Incremental Update)
+    function f761_incrementalUpdate(serverData, localKey = 'liquor_data_version') {
+      try {
+        const localVersion = parseInt(localStorage.getItem(localKey)) || 0;
+        const serverVersion = serverData.version || 0;
+        
+        if (serverVersion <= localVersion) {
+          return { updated: false, reason: 'already_latest', localVersion, serverVersion };
+        }
+
+        const changes = { added: [], modified: [], deleted: [] };
+        
+        if (serverData.liquors && serverData.liquors.length > 0) {
+          const localData = f760_decompressData('liquors_compressed') || [];
+          const localMap = new Map(localData.map(item => [item.id, item]));
+          
+          serverData.liquors.forEach(item => {
+            if (!localMap.has(item.id)) {
+              changes.added.push(item);
+            } else if (localMap.get(item.id).version !== item.version) {
+              changes.modified.push(item);
+            }
+          });
+          
+          localData.forEach(localItem => {
+            if (!serverData.liquors.find(s => s.id === localItem.id)) {
+              changes.deleted.push(localItem.id);
+            }
+          });
+        }
+        
+        const newLocalData = (f760_decompressData('liquors_compressed') || []).filter(
+          item => !changes.deleted.includes(item.id)
+        );
+        serverData.liquors.forEach(item => {
+          if (changes.added.find(a => a.id === item.id) || changes.modified.find(m => m.id === item.id)) {
+            const existingIndex = newLocalData.findIndex(d => d.id === item.id);
+            if (existingIndex >= 0) {
+              newLocalData[existingIndex] = item;
+            } else {
+              newLocalData.push(item);
+            }
+          }
+        });
+        
+        f760_compressData('liquors_compressed', newLocalData);
+        localStorage.setItem(localKey, serverVersion);
+        
+        return {
+          updated: true,
+          localVersion,
+          serverVersion,
+          changes,
+          stats: {
+            total: serverData.liquors ? serverData.liquors.length : 0,
+            added: changes.added.length,
+            modified: changes.modified.length,
+            deleted: changes.deleted.length
+          }
+        };
+      } catch (e) {
+        f762_reportError('f761_incrementalUpdate', e.message);
+        return { updated: false, error: e.message };
+      }
+    }
+
+    // f762: 错误日志上报 (Error Reporting)
+    function f762_reportError(functionName, errorMessage, errorStack = null) {
+      try {
+        const errorLog = {
+          timestamp: new Date().toISOString(),
+          function: functionName,
+          message: errorMessage,
+          stack: errorStack,
+          userAgent: navigator.userAgent,
+          url: window.location.href
+        };
+        
+        const logs = JSON.parse(localStorage.getItem('error_logs') || '[]');
+        logs.push(errorLog);
+        
+        if (logs.length > 100) {
+          logs.splice(0, logs.length - 100);
+        }
+        
+        localStorage.setItem('error_logs', JSON.stringify(logs));
+        
+        if (window.f763_trackBehavior) {
+          window.f763_trackBehavior('error', {
+            type: 'js_error',
+            function: functionName,
+            message: errorMessage
+          });
+        }
+        
+        console.warn(`[Error Report] ${functionName}: ${errorMessage}`);
+        return { success: true, logId: logs.length - 1 };
+      } catch (e) {
+        console.error('Failed to report error:', e);
+        return { success: false };
+      }
+    }
+
+    function f762_getErrorLogs(limit = 50) {
+      try {
+        const logs = JSON.parse(localStorage.getItem('error_logs') || '[]');
+        return logs.slice(-limit);
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function f762_clearErrorLogs() {
+      localStorage.removeItem('error_logs');
+      return { success: true };
+    }
+
+    // f763: 用户行为分析 (User Behavior Tracking)
+    function f763_trackBehavior(action, data = {}) {
+      try {
+        const behaviorLog = {
+          timestamp: new Date().toISOString(),
+          action: action,
+          data: data,
+          sessionId: sessionStorage.getItem('session_id') || generateSessionId()
+        };
+        
+        const behaviors = JSON.parse(localStorage.getItem('behavior_logs') || '[]');
+        behaviors.push(behaviorLog);
+        
+        if (behaviors.length > 500) {
+          behaviors.splice(0, behaviors.length - 500);
+        }
+        
+        localStorage.setItem('behavior_logs', JSON.stringify(behaviors));
+        
+        const stats = f763_getBehaviorStats();
+        localStorage.setItem('behavior_stats', JSON.stringify(stats));
+        
+        return { success: true, stats };
+      } catch (e) {
+        console.error('Failed to track behavior:', e);
+        return { success: false };
+      }
+    }
+
+    function generateSessionId() {
+      const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
+      sessionStorage.setItem('session_id', id);
+      return id;
+    }
+
+    function f763_getBehaviorStats() {
+      try {
+        const behaviors = JSON.parse(localStorage.getItem('behavior_logs') || '[]');
+        const stats = {
+          total: behaviors.length,
+          actions: {},
+          last24h: 0,
+          last7d: 0
+        };
+        
+        const now = Date.now();
+        const dayMs = 24 * 60 * 60 * 1000;
+        const weekMs = 7 * dayMs;
+        
+        behaviors.forEach(log => {
+          const logTime = new Date(log.timestamp).getTime();
+          stats.actions[log.action] = (stats.actions[log.action] || 0) + 1;
+          
+          if (now - logTime < dayMs) stats.last24h++;
+          if (now - logTime < weekMs) stats.last7d++;
+        });
+        
+        return stats;
+      } catch (e) {
+        return { total: 0, actions: {}, last24h: 0, last7d: 0 };
+      }
+    }
+
+    function f763_showBehaviorStats() {
+      const stats = f763_getBehaviorStats();
+      const logs = JSON.parse(localStorage.getItem('behavior_logs') || '[]').slice(-20);
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.id = 'behaviorStatsModal';
+      modal.innerHTML = `
+        <button class="modal__close" onclick="document.getElementById('behaviorStatsModal').remove();document.getElementById('modalBackdrop').classList.remove('show');">×</button>
+        <div class="modal__content" style="max-height:70vh;overflow-y:auto;">
+          <h2 class="modal__name">📊 用户行为分析</h2>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+            <div style="background:var(--bg-elevated);padding:16px;border-radius:12px;text-align:center;border:1px solid var(--border-accent);">
+              <div style="font-size:2rem;font-weight:bold;color:var(--accent-500);">${stats.total}</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">总行为数</div>
+            </div>
+            <div style="background:var(--bg-elevated);padding:16px;border-radius:12px;text-align:center;border:1px solid var(--border-accent);">
+              <div style="font-size:2rem;font-weight:bold;color:var(--accent-500);">${stats.last24h}</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">24小时内</div>
+            </div>
+            <div style="background:var(--bg-elevated);padding:16px;border-radius:12px;text-align:center;border:1px solid var(--border-accent);">
+              <div style="font-size:2rem;font-weight:bold;color:var(--accent-500);">${stats.last7d}</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">7天内</div>
+            </div>
+          </div>
+          <h4 style="color:var(--accent-500);margin-bottom:12px;">行为类型分布</h4>
+          <div style="margin-bottom:20px;">
+            ${Object.entries(stats.actions).map(([action, count]) => `
+              <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-elevated);border-radius:8px;margin-bottom:8px;">
+                <span style="color:var(--text-cream);">${action}</span>
+                <span style="color:var(--accent-500);font-weight:600;">${count}</span>
+              </div>
+            `).join('')}
+          </div>
+          <h4 style="color:var(--accent-500);margin-bottom:12px;">最近行为记录</h4>
+          <div>
+            ${logs.map(log => `
+              <div style="padding:8px 12px;background:var(--bg-elevated);border-radius:8px;margin-bottom:8px;font-size:0.85rem;">
+                <span style="color:var(--accent-500);">[${new Date(log.timestamp).toLocaleString()}]</span>
+                <span style="color:var(--text-cream);margin-left:8px;">${log.action}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      document.getElementById('modalBackdrop').classList.add('show');
+      document.body.appendChild(modal);
+    }
+
+    // f764: 多端数据同步 (Multi-device Data Sync)
+    function f764_syncData(action = 'export', options = {}) {
+      try {
+        const defaultKeys = ['favorites', 'notes', 'custom_tags', 'achievements', 'user_data'];
+        
+        if (action === 'export') {
+          const data = {};
+          const keys = options.keys || defaultKeys;
+          keys.forEach(key => {
+            const value = localStorage.getItem(key);
+            if (value) data[key] = JSON.parse(value);
+          });
+          
+          const jsonStr = JSON.stringify(data);
+          const compressed = options.compress !== false && window.LZString 
+            ? LZString.compressToBase64(jsonStr) 
+            : jsonStr;
+          
+          const exportData = {
+            version: 1,
+            timestamp: new Date().toISOString(),
+            app: 'world-liquor-gallery',
+            data: compressed
+          };
+          
+          const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `liquor-sync-${new Date().toISOString().slice(0, 10)}.json`;
+          a.click();
+          URL.revokeObjectURL(url);
+          
+          f763_trackBehavior('sync_export', { keys: keys });
+          
+          return { success: true, filename: a.download, size: blob.size };
+        }
+        
+        if (action === 'import') {
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = '.json';
+          input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              try {
+                const importData = JSON.parse(e.target.result);
+                
+                if (!importData.app || !importData.data) {
+                  throw new Error('Invalid sync file format');
+                }
+                
+                const data = importData.compress !== false && window.LZString
+                  ? JSON.parse(LZString.decompressFromBase64(importData.data))
+                  : JSON.parse(importData.data);
+                
+                const overwrite = options.overwrite !== false;
+                let imported = 0, skipped = 0;
+                
+                Object.entries(data).forEach(([key, value]) => {
+                  const existing = localStorage.getItem(key);
+                  if (existing && !overwrite) {
+                    skipped++;
+                    return;
+                  }
+                  localStorage.setItem(key, JSON.stringify(value));
+                  imported++;
+                });
+                
+                f763_trackBehavior('sync_import', { imported, skipped, file: file.name });
+                
+                if (options.showResult !== false) {
+                  alert(`导入完成：成功 ${imported} 项，跳过 ${skipped} 项`);
+                }
+                
+                if (options.onComplete) options.onComplete({ imported, skipped });
+              } catch (err) {
+                f762_reportError('f764_syncData_import', err.message);
+                alert('导入失败：' + err.message);
+              }
+            };
+            reader.readAsText(file);
+          };
+          input.click();
+          return { success: true, action: 'file_dialog_opened' };
+        }
+        
+        if (action === 'backup') {
+          const allData = {};
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && !key.startsWith('_') && !key.includes('error_logs') && !key.includes('behavior_logs')) {
+              allData[key] = localStorage.getItem(key);
+            }
+          }
+          
+          const backup = {
+            version: 1,
+            timestamp: new Date().toISOString(),
+            app: 'world-liquor-gallery',
+            type: 'full_backup',
+            data: allData
+          };
+          
+          const jsonStr = JSON.stringify(backup);
+          const compressed = window.LZString ? LZString.compressToBase64(jsonStr) : jsonStr;
+          
+          const backupData = {
+            version: 1,
+            timestamp: backup.timestamp,
+            app: 'world-liquor-gallery',
+            type: 'full_backup',
+            data: compressed
+          };
+          
+          const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `liquor-backup-${new Date().toISOString().slice(0, 10)}.json`;
+          a.click();
+          URL.revokeObjectURL(url);
+          
+          f763_trackBehavior('backup', { keysCount: Object.keys(allData).length });
+          
+          return { success: true, filename: a.download, size: blob.size };
+        }
+        
+        if (action === 'restore') {
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = '.json';
+          input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              try {
+                const backup = JSON.parse(e.target.result);
+                const data = window.LZString && typeof backup.data === 'string' && backup.data.length < 1000000
+                  ? JSON.parse(LZString.decompressFromBase64(backup.data))
+                  : backup.data;
+                
+                Object.entries(data).forEach(([key, value]) => {
+                  localStorage.setItem(key, value);
+                });
+                
+                f763_trackBehavior('restore', { file: file.name });
+                alert('恢复成功，页面将刷新');
+                window.location.reload();
+              } catch (err) {
+                f762_reportError('f764_syncData_restore', err.message);
+                alert('恢复失败：' + err.message);
+              }
+            };
+            reader.readAsText(file);
+          };
+          input.click();
+          return { success: true, action: 'file_dialog_opened' };
+        }
+        
+        return { success: false, error: 'Unknown action' };
+      } catch (e) {
+        f762_reportError('f764_syncData', e.message);
+        return { success: false, error: e.message };
+      }
+    }
+
+    // f750-f759 社交增强功能绑定
+    window.f750_toggleLike = f750_toggleLike;
+    window.f751_showFavoriteCount = f751_showFavoriteCount;
+    window.f752_showViewCount = f752_showViewCount;
+    window.f752_addView = f752_addView;
+    window.f753_showShareRanking = f753_showShareRanking;
+    window.f753_addShare = f753_addShare;
+    window.f754_updateUserLevel = f754_updateUserLevel;
+    window.f754_calculatePoints = f754_calculatePoints;
+    window.f754_showLevelBadge = f754_showLevelBadge;
+    window.f755_dailyCheckIn = f755_dailyCheckIn;
+    window.f756_showPointsMall = f756_showPointsMall;
+    window.f756_redeem = f756_redeem;
+    window.f757_recommendFriend = f757_recommendFriend;
+    window.f758_showInviteReward = f758_showInviteReward;
+    window.f758_copyCode = f758_copyCode;
+    window.f759_showCommunity = f759_showCommunity;
+
+    // ═══════════════════════════════════════════════════════════════════
+    // f760-f764 技术优化功能绑定
+    // ═══════════════════════════════════════════════════════════════════
+    window.f760_compressData = f760_compressData;
+    window.f760_decompressData = f760_decompressData;
+    window.f761_incrementalUpdate = f761_incrementalUpdate;
+    window.f762_reportError = f762_reportError;
+    window.f762_getErrorLogs = f762_getErrorLogs;
+    window.f762_clearErrorLogs = f762_clearErrorLogs;
+    window.f763_trackBehavior = f763_trackBehavior;
+    window.f763_getBehaviorStats = f763_getBehaviorStats;
+    window.f763_showBehaviorStats = f763_showBehaviorStats;
+    window.f764_syncData = f764_syncData;
+
+    // ═══════════════════════════════════════════════════════════════════
+    // f730-f739 用户体验增强功能绑定
+    // ═══════════════════════════════════════════════════════════════════
+    window.f730_saveSearchHistory = f730_saveSearchHistory;
+    window.f730_renderSearchHistory = f730_renderSearchHistory;
+    window.f730_clearSearchHistory = f730_clearSearchHistory;
+    window.f730_useHistory = f730_useHistory;
+    window.f731_showRecentViews = f731_showRecentViews;
+    window.f731_addRecentView = f731_addRecentView;
+    window.f731_openLiquor = f731_openLiquor;
+    window.f732_createCustomTag = f732_createCustomTag;
+    window.f732_removeCustomTag = f732_removeCustomTag;
+    window.f732_renderTags = f732_renderTags;
+    window.f732_getTags = f732_getTags;
+    window.f733_addNote = f733_addNote;
+    window.f733_getNote = f733_getNote;
+    window.f733_showNoteModal = f733_showNoteModal;
+    window.f733_saveNote = f733_saveNote;
+    window.f734_addAnnotation = f734_addAnnotation;
+    window.f734_getAnnotations = f734_getAnnotations;
+    window.f734_showAnnotationModal = f734_showAnnotationModal;
+    window.f734_setScore = f734_setScore;
+    window.f734_saveAnnotation = f734_saveAnnotation;
+    window.f734_showAnnotations = f734_showAnnotations;
+    window.f735_scheduleNightMode = f735_scheduleNightMode;
+    window.f735_applyScheduledNightMode = f735_applyScheduledNightMode;
+    window.f735_cancelSchedule = f735_cancelSchedule;
+    window.f735_showScheduleModal = f735_showScheduleModal;
+    window.f735_saveSchedule = f735_saveSchedule;
+    window.f736_customThemeColor = f736_customThemeColor;
+    window.f736_loadCustomTheme = f736_loadCustomTheme;
+    window.f736_showThemeModal = f736_showThemeModal;
+    window.f737_changeFontSize = f737_changeFontSize;
+    window.f737_loadFontSize = f737_loadFontSize;
+    window.f737_showFontSizeModal = f737_showFontSizeModal;
+    window.f738_saveLayoutPreset = f738_saveLayoutPreset;
+    window.f738_loadLayoutPreset = f738_loadLayoutPreset;
+    window.f738_getPresets = f738_getPresets;
+    window.f738_deletePreset = f738_deletePreset;
+    window.f738_captureCurrentLayout = f738_captureCurrentLayout;
+    window.f738_showPresetModal = f738_showPresetModal;
+    window.f738_saveNewPreset = f738_saveNewPreset;
+    window.f739_trackUsageStats = f739_trackUsageStats;
+    window.f739_getUsageStats = f739_getUsageStats;
+    window.f739_showUsageStats = f739_showUsageStats;
+
+    // f740-f749 内容扩充功能绑定
+    window.f740_showYearKnowledge = f740_showYearKnowledge;
+    window.f741_showBrewingProcess = f741_showBrewingProcess;
+    window.f742_showDistilleryHistory = f742_showDistilleryHistory;
+    window.f743_showTerroir = f743_showTerroir;
+    window.f744_showGlassGuide = f744_showGlassGuide;
+    window.f745_showServingTemp = f745_showServingTemp;
+    window.f746_showDecantingTime = f746_showDecantingTime;
+    window.f747_showPairingWarning = f747_showPairingWarning;
+    window.f748_showStorageGuide = f748_showStorageGuide;
+    window.f749_showBuyingTips = f749_showBuyingTips;
 
     // ═══════════════════════════════════════════════════════════════════
     // 初始化
