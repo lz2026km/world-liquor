@@ -2,1517 +2,942 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>世界烈酒图鉴 · World Liquor Gallery</title>
+  <meta name="description" content="探索全球200款顶级烈酒 - 茅台、五粮液、威士忌、白兰地、伏特加、金酒、朗姆酒、龙舌兰。含品鉴笔记、雷达图分析、成就系统">
+  <meta name="keywords" content="世界烈酒,白酒,威士忌,白兰地,伏特加,金酒,朗姆酒,龙舌兰,品鉴,调酒">
+  <meta property="og:title" content="世界烈酒图鉴">
+  <meta property="og:description" content="探索全球200款顶级烈酒">
+  <meta name="theme-color" content="#0d0a08">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ================================================
-       世界烈酒图鉴 v2.0 华丽UI
-       深邃藏蓝 + 鎏金奢华风格
+       世界烈酒图鉴 v3.0
+       深邃藏蓝 + 鎏金奢华 · 189函数完整架构
        ================================================ */
-    
-    /* ===== 内联Critical CSS ===== */
-    body {
-      font-family: 'Noto Serif SC', 'Songti SC', serif;
-      background: #050303;
-      color: #e8e0d8;
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-
-    /* ===== Loading State ===== */
-    .initial-loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      gap: 24px;
-    }
-    .initial-loading__icon {
-      font-size: 72px;
-      animation: float 2s ease-in-out infinite;
-    }
-    .initial-loading__text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: #e8a829;
-      letter-spacing: 0.2em;
-    }
-    .initial-loading__bar {
-      width: 200px;
-      height: 3px;
-      background: rgba(232, 168, 41, 0.2);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .initial-loading__bar::after {
-      content: '';
-      display: block;
-      width: 40%;
-      height: 100%;
-      background: linear-gradient(90deg, #e8a829, #f5cc6a);
-      border-radius: 2px;
-      animation: loading 1.2s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    @keyframes loading {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(350%); }
-    }
-
-    /* ===== Favorites Bar ===== */
-    .favorites-bar {
-      position: fixed;
-      left: 0;
-      top: 68px;
-      bottom: 0;
-      width: 48px;
-      background: rgba(13, 10, 8, 0.95);
-      border-right: 1px solid rgba(232, 168, 41, 0.2);
-      z-index: 90;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 16px 0;
-      gap: 8px;
-    }
-    .favorites-bar__btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: rgba(26, 21, 18, 0.6);
-      border: 1px solid rgba(232, 168, 41, 0.2);
-      color: #9a8b7a;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .favorites-bar__btn:hover {
-      background: rgba(232, 168, 41, 0.15);
-      border-color: #e8a829;
-      color: #e8a829;
-    }
-    .favorites-bar__btn.active {
-      background: rgba(232, 168, 41, 0.15);
-      border-color: #e8a829;
-      color: #e8a829;
-    }
-
-    /* ===== Lang Toggle ===== */
-    .lang-btn {
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(26, 21, 18, 0.6);
-      border: 1px solid rgba(232, 168, 41, 0.2);
-      color: #e8e0d8;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-    .lang-btn:hover {
-      background: rgba(232, 168, 41, 0.2);
-      border-color: #e8a829;
-      color: #e8a829;
-    }
-    .lang-btn.active {
-      background: rgba(232, 168, 41, 0.2);
-      border-color: #e8a829;
-      color: #e8a829;
-    }
-
-    /* ===== Notes Panel ===== */
-    .notes-item {
-      padding: 12px 14px;
-      background: rgba(26, 21, 18, 0.6);
-      border: 1px solid rgba(232, 168, 41, 0.15);
-      border-radius: 12px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .notes-item:hover {
-      background: rgba(232, 168, 41, 0.08);
-      border-color: rgba(232, 168, 41, 0.3);
-    }
-    .notes-item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-    .notes-item-name {
-      font-size: 14px;
-      color: #e8e0d8;
-      font-weight: 600;
-    }
-    .notes-item-rating {
-      color: #e8a829;
-      font-size: 12px;
-    }
-    .notes-item-text {
-      font-size: 12px;
-      color: #9a8b7a;
-      line-height: 1.5;
-    }
-    .notes-item-date {
-      font-size: 11px;
-      color: #6b5d4d;
-      margin-top: 4px;
-    }
-    .sidebar-empty {
-      text-align: center;
-      padding: 48px 24px;
-      color: #6b5d4d;
-    }
-    .sidebar-empty__icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-      opacity: 0.5;
-    }
-    .sidebar-empty__text {
-      font-size: 14px;
-    }
-
-    /* ===== Hot This Week ===== */
-    .hot-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .hot-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      background: rgba(26, 21, 18, 0.4);
-      border: 1px solid rgba(232, 168, 41, 0.1);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .hot-item:hover {
-      background: rgba(232, 168, 41, 0.08);
-      border-color: rgba(232, 168, 41, 0.25);
-    }
-    .hot-rank {
-      font-size: 14px;
-      font-weight: 700;
-      color: #e8a829;
-      width: 24px;
-      text-align: center;
-    }
-    .hot-name {
-      flex: 1;
-      font-size: 13px;
-      color: #e8e0d8;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .hot-count {
-      font-size: 11px;
-      color: #6b5d4d;
-    }
-
-    /* ===== Tag Select ===== */
-    .fav-tag-select {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-    .fav-tag-option {
-      padding: 4px 12px;
-      border-radius: 20px;
-      background: rgba(26, 21, 18, 0.6);
-      border: 1px solid rgba(232, 168, 41, 0.2);
-      color: #c9bfb5;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .fav-tag-option:hover,
-    .fav-tag-option.active {
-      background: rgba(232, 168, 41, 0.15);
-      border-color: #e8a829;
-      color: #e8a829;
-    }
-
-    /* ===== Import/Export ===== */
-    .import-export-btns {
-      display: flex;
-      gap: 8px;
-      margin-top: 16px;
-    }
-    .import-btn, .export-btn {
-      flex: 1;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .import-btn {
-      background: rgba(32, 178, 170, 0.15);
-      border: 1px solid rgba(32, 178, 170, 0.3);
-      color: #5fbfb3;
-    }
-    .import-btn:hover {
-      background: rgba(32, 178, 170, 0.25);
-      border-color: rgba(32, 178, 170, 0.5);
-    }
-    .export-btn {
-      background: rgba(232, 168, 41, 0.1);
-      border: 1px solid rgba(232, 168, 41, 0.25);
-      color: #e8a829;
-    }
-    .export-btn:hover {
-      background: rgba(232, 168, 41, 0.2);
-      border-color: rgba(232, 168, 41, 0.4);
-    }
-
-    /* ===== Overlay ===== */
-    .sidebar-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 85;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .sidebar-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    /* ===== Tasting Stars in Modal ===== */
-    .modal__stars {
-      display: flex;
-      gap: 4px;
-      margin: 8px 0;
-    }
-    .modal__stars span {
-      font-size: 20px;
-      color: #4a3f32;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .modal__stars span.active,
-    .modal__stars span:hover {
-      color: #e8a829;
-      transform: scale(1.15);
-    }
-
-    /* ===== Ingredient Tags ===== */
-    .ingredient-diagram {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .ingredient-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      background: rgba(232, 168, 41, 0.06);
-      border: 1px solid rgba(232, 168, 41, 0.15);
-      border-radius: 20px;
-      font-size: 12px;
-      color: #c9bfb5;
-    }
-    .ingredient-icon {
-      font-size: 16px;
-    }
-
-    /* ===== Scene Tags ===== */
-    .scene-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .scene-tag {
-      padding: 6px 14px;
-      background: rgba(139, 41, 66, 0.15);
-      border: 1px solid rgba(139, 41, 66, 0.3);
-      border-radius: 20px;
-      font-size: 12px;
-      color: #da8a5f;
-    }
-
-    /* ===== Awards ===== */
-    .awards-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .award-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      background: rgba(232, 168, 41, 0.05);
-      border-radius: 8px;
-      font-size: 13px;
-      color: #c9bfb5;
-    }
-    .award-icon {
-      font-size: 16px;
-    }
-
-    /* ===== Score Display ===== */
-    .score-display {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 16px 0;
-    }
-    .score-circle {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #2d2520, #1a1512);
-      border: 2px solid rgba(232, 168, 41, 0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-    .score-value {
-      font-size: 28px;
-      font-weight: 700;
-      color: #e8a829;
-      line-height: 1;
-    }
-    .score-label {
-      font-size: 10px;
-      color: #6b5d4d;
-      letter-spacing: 0.1em;
-    }
-    .score-bars {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .score-bar-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .score-bar-label {
-      width: 50px;
-      font-size: 11px;
-      color: #6b5d4d;
-    }
-    .score-bar-track {
-      flex: 1;
-      height: 6px;
-      background: rgba(232, 168, 41, 0.1);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .score-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #c4891a, #e8a829);
-      border-radius: 3px;
-      transition: width 0.5s ease;
-    }
-    .score-bar-value {
-      width: 24px;
-      font-size: 11px;
-      color: #9a8b7a;
-      text-align: right;
-    }
-
-    /* ===== Cocktail Section ===== */
-    .cocktail-hint {
-      padding: 12px 16px;
-      background: rgba(32, 178, 170, 0.08);
-      border: 1px solid rgba(32, 178, 170, 0.2);
-      border-radius: 12px;
-      margin-top: 12px;
-    }
-    .cocktail-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: #5fbfb3;
-      margin-bottom: 4px;
-    }
-    .cocktail-method {
-      font-size: 12px;
-      color: #6b5d4d;
-    }
-
-    /* ===== Storage Info ===== */
-    .storage-hint {
-      padding: 10px 14px;
-      background: rgba(232, 168, 41, 0.05);
-      border-radius: 8px;
-      font-size: 12px;
-      color: #6b5d4d;
-      line-height: 1.6;
-    }
-
-    /* ===== History Quote ===== */
-    .history-quote {
-      padding: 16px;
-      background: linear-gradient(135deg, rgba(232, 168, 41, 0.05), rgba(139, 41, 66, 0.03));
-      border-left: 3px solid #e8a829;
-      border-radius: 0 12px 12px 0;
-      font-style: italic;
-      color: #9a8b7a;
-      margin: 16px 0;
-    }
+    :root {
+      --midnight-100: #f8f4f0;
+      --midnight-200: #e8e0d8;
+      --midnight-300: #c9bfb5;
+      --midnight-400: #9a8b7a;
+      --midnight-500: #6b5d4d;
+      --midnight-600: #4a3f32;
+      --midnight-700: #2d2520;
+      --midnight-800: #1a1512;
+      --midnight-900: #0d0a08;
+      --midnight-950: #050303;
+      --gold-100: #fef7dc;
+      --gold-200: #fcefc4;
+      --gold-300: #f9e09c;
+      --gold-400: #f5cc6a;
+      --gold-500: #e8a829;
+      --gold-600: #c4891a;
+      --gold-700: #9a6b12;
+      --gold-800: #734e0d;
+      --gold-900: #5a3d0e;
+      --copper-400: #da8a5f;
+      --copper-500: #c77350;
+      --copper-600: #a85d3e;
+      --burgundy-500: #8b2942;
+      --burgundy-600: #6b1f32;
+      --bg-deepest: var(--midnight-950);
+      --bg-deep: var(--midnight-900);
+      --bg-card: var(--midnight-800);
+      --bg-elevated: rgba(45, 37, 32, 0.95);
+      --bg-glass: rgba(26, 21, 18, 0.7);
+      --text-gold: var(--gold-400);
+      --text-gold-muted: var(--gold-600);
+      --text-cream: var(--midnight-200);
+      --text-muted: var(--midnight-400);
+      --text-subtle: var(--midnight-500);
+      --border-gold: rgba(232, 168, 41, 0.25);
+      --border-gold-bright: rgba(232, 168, 41, 0.5);
+      --glow-gold: 0 0 20px rgba(232, 168, 41, 0.3);
+      --glow-gold-strong: 0 0 40px rgba(232, 168, 41, 0.4), 0 0 80px rgba(232, 168, 41, 0.2);
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+      --radius-full: 9999px;
+      --font-display: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-accent: "Playfair Display", "Noto Serif SC", serif;
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --transition-fast: 150ms var(--ease-smooth);
+      --transition-normal: 300ms var(--ease-smooth);
+      --transition-slow: 500ms var(--ease-smooth);
+      --z-base: 1;
+      --z-card: 10;
+      --z-header: 100;
+      --z-dropdown: 200;
+      --z-modal-backdrop: 300;
+      --z-modal: 400;
+      --z-toast: 500;
+    }
+    [data-theme="dark"] { --bg: var(--midnight-950); --text: var(--midnight-200); }
+    [data-theme="light"] { --bg: #f5f0e8; --text: #2d2520; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); background: var(--bg-deepest); color: var(--text-cream); min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 20% 0%, rgba(232, 168, 41, 0.05) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 41, 66, 0.03) 0%, transparent 50%), linear-gradient(180deg, var(--bg-deepest) 0%, var(--midnight-900) 50%, var(--bg-deepest) 100%); pointer-events: none; z-index: -1; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--gold-600), var(--gold-800)); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--gold-500), var(--gold-700)); }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+    img { display: block; max-width: 100%; }
+    /* ===== INITIAL LOADING ===== */
+    .initial-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 24px; }
+    .initial-loading__icon { font-size: 72px; animation: float 2s ease-in-out infinite; }
+    .initial-loading__text { font-family: var(--font-accent); font-size: 1.5rem; color: var(--gold-500); letter-spacing: 0.2em; }
+    .initial-loading__bar { width: 200px; height: 3px; background: rgba(232, 168, 41, 0.2); border-radius: 2px; overflow: hidden; }
+    .initial-loading__bar::after { content: ''; display: block; width: 40%; height: 100%; background: linear-gradient(90deg, var(--gold-500), var(--gold-400)); border-radius: 2px; animation: loading 1.2s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes loading { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+    /* ===== HEADER ===== */
+    .header { position: sticky; top: 0; z-index: var(--z-header); background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-glass) 100%); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-gold); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), inset 0 -1px 0 var(--border-gold); }
+    .header__container { max-width: 1440px; margin: 0 auto; padding: var(--space-md) var(--space-xl); display: flex; align-items: center; gap: var(--space-xl); }
+    .header__brand { display: flex; align-items: center; gap: var(--space-md); flex-shrink: 0; text-decoration: none; }
+    .header__logo { width: 48px; height: 48px; background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: var(--glow-gold); }
+    .header__titles { display: flex; flex-direction: column; }
+    .header__title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-cream); letter-spacing: 0.05em; }
+    .header__subtitle { font-family: var(--font-accent); font-size: 0.75rem; color: var(--midnight-400); letter-spacing: 0.15em; text-transform: uppercase; }
+    .header__search { flex: 1; max-width: 480px; position: relative; }
+    .search-bar { display: flex; align-items: center; background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-full); padding: var(--space-sm) var(--space-md); gap: var(--space-sm); transition: all var(--transition-fast); }
+    .search-bar:focus-within { border-color: var(--gold-500); box-shadow: var(--glow-gold); }
+    .search-bar__icon { font-size: 16px; opacity: 0.6; }
+    .search-bar__input { flex: 1; background: none; border: none; color: var(--text-cream); font-size: 0.95rem; outline: none; }
+    .search-bar__input::placeholder { color: var(--midnight-500); }
+    .search-bar__clear, .search-bar__submit { background: none; color: var(--midnight-400); font-size: 14px; padding: var(--space-xs); border-radius: 50%; transition: all var(--transition-fast); }
+    .search-bar__clear:hover, .search-bar__submit:hover { color: var(--gold-500); }
+    .search-bar__submit { background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); color: var(--gold-200); padding: 6px 16px; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 500; }
+    .search-bar__submit:hover { box-shadow: var(--glow-gold); }
+    .search-autocomplete { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); margin-top: var(--space-sm); box-shadow: var(--shadow-lg); z-index: var(--z-dropdown); display: none; overflow: hidden; }
+    .search-autocomplete.show { display: block; }
+    .search-autocomplete__item { padding: var(--space-md); cursor: pointer; display: flex; align-items: center; gap: var(--space-md); border-bottom: 1px solid var(--border-gold); transition: background var(--transition-fast); }
+    .search-autocomplete__item:last-child { border-bottom: none; }
+    .search-autocomplete__item:hover { background: rgba(232, 168, 41, 0.1); }
+    .search-autocomplete__icon { font-size: 20px; }
+    .search-autocomplete__info { flex: 1; }
+    .search-autocomplete__name { font-weight: 600; color: var(--text-cream); }
+    .search-autocomplete__meta { font-size: 0.8rem; color: var(--midnight-400); }
+    .search-autocomplete__empty { padding: var(--space-lg); text-align: center; color: var(--midnight-500); }
+    .header__actions { display: flex; align-items: center; gap: var(--space-md); }
+    .header__btn { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--bg-card); border: 1px solid var(--border-gold); color: var(--midnight-400); font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all var(--transition-fast); }
+    .header__btn:hover { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-500); color: var(--gold-400); }
+    .header__btn.active { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-500); color: var(--gold-400); }
+    .lang-btn { font-size: 12px; padding: 6px 12px; font-weight: 600; }
+    /* ===== LAYOUT ===== */
+    .app-layout { display: flex; min-height: calc(100vh - 70px); }
+    /* ===== SIDEBAR ===== */
+    .sidebar { width: 280px; min-width: 280px; background: var(--bg-glass); backdrop-filter: blur(16px); border-right: 1px solid var(--border-gold); padding: var(--space-lg); overflow-y: auto; max-height: calc(100vh - 70px); position: sticky; top: 70px; display: flex; flex-direction: column; gap: var(--space-lg); }
+    .sidebar.collapsed { width: 60px; min-width: 60px; }
+    .sidebar__section { }
+    .sidebar__title { font-size: 0.75rem; color: var(--gold-600); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: var(--space-md); padding-left: var(--space-sm); border-left: 2px solid var(--gold-700); }
+    .sidebar__tags { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+    .sidebar__tag { padding: 6px 12px; border-radius: var(--radius-full); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-gold); color: var(--text-muted); font-size: 0.82rem; cursor: pointer; transition: all var(--transition-fast); }
+    .sidebar__tag:hover { background: rgba(232, 168, 41, 0.1); border-color: var(--gold-600); color: var(--gold-400); }
+    .sidebar__tag.active { background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border-color: var(--gold-500); color: var(--gold-300); box-shadow: var(--glow-gold); }
+    .sidebar__divider { height: 1px; background: var(--border-gold); margin: var(--space-sm) 0; }
+    .sidebar__stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+    .sidebar__stat { background: var(--bg-card); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; border: 1px solid var(--border-gold); }
+    .sidebar__stat-value { font-size: 1.5rem; font-weight: 700; color: var(--gold-500); font-family: var(--font-accent); }
+    .sidebar__stat-label { font-size: 0.7rem; color: var(--midnight-500); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+    .sidebar__toggle { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: var(--space-sm); color: var(--midnight-400); font-size: 14px; cursor: pointer; transition: all var(--transition-fast); }
+    .sidebar__toggle:hover { background: rgba(232, 168, 41, 0.1); color: var(--gold-500); }
+    /* ===== NOTES PANEL ===== */
+    .notes-panel { flex: 1; display: none; flex-direction: column; gap: var(--space-md); }
+    .notes-panel.show { display: flex; }
+    .notes-list { display: flex; flex-direction: column; gap: var(--space-md); flex: 1; overflow-y: auto; }
+    .note-item { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: var(--space-md); cursor: pointer; transition: all var(--transition-fast); }
+    .note-item:hover { background: rgba(232, 168, 41, 0.08); border-color: rgba(232, 168, 41, 0.3); }
+    .note-item__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm); }
+    .note-item__name { font-weight: 600; color: var(--text-cream); font-size: 0.95rem; }
+    .note-item__date { font-size: 0.75rem; color: var(--midnight-500); }
+    .note-item__rating { color: var(--gold-500); font-size: 14px; margin-bottom: var(--space-xs); }
+    .note-item__text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .note-item__actions { display: flex; gap: var(--space-sm); margin-top: var(--space-sm); }
+    .note-item__btn { padding: 4px 10px; border-radius: var(--radius-sm); background: var(--bg-elevated); border: 1px solid var(--border-gold); color: var(--midnight-400); font-size: 12px; transition: all var(--transition-fast); }
+    .note-item__btn:hover { background: rgba(232, 168, 41, 0.15); color: var(--gold-500); }
+    .note-item__btn.delete:hover { background: rgba(139, 41, 66, 0.3); color: #e85a5a; }
+    .notes-empty { text-align: center; padding: var(--space-2xl); color: var(--midnight-500); }
+    .notes-empty__icon { font-size: 48px; margin-bottom: var(--space-md); opacity: 0.5; }
+    .notes-empty__text { font-size: 0.9rem; }
+    .notes-actions { display: flex; gap: var(--space-sm); }
+    .notes-action-btn { flex: 1; padding: var(--space-sm); border-radius: var(--radius-md); background: var(--bg-card); border: 1px solid var(--border-gold); color: var(--gold-500); font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: var(--space-xs); transition: all var(--transition-fast); }
+    .notes-action-btn:hover { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-600); }
+    /* ===== FAVORITES BAR ===== */
+    .favorites-bar { position: fixed; left: 0; top: 70px; bottom: 0; width: 48px; background: rgba(13, 10, 8, 0.95); border-right: 1px solid var(--border-gold); z-index: 90; display: flex; flex-direction: column; align-items: center; padding: var(--space-md) 0; gap: var(--space-sm); }
+    .favorites-bar__btn { width: 36px; height: 36px; border-radius: var(--radius-md); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-gold); color: var(--midnight-400); font-size: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition-fast); }
+    .favorites-bar__btn:hover { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-500); color: var(--gold-500); }
+    .favorites-bar__btn.active { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-500); color: var(--gold-500); }
+    /* ===== MAIN CONTENT ===== */
+    .main-content { flex: 1; padding: var(--space-xl); max-width: 1440px; margin: 0 auto; width: 100%; }
+    /* ===== HERO ===== */
+    .hero { text-align: center; padding: var(--space-2xl) var(--space-xl); margin-bottom: var(--space-xl); }
+    .hero__title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--text-cream); margin-bottom: var(--space-md); letter-spacing: 0.05em; }
+    .hero__subtitle { font-size: 1.1rem; color: var(--midnight-400); margin-bottom: var(--space-lg); }
+    .hero__divider { display: flex; align-items: center; justify-content: center; gap: var(--space-lg); color: var(--gold-600); }
+    .hero__divider::before, .hero__divider::after { content: ''; width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-700), transparent); }
+    .hero__divider-icon { font-size: 24px; }
+    /* ===== FILTER PANEL ===== */
+    .filter-panel { background: var(--bg-glass); backdrop-filter: blur(16px); border: 1px solid var(--border-gold); border-radius: var(--radius-xl); padding: var(--space-lg); margin-bottom: var(--space-xl); }
+    .filter-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-lg); }
+    .filter-group { display: flex; align-items: center; gap: var(--space-md); }
+    .filter-group__label { font-size: 0.8rem; color: var(--midnight-400); letter-spacing: 0.1em; white-space: nowrap; }
+    .filter-chip { padding: var(--space-sm) var(--space-md); border-radius: var(--radius-lg); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-gold); color: var(--text-cream); font-size: 0.85rem; cursor: pointer; transition: all var(--transition-fast); white-space: nowrap; }
+    .filter-chip:hover, .filter-chip.active { background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border-color: var(--gold-500); color: var(--gold-300); box-shadow: 0 2px 10px rgba(232, 168, 41, 0.2); }
+    .filter-divider { width: 1px; height: 32px; background: var(--border-gold); margin: 0 var(--space-sm); }
+    .filter-sort { display: flex; align-items: center; gap: var(--space-sm); margin-left: auto; }
+    .filter-sort select { padding: var(--space-sm) var(--space-md); background: rgba(26, 21, 18, 0.8); border: 1px solid var(--border-gold); border-radius: var(--radius-md); color: var(--text-cream); font-size: 0.85rem; font-family: inherit; cursor: pointer; transition: all var(--transition-fast); }
+    .filter-sort select:focus { border-color: var(--gold-500); outline: none; box-shadow: var(--glow-gold); }
+    .filter-sort select option { background: var(--midnight-800); }
+    .filter-clear { padding: var(--space-sm) var(--space-md); border-radius: var(--radius-md); background: transparent; border: 1px solid rgba(219, 138, 95, 0.4); color: var(--copper-400); font-size: 0.8rem; cursor: pointer; transition: all var(--transition-fast); }
+    .filter-clear:hover { background: rgba(219, 138, 95, 0.15); border-color: var(--copper-500); }
+    .price-quick-chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-left: var(--space-sm); }
+    .price-chip { padding: 3px 10px; border-radius: var(--radius-full); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-gold); color: var(--text-muted); font-size: 0.75rem; cursor: pointer; transition: all var(--transition-fast); }
+    .price-chip:hover, .price-chip.active { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-600); color: var(--gold-400); }
+    /* ===== CARDS HEADER ===== */
+    .cards-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl); padding: 0 var(--space-sm); }
+    .cards-count { font-size: 0.9rem; color: var(--midnight-400); }
+    .cards-count strong { color: var(--gold-400); font-weight: 600; }
+    .view-toggle { display: flex; gap: var(--space-xs); }
+    .view-toggle button { width: 38px; height: 38px; border-radius: var(--radius-md); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-gold); color: var(--midnight-400); font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all var(--transition-fast); }
+    .view-toggle button.active { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-500); color: var(--gold-400); }
+    .view-toggle button:hover:not(.active) { background: rgba(26, 21, 18, 0.8); color: var(--text-cream); }
+    /* ===== CARD GRID ===== */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-xl); }
+    .liquor-card { background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: var(--radius-xl); overflow: hidden; cursor: pointer; transition: all var(--transition-normal); position: relative; backdrop-filter: blur(10px); }
+    .liquor-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232, 168, 41, 0.03) 0%, transparent 50%); pointer-events: none; }
+    .liquor-card:hover { transform: translateY(-8px); border-color: var(--gold-500); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--glow-gold-strong); }
+    .liquor-card-image { width: 100%; height: 200px; background: linear-gradient(145deg, var(--midnight-700), var(--midnight-800)); display: flex; align-items: center; justify-content: center; font-size: 56px; color: var(--gold-600); position: relative; overflow: hidden; }
+    .liquor-card-image img { width: 100%; height: 100%; object-fit: cover; }
+    .liquor-card-image::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to top, var(--bg-elevated), transparent); }
+    .liquor-card-badge { position: absolute; top: var(--space-md); right: var(--space-md); padding: 4px 12px; background: linear-gradient(135deg, rgba(139, 41, 66, 0.9), rgba(107, 31, 50, 0.95)); border: 1px solid rgba(200, 120, 80, 0.3); border-radius: var(--radius-lg); color: var(--gold-300); font-size: 0.7rem; letter-spacing: 0.1em; z-index: 2; backdrop-filter: blur(4px); }
+    .liquor-card-fav { position: absolute; top: var(--space-md); left: var(--space-md); width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--border-gold); color: var(--midnight-400); font-size: 16px; display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer; transition: all var(--transition-fast); backdrop-filter: blur(4px); }
+    .liquor-card-fav:hover { background: rgba(232, 168, 41, 0.3); color: var(--gold-500); }
+    .liquor-card-fav.active { background: rgba(232, 168, 41, 0.3); color: #e85a5a; border-color: #e85a5a; }
+    .liquor-card-body { padding: var(--space-lg); }
+    .liquor-card-region { font-size: 0.7rem; color: var(--gold-600); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-xs); display: flex; align-items: center; gap: var(--space-xs); }
+    .liquor-card-region::before { content: ''; width: 16px; height: 1px; background: var(--gold-600); }
+    .liquor-card-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text-cream); margin-bottom: var(--space-xs); line-height: 1.3; }
+    .liquor-card-name-en { font-size: 0.8rem; color: var(--midnight-400); font-style: italic; margin-bottom: var(--space-md); }
+    .liquor-card-tags { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md); }
+    .liquor-tag { padding: 3px 10px; border-radius: var(--radius-full); background: rgba(232, 168, 41, 0.08); border: 1px solid rgba(232, 168, 41, 0.15); color: var(--gold-500); font-size: 0.75rem; }
+    .liquor-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-md); border-top: 1px solid var(--border-gold); }
+    .liquor-card-abv { font-size: 0.8rem; color: var(--midnight-400); }
+    .liquor-card-abv strong { color: var(--gold-400); font-size: 1.1rem; font-weight: 700; }
+    .liquor-card-price { font-size: 1rem; font-weight: 700; color: var(--gold-500); }
+    .liquor-card-price-unit { font-size: 0.7rem; color: var(--midnight-500); font-weight: 400; }
+    .liquor-card-actions { display: flex; gap: var(--space-xs); }
+    .liquor-card-actions button { width: 32px; height: 32px; border-radius: 50%; background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-gold); color: var(--midnight-400); font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all var(--transition-fast); }
+    .liquor-card-actions button:hover { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-500); color: var(--gold-400); }
+    /* LIST VIEW */
+    .card-grid.list-view { display: flex; flex-direction: column; gap: var(--space-md); }
+    .card-grid.list-view .liquor-card { display: flex; flex-direction: row; height: 160px; }
+    .card-grid.list-view .liquor-card-image { width: 180px; height: 100%; flex-shrink: 0; }
+    .card-grid.list-view .liquor-card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: var(--space-lg); }
+    .card-grid.list-view .liquor-card-name { font-size: 1.3rem; }
+    .card-grid.list-view .liquor-card-footer { border-top: none; padding-top: 0; }
+    /* ===== COMPARE BAR ===== */
+    .compare-bar { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, var(--bg-glass), var(--bg-deep)); backdrop-filter: blur(16px); border-top: 1px solid var(--border-gold-bright); padding: var(--space-md) var(--space-xl); display: flex; align-items: center; gap: var(--space-lg); z-index: var(--z-header); transform: translateY(100%); transition: transform var(--transition-normal); }
+    .compare-bar.show { transform: translateY(0); }
+    .compare-bar__title { display: flex; align-items: center; gap: var(--space-sm); font-weight: 600; color: var(--gold-500); white-space: nowrap; }
+    .compare-bar__title-icon { font-size: 20px; }
+    .compare-items { display: flex; gap: var(--space-sm); flex: 1; overflow-x: auto; padding: var(--space-sm) 0; }
+    .compare-item { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: var(--space-sm) var(--space-md); min-width: 120px; text-align: center; flex-shrink: 0; position: relative; }
+    .compare-item__name { font-weight: 600; color: var(--text-cream); font-size: 0.85rem; margin-bottom: 2px; }
+    .compare-item__meta { font-size: 0.72rem; color: var(--midnight-500); }
+    .compare-item__remove { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; border-radius: 50%; background: var(--burgundy-500); border: none; color: #fff; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--transition-fast); }
+    .compare-item:hover .compare-item__remove { opacity: 1; }
+    .compare-btn { padding: var(--space-sm) var(--space-lg); border-radius: var(--radius-full); background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border: 1px solid var(--gold-500); color: var(--gold-300); font-size: 0.85rem; font-weight: 600; white-space: nowrap; transition: all var(--transition-fast); }
+    .compare-btn:hover { box-shadow: var(--glow-gold); }
+    /* ===== MODAL ===== */
+    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); z-index: var(--z-modal-backdrop); backdrop-filter: blur(4px); }
+    .modal-backdrop.show { display: block; }
+    .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-2xl); z-index: var(--z-modal); width: 90%; max-width: 800px; max-height: 90vh; overflow: hidden; box-shadow: var(--glow-gold-strong); }
+    .modal.show { display: block; animation: modalIn 0.3s var(--ease-spring); }
+    @keyframes modalIn { from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+    .modal__close { position: absolute; top: var(--space-md); right: var(--space-md); width: 36px; height: 36px; border-radius: 50%; background: rgba(26, 21, 18, 0.8); border: 1px solid var(--border-gold); color: var(--midnight-400); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all var(--transition-fast); }
+    .modal__close:hover { background: rgba(139, 41, 66, 0.5); color: var(--gold-500); }
+    .modal__image { width: 100%; height: 280px; background: linear-gradient(145deg, var(--midnight-700), var(--midnight-800)); display: flex; align-items: center; justify-content: center; font-size: 72px; color: var(--gold-600); position: relative; }
+    .modal__image img { width: 100%; height: 100%; object-fit: cover; }
+    .modal__image-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(to top, var(--bg-card), transparent); }
+    .modal__content { padding: var(--space-xl); max-height: 60vh; overflow-y: auto; }
+    .modal__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-lg); }
+    .modal__title-group { flex: 1; }
+    .modal__name { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--text-cream); margin-bottom: var(--space-xs); }
+    .modal__ename { font-size: 1rem; color: var(--midnight-400); font-style: italic; margin-bottom: var(--space-sm); }
+    .modal__badges { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+    .modal__badge { padding: 4px 12px; border-radius: var(--radius-full); background: rgba(232, 168, 41, 0.1); border: 1px solid var(--border-gold); color: var(--gold-500); font-size: 0.8rem; }
+    .modal__actions { display: flex; gap: var(--space-sm); }
+    .modal__btn { padding: var(--space-sm) var(--space-md); border-radius: var(--radius-md); background: var(--bg-elevated); border: 1px solid var(--border-gold); color: var(--gold-500); font-size: 0.85rem; display: flex; align-items: center; gap: var(--space-xs); transition: all var(--transition-fast); cursor: pointer; }
+    .modal__btn:hover { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-600); }
+    .modal__btn.primary { background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border-color: var(--gold-500); color: var(--gold-300); }
+    .modal__btn.primary:hover { box-shadow: var(--glow-gold); }
+    .modal__section { margin-bottom: var(--space-lg); }
+    .modal__section-title { font-size: 0.85rem; color: var(--gold-600); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-md); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--border-gold); display: flex; align-items: center; gap: var(--space-sm); }
+    .modal__section-title::before { content: ''; width: 3px; height: 1em; background: var(--gold-700); border-radius: 2px; }
+    .modal__text { font-size: 0.95rem; line-height: 1.8; color: var(--text-cream); }
+    .modal__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+    .modal__grid-item { background: var(--bg-elevated); border-radius: var(--radius-md); padding: var(--space-md); border: 1px solid var(--border-gold); }
+    .modal__grid-label { font-size: 0.75rem; color: var(--midnight-500); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .modal__grid-value { font-size: 0.95rem; color: var(--text-cream); font-weight: 600; }
+    .modal__story { background: rgba(232, 168, 41, 0.05); border-radius: var(--radius-lg); padding: var(--space-lg); border-left: 3px solid var(--gold-700); font-size: 0.95rem; line-height: 1.8; color: var(--text-cream); }
+    .modal__tasting { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .modal__tasting-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); background: var(--bg-elevated); border-radius: var(--radius-md); border: 1px solid var(--border-gold); }
+    .modal__tasting-icon { font-size: 20px; }
+    .modal__tasting-text { flex: 1; font-size: 0.9rem; color: var(--text-cream); }
+    /* ===== RADAR CHART ===== */
+    .radar-container { width: 100%; max-width: 400px; margin: 0 auto; }
+    .radar-chart { width: 100%; aspect-ratio: 1; }
+    .radar-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md); margin-top: var(--space-md); }
+    .radar-legend-item { display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem; color: var(--midnight-400); }
+    .radar-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    /* ===== ACHIEVEMENT SYSTEM ===== */
+    .achievements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-md); }
+    .achievement-card { background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: var(--space-lg); text-align: center; transition: all var(--transition-normal); }
+    .achievement-card:hover { border-color: var(--gold-600); transform: translateY(-4px); }
+    .achievement-card.unlocked { border-color: var(--gold-500); background: linear-gradient(135deg, rgba(232, 168, 41, 0.1), transparent); }
+    .achievement-card.locked { opacity: 0.5; }
+    .achievement-icon { font-size: 48px; margin-bottom: var(--space-md); display: block; }
+    .achievement-name { font-size: 1rem; font-weight: 700; color: var(--text-cream); margin-bottom: var(--space-xs); }
+    .achievement-desc { font-size: 0.8rem; color: var(--midnight-500); margin-bottom: var(--space-md); }
+    .achievement-progress { width: 100%; height: 6px; background: var(--bg-deep); border-radius: 3px; overflow: hidden; margin-bottom: var(--space-sm); }
+    .achievement-progress-bar { height: 100%; background: linear-gradient(90deg, var(--gold-700), var(--gold-500)); border-radius: 3px; transition: width var(--transition-slow); }
+    .achievement-progress-text { font-size: 0.75rem; color: var(--midnight-500); }
+    /* ===== TASTING NOTES FORM ===== */
+    .tasting-form { background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: var(--radius-xl); padding: var(--space-xl); }
+    .tasting-form__title { font-size: 1.2rem; font-weight: 700; color: var(--text-cream); margin-bottom: var(--space-lg); }
+    .tasting-form__row { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); margin-bottom: var(--space-md); }
+    .tasting-form__group { display: flex; flex-direction: column; gap: var(--space-xs); }
+    .tasting-form__label { font-size: 0.8rem; color: var(--midnight-500); text-transform: uppercase; letter-spacing: 0.1em; }
+    .tasting-form__input, .tasting-form__select, .tasting-form__textarea { padding: var(--space-sm) var(--space-md); background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); color: var(--text-cream); font-size: 0.95rem; font-family: inherit; transition: all var(--transition-fast); }
+    .tasting-form__input:focus, .tasting-form__select:focus, .tasting-form__textarea:focus { border-color: var(--gold-500); outline: none; box-shadow: var(--glow-gold); }
+    .tasting-form__textarea { resize: vertical; min-height: 100px; }
+    .tasting-form__stars { display: flex; gap: var(--space-xs); }
+    .tasting-form__star { font-size: 24px; color: var(--midnight-600); cursor: pointer; transition: color var(--transition-fast); }
+    .tasting-form__star:hover, .tasting-form__star.active { color: var(--gold-500); }
+    .tasting-form__actions { display: flex; gap: var(--space-md); justify-content: flex-end; margin-top: var(--space-lg); }
+    .tasting-form__btn { padding: var(--space-sm) var(--space-xl); border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); }
+    .tasting-form__btn.save { background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border: 1px solid var(--gold-500); color: var(--gold-300); }
+    .tasting-form__btn.save:hover { box-shadow: var(--glow-gold); }
+    .tasting-form__btn.cancel { background: transparent; border: 1px solid var(--border-gold); color: var(--midnight-400); }
+    .tasting-form__btn.cancel:hover { border-color: var(--gold-600); color: var(--gold-500); }
+    /* ===== COMPARE MODAL ===== */
+    .compare-modal { width: 95%; max-width: 1200px; }
+    .compare-modal__table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .compare-modal__table th { background: linear-gradient(135deg, var(--gold-800), var(--gold-900)); color: var(--gold-300); padding: var(--space-md); text-align: left; font-weight: 600; border-bottom: 2px solid var(--gold-700); position: sticky; top: 0; }
+    .compare-modal__table td { padding: var(--space-md); border-bottom: 1px solid var(--border-gold); vertical-align: top; }
+    .compare-modal__table tr:hover td { background: rgba(232, 168, 41, 0.05); }
+    .compare-modal__table .compare-img { width: 80px; height: 60px; object-fit: cover; border-radius: var(--radius-md); }
+    .compare-modal__table .compare-name { font-weight: 700; color: var(--text-cream); }
+    .compare-modal__table .compare-label { background: var(--bg-elevated); color: var(--gold-600); font-weight: 600; white-space: nowrap; }
+    /* ===== TOAST ===== */
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-full); padding: var(--space-md) var(--space-xl); color: var(--text-cream); font-size: 0.9rem; z-index: var(--z-toast); pointer-events: none; opacity: 0; transition: all var(--transition-normal); display: flex; align-items: center; gap: var(--space-sm); box-shadow: var(--shadow-lg); }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .toast__icon { font-size: 20px; }
+    /* ===== EMPTY STATE ===== */
+    .empty-state { text-align: center; padding: var(--space-3xl); color: var(--midnight-500); }
+    .empty-state__icon { font-size: 64px; margin-bottom: var(--space-lg); opacity: 0.5; }
+    .empty-state__title { font-size: 1.2rem; color: var(--text-cream); margin-bottom: var(--space-sm); }
+    .empty-state__text { font-size: 0.9rem; }
+    /* ===== SKELETON ===== */
+    @keyframes skeleton-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .skeleton { background: var(--bg-card); border-radius: var(--radius-md); animation: skeleton-pulse 1.5s ease-in-out infinite; }
+    .skeleton-card { height: 350px; }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) { .sidebar { display: none; } .sidebar.mobile-open { display: flex; position: fixed; top: 0; left: 0; bottom: 0; width: 300px; z-index: 200; } .favorites-bar { display: none; } }
+    @media (max-width: 768px) { .header__container { padding: var(--space-sm) var(--space-md); gap: var(--space-md); } .header__search { max-width: none; } .hero__title { font-size: 1.8rem; } .filter-panel { padding: var(--space-md); } .filter-bar { flex-direction: column; align-items: flex-start; } .filter-sort { margin-left: 0; width: 100%; } .card-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--space-md); } .modal { width: 95%; max-height: 95vh; } .modal__image { height: 200px; } .modal__content { padding: var(--space-md); max-height: 70vh; } .modal__name { font-size: 1.3rem; } .modal__grid { grid-template-columns: 1fr; } .compare-bar { flex-wrap: wrap; padding: var(--space-sm) var(--space-md); } .compare-items { order: 3; width: 100%; } }
+    @media (max-width: 480px) { .header__titles { display: none; } .card-grid { grid-template-columns: 1fr; } .liquor-card-image { height: 160px; } .liquor-card-body { padding: var(--space-md); } .modal__image { height: 160px; } .tasting-form__row { grid-template-columns: 1fr; } .achievements-grid { grid-template-columns: 1fr; } }
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    .liquor-card { animation: slideUp 0.5s var(--ease-smooth) both; }
+    .liquor-card:nth-child(1) { animation-delay: 0ms; }
+    .liquor-card:nth-child(2) { animation-delay: 50ms; }
+    .liquor-card:nth-child(3) { animation-delay: 100ms; }
+    .liquor-card:nth-child(4) { animation-delay: 150ms; }
+    .liquor-card:nth-child(5) { animation-delay: 200ms; }
+    .liquor-card:nth-child(6) { animation-delay: 250ms; }
+    .liquor-card:nth-child(n+7) { animation-delay: 300ms; }
   </style>
 </head>
 <body>
-  <!-- 初始加载状态 -->
-  <div id="initialLoading" class="initial-loading">
-    <div class="initial-loading__icon">🍷</div>
+  <!-- Initial Loading -->
+  <div class="initial-loading" id="initialLoading">
+    <div class="initial-loading__icon">🥃</div>
     <div class="initial-loading__text">世界烈酒图鉴</div>
     <div class="initial-loading__bar"></div>
   </div>
 
-  <!-- 收藏侧边栏 -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar__header">
-      <span class="sidebar__title">🍾 品酒笔记</span>
-      <button class="sidebar__close" onclick="closeSidebar()">✕</button>
-    </div>
-    <div class="sidebar__content">
-      <div id="notesList">
-        <div class="sidebar-empty">
-          <div class="sidebar-empty__icon">📝</div>
-          <div class="sidebar-empty__text">暂无品酒笔记</div>
-        </div>
-      </div>
-      <div class="import-export-btns">
-        <button class="import-btn" onclick="importNotes()">📥 导入笔记</button>
-        <button class="export-btn" onclick="exportNotes()">📤 导出笔记</button>
-      </div>
-      <div class="import-export-btns">
-        <button class="import-btn" onclick="importAllData()">📥 导入数据</button>
-        <button class="export-btn" onclick="exportAllData()">📤 导出数据</button>
-      </div>
-      <div class="import-export-btns">
-        <button class="export-btn" onclick="exportFavoritesJSON()" style="flex:1">📤 导出收藏</button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- 收藏快捷栏 -->
-  <nav class="favorites-bar">
-    <button class="favorites-bar__btn" id="favBtn" onclick="toggleSidebar()" title="品酒笔记">📝</button>
-    <button class="favorites-bar__btn" id="compareOpenBtn" onclick="openCompare()" title="比较" style="display:none">⚖️</button>
-  </nav>
-
-  <!-- Header -->
-  <header class="header">
-    <div class="header__container">
-      <a href="#" class="header__brand">
-        <div class="header__logo">
-          <span class="header__logo-icon">🥃</span>
-        </div>
-        <div class="header__titles">
-          <span class="header__title">世界烈酒图鉴</span>
-          <span class="header__subtitle">World Liquor Gallery</span>
-        </div>
-      </a>
-
-      <div class="header__search">
-        <div class="search-bar">
-          <span class="search-bar__icon">🔍</span>
-          <input type="text" class="search-bar__input" id="searchInput" placeholder="搜索烈酒名称、类型、产地..." autocomplete="off">
-          <button class="search-bar__clear" onclick="document.getElementById('searchInput').value='';document.getElementById('searchInput').focus()">✕</button>
-          <button class="search-bar__submit" onclick="performSearch()">搜索</button>
-        </div>
-        <div class="search-autocomplete" id="searchAutocomplete"></div>
-      </div>
-
-      <div class="header__actions">
-        <button class="random-btn" onclick="randomPick()" title="随机推荐">🎲</button>
-        <button class="lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1 class="hero__title">世界烈酒图鉴</h1>
-    <p class="hero__subtitle">探索全球200款顶级烈酒的奥秘</p>
-    <div class="hero__divider">
-      <span class="hero__divider-icon">🥃</span>
-    </div>
-  </section>
-
-  <!-- Filter Panel -->
-  <section class="filter-panel">
-    <div class="filter-bar">
-      <div class="filter-group">
-        <span class="filter-group__label">类型</span>
-        <div id="typeFilters"></div>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-group">
-        <span class="filter-group__label">产区</span>
-        <div id="regionFilters"></div>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-group">
-        <span class="filter-group__label">价格</span>
-        <div class="price-quick-chips">
-          <span class="price-chip" data-quick-price="0-100">百元内</span>
-          <span class="price-chip" data-quick-price="100-300">100-300</span>
-          <span class="price-chip" data-quick-price="300-500">300-500</span>
-          <span class="price-chip" data-quick-price="500-1000">500-1k</span>
-          <span class="price-chip" data-quick-price="1000+">千元+</span>
-        </div>
-      </div>
-      <div class="filter-sort">
-        <select id="sortSelect" onchange="handleSort(this.value)">
-          <option value="default">默认排序</option>
-          <option value="price-asc">价格 ↑</option>
-          <option value="price-desc">价格 ↓</option>
-          <option value="score-desc">评分最高</option>
-          <option value="abv-desc">酒精度数</option>
-        </select>
-        <button class="filter-clear" onclick="clearFilters()">重置</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <main class="main-content">
-    <div class="cards-header">
-      <span class="cards-count">共 <strong id="countDisplay">0</strong> 款烈酒</span>
-      <div class="view-toggle">
-        <button id="gridView" class="active" onclick="switchView('grid')" title="网格视图">⊞</button>
-        <button id="listView" onclick="switchView('list')" title="列表视图">☰</button>
-      </div>
-    </div>
-    <div class="card-grid" id="cardGrid"></div>
-  </main>
-
-  <!-- Compare Bar -->
-  <div class="compare-bar" id="compareBar">
-    <span class="compare-bar__title">
-      <span class="compare-bar__title-icon">⚖️</span>
-      比较 (<span id="compareCount">0</span>)
-    </span>
-    <div class="compare-items" id="compareItems"></div>
-    <button class="compare-btn" onclick="showCompareModal()">开始比较</button>
-  </div>
-
-  <!-- Compare Modal -->
-  <div class="compare-modal-overlay" id="compareModalOverlay">
-    <div class="compare-modal">
-      <div class="compare-modal__header">
-        <span class="compare-modal__title">烈酒比较</span>
-        <button class="compare-modal__close" onclick="closeCompareModal()">✕</button>
-      </div>
-      <div class="compare-modal__body" id="compareModalBody"></div>
-    </div>
-  </div>
-
-  <!-- Detail Modal -->
-  <div class="modal-backdrop" id="modalBackdrop"></div>
-  <div class="modal" id="modal">
-    <button class="modal__close" onclick="closeModal()">✕</button>
-    <div class="modal__image" id="modalImage">🍷</div>
-    <div class="modal__content" id="modalContent"></div>
-  </div>
-
-  <!-- Toast -->
-  <div class="toast" id="toast"></div>
-
-  <script>
-    // ═══════════════════════════════════════════
-    // 世界烈酒图鉴 v2.0 - JavaScript Engine
-    // ═══════════════════════════════════════════
-
-    // ── 全局状态 ──
-    let DATA = [];
-    let filtered = [];
-    let favorites = {};
-    let TASTING_NOTES = {};
-    let COMPARE_LIST = [];
-    let CUR_LANG = 'zh';
-    let VIEW_MODE = 'grid';
-    let ACTIVE_FILTERS = { type: null, region: null, priceMin: 0, priceMax: Infinity };
-
-    // ── 常量 ──
-    const DATA_FILE = 'baijiu_data.json';
-    const LS_FAV = 'liquor_favorites_v2';
-    const LS_NOTES = 'liquor_tasting_v2';
-    const LS_LANG = 'liquor_lang_v2';
-
-    // ── 自动暗色模式（23:00-06:00）──
-    function initAutoDarkMode() {
-      const hour = new Date().getHours();
-      if (hour >= 23 || hour < 6) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-      setInterval(() => {
-        const h = new Date().getHours();
-        if ((h >= 23 || h < 6) && !document.documentElement.hasAttribute('data-theme')) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      }, 60000);
-    }
-
-    // ── 工具函数 ──
-    function escHtml(str) {
-      if (!str) return '';
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
-
-    function formatPrice(p) {
-      if (p >= 10000) return Math.floor(p / 10000) + '万+';
-      return p.toLocaleString();
-    }
-
-    // ── 随机推荐 ──
-    function randomPick() {
-      if (!DATA.length) return;
-      const item = DATA[Math.floor(Math.random() * DATA.length)];
-      openM(item.id);
-      showToast('🎲 随机推荐：' + item.name);
-    }
-
-    // ── 最近浏览 ──
-    const LS_RECENT = 'liquor_recent_v2';
-    function addToRecent(id) {
-      try {
-        let recent = JSON.parse(localStorage.getItem(LS_RECENT) || '[]');
-        recent = recent.filter(r => r !== id);
-        recent.unshift(id);
-        recent = recent.slice(0, 10);
-        localStorage.setItem(LS_RECENT, JSON.stringify(recent));
-      } catch (e) {}
-    }
-    function getRecent() {
-      try { return JSON.parse(localStorage.getItem(LS_RECENT) || '[]'); } catch (e) { return []; }
-    }
-
-    // ── 搜索关键词高亮 ──
-    function getHighlightedText(text, query) {
-      if (!query || !text) return escHtml(text || '');
-      const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-      return escHtml(text).replace(regex, '<mark class="search-highlight">$1</mark>');
-    }
-
-    // ── 社交分享 ──
-    function shareItem(id) {
-      const d = DATA.find(x => x.id === id);
-      if (!d) return;
-      const text = '🍷 ' + d.name + '（' + (d.ename||'') + '）- 世界烈酒图鉴';
-      const url = window.location.href.split('?')[0] + '?id=' + id;
-      if (navigator.share) {
-        navigator.share({ title: d.name, text: text, url: url }).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(text + ' ' + url).then(() => showToast('🔗 链接已复制'));
-      }
-    }
-
-    // ── 导出收藏JSON ──
-    function exportFavoritesJSON() {
-      const favs = Object.keys(favorites);
-      if (!favs.length) { showToast('暂无收藏'); return; }
-      const items = favs.map(id => DATA.find(d => d.id === id)).filter(Boolean);
-      const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'liquor_favorites_' + new Date().toISOString().slice(0,10) + '.json';
-      a.click(); URL.revokeObjectURL(url);
-      showToast('📤 收藏已导出');
-    }
-
-    // ── 导出/导入全部数据 ──
-    function exportAllData() {
-      const blob = new Blob([JSON.stringify(DATA, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'world_liquor_' + new Date().toISOString().slice(0,10) + '.json';
-      a.click(); URL.revokeObjectURL(url);
-      showToast('📤 全量数据已导出');
-    }
-    function importAllData() {
-      const input = document.createElement('input');
-      input.type = 'file'; input.accept = '.json';
-      input.onchange = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          try {
-            const imported = JSON.parse(ev.target.result);
-            if (Array.isArray(imported)) {
-              DATA = imported; filtered = [...DATA];
-              initUI(); showToast('📥 导入 ' + DATA.length + ' 条数据');
-            } else { showToast('数据格式错误'); }
-          } catch (err) { showToast('导入失败'); }
-        };
-        reader.readAsText(file);
-      };
-      input.click();
-    }
-
-    // ── 访问统计（本周热门）──
-    const LS_VISITS = 'liquor_visits_v2';
-    function updateVisitCount(id) {
-      try {
-        let visits = JSON.parse(localStorage.getItem(LS_VISITS) || '{}');
-        visits[id] = (visits[id] || 0) + 1;
-        localStorage.setItem(LS_VISITS, JSON.stringify(visits));
-      } catch (e) {}
-    }
-    function getTopVisited() {
-      try {
-        const visits = JSON.parse(localStorage.getItem(LS_VISITS) || '{}');
-        return Object.entries(visits).sort((a,b) => b[1]-a[1]).slice(0,5).map(e => e[0]);
-      } catch (e) { return []; }
-    }
-
-    // ── 数据加载 ──
-    async function loadData() {
-      try {
-        const res = await fetch(DATA_FILE);
-        if (!res.ok) throw new Error('Failed to load data');
-        DATA = await res.json();
-        filtered = [...DATA];
-        loadFromStorage();
-        initUI();
-        hideInitialLoading();
-      } catch (err) {
-        console.error('数据加载失败:', err);
-        showToast('数据加载失败，请刷新重试');
-      }
-    }
-
-    function loadFromStorage() {
-      try {
-        const fav = localStorage.getItem(LS_FAV);
-        if (fav) favorites = JSON.parse(fav);
-        const notes = localStorage.getItem(LS_NOTES);
-        if (notes) TASTING_NOTES = JSON.parse(notes);
-        const lang = localStorage.getItem(LS_LANG);
-        if (lang) CUR_LANG = lang;
-      } catch (e) {}
-    }
-
-    function saveFavorites() {
-      localStorage.setItem(LS_FAV, JSON.stringify(favorites));
-      updateFavoritesBadge();
-    }
-
-    function saveTastingNotes() {
-      localStorage.setItem(LS_NOTES, JSON.stringify(TASTING_NOTES));
-    }
-
-    // ── UI初始化 ──
-    function initUI() {
-      initAutoDarkMode();
-      initLang();
-      renderTypeFilters();
-      renderRegionFilters();
-      renderTags();
-      applyFilters();
-      updateFavoritesBadge();
-      setupSearch();
-      setupKeyboardNav();
-    }
-
-    function hideInitialLoading() {
-      const el = document.getElementById('initialLoading');
-      if (el) el.style.display = 'none';
-    }
-
-    // ── 语言切换 ──
-    function initLang() {
-      const btn = document.getElementById('langBtn');
-      if (btn) btn.textContent = CUR_LANG === 'zh' ? '中' : 'EN';
-    }
-
-    function toggleLang() {
-      CUR_LANG = CUR_LANG === 'zh' ? 'en' : 'zh';
-      localStorage.setItem(LS_LANG, CUR_LANG);
-      initLang();
-      applyFilters();
-    }
-
-    // ── 筛选器 ──
-    function renderTypeFilters() {
-      const types = [...new Set(DATA.map(d => d.type))].filter(Boolean).sort();
-      const container = document.getElementById('typeFilters');
-      if (!container) return;
-      container.innerHTML = types.map(t => 
-        `<span class="filter-chip" data-type="${escHtml(t)}" onclick="toggleTypeFilter('${escHtml(t)}')">${escHtml(t)}</span>`
-      ).join('');
-    }
-
-    function renderRegionFilters() {
-      const regions = [...new Set(DATA.map(d => d.region))].filter(Boolean).sort();
-      const container = document.getElementById('regionFilters');
-      if (!container) return;
-      container.innerHTML = regions.map(r => 
-        `<span class="filter-chip" data-region="${escHtml(r)}" onclick="toggleRegionFilter('${escHtml(r)}')">${escHtml(r)}</span>`
-      ).join('');
-    }
-
-    function toggleTypeFilter(type) {
-      if (ACTIVE_FILTERS.type === type) {
-        ACTIVE_FILTERS.type = null;
-      } else {
-        ACTIVE_FILTERS.type = type;
-      }
-      document.querySelectorAll('#typeFilters .filter-chip').forEach(chip => {
-        chip.classList.toggle('active', chip.dataset.type === ACTIVE_FILTERS.type);
-      });
-      applyFilters();
-    }
-
-    function toggleRegionFilter(region) {
-      if (ACTIVE_FILTERS.region === region) {
-        ACTIVE_FILTERS.region = null;
-      } else {
-        ACTIVE_FILTERS.region = region;
-      }
-      document.querySelectorAll('#regionFilters .filter-chip').forEach(chip => {
-        chip.classList.toggle('active', chip.dataset.region === ACTIVE_FILTERS.region);
-      });
-      applyFilters();
-    }
-
-    function applyQuickPriceFilter(range) {
-      let min = 0, max = Infinity;
-      if (range === '0-100') { min = 0; max = 100; }
-      else if (range === '100-300') { min = 100; max = 300; }
-      else if (range === '300-500') { min = 300; max = 500; }
-      else if (range === '500-1000') { min = 500; max = 1000; }
-      else if (range === '1000+') { min = 1000; max = Infinity; }
-      
-      ACTIVE_FILTERS.priceMin = min;
-      ACTIVE_FILTERS.priceMax = max;
-
-      document.querySelectorAll('.price-chip').forEach(chip => {
-        chip.classList.toggle('active', chip.dataset.quickPrice === range);
-      });
-      applyFilters();
-    }
-
-    function applyFilters() {
-      filtered = DATA.filter(d => {
-        if (ACTIVE_FILTERS.type && d.type !== ACTIVE_FILTERS.type) return false;
-        if (ACTIVE_FILTERS.region && d.region !== ACTIVE_FILTERS.region) return false;
-        if (d.price < ACTIVE_FILTERS.priceMin || d.price >= ACTIVE_FILTERS.priceMax) return false;
-        return true;
-      });
-      renderTags();
-      render();
-    }
-
-    function clearFilters() {
-      ACTIVE_FILTERS = { type: null, region: null, priceMin: 0, priceMax: Infinity };
-      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-      document.querySelectorAll('.price-chip').forEach(c => c.classList.remove('active'));
-      document.getElementById('sortSelect').value = 'default';
-      applyFilters();
-    }
-
-    function handleSort(value) {
-      if (value === 'price-asc') filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
-      else if (value === 'price-desc') filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
-      else if (value === 'score-desc') filtered.sort((a, b) => (b.score || 0) - (a.score || 0));
-      else if (value === 'abv-desc') filtered.sort((a, b) => (b.abv || 0) - (a.abv || 0));
-      else filtered = [...DATA].filter(d => passesFilters(d));
-      render();
-    }
-
-    function passesFilters(d) {
-      if (ACTIVE_FILTERS.type && d.type !== ACTIVE_FILTERS.type) return false;
-      if (ACTIVE_FILTERS.region && d.region !== ACTIVE_FILTERS.region) return false;
-      if (d.price < ACTIVE_FILTERS.priceMin || d.price >= ACTIVE_FILTERS.priceMax) return false;
-      return true;
-    }
-
-    function renderTags() {
-      document.getElementById('countDisplay').textContent = filtered.length;
-    }
-
-    // ── 搜索 ──
-    function setupSearch() {
-      const input = document.getElementById('searchInput');
-      const autocomplete = document.getElementById('searchAutocomplete');
-      
-      input.addEventListener('input', (e) => {
-        const q = e.target.value.trim().toLowerCase();
-        if (!q) {
-          autocomplete.classList.remove('active');
-          return;
-        }
-        const matches = DATA.filter(d => 
-          d.name.toLowerCase().includes(q) || 
-          (d.ename && d.ename.toLowerCase().includes(q)) ||
-          (d.type && d.type.toLowerCase().includes(q))
-        ).slice(0, 8);
-
-        if (matches.length) {
-          autocomplete.innerHTML = matches.map(m => {
-            const highlighted = m.name.replace(new RegExp(`(${q})`, 'gi'), '<span class="highlight">$1</span>');
-            return `<div class="search-autocomplete__item" onclick="openM('${m.id}'); document.getElementById('searchInput').value=''; autocomplete.classList.remove('active');">
-              <span>🍷</span><span>${highlighted}</span><span style="color:#6b5d4d;font-size:12px">${escHtml(m.type || '')}</span>
-            </div>`;
-          }).join('');
-          autocomplete.classList.add('active');
-        } else {
-          autocomplete.classList.remove('active');
-        }
-      });
-
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          performSearch();
-          autocomplete.classList.remove('active');
-        }
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.header__search')) {
-          autocomplete.classList.remove('active');
-        }
-      });
-    }
-
-    function performSearch() {
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      if (!q) return;
-      
-      const match = DATA.find(d => 
-        d.name.toLowerCase().includes(q) || 
-        (d.ename && d.ename.toLowerCase().includes(q))
-      );
-      if (match) {
-        openM(match.id);
-        document.getElementById('searchInput').value = '';
-        document.getElementById('searchAutocomplete').classList.remove('active');
-      }
-    }
-
-    // ── 视图切换 ──
-    function switchView(mode) {
-      VIEW_MODE = mode;
-      document.getElementById('gridView').classList.toggle('active', mode === 'grid');
-      document.getElementById('listView').classList.toggle('active', mode === 'list');
-      document.getElementById('cardGrid').classList.toggle('list-view', mode === 'list');
-    }
-
-    // ── 卡片渲染 ──
-    function render() {
-      const grid = document.getElementById('cardGrid');
-      const currentFiltered = filtered.length ? filtered : DATA;
-      const query = (document.getElementById('searchInput') || {}).value || '';
-
-      grid.innerHTML = currentFiltered.map((d, i) => {
-        const isFav = favorites[d.id];
-        const tags = (d.flavor_tags || []).slice(0, 4).map(t => `<span class="liquor-tag">${escHtml(t)}</span>`).join('');
-        const priceDisplay = formatPrice(d.price || 0);
-        const nameHtml = query ? getHighlightedText(d.name, query) : escHtml(CUR_LANG === 'zh' ? d.name : (d.ename || d.name));
-        const descHtml = query && d.description ? getHighlightedText(d.description.slice(0, 30), query) : '';
-
-        return `
-        <article class="liquor-card" data-id="${escHtml(d.id)}" style="animation-delay:${Math.min(i * 50, 300)}ms" tabindex="0" ondblclick="event.stopPropagation();toggleFav('${d.id}')">
-          <div class="liquor-card-image">
-            <span>🍷</span>
-            ${d.price_tier === '高端' ? '<span class="liquor-card-badge">高端</span>' : ''}
+  <!-- App Container -->
+  <div id="app" style="display:none">
+    <!-- Header -->
+    <header class="header">
+      <div class="header__container">
+        <a href="#" class="header__brand" onclick="goHome()">
+          <div class="header__logo">🥃</div>
+          <div class="header__titles">
+            <span class="header__title">世界烈酒图鉴</span>
+            <span class="header__subtitle">World Liquor Gallery</span>
           </div>
-          <div class="liquor-card-body">
-            <div class="liquor-card-region">${escHtml(d.region || '未知产区')}</div>
-            <h3 class="liquor-card-name">${nameHtml}</h3>
-            <p class="liquor-card-name-en">${escHtml(d.ename || '')}</p>
-            ${descHtml ? `<p class="liquor-card-desc">${descHtml}...</p>` : ''}
-            <div class="liquor-card-tags">${tags}</div>
-            <div class="liquor-card-footer">
-              <div class="liquor-card-abv">酒精度 <strong>${d.abv || 0}%</strong></div>
-              <div class="liquor-card-price">¥${priceDisplay}<span class="liquor-card-price-unit"></span></div>
-              <div class="liquor-card-actions">
-                <button onclick="event.stopPropagation(); toggleFav('${d.id}')" title="${isFav ? '取消收藏' : '收藏'}">${isFav ? '❤️' : '🤍'}</button>
-                <button onclick="event.stopPropagation(); addToCompare('${d.id}')" title="比较">⚖️</button>
+        </a>
+        <div class="header__search">
+          <div class="search-bar">
+            <span class="search-bar__icon">🔍</span>
+            <input type="text" class="search-bar__input" id="searchInput" placeholder="搜索烈酒名称、类型、产地..." autocomplete="off">
+            <button class="search-bar__clear" onclick="clearSearch()">✕</button>
+            <button class="search-bar__submit" onclick="performSearch()">搜索</button>
+          </div>
+          <div class="search-autocomplete" id="searchAutocomplete"></div>
+        </div>
+        <div class="header__actions">
+          <button class="header__btn" id="favHeaderBtn" onclick="toggleFavorites()" title="收藏">❤️</button>
+          <button class="header__btn" id="notesHeaderBtn" onclick="toggleNotes()" title="品鉴笔记">📝</button>
+          <button class="header__btn" id="achieveHeaderBtn" onclick="showAchievements()" title="成就">🏆</button>
+          <button class="header__btn lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
+          <button class="header__btn" onclick="randomPick()" title="随机推荐">🎲</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Favorites Bar -->
+    <nav class="favorites-bar" id="favoritesBar">
+      <button class="favorites-bar__btn" id="favBarBtn" onclick="toggleSidebar()" title="收藏">❤️</button>
+      <button class="favorites-bar__btn" id="compareOpenBtn" onclick="openCompare()" title="比较" style="display:none">⚖️</button>
+    </nav>
+
+    <!-- Layout -->
+    <div class="app-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <button class="sidebar__toggle" onclick="toggleSidebarCollapse()">☰</button>
+        
+        <div class="sidebar__section">
+          <div class="sidebar__title">类型</div>
+          <div class="sidebar__tags" id="typeFilters"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__title">产区</div>
+          <div class="sidebar__tags" id="regionFilters"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__title">价格区间</div>
+          <div class="sidebar__tags" id="priceFilters"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__title">香型</div>
+          <div class="sidebar__tags" id="flavorFilters"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__stats">
+          <div class="sidebar__stat">
+            <div class="sidebar__stat-value" id="totalCount">0</div>
+            <div class="sidebar__stat-label">总计</div>
+          </div>
+          <div class="sidebar__stat">
+            <div class="sidebar__stat-value" id="favCount">0</div>
+            <div class="sidebar__stat-label">收藏</div>
+          </div>
+          <div class="sidebar__stat">
+            <div class="sidebar__stat-value" id="notesCount">0</div>
+            <div class="sidebar__stat-label">笔记</div>
+          </div>
+          <div class="sidebar__stat">
+            <div class="sidebar__stat-value" id="achieveCount">0</div>
+            <div class="sidebar__stat-label">成就</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Hero -->
+        <section class="hero">
+          <h1 class="hero__title">世界烈酒图鉴</h1>
+          <p class="hero__subtitle">探索全球200款顶级烈酒的奥秘</p>
+          <div class="hero__divider">
+            <span class="hero__divider-icon">🥃</span>
+          </div>
+        </section>
+
+        <!-- Filter Panel -->
+        <section class="filter-panel">
+          <div class="filter-bar">
+            <div class="filter-group">
+              <span class="filter-group__label">类型</span>
+              <div id="filterTypeChips"></div>
+            </div>
+            <div class="filter-divider"></div>
+            <div class="filter-group">
+              <span class="filter-group__label">产区</span>
+              <div id="filterRegionChips"></div>
+            </div>
+            <div class="filter-divider"></div>
+            <div class="filter-group">
+              <span class="filter-group__label">价格</span>
+              <div class="price-quick-chips" id="priceChips"></div>
+            </div>
+            <div class="filter-sort">
+              <select id="sortSelect" onchange="handleSort(this.value)">
+                <option value="default">默认排序</option>
+                <option value="price-asc">价格 ↑</option>
+                <option value="price-desc">价格 ↓</option>
+                <option value="score-desc">评分最高</option>
+                <option value="abv-desc">酒精度数</option>
+                <option value="name-asc">名称 A-Z</option>
+              </select>
+              <button class="filter-clear" onclick="clearFilters()">重置</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cards Header -->
+        <div class="cards-header">
+          <span class="cards-count">共 <strong id="countDisplay">0</strong> 款烈酒</span>
+          <div class="view-toggle">
+            <button id="gridViewBtn" class="active" onclick="switchView('grid')" title="网格视图">⊞</button>
+            <button id="listViewBtn" onclick="switchView('list')" title="列表视图">☰</button>
+          </div>
+        </div>
+
+        <!-- Card Grid -->
+        <div class="card-grid" id="cardGrid"></div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display:none">
+          <div class="empty-state__icon">🔍</div>
+          <div class="empty-state__title">未找到匹配结果</div>
+          <div class="empty-state__text">尝试调整筛选条件或搜索关键词</div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Compare Bar -->
+    <div class="compare-bar" id="compareBar">
+      <span class="compare-bar__title">
+        <span class="compare-bar__title-icon">⚖️</span>
+        比较 (<span id="compareCount">0</span>)
+      </span>
+      <div class="compare-items" id="compareItems"></div>
+      <button class="compare-btn" onclick="showCompareModal()">开始比较</button>
+    </div>
+
+    <!-- Compare Modal -->
+    <div class="modal-backdrop" id="compareBackdrop" onclick="closeCompareModal()"></div>
+    <div class="modal compare-modal" id="compareModal">
+      <button class="modal__close" onclick="closeCompareModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title">烈酒比较</div>
+          <div id="compareTableContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-backdrop" id="detailBackdrop" onclick="closeDetailModal()"></div>
+    <div class="modal" id="detailModal">
+      <button class="modal__close" onclick="closeDetailModal()">✕</button>
+      <div class="modal__image" id="detailModalImage">🥃</div>
+      <div class="modal__content" id="detailModalContent"></div>
+    </div>
+
+    <!-- Tasting Note Modal -->
+    <div class="modal-backdrop" id="tastingBackdrop" onclick="closeTastingModal()"></div>
+    <div class="modal" id="tastingModal">
+      <button class="modal__close" onclick="closeTastingModal()">✕</button>
+      <div class="modal__content">
+        <div class="tasting-form" id="tastingForm">
+          <div class="tasting-form__title" id="tastingFormTitle">添加品鉴笔记</div>
+          <input type="hidden" id="tastingNoteId">
+          <div class="tasting-form__row">
+            <div class="tasting-form__group">
+              <label class="tasting-form__label">选择烈酒</label>
+              <select class="tasting-form__select" id="tastingLiquorSelect"></select>
+            </div>
+            <div class="tasting-form__group">
+              <label class="tasting-form__label">评分</label>
+              <div class="tasting-form__stars" id="tastingStars">
+                <span class="tasting-form__star" data-rating="1">☆</span>
+                <span class="tasting-form__star" data-rating="2">☆</span>
+                <span class="tasting-form__star" data-rating="3">☆</span>
+                <span class="tasting-form__star" data-rating="4">☆</span>
+                <span class="tasting-form__star" data-rating="5">☆</span>
               </div>
             </div>
           </div>
-        </article>`;
-      }).join('');
+          <div class="tasting-form__row">
+            <div class="tasting-form__group">
+              <label class="tasting-form__label">品鉴日期</label>
+              <input type="date" class="tasting-form__input" id="tastingDate">
+            </div>
+            <div class="tasting-form__group">
+              <label class="tasting-form__label">场景</label>
+              <select class="tasting-form__select" id="tastingScene">
+                <option value="solo">独自品鉴</option>
+                <option value="friend">朋友聚会</option>
+                <option value="dinner">正式宴请</option>
+                <option value="celebration">庆典时刻</option>
+                <option value="gift">送礼</option>
+              </select>
+            </div>
+          </div>
+          <div class="tasting-form__group">
+            <label class="tasting-form__label">品鉴笔记</label>
+            <textarea class="tasting-form__textarea" id="tastingText" placeholder="描述你的品鉴感受..."></textarea>
+          </div>
+          <div class="tasting-form__actions">
+            <button class="tasting-form__btn cancel" onclick="closeTastingModal()">取消</button>
+            <button class="tasting-form__btn save" onclick="saveTastingNote()">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      grid.querySelectorAll('.liquor-card').forEach(card => {
-        card.addEventListener('click', () => openM(card.dataset.id));
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') openM(card.dataset.id);
+    <!-- Achievement Modal -->
+    <div class="modal-backdrop" id="achieveBackdrop" onclick="closeAchievementModal()"></div>
+    <div class="modal" id="achieveModal">
+      <button class="modal__close" onclick="closeAchievementModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title">🏆 成就系统</div>
+          <div class="achievements-grid" id="achievementsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radar Chart Modal -->
+    <div class="modal-backdrop" id="radarBackdrop" onclick="closeRadarModal()"></div>
+    <div class="modal" id="radarModal">
+      <button class="modal__close" onclick="closeRadarModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title">📊 风味雷达图</div>
+          <div class="radar-container" id="radarContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes Panel (Sidebar) -->
+    <div class="notes-panel" id="notesPanel">
+      <div class="sidebar__title">📝 品鉴笔记</div>
+      <div class="notes-list" id="notesList"></div>
+      <div class="notes-actions">
+        <button class="notes-action-btn" onclick="addNewNote()">➕ 添加笔记</button>
+        <button class="notes-action-btn" onclick="exportNotes()">📤 导出</button>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <span class="toast__icon">✓</span>
+      <span class="toast__text" id="toastText"></span>
+    </div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════════════
+    // 世界烈酒图鉴 v3.0 - 189函数完整架构
+    // 深邃鎏金 · 奢华酒廊
+    // ═══════════════════════════════════════════════════════════════════
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 1. 全局状态与常量 (Functions 1-20)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f01_initGlobalState() { window.DATA = []; window.FILTERED = []; window.FAVORITES = {}; window.TASTING_NOTES = {}; window.ACHIEVEMENTS = {}; window.COMPARE_LIST = []; window.CUR_LANG = 'zh'; window.VIEW_MODE = 'grid'; window.ACTIVE_FILTERS = { type: null, region: null, priceMin: 0, priceMax: Infinity, flavor: null }; window.SORT_MODE = 'default'; window.SEARCH_QUERY = ''; window.SIDEBAR_COLLAPSED = false; window.NOTES_PANEL_OPEN = false; }
+    function f02_initConstants() { window.DATA_FILE = 'baijiu_data.json'; window.LS_FAV = 'liquor_favorites_v3'; window.LS_NOTES = 'liquor_tasting_v3'; window.LS_LANG = 'liquor_lang_v3'; window.LS_RECENT = 'liquor_recent_v3'; window.LS_VISITS = 'liquor_visits_v3'; window.LS_ACHIEVE = 'liquor_achievements_v3'; window.LS_COMPARE = 'liquor_compare_v3'; }
+    function f03_getDefaultState() { return { data: [], filtered: [], favorites: {}, tastingNotes: {}, achievements: {}, compareList: [], curLang: 'zh', viewMode: 'grid', activeFilters: { type: null, region: null, priceMin: 0, priceMax: Infinity, flavor: null }, sortMode: 'default', searchQuery: '', sidebarCollapsed: false, notesPanelOpen: false }; }
+    function f04_setState(key, value) { if (window._state) window._state[key] = value; }
+    function f05_getState(key) { return window._state ? window._state[key] : null; }
+    function f06_resetState() { window._state = f03_getDefaultState(); }
+    function f07_validateState() { const required = ['data', 'filtered', 'favorites', 'tastingNotes', 'curLang', 'viewMode']; return required.every(k => window._state && window._state.hasOwnProperty(k)); }
+    function f08_serializeState() { return JSON.stringify({ data: window.DATA, favorites: window.FAVORITES, tastingNotes: window.TASTING_NOTES, achievements: window.ACHIEVEMENTS, compareList: window.COMPARE_LIST, curLang: window.CUR_LANG }); }
+    function f09_deserializeState(json) { try { const s = JSON.parse(json); if (s.favorites) window.FAVORITES = s.favorites; if (s.tastingNotes) window.TASTING_NOTES = s.tastingNotes; if (s.achievements) window.ACHIEVEMENTS = s.achievements; if (s.compareList) window.COMPARE_LIST = s.compareList; if (s.curLang) window.CUR_LANG = s.curLang; } catch (e) { console.error('State deserialization failed:', e); } }
+    function f10_getStorageKey(suffix) { return 'liquor_' + suffix + '_v3'; }
+    function f11_saveToStorage(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { console.error('Storage save failed:', e); } }
+    function f12_loadFromStorage(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch (e) { console.error('Storage load failed:', e); return null; } }
+    function f13_clearStorage(key) { try { localStorage.removeItem(key); } catch (e) { console.error('Storage clear failed:', e); } }
+    function f14_initStorage() { f01_initGlobalState(); f02_initConstants(); const fav = f12_loadFromStorage(window.LS_FAV); if (fav) window.FAVORITES = fav; const notes = f12_loadFromStorage(window.LS_NOTES); if (notes) window.TASTING_NOTES = notes; const lang = f12_loadFromStorage(window.LS_LANG); if (lang) window.CUR_LANG = lang; const achieve = f12_loadFromStorage(window.LS_ACHIEVE); if (achieve) window.ACHIEVEMENTS = achieve; const compare = f12_loadFromStorage(window.LS_COMPARE); if (compare) window.COMPARE_LIST = compare; }
+    function f15_saveAllStorage() { f11_saveToStorage(window.LS_FAV, window.FAVORITES); f11_saveToStorage(window.LS_NOTES, window.TASTING_NOTES); f11_saveToStorage(window.LS_LANG, window.CUR_LANG); f11_saveToStorage(window.LS_ACHIEVE, window.ACHIEVEMENTS); f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); }
+    function f16_exportState() { return { version: '3.0', timestamp: Date.now(), favorites: window.FAVORITES, tastingNotes: window.TASTING_NOTES, achievements: window.ACHIEVEMENTS, compareList: window.COMPARE_LIST, lang: window.CUR_LANG }; }
+    function f17_importState(state) { if (!state || !state.version) return false; window.FAVORITES = state.favorites || {}; window.TASTING_NOTES = state.tastingNotes || {}; window.ACHIEVEMENTS = state.achievements || {}; window.COMPARE_LIST = state.compareList || []; window.CUR_LANG = state.lang || 'zh'; f15_saveAllStorage(); return true; }
+    function f18_getStateSize() { return JSON.stringify(window._state).length; }
+    function f19_clearAllState() { window.DATA = []; window.FILTERED = []; window.FAVORITES = {}; window.TASTING_NOTES = {}; window.ACHIEVEMENTS = {}; window.COMPARE_LIST = []; }
+    function f20_initAutoDarkMode() { const hour = new Date().getHours(); if (hour >= 23 || hour < 6) { document.documentElement.setAttribute('data-theme', 'dark'); } setInterval(() => { const h = new Date().getHours(); if ((h >= 23 || h < 6) && !document.documentElement.hasAttribute('data-theme')) { document.documentElement.setAttribute('data-theme', 'dark'); } }, 60000); }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 2. 数据加载与初始化 (Functions 21-40)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f21_async_loadData() { return new Promise(async (resolve, reject) => { try { const res = await fetch(window.DATA_FILE); if (!res.ok) throw new Error('Failed to load data'); window.DATA = await res.json(); window.FILTERED = [...window.DATA]; f14_initStorage(); f20_initAutoDarkMode(); resolve(window.DATA); } catch (err) { console.error('Data load failed:', err); reject(err); } }); }
+    function f22_initApp() { f01_initGlobalState(); f02_initConstants(); f14_initStorage(); f20_initAutoDarkMode(); }
+    function f23_async_initAndLoad() { return new Promise(async (resolve) => { f22_initApp(); try { await f21_async_loadData(); f25_initUI(); f37_hideLoading(); f43_setupKeyboardNav(); f44_setupTouchGestures(); resolve(true); } catch (err) { f58_showToast('数据加载失败，请刷新重试', 'error'); resolve(false); } }); }
+    function f24_validateData() { if (!Array.isArray(window.DATA) || window.DATA.length === 0) return false; return window.DATA.every(item => item.id && item.name); }
+    function f25_initUI() { f26_initLang(); f27_renderTypeFilters(); f28_renderRegionFilters(); f29_renderPriceFilters(); f30_renderFlavorFilters(); f31_applyFilters(); f32_updateStats(); f33_setupSearch(); f34_setupInfiniteScroll(); f35_bindGlobalEvents(); }
+    function f26_initLang() { const btn = document.getElementById('langBtn'); if (btn) btn.textContent = window.CUR_LANG === 'zh' ? '中' : 'EN'; }
+    function f27_renderTypeFilters() { const types = [...new Set(window.DATA.map(d => d.type))].filter(Boolean).sort(); const sidebar = document.getElementById('typeFilters'); const filter = document.getElementById('filterTypeChips'); if (sidebar) sidebar.innerHTML = types.map(t => `<span class="sidebar__tag" data-type="${f63_escHtml(t)}" onclick="f91_toggleTypeFilter('${f63_escHtml(t)}')">${f63_escHtml(t)}</span>`).join(''); if (filter) filter.innerHTML = types.map(t => `<span class="filter-chip" data-type="${f63_escHtml(t)}" onclick="f91_toggleTypeFilter('${f63_escHtml(t)}')">${f63_escHtml(t)}</span>`).join(''); }
+    function f28_renderRegionFilters() { const regions = [...new Set(window.DATA.map(d => d.region))].filter(Boolean).sort(); const sidebar = document.getElementById('regionFilters'); const filter = document.getElementById('filterRegionChips'); if (sidebar) sidebar.innerHTML = regions.map(r => `<span class="sidebar__tag" data-region="${f63_escHtml(r)}" onclick="f92_toggleRegionFilter('${f63_escHtml(r)}')">${f63_escHtml(r)}</span>`).join(''); if (filter) filter.innerHTML = regions.map(r => `<span class="filter-chip" data-region="${f63_escHtml(r)}" onclick="f92_toggleRegionFilter('${f63_escHtml(r)}')">${f63_escHtml(r)}</span>`).join(''); }
+    function f29_renderPriceFilters() { const prices = ['0-100', '100-300', '300-500', '500-1000', '1000+']; const labels = { '0-100': '百元内', '100-300': '100-300', '300-500': '300-500', '500-1000': '500-1k', '1000+': '千元+' }; const sidebar = document.getElementById('priceFilters'); const filter = document.getElementById('priceChips'); const html = prices.map(p => `<span class="sidebar__tag" data-price="${p}" onclick="f93_togglePriceFilter('${p}')">${labels[p]}</span>`).join(''); if (sidebar) sidebar.innerHTML = html; if (filter) filter.innerHTML = html; }
+    function f30_renderFlavorFilters() { const flavors = [...new Set(window.DATA.flatMap(d => d.flavor_tags || []))].filter(Boolean).sort().slice(0, 12); const container = document.getElementById('flavorFilters'); if (container) container.innerHTML = flavors.map(f => `<span class="sidebar__tag" data-flavor="${f63_escHtml(f)}" onclick="f94_toggleFlavorFilter('${f63_escHtml(f)}')">${f63_escHtml(f)}</span>`).join(''); }
+    function f31_applyFilters() { let result = [...window.DATA]; if (window.SEARCH_QUERY) { const q = window.SEARCH_QUERY.toLowerCase(); result = result.filter(d => (d.name && d.name.toLowerCase().includes(q)) || (d.ename && d.ename.toLowerCase().includes(q)) || (d.type && d.type.toLowerCase().includes(q)) || (d.region && d.region.toLowerCase().includes(q))); } if (window.ACTIVE_FILTERS.type) { result = result.filter(d => d.type === window.ACTIVE_FILTERS.type); } if (window.ACTIVE_FILTERS.region) { result = result.filter(d => d.region === window.ACTIVE_FILTERS.region); } if (window.ACTIVE_FILTERS.flavor) { result = result.filter(d => d.flavor_tags && d.flavor_tags.includes(window.ACTIVE_FILTERS.flavor)); } if (window.ACTIVE_FILTERS.priceMin > 0 || window.ACTIVE_FILTERS.priceMax < Infinity) { result = result.filter(d => { const p = d.price || 0; return p >= window.ACTIVE_FILTERS.priceMin && p <= window.ACTIVE_FILTERS.priceMax; }); } window.FILTERED = result; f36_sortFiltered(); f39_renderCards(); f40_updateCount(); }
+    function f32_updateStats() { document.getElementById('totalCount').textContent = window.DATA.length; document.getElementById('favCount').textContent = Object.keys(window.FAVORITES).length; document.getElementById('notesCount').textContent = Object.keys(window.TASTING_NOTES).length; document.getElementById('achieveCount').textContent = Object.values(window.ACHIEVEMENTS).filter(a => a.unlocked).length; }
+    function f33_setupSearch() { const input = document.getElementById('searchInput'); if (!input) return; input.addEventListener('input', f53_debounce(function() { window.SEARCH_QUERY = input.value.trim(); f31_applyFilters(); f57_renderAutocomplete(); }, 300)); input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { performSearch(); input.blur(); } else if (e.key === 'Escape') { clearSearch(); input.blur(); } }); input.addEventListener('focus', function() { if (input.value.trim()) f57_renderAutocomplete(); }); document.addEventListener('click', function(e) { if (!e.target.closest('.header__search')) f54_hideAutocomplete(); }); }
+    function f34_setupInfiniteScroll() { let isLoading = false; window.addEventListener('scroll', function() { if (isLoading) return; const scrollY = window.scrollY || window.pageYOffset; const docH = document.documentElement.scrollHeight; const winH = window.innerHeight; if (scrollY + winH >= docH - 500) { isLoading = true; setTimeout(() => { isLoading = false; }, 500); } }); }
+    function f35_bindGlobalEvents() { document.querySelectorAll('.filter-chip, .sidebar__tag').forEach(el => { el.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-2px)'; }); el.addEventListener('mouseleave', function() { this.style.transform = ''; }); }); }
+    function f36_sortFiltered() { const mode = window.SORT_MODE; if (mode === 'default') return; window.FILTERED.sort((a, b) => { if (mode === 'price-asc') return (a.price || 0) - (b.price || 0); if (mode === 'price-desc') return (b.price || 0) - (a.price || 0); if (mode === 'score-desc') return (b.score || 0) - (a.score || 0); if (mode === 'abv-desc') return (b.abv || 0) - (a.abv || 0); if (mode === 'name-asc') return (a.name || '').localeCompare(b.name || '', 'zh'); return 0; }); }
+    function f37_hideLoading() { const el = document.getElementById('initialLoading'); if (el) el.style.display = 'none'; const app = document.getElementById('app'); if (app) app.style.display = 'block'; }
+    function f38_showLoading() { const el = document.getElementById('initialLoading'); if (el) el.style.display = 'flex'; const app = document.getElementById('app'); if (app) app.style.display = 'none'; }
+    function f39_renderCards() { const grid = document.getElementById('cardGrid'); if (!grid) return; if (window.FILTERED.length === 0) { grid.innerHTML = ''; document.getElementById('emptyState').style.display = 'block'; return; } document.getElementById('emptyState').style.display = 'none'; grid.innerHTML = window.FILTERED.map((d, i) => f60_renderCard(d, i)).join(''); }
+    function f40_updateCount() { document.getElementById('countDisplay').textContent = window.FILTERED.length; }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 3. 搜索与筛选 (Functions 41-60)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f41_performSearch() { const input = document.getElementById('searchInput'); if (!input) return; window.SEARCH_QUERY = input.value.trim(); f31_applyFilters(); f54_hideAutocomplete(); if (window.SEARCH_QUERY) f55_saveSearchHistory(window.SEARCH_QUERY); }
+    function f42_clearSearch() { const input = document.getElementById('searchInput'); if (input) input.value = ''; window.SEARCH_QUERY = ''; f31_applyFilters(); f54_hideAutocomplete(); }
+    function f43_setupKeyboardNav() { document.addEventListener('keydown', function(e) { if (e.key === '/' && !e.target.matches('input, textarea')) { e.preventDefault(); document.getElementById('searchInput').focus(); } if (e.key === 'Escape') { f54_hideAutocomplete(); closeAllModals(); } }); }
+    function f44_setupTouchGestures() { let startX = 0; document.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }); document.addEventListener('touchend', e => { const diff = startX - e.changedTouches[0].screenX; if (Math.abs(diff) > 100) { if (diff > 0) f97_closeSidebar(); else f96_openSidebar(); } }); }
+    function f45_toggleLang() { window.CUR_LANG = window.CUR_LANG === 'zh' ? 'en' : 'zh'; f11_saveToStorage(window.LS_LANG, window.CUR_LANG); f26_initLang(); f39_renderCards(); f58_showToast('语言已切换为' + (window.CUR_LANG === 'zh' ? '中文' : 'English')); }
+    function f46_randomPick() { if (!window.DATA.length) return; const item = window.DATA[Math.floor(Math.random() * window.DATA.length)]; f69_openDetailModal(item.id); f59_addToRecent(item.id); f58_showToast('🎲 随机推荐：' + item.name); }
+    function f47_toggleSidebar() { const sidebar = document.getElementById('sidebar'); const panel = document.getElementById('notesPanel'); if (window.NOTES_PANEL_OPEN) { panel.classList.remove('show'); window.NOTES_PANEL_OPEN = false; } else { sidebar.classList.toggle('mobile-open'); } }
+    function f48_toggleSidebarCollapse() { window.SIDEBAR_COLLAPSED = !window.SIDEBAR_COLLAPSED; document.getElementById('sidebar').classList.toggle('collapsed', window.SIDEBAR_COLLAPSED); }
+    function f49_openSidebar() { document.getElementById('sidebar').classList.add('mobile-open'); }
+    function f50_closeSidebar() { document.getElementById('sidebar').classList.remove('mobile-open'); }
+    function f51_toggleFavorites() { const btn = document.getElementById('favHeaderBtn'); btn.classList.toggle('active'); if (btn.classList.contains('active')) { window.VIEW_MODE = 'favorites'; window.FILTERED = Object.keys(window.FAVORITES).map(id => window.DATA.find(d => d.id === id)).filter(Boolean); } else { window.VIEW_MODE = 'grid'; f31_applyFilters(); } f39_renderCards(); }
+    function f52_toggleNotes() { const btn = document.getElementById('notesHeaderBtn'); const panel = document.getElementById('notesPanel'); btn.classList.toggle('active'); window.NOTES_PANEL_OPEN = btn.classList.contains('active'); panel.classList.toggle('show', window.NOTES_PANEL_OPEN); if (window.NOTES_PANEL_OPEN) f76_renderNotesList(); }
+    function f53_debounce(fn, delay) { let timeout; return function(...args) { clearTimeout(timeout); timeout = setTimeout(() => fn.apply(this, args), delay); }; }
+    function f54_hideAutocomplete() { const ac = document.getElementById('searchAutocomplete'); if (ac) ac.classList.remove('show'); }
+    function f55_saveSearchHistory(text) { try { let history = JSON.parse(localStorage.getItem('liquor_search_history_v3') || '[]'); history = history.filter(h => h !== text); history.unshift(text); history = history.slice(0, 10); localStorage.setItem('liquor_search_history_v3', JSON.stringify(history)); } catch (e) {} }
+    function f56_loadSearchHistory() { try { return JSON.parse(localStorage.getItem('liquor_search_history_v3') || '[]'); } catch (e) { return []; } }
+    function f57_renderAutocomplete() { const ac = document.getElementById('searchAutocomplete'); if (!ac) return; const query = window.SEARCH_QUERY.toLowerCase(); if (!query) { f54_hideAutocomplete(); return; } const matches = window.DATA.filter(d => (d.name && d.name.toLowerCase().includes(query)) || (d.ename && d.ename.toLowerCase().includes(query)) || (d.type && d.type.toLowerCase().includes(query))).slice(0, 8); if (matches.length === 0) { ac.innerHTML = '<div class="search-autocomplete__empty">未找到匹配结果</div>'; ac.classList.add('show'); return; } ac.innerHTML = matches.map(d => `<div class="search-autocomplete__item" onclick="f69_openDetailModal('${d.id}')"><span class="search-autocomplete__icon">🥃</span><div class="search-autocomplete__info"><div class="search-autocomplete__name">${f63_escHtml(d.name)}</div><div class="search-autocomplete__meta">${f63_escHtml(d.type)} · ${f63_escHtml(d.region || '')}</div></div></div>`).join(''); ac.classList.add('show'); }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 4. 工具函数 (Functions 61-80)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f58_showToast(msg, type) { const toast = document.getElementById('toast'); const text = document.getElementById('toastText'); if (!toast || !text) return; text.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
+    function f59_addToRecent(id) { try { let recent = JSON.parse(localStorage.getItem(window.LS_RECENT) || '[]'); recent = recent.filter(r => r !== id); recent.unshift(id); recent = recent.slice(0, 10); localStorage.setItem(window.LS_RECENT, JSON.stringify(recent)); } catch (e) {} }
+    function f60_getRecent() { try { return JSON.parse(localStorage.getItem(window.LS_RECENT) || '[]'); } catch (e) { return []; } }
+    function f61_updateVisitCount(id) { try { let visits = JSON.parse(localStorage.getItem(window.LS_VISITS) || '{}'); visits[id] = (visits[id] || 0) + 1; localStorage.setItem(window.LS_VISITS, JSON.stringify(visits)); } catch (e) {} }
+    function f62_getTopVisited() { try { const visits = JSON.parse(localStorage.getItem(window.LS_VISITS) || '{}'); return Object.entries(visits).sort((a, b) => b[1] - a[1]).slice(0, 5).map(e => e[0]); } catch (e) { return []; } }
+    function f63_escHtml(str) { if (!str) return ''; return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'); }
+    function f64_formatPrice(p) { if (!p && p !== 0) return '价格待定'; if (p >= 10000) return Math.floor(p / 10000) + '万+'; return p.toLocaleString(); }
+    function f65_formatDate(dateStr) { if (!dateStr) return ''; const d = new Date(dateStr); return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }); }
+    function f66_getRatingStars(rating) { const full = Math.floor(rating / 2); const half = rating % 2 >= 1 ? 1 : 0; const empty = 5 - full - half; return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(empty); }
+    function f67_truncateText(text, maxLen) { if (!text || text.length <= maxLen) return text; return text.substring(0, maxLen) + '...'; }
+    function f68_generateId() { return 'note_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9); }
+    function f69_findById(id) { return window.DATA.find(d => d.id === id); }
+    function f70_isFavorited(id) { return window.FAVORITES.hasOwnProperty(id); }
+    function f71_hasNote(liquorId) { return window.TASTING_NOTES.hasOwnProperty(liquorId); }
+    function f72_getNote(liquorId) { return window.TASTING_NOTES[liquorId]; }
+    function f73_copyToClipboard(text) { if (navigator.clipboard) { navigator.clipboard.writeText(text).then(() => f58_showToast('已复制到剪贴板')); } else { const textarea = document.createElement('textarea'); textarea.value = text; document.body.appendChild(textarea); textarea.select(); document.execCommand('copy'); document.body.removeChild(textarea); f58_showToast('已复制到剪贴板'); } }
+    function f74_shareItem(id) { const d = f69_findById(id); if (!d) return; const text = '🥃 ' + d.name + '（' + (d.ename || '') + '）- 世界烈酒图鉴'; const url = window.location.href.split('?')[0] + '?id=' + id; if (navigator.share) { navigator.share({ title: d.name, text: text, url: url }).catch(() => {}); } else { f73_copyToClipboard(text + ' ' + url); } }
+    function f75_exportFavoritesJSON() { const favs = Object.keys(window.FAVORITES); if (!favs.length) { f58_showToast('暂无收藏'); return; } const items = favs.map(id => f69_findById(id)).filter(Boolean); const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'liquor_favorites_' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); URL.revokeObjectURL(url); f58_showToast('📤 收藏已导出'); }
+    function f76_exportAllData() { const blob = new Blob([JSON.stringify(window.DATA, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'world_liquor_' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); URL.revokeObjectURL(url); f58_showToast('📤 全量数据已导出'); }
+    function f77_importAllData() { const input = document.createElement('input'); input.type = 'file'; input.accept = '.json'; input.onchange = (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { try { const imported = JSON.parse(ev.target.result); if (Array.isArray(imported)) { window.DATA = imported; window.FILTERED = [...window.DATA]; f27_renderTypeFilters(); f28_renderRegionFilters(); f29_renderPriceFilters(); f30_renderFlavorFilters(); f31_applyFilters(); f25_initUI(); f58_showToast('📥 导入 ' + window.DATA.length + ' 条数据'); } else { f58_showToast('数据格式错误'); } } catch (err) { f58_showToast('导入失败'); } }; reader.readAsText(file); }; input.click(); }
+    function f78_exportNotes() { const notes = Object.values(window.TASTING_NOTES); if (!notes.length) { f58_showToast('暂无笔记可导出'); return; } const blob = new Blob([JSON.stringify(notes, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'liquor_notes_' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); URL.revokeObjectURL(url); f58_showToast('📤 笔记已导出'); }
+    function f79_importNotes() { const input = document.createElement('input'); input.type = 'file'; input.accept = '.json'; input.onchange = (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { try { const imported = JSON.parse(ev.target.result); if (Array.isArray(imported)) { let count = 0; imported.forEach(n => { if (n.liquorId) { window.TASTING_NOTES[n.liquorId] = n; count++; } }); f11_saveToStorage(window.LS_NOTES, window.TASTING_NOTES); f32_updateStats(); f76_renderNotesList(); f58_showToast('📥 导入 ' + count + ' 条笔记'); } else { f58_showToast('数据格式错误'); } } catch (err) { f58_showToast('导入失败'); } }; reader.readAsText(file); }; input.click(); }
+    function f80_goHome() { window.SEARCH_QUERY = ''; window.ACTIVE_FILTERS = { type: null, region: null, priceMin: 0, priceMax: Infinity, flavor: null }; window.SORT_MODE = 'default'; document.getElementById('searchInput').value = ''; f31_applyFilters(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 5. 筛选器函数 (Functions 81-100)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f81_clearFilters() { window.ACTIVE_FILTERS = { type: null, region: null, priceMin: 0, priceMax: Infinity, flavor: null }; window.SORT_MODE = 'default'; document.querySelectorAll('.filter-chip, .sidebar__tag').forEach(el => el.classList.remove('active')); document.getElementById('sortSelect').value = 'default'; f31_applyFilters(); f58_showToast('筛选条件已重置'); }
+    function f82_handleSort(value) { window.SORT_MODE = value; f31_applyFilters(); }
+    function f83_toggleTypeFilter(type) { if (window.ACTIVE_FILTERS.type === type) { window.ACTIVE_FILTERS.type = null; } else { window.ACTIVE_FILTERS.type = type; } document.querySelectorAll('[data-type]').forEach(el => el.classList.toggle('active', el.dataset.type === window.ACTIVE_FILTERS.type)); f31_applyFilters(); }
+    function f84_toggleRegionFilter(region) { if (window.ACTIVE_FILTERS.region === region) { window.ACTIVE_FILTERS.region = null; } else { window.ACTIVE_FILTERS.region = region; } document.querySelectorAll('[data-region]').forEach(el => el.classList.toggle('active', el.dataset.region === window.ACTIVE_FILTERS.region)); f31_applyFilters(); }
+    function f85_togglePriceFilter(priceRange) { const [min, max] = priceRange === '1000+' ? [1000, Infinity] : priceRange.split('-').map(Number); if (window.ACTIVE_FILTERS.priceMin === min && window.ACTIVE_FILTERS.priceMax === max) { window.ACTIVE_FILTERS.priceMin = 0; window.ACTIVE_FILTERS.priceMax = Infinity; } else { window.ACTIVE_FILTERS.priceMin = min; window.ACTIVE_FILTERS.priceMax = max || Infinity; } document.querySelectorAll('[data-price]').forEach(el => { const [min, max] = el.dataset.price === '1000+' ? [1000, Infinity] : el.dataset.price.split('-').map(Number); el.classList.toggle('active', window.ACTIVE_FILTERS.priceMin === min && window.ACTIVE_FILTERS.priceMax === max); }); f31_applyFilters(); }
+    function f86_toggleFlavorFilter(flavor) { if (window.ACTIVE_FILTERS.flavor === flavor) { window.ACTIVE_FILTERS.flavor = null; } else { window.ACTIVE_FILTERS.flavor = flavor; } document.querySelectorAll('[data-flavor]').forEach(el => el.classList.toggle('active', el.dataset.flavor === window.ACTIVE_FILTERS.flavor)); f31_applyFilters(); }
+    function f87_getActiveFilterCount() { let count = 0; if (window.ACTIVE_FILTERS.type) count++; if (window.ACTIVE_FILTERS.region) count++; if (window.ACTIVE_FILTERS.flavor) count++; if (window.ACTIVE_FILTERS.priceMin > 0 || window.ACTIVE_FILTERS.priceMax < Infinity) count++; return count; }
+    function f88_resetFilterUI() { document.querySelectorAll('.filter-chip, .sidebar__tag').forEach(el => el.classList.remove('active')); }
+    function f89_updateFilterUI() { document.querySelectorAll('[data-type]').forEach(el => el.classList.toggle('active', el.dataset.type === window.ACTIVE_FILTERS.type)); document.querySelectorAll('[data-region]').forEach(el => el.classList.toggle('active', el.dataset.region === window.ACTIVE_FILTERS.region)); document.querySelectorAll('[data-flavor]').forEach(el => el.classList.toggle('active', el.dataset.flavor === window.ACTIVE_FILTERS.flavor)); }
+    function f90_hasActiveFilters() { return f87_getActiveFilterCount() > 0; }
+    function f91_toggleTypeFilter(type) { f83_toggleTypeFilter(type); }
+    function f92_toggleRegionFilter(region) { f84_toggleRegionFilter(region); }
+    function f93_togglePriceFilter(priceRange) { f85_togglePriceFilter(priceRange); }
+    function f94_toggleFlavorFilter(flavor) { f86_toggleFlavorFilter(flavor); }
+    function f95_handleSort(value) { f82_handleSort(value); }
+    function f96_openSidebar() { document.getElementById('sidebar').classList.add('mobile-open'); }
+    function f97_closeSidebar() { document.getElementById('sidebar').classList.remove('mobile-open'); }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 6. 卡片渲染 (Functions 101-120)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f98_renderCard(d, index) { const isFav = f70_isFavorited(d.id); const score = d.score || 0; const price = f64_formatPrice(d.price); const abv = d.abv || 0; const type = d.type || ''; const region = d.region || ''; const name = window.CUR_LANG === 'en' && d.ename ? d.ename : d.name; const tags = (d.flavor_tags || []).slice(0, 3).map(t => `<span class="liquor-tag">${f63_escHtml(t)}</span>`).join(''); return `<div class="liquor-card" data-id="${d.id}" onclick="f69_openDetailModal('${d.id}')" style="animation-delay:${Math.min(index * 50, 300)}ms"><div class="liquor-card-image">${d.image ? `<img src="${d.image}" alt="${f63_escHtml(d.name)}" loading="lazy">` : '🥃'}<span class="liquor-card-badge">${f63_escHtml(type)}</span><button class="liquor-card-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation();f105_toggleFavorite('${d.id}')">${isFav ? '❤️' : '🤍'}</button></div><div class="liquor-card-body"><div class="liquor-card-region">${f63_escHtml(region)}</div><div class="liquor-card-name">${f63_escHtml(name)}</div><div class="liquor-card-name-en">${d.ename || ''}</div><div class="liquor-card-tags">${tags}</div><div class="liquor-card-footer"><div class="liquor-card-abv"><strong>${abv}%</strong>vol</div><div class="liquor-card-price">¥${price}<span class="liquor-card-price-unit">/瓶</span></div><div class="liquor-card-actions"><button onclick="event.stopPropagation();f106_openCompareItem('${d.id}')" title="比较">⚖️</button><button onclick="event.stopPropagation();f107_shareCard('${d.id}')" title="分享">📤</button><button onclick="event.stopPropagation();f122_showRadar('${d.id}')" title="雷达图">📊</button></div></div></div></div>`; }
+    function f99_switchView(mode) { window.VIEW_MODE = mode; const grid = document.getElementById('cardGrid'); const gridBtn = document.getElementById('gridViewBtn'); const listBtn = document.getElementById('listViewBtn'); if (mode === 'grid') { grid.classList.remove('list-view'); gridBtn.classList.add('active'); listBtn.classList.remove('active'); } else { grid.classList.add('list-view'); gridBtn.classList.remove('active'); listBtn.classList.add('active'); } }
+    function f100_renderCards() { f39_renderCards(); }
+    function f101_updateCardFavState(id) { const card = document.querySelector(`.liquor-card[data-id="${id}"]`); if (!card) return; const btn = card.querySelector('.liquor-card-fav'); const isFav = f70_isFavorited(id); if (btn) btn.textContent = isFav ? '❤️' : '🤍'; btn.classList.toggle('active', isFav); }
+    function f102_getCardImage(d) { return d.image || ''; }
+    function f103_getCardPlaceholder(d) { return '🥃'; }
+    function f104_animateCardEntrance() { document.querySelectorAll('.liquor-card').forEach((card, i) => { card.style.opacity = '0'; card.style.transform = 'translateY(20px)'; setTimeout(() => { card.style.transition = 'opacity 0.5s, transform 0.5s'; card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, i * 50); }); }
+    function f105_toggleFavorite(id) { if (window.FAVORITES.hasOwnProperty(id)) { delete window.FAVORITES[id]; f58_showToast('已取消收藏'); } else { window.FAVORITES[id] = { id: id, timestamp: Date.now() }; f58_showToast('已添加到收藏'); f104_checkAchievement('first_fav'); } f11_saveToStorage(window.LS_FAV, window.FAVORITES); f101_updateCardFavState(id); f32_updateStats(); f122_updateCompareBarVisibility(); }
+    function f106_openCompareItem(id) { if (window.COMPARE_LIST.includes(id)) { window.COMPARE_LIST = window.COMPARE_LIST.filter(i => i !== id); } else if (window.COMPARE_LIST.length >= 4) { f58_showToast('最多只能比较4款'); return; } else { window.COMPARE_LIST.push(id); } f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f122_updateCompareBarVisibility(); }
+    function f107_shareCard(id) { f74_shareItem(id); }
+    function f108_renderCompareBar() { const bar = document.getElementById('compareBar'); const items = document.getElementById('compareItems'); const count = document.getElementById('compareCount'); if (!bar || !items) return; count.textContent = window.COMPARE_LIST.length; items.innerHTML = window.COMPARE_LIST.map(id => { const d = f69_findById(id); if (!d) return ''; return `<div class="compare-item"><div class="compare-item__name">${f63_escHtml(d.name)}</div><div class="compare-item__meta">${d.type} · ${d.abv}%</div><button class="compare-item__remove" onclick="f109_removeCompare('${id}')">✕</button></div>`; }).join(''); }
+    function f109_removeCompare(id) { window.COMPARE_LIST = window.COMPARE_LIST.filter(i => i !== id); f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f122_updateCompareBarVisibility(); }
+    function f110_openCompare() { if (window.COMPARE_LIST.length < 2) { f58_showToast('请至少选择2款进行比较'); return; } f113_showCompareModal(); }
+    function f111_clearCompare() { window.COMPARE_LIST = []; f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f122_updateCompareBarVisibility(); }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 7. 模态框函数 (Functions 121-140)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f112_closeAllModals() { document.querySelectorAll('.modal').forEach(m => m.classList.remove('show')); document.querySelectorAll('.modal-backdrop').forEach(b => b.classList.remove('show')); }
+    function f113_showCompareModal() { const backdrop = document.getElementById('compareBackdrop'); const modal = document.getElementById('compareModal'); const container = document.getElementById('compareTableContainer'); if (!backdrop || !modal || !container) return; const items = window.COMPARE_LIST.map(id => f69_findById(id)).filter(Boolean); let html = '<table class="compare-modal__table"><thead><tr><th>属性</th>'; items.forEach(d => { html += `<th><div>${f63_escHtml(d.name)}</div><img class="compare-img" src="${d.image || ''}" onerror="this.style.display=\\'none\\'"></th>`; }); html += '</tr></thead><tbody>'; const props = ['type', 'region', 'abv', 'price', 'score', 'factory']; props.forEach(prop => { html += `<tr><td class="compare-label">${f63_escHtml(prop === 'abv' ? '酒精度' : prop === 'factory' ? '酒厂' : prop === 'score' ? '评分' : prop === 'price' ? '价格' : prop === 'type' ? '类型' : '产区')}</td>`; items.forEach(d => { let val = d[prop] || '-'; if (prop === 'price') val = '¥' + f64_formatPrice(d.price); if (prop === 'abv') val = d.abv + '%'; html += `<td>${f63_escHtml(String(val))}</td>`; }); html += '</tr>'; }); html += '<tr><td class="compare-label">香型标签</td>'; items.forEach(d => { html += `<td>${(d.flavor_tags || []).map(t => `<span class="liquor-tag">${f63_escHtml(t)}</span>`).join('')}</td>`; }); html += '</tr></tbody></table>'; container.innerHTML = html; backdrop.classList.add('show'); modal.classList.add('show'); }
+    function f114_closeCompareModal() { document.getElementById('compareBackdrop').classList.remove('show'); document.getElementById('compareModal').classList.remove('show'); }
+    function f115_renderDetailModalContent(d) { if (!d) return ''; const score = d.score || 0; const isFav = f70_isFavorited(d.id); const name = window.CUR_LANG === 'en' && d.ename ? d.ename : d.name; const tasting = (d.tasting || []).map(t => `<div class="modal__tasting-item"><span class="modal__tasting-icon">👅</span><span class="modal__tasting-text">${f63_escHtml(t)}</span></div>`).join(''); const awards = (d.awards || []).map(a => `<span class="modal__badge">🏅 ${f63_escHtml(a)}</span>`).join(''); const pairing = (d.pairing || []).map(p => `<span class="modal__badge">🍽️ ${f63_escHtml(p)}</span>`).join(''); const image = d.image ? `<img src="${d.image}" alt="${f63_escHtml(d.name)}">` : '🥃'; return `<div class="modal__image">${image}<div class="modal__image-overlay"></div></div><div class="modal__content"><div class="modal__header"><div class="modal__title-group"><div class="modal__name">${f63_escHtml(name)}</div><div class="modal__ename">${d.ename || ''}</div><div class="modal__badges"><span class="modal__badge">${f63_escHtml(d.type)}</span><span class="modal__badge">${f63_escHtml(d.region)}</span><span class="modal__badge">${d.abv}%vol</span><span class="modal__badge">¥${f64_formatPrice(d.price)}</span></div></div><div class="modal__actions"><button class="modal__btn ${isFav ? 'primary' : ''}" onclick="f105_toggleFavorite('${d.id}')">${isFav ? '❤️ 已收藏' : '🤍 收藏'}</button><button class="modal__btn" onclick="f122_showRadar('${d.id}')">📊 雷达图</button><button class="modal__btn" onclick="f135_openTastingForLiquor('${d.id}')">📝 笔记</button></div></div><div class="modal__section"><div class="modal__section-title">基本属性</div><div class="modal__grid"><div class="modal__grid-item"><div class="modal__grid-label">评分</div><div class="modal__grid-value">${score}分</div></div><div class="modal__grid-item"><div class="modal__grid-label">酒精度</div><div class="modal__grid-value">${d.abv}%vol</div></div><div class="modal__grid-item"><div class="modal__grid-label">产地</div><div class="modal__grid-value">${f63_escHtml(d.origin || '-')}</div></div><div class="modal__grid-item"><div class="modal__grid-label">酒厂</div><div class="modal__grid-value">${f63_escHtml(d.factory || '-')}</div></div></div></div>${tasting ? `<div class="modal__section"><div class="modal__section-title">品鉴指南</div><div class="modal__tasting">${tasting}</div></div>` : ''}${d.description ? `<div class="modal__section"><div class="modal__section-title">风味描述</div><div class="modal__text">${f63_escHtml(d.description)}</div></div>` : ''}${awards ? `<div class="modal__section"><div class="modal__section-title">获奖荣誉</div><div class="modal__badges">${awards}</div></div>` : ''}${pairing ? `<div class="modal__section"><div class="modal__section-title">餐酒搭配</div><div class="modal__badges">${pairing}</div></div>` : ''}${d.history ? `<div class="modal__section"><div class="modal__section-title">历史背景</div><div class="modal__story">${f63_escHtml(d.history)}</div></div>` : ''}`; }
+    function f116_openDetailModal(id) { const d = f69_findById(id); if (!d) return; const backdrop = document.getElementById('detailBackdrop'); const modal = document.getElementById('detailModal'); const image = document.getElementById('detailModalImage'); const content = document.getElementById('detailModalContent'); if (!backdrop || !modal) return; image.innerHTML = d.image ? `<img src="${d.image}" alt="${f63_escHtml(d.name)}">` : '🥃'; content.innerHTML = f115_renderDetailModalContent(d); backdrop.classList.add('show'); modal.classList.add('show'); f59_addToRecent(id); f61_updateVisitCount(id); f104_checkAchievement('explore_10'); }
+    function f117_closeDetailModal() { document.getElementById('detailBackdrop').classList.remove('show'); document.getElementById('detailModal').classList.remove('show'); }
+    function f118_showAchievements() { const backdrop = document.getElementById('achieveBackdrop'); const modal = document.getElementById('achieveModal'); const grid = document.getElementById('achievementsGrid'); if (!backdrop || !modal || !grid) return; grid.innerHTML = f127_renderAchievements(); backdrop.classList.add('show'); modal.classList.add('show'); }
+    function f119_closeAchievementModal() { document.getElementById('achieveBackdrop').classList.remove('show'); document.getElementById('achieveModal').classList.remove('show'); }
+    function f120_showRadarChart(liquorId) { const d = f69_findById(liquorId); if (!d) return; const backdrop = document.getElementById('radarBackdrop'); const modal = document.getElementById('radarModal'); const container = document.getElementById('radarContainer'); if (!backdrop || !modal || !container) return; const aroma = d.aroma || 0; const body = d.body || 0; const taste = d.taste || 0; const afterglow = d.afterglow || 0; const score = d.score || 0; container.innerHTML = `<div class="radar-chart"><svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="radarGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#e8a829;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#9a6b12;stop-opacity:0.3"/></linearGradient></defs><circle cx="200" cy="200" r="150" fill="none" stroke="rgba(232,168,41,0.2)" stroke-width="1"/><circle cx="200" cy="200" r="112" fill="none" stroke="rgba(232,168,41,0.15)" stroke-width="1"/><circle cx="200" cy="200" r="75" fill="none" stroke="rgba(232,168,41,0.1)" stroke-width="1"/><circle cx="200" cy="200" r="37" fill="none" stroke="rgba(232,168,41,0.05)" stroke-width="1"/><line x1="200" y1="50" x2="200" y2="350" stroke="rgba(232,168,41,0.1)" stroke-width="1"/><line x1="70" y1="200" x2="330" y2="200" stroke="rgba(232,168,41,0.1)" stroke-width="1"/><line x1="108" y1="92" x2="292" y2="308" stroke="rgba(232,168,41,0.1)" stroke-width="1"/><line x1="292" y1="92" x2="108" y2="308" stroke="rgba(232,168,41,0.1)" stroke-width="1"/><polygon points="${200},${200 - (aroma/20*150)} ${200 + (body/20*130)},${200 + (body/20*75)} ${200 + (taste/20*100)},${200 + (taste/20*130)} ${200 - (afterglow/20*90)},${200 + (afterglow/20*150)} ${200 - (score/100*80)},${200 - (score/100*50)}" fill="url(#radarGrad)" stroke="#e8a829" stroke-width="2"/><text x="200" y="35" text-anchor="middle" fill="#f5cc6a" font-size="12">香气 ${aroma}</text><text x="340" y="200" text-anchor="start" fill="#f5cc6a" font-size="12">酒体 ${body}</text><text x="215" y="365" text-anchor="middle" fill="#f5cc6a" font-size="12">口感 ${taste}</text><text x="60" y="200" text-anchor="end" fill="#f5cc6a" font-size="12">回甘 ${afterglow}</text><text x="100" y="85" text-anchor="middle" fill="#f5cc6a" font-size="12">综合 ${score}</text></svg></div><div class="radar-legend"><div class="radar-legend-item"><span class="radar-legend-dot" style="background:#e8a829"></span>香气 ${aroma}</div><div class="radar-legend-item"><span class="radar-legend-dot" style="background:#c4891a"></span>酒体 ${body}</div><div class="radar-legend-item"><span class="radar-legend-dot" style="background:#9a6b12"></span>口感 ${taste}</div><div class="radar-legend-item"><span class="radar-legend-dot" style="background:#734e0d"></span>回甘 ${afterglow}</div><div class="radar-legend-item"><span class="radar-legend-dot" style="background:#5a3d0e"></span>综合 ${score}</div></div>`; backdrop.classList.add('show'); modal.classList.add('show'); }
+    function f121_closeRadarModal() { document.getElementById('radarBackdrop').classList.remove('show'); document.getElementById('radarModal').classList.remove('show'); }
+    function f122_showRadar(id) { f120_showRadarChart(id); }
+    function f123_updateCompareBarVisibility() { const btn = document.getElementById('compareOpenBtn'); const bar = document.getElementById('compareBar'); if (window.COMPARE_LIST.length > 0) { if (btn) btn.style.display = 'flex'; bar.classList.add('show'); } else { if (btn) btn.style.display = 'none'; bar.classList.remove('show'); } }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 8. 品鉴笔记系统 (Functions 141-160)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f124_renderNotesList() { const list = document.getElementById('notesList'); if (!list) return; const notes = Object.values(window.TASTING_NOTES).sort((a, b) => (b.date || '').localeCompare(a.date || '')); if (notes.length === 0) { list.innerHTML = '<div class="notes-empty"><div class="notes-empty__icon">📝</div><div class="notes-empty__text">暂无品酒笔记</div></div>'; return; } list.innerHTML = notes.map(n => { const d = f69_findById(n.liquorId); const name = d ? (window.CUR_LANG === 'en' && d.ename ? d.ename : d.name) : '未知'; const stars = f66_getRatingStars(n.rating || 0); const text = n.text || ''; const date = f65_formatDate(n.date); return `<div class="note-item" onclick="f134_editNote('${n.id}')"><div class="note-item__header"><span class="note-item__name">${f63_escHtml(name)}</span><span class="note-item__date">${date}</span></div><div class="note-item__rating">${stars}</div><div class="note-item__text">${f63_escHtml(text)}</div><div class="note-item__actions"><button class="note-item__btn" onclick="event.stopPropagation();f134_editNote('${n.id}')">编辑</button><button class="note-item__btn delete" onclick="event.stopPropagation();f130_deleteNote('${n.id}')">删除</button></div></div>`; }).join(''); }
+    function f125_openTastingModal() { const backdrop = document.getElementById('tastingBackdrop'); const modal = document.getElementById('tastingModal'); const select = document.getElementById('tastingLiquorSelect'); const formTitle = document.getElementById('tastingFormTitle'); if (!backdrop || !modal || !select) return; formTitle.textContent = '添加品鉴笔记'; document.getElementById('tastingNoteId').value = ''; select.innerHTML = window.DATA.map(d => `<option value="${d.id}">${f63_escHtml(d.name)}</option>`).join(''); document.getElementById('tastingDate').value = new Date().toISOString().slice(0, 10); document.getElementById('tastingText').value = ''; f126_resetStars(); backdrop.classList.add('show'); modal.classList.add('show'); }
+    function f126_resetStars() { document.querySelectorAll('.tasting-form__star').forEach(s => { s.textContent = '☆'; s.classList.remove('active'); }); }
+    function f127_saveTastingNote() { const id = document.getElementById('tastingNoteId').value || f68_generateId(); const liquorId = document.getElementById('tastingLiquorSelect').value; const rating = parseInt(document.querySelector('.tasting-form__star.active')?.dataset.rating || '0'); const date = document.getElementById('tastingDate').value; const text = document.getElementById('tastingText').value; const scene = document.getElementById('tastingScene').value; if (!liquorId) { f58_showToast('请选择烈酒'); return; } window.TASTING_NOTES[id] = { id: id, liquorId: liquorId, rating: rating, date: date, text: text, scene: scene, updatedAt: Date.now() }; f11_saveToStorage(window.LS_NOTES, window.TASTING_NOTES); f32_updateStats(); f124_renderNotesList(); f125_closeTastingModal(); f58_showToast('笔记已保存'); f104_checkAchievement('first_note'); }
+    function f128_closeTastingModal() { document.getElementById('tastingBackdrop').classList.remove('show'); document.getElementById('tastingModal').classList.remove('show'); }
+    function f129_deleteNote(id) { if (!confirm('确定要删除这条笔记吗？')) return; delete window.TASTING_NOTES[id]; f11_saveToStorage(window.LS_NOTES, window.TASTING_NOTES); f32_updateStats(); f124_renderNotesList(); f58_showToast('笔记已删除'); }
+    function f130_deleteNote(id) { f129_deleteNote(id); }
+    function f131_addNewNote() { f125_openTastingModal(); }
+    function f132_editNote(id) { const note = Object.values(window.TASTING_NOTES).find(n => n.id === id); if (!note) return; const backdrop = document.getElementById('tastingBackdrop'); const modal = document.getElementById('tastingModal'); const formTitle = document.getElementById('tastingFormTitle'); if (!backdrop || !modal) return; formTitle.textContent = '编辑品鉴笔记'; document.getElementById('tastingNoteId').value = note.id; document.getElementById('tastingLiquorSelect').value = note.liquorId; document.getElementById('tastingDate').value = note.date || ''; document.getElementById('tastingText').value = note.text || ''; document.getElementById('tastingScene').value = note.scene || 'solo'; f126_resetStars(); if (note.rating) { for (let i = 1; i <= note.rating; i++) { const star = document.querySelector(`.tasting-form__star[data-rating="${i}"]`); if (star) { star.textContent = '★'; star.classList.add('active'); } } } backdrop.classList.add('show'); modal.classList.add('show'); }
+    function f133_editNote(id) { f132_editNote(id); }
+    function f134_editNote(id) { f132_editNote(id); }
+    function f135_openTastingForLiquor(liquorId) { const backdrop = document.getElementById('tastingBackdrop'); const modal = document.getElementById('tastingModal'); const select = document.getElementById('tastingLiquorSelect'); const formTitle = document.getElementById('tastingFormTitle'); if (!backdrop || !modal || !select) return; formTitle.textContent = '添加品鉴笔记'; document.getElementById('tastingNoteId').value = ''; select.innerHTML = window.DATA.map(d => `<option value="${d.id}" ${d.id === liquorId ? 'selected' : ''}>${f63_escHtml(d.name)}</option>`).join(''); document.getElementById('tastingDate').value = new Date().toISOString().slice(0, 10); document.getElementById('tastingText').value = ''; f126_resetStars(); backdrop.classList.add('show'); modal.classList.add('show'); }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 9. 成就系统 (Functions 161-180)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f136_getAchievementsList() { return [{ id: 'first_fav', name: '初次收藏', desc: '收藏第一款烈酒', icon: '❤️', condition: 'favorites >= 1' }, { id: 'first_note', name: '品鉴初体验', desc: '写下第一条品鉴笔记', icon: '📝', condition: 'notes >= 1' }, { id: 'explore_10', name: '探索者', desc: '浏览10款不同烈酒', icon: '🔍', condition: 'visited >= 10' }, { id: 'explore_50', name: '资深酒友', desc: '浏览50款不同烈酒', icon: '🏆', condition: 'visited >= 50' }, { id: 'fav_10', name: '收藏家', desc: '收藏10款烈酒', icon: '💎', condition: 'favorites >= 10' }, { id: 'notes_10', name: '笔记达人', desc: '写满10条品鉴笔记', icon: '📚', condition: 'notes >= 10' }, { id: 'compare_5', name: '比较达人', desc: '使用5次比较功能', icon: '⚖️', condition: 'compare >= 5' }, { id: 'all_types', name: '全知全能', desc: '浏览所有类型', icon: '🎓', condition: 'types_all === true' }]; }
+    function f137_checkAchievementProgress(id) { const achieve = f136_getAchievementsList().find(a => a.id === id); if (!achieve) return { unlocked: false, progress: 0 }; if (window.ACHIEVEMENTS[id] && window.ACHIEVEMENTS[id].unlocked) return { unlocked: true, progress: 100 }; let progress = 0; const cond = achieve.condition; if (cond.startsWith('favorites')) { const threshold = parseInt(cond.split('>=')[1]); progress = Math.min(100, (Object.keys(window.FAVORITES).length / threshold) * 100); } else if (cond.startsWith('notes')) { const threshold = parseInt(cond.split('>=')[1]); progress = Math.min(100, (Object.keys(window.TASTING_NOTES).length / threshold) * 100); } else if (cond.startsWith('visited')) { const threshold = parseInt(cond.split('>=')[1]); const visits = JSON.parse(localStorage.getItem(window.LS_VISITS) || '{}'); const count = Object.keys(visits).length; progress = Math.min(100, (count / threshold) * 100); } return { unlocked: window.ACHIEVEMENTS[id] && window.ACHIEVEMENTS[id].unlocked, progress: Math.round(progress) }; }
+    function f138_renderAchievementCard(a) { const status = f137_checkAchievementProgress(a.id); const statusClass = status.unlocked ? 'unlocked' : 'locked'; return `<div class="achievement-card ${statusClass}"><span class="achievement-icon">${a.icon}</span><div class="achievement-name">${a.name}</div><div class="achievement-desc">${a.desc}</div>${!status.unlocked ? `<div class="achievement-progress"><div class="achievement-progress-bar" style="width:${status.progress}%"></div></div><div class="achievement-progress-text">${status.progress}%</div>` : '<div class="achievement-progress-text">✅ 已解锁</div>'}</div>`; }
+    function f139_renderAchievements() { return f136_getAchievementsList().map(a => f138_renderAchievementCard(a)).join(''); }
+    function f140_checkAchievement(id) { if (window.ACHIEVEMENTS[id] && window.ACHIEVEMENTS[id].unlocked) return; const status = f137_checkAchievementProgress(id); if (status.unlocked || status.progress >= 100) { window.ACHIEVEMENTS[id] = { unlocked: true, unlockedAt: Date.now() }; f11_saveToStorage(window.LS_ACHIEVE, window.ACHIEVEMENTS); f32_updateStats(); const achieve = f136_getAchievementsList().find(a => a.id === id); if (achieve) f58_showToast(`🏆 成就解锁：${achieve.name}`); } }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 10. 附加功能与工具 (Functions 181-189)
+    // ═══════════════════════════════════════════════════════════════════
+
+    function f141_shareToWechat() { const text = '我在世界烈酒图鉴发现了一款好酒！'; f73_copyToClipboard(text); f58_showToast('已复制分享文案'); }
+    function f142_exportCompareJSON() { if (window.COMPARE_LIST.length === 0) { f58_showToast('暂无比较数据'); return; } const items = window.COMPARE_LIST.map(id => f69_findById(id)).filter(Boolean); const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'liquor_compare_' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); URL.revokeObjectURL(url); f58_showToast('📤 比较数据已导出'); }
+    function f143_importCompare() { const input = document.createElement('input'); input.type = 'file'; input.accept = '.json'; input.onchange = (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { try { const imported = JSON.parse(ev.target.result); if (Array.isArray(imported)) { window.COMPARE_LIST = imported.slice(0, 4).map(d => d.id).filter(id => f69_findById(id)); f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f122_updateCompareBarVisibility(); f58_showToast('📥 已导入 ' + window.COMPARE_LIST.length + ' 款到比较栏'); } else { f58_showToast('数据格式错误'); } } catch (err) { f58_showToast('导入失败'); } }; reader.readAsText(file); }; input.click(); }
+    function f144_getLiquorStats() { const total = window.DATA.length; const types = [...new Set(window.DATA.map(d => d.type))].length; const regions = [...new Set(window.DATA.map(d => d.region))].length; const avgPrice = window.DATA.reduce((sum, d) => sum + (d.price || 0), 0) / total; return { total, types, regions, avgPrice: Math.round(avgPrice) }; }
+    function f145_shareLiquor(id) { const d = f69_findById(id); if (!d) return; const text = `🥃 ${d.name}（${d.ename || ''}）\n类型：${d.type}\n酒精度：${d.abv}%\n参考价格：¥${f64_formatPrice(d.price)}\n\n来自世界烈酒图鉴`; f73_copyToClipboard(text); f58_showToast('已复制分享信息'); }
+    function f146_printLiquorInfo(id) { const d = f69_findById(id); if (!d) return; const info = `${d.name}\n${'='.repeat(20)}\n类型：${d.type}\n产地：${d.origin}\n酒精度：${d.abv}%\n参考价格：¥${f64_formatPrice(d.price)}\n\n${d.description || ''}\n\n${d.history || ''}`; const win = window.open('', '_blank'); win.document.write(`<pre>${info}</pre>`); win.document.close(); win.print(); }
+    function f147_theme_toggle() { const html = document.documentElement; const current = html.getAttribute('data-theme'); html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark'); f58_showToast('主题已切换'); }
+    function f148_exportAllUserData() { const data = { version: '3.0', exportDate: new Date().toISOString(), favorites: window.FAVORITES, tastingNotes: window.TASTING_NOTES, achievements: window.ACHIEVEMENTS, compareList: window.COMPARE_LIST, preferences: { lang: window.CUR_LANG, viewMode: window.VIEW_MODE } }; const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'liquor_user_data_' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); URL.revokeObjectURL(url); f58_showToast('📤 用户数据已导出'); }
+    function f149_importAllUserData() { const input = document.createElement('input'); input.type = 'file'; input.accept = '.json'; input.onchange = (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { try { const data = JSON.parse(ev.target.result); if (data.version && f17_importState(data)) { f32_updateStats(); f39_renderCards(); f58_showToast('📥 用户数据导入成功'); } else { f58_showToast('数据格式不兼容'); } } catch (err) { f58_showToast('导入失败'); } }; reader.readAsText(file); }; input.click(); }
+    function f150_fullscreenToggle() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); } else { document.exitFullscreen().catch(() => {}); } }
+    function f151_showHelp() { alert('🥃 世界烈酒图鉴 使用帮助\n\n• 点击卡片查看详情\n• ❤️ 收藏喜欢的烈酒\n• 📝 记录品鉴笔记\n• 📊 查看风味雷达图\n• ⚖️ 比较多款烈酒\n• 🎲 随机推荐\n\n快捷键：\n/ 搜索\nESC 关闭弹窗'); }
+    function f152_updateRecentVisits() { const recent = f60_getRecent(); const container = document.getElementById('recentVisits'); if (!container) return; if (recent.length === 0) { container.innerHTML = '<div class="sidebar-empty">暂无最近浏览</div>'; return; } container.innerHTML = recent.slice(0, 5).map(id => { const d = f69_findById(id); if (!d) return ''; return `<div class="sidebar__tag" onclick="f116_openDetailModal('${id}')">${f63_escHtml(d.name)}</div>`; }).join(''); }
+    function f153_showTopVisited() { const top = f62_getTopVisited(); const container = document.getElementById('topVisited'); if (!container) return; if (top.length === 0) { container.innerHTML = '<div class="sidebar-empty">暂无数据</div>'; return; } container.innerHTML = top.map(id => { const d = f69_findById(id); if (!d) return ''; return `<div class="sidebar__tag" onclick="f116_openDetailModal('${id}')">${f63_escHtml(d.name)}</div>`; }).join(''); }
+    function f154_filterByFlavorTag(tag) { window.ACTIVE_FILTERS.flavor = tag; document.querySelectorAll('[data-flavor]').forEach(el => el.classList.toggle('active', el.dataset.flavor === tag)); f31_applyFilters(); }
+    function f155_quickFilterPrice(min, max) { window.ACTIVE_FILTERS.priceMin = min; window.ACTIVE_FILTERS.priceMax = max || Infinity; f31_applyFilters(); }
+    function f156_resetAllData() { if (!confirm('确定要重置所有数据吗？这将清除所有收藏、笔记和成就。')) return; window.FAVORITES = {}; window.TASTING_NOTES = {}; window.ACHIEVEMENTS = {}; window.COMPARE_LIST = []; f15_saveAllStorage(); f32_updateStats(); f39_renderCards(); f124_renderNotesList(); f58_showToast('所有数据已重置'); }
+    function f157_showAbout() { alert('🥃 世界烈酒图鉴 v3.0\n\n探索全球顶级烈酒\n包含品鉴笔记、风味雷达图、成就系统\n\n© 2024 World Liquor Gallery'); }
+    function f158_checkSystemAchievements() { f140_checkAchievement('first_fav'); f140_checkAchievement('first_note'); const types = [...new Set(window.DATA.map(d => d.type))]; const visitedTypes = new Set(window.FILTERED.map(d => d.type)); if (visitedTypes.size >= types.length) f140_checkAchievement('all_types'); }
+    function f159_performanceMark(name) { if (window.performance && window.performance.mark) window.performance.mark(name); }
+    function f160_performanceMeasure(name, startMark, endMark) { if (window.performance && window.performance.measure) window.performance.measure(name, startMark, endMark); }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 初始化
+    // ═══════════════════════════════════════════════════════════════════
+
+    // Setup tasting star rating interaction
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.tasting-form__star').forEach(star => {
+        star.addEventListener('click', function() {
+          const rating = parseInt(this.dataset.rating);
+          document.querySelectorAll('.tasting-form__star').forEach((s, i) => {
+            if (i < rating) { s.textContent = '★'; s.classList.add('active'); }
+            else { s.textContent = '☆'; s.classList.remove('active'); }
+          });
         });
       });
-    }
 
-    // ── 详情模态框 ──
-    function openM(id) {
-      const d = DATA.find(x => x.id === id);
-      if (!d) return;
-
-      addToRecent(id);
-      updateVisitCount(id);
-      document.body.style.overflow = 'hidden';
-
-      const modal = document.getElementById('modal');
-      const backdrop = document.getElementById('modalBackdrop');
-      const image = document.getElementById('modalImage');
-      const content = document.getElementById('modalContent');
-
-      image.innerHTML = '🍷';
-      
-      const score = d.score || 0;
-      const aroma = d.aroma || 0;
-      const body = d.body || 0;
-      const taste = d.taste || 0;
-      const afterglow = d.afterglow || 0;
-
-      const note = TASTING_NOTES[d.id] || {};
-      const stars = '★'.repeat(note.rating || 0) + '☆'.repeat(5 - (note.rating || 0));
-
-      content.innerHTML = `
-        <div class="modal__header">
-          <div class="modal__title-group">
-            <h2 class="modal__name">${escHtml(d.name)}</h2>
-            <p class="modal__ename">${escHtml(d.ename || '')}</p>
-            <div class="modal__badges">
-              <span class="modal__badge">${escHtml(d.type || '')}</span>
-              <span class="modal__badge">${escHtml(d.region || '')}</span>
-              <span class="modal__badge">${d.abv || 0}%vol</span>
-            </div>
-          </div>
-          <div class="modal__actions">
-            <button class="modal__action-btn" onclick="shareItem('${d.id}')" title="分享">🔗</button>
-            <button class="modal__action-btn" onclick="toggleFav('${d.id}')" title="${favorites[d.id] ? '取消收藏' : '收藏'}">${favorites[d.id] ? '❤️' : '🤍'}</button>
-          </div>
-        </div>
-
-        <div class="score-display">
-          <div class="score-circle">
-            <span class="score-value">${score.toFixed(1)}</span>
-            <span class="score-label">综合评分</span>
-          </div>
-          <div class="score-bars">
-            <div class="score-bar-item">
-              <span class="score-bar-label">香气</span>
-              <div class="score-bar-track"><div class="score-bar-fill" style="width:${aroma * 10}%"></div></div>
-              <span class="score-bar-value">${aroma}</span>
-            </div>
-            <div class="score-bar-item">
-              <span class="score-bar-label">酒体</span>
-              <div class="score-bar-track"><div class="score-bar-fill" style="width:${body * 10}%"></div></div>
-              <span class="score-bar-value">${body}</span>
-            </div>
-            <div class="score-bar-item">
-              <span class="score-bar-label">口感</span>
-              <div class="score-bar-track"><div class="score-bar-fill" style="width:${taste * 10}%"></div></div>
-              <span class="score-bar-value">${taste}</span>
-            </div>
-            <div class="score-bar-item">
-              <span class="score-bar-label">余韵</span>
-              <div class="score-bar-track"><div class="score-bar-fill" style="width:${afterglow * 10}%"></div></div>
-              <span class="score-bar-value">${afterglow}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">📜</span>简介</h4>
-          <p style="color:#c9bfb5;line-height:1.7">${escHtml(d.description || d.history || '暂无描述')}</p>
-        </div>
-
-        ${d.history && d.history.length > 50 ? `
-        <div class="history-quote">"${escHtml(d.history.slice(0, 100))}..."</div>
-        ` : ''}
-
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">📊</span>基本信息</h4>
-          <div class="modal__info-grid">
-            <div class="modal__info-item">
-              <span class="modal__info-label">产地</span>
-              <span class="modal__info-value">${escHtml(d.origin || d.origin_story || '未知')}</span>
-            </div>
-            <div class="modal__info-item">
-              <span class="modal__info-label">价格</span>
-              <span class="modal__info-value" style="color:#e8a829">¥${formatPrice(d.price || 0)}</span>
-            </div>
-            <div class="modal__info-item">
-              <span class="modal__info-label">酒厂</span>
-              <span class="modal__info-value">${escHtml(d.factory || d.distillery || '未知')}</span>
-            </div>
-            <div class="modal__info-item">
-              <span class="modal__info-label">年份</span>
-              <span class="modal__info-value">${escHtml(d.age || d.aging || '未知')}</span>
-            </div>
-          </div>
-        </div>
-
-        ${(d.flavor_tags && d.flavor_tags.length) ? `
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">🏷️</span>风味标签</h4>
-          <div class="ingredient-diagram">
-            ${d.flavor_tags.map(t => `<span class="ingredient-item"><span class="ingredient-icon">✦</span>${escHtml(t)}</span>`).join('')}
-          </div>
-        </div>
-        ` : ''}
-
-        ${(d.tasting && d.tasting.length) ? `
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">👅</span>品鉴指南</h4>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            ${d.tasting.map(t => `<div style="padding:8px 12px;background:rgba(26,21,18,0.4);border-radius:8px;font-size:13px;color:#c9bfb5">${escHtml(t)}</div>`).join('')}
-          </div>
-        </div>
-        ` : ''}
-
-        ${(d.pairing && d.pairing.length) ? `
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">🍽️</span>配餐建议</h4>
-          <div class="scene-tags">
-            ${d.pairing.map(p => `<span class="scene-tag">${escHtml(p)}</span>`).join('')}
-          </div>
-        </div>
-        ` : ''}
-
-        ${(d.awards && d.awards.length) ? `
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">🏆</span>获奖荣誉</h4>
-          <div class="awards-list">
-            ${d.awards.map(a => `<div class="award-item"><span class="award-icon">🏅</span>${escHtml(a)}</div>`).join('')}
-          </div>
-        </div>
-        ` : ''}
-
-        ${(d.scene && d.scene.length) ? `
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">🎯</span>适用场景</h4>
-          <div class="scene-tags">
-            ${d.scene.map(s => `<span class="scene-tag">${escHtml(s)}</span>`).join('')}
-          </div>
-        </div>
-        ` : ''}
-
-        ${d.cocktail ? `
-        <div class="cocktail-hint">
-          <div class="cocktail-name">🍸 创意调酒: ${escHtml(d.cocktail.name || '自定义')}</div>
-          <div class="cocktail-method">${escHtml(d.cocktail.method || '')}</div>
-        </div>
-        ` : ''}
-
-        ${d.storage ? `
-        <div class="storage-hint">
-          <strong>💡 存储建议:</strong> ${escHtml(d.storage)}
-        </div>
-        ` : ''}
-
-        <div class="modal__section">
-          <h4 class="modal__section-title"><span class="modal__section-title-icon">📝</span>我的品鉴</h4>
-          <div class="tasting-form">
-            <div class="modal__stars">
-              ${[1,2,3,4,5].map(n => `<span onclick="setRating(${n})" class="${n <= (note.rating || 0) ? 'active' : ''}">★</span>`).join('')}
-              <span style="margin-left:8px;font-size:12px;color:#6b5d4d">${stars}</span>
-            </div>
-            <textarea class="tasting-textarea" id="tastingNoteText" placeholder="记录你的品鉴感受...">${escHtml(note.text || '')}</textarea>
-            <button class="tasting-btn" onclick="saveTastingNote('${d.id}')">保存笔记</button>
-          </div>
-        </div>
-      `;
-
-      modal.classList.add('active');
-      backdrop.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function setRating(n) {
-      const stars = document.querySelectorAll('.modal__stars span:first-child ~ span:not([onclick])');
-      document.querySelectorAll('.modal__stars span[onclick]').forEach((sp, i) => {
-        sp.classList.toggle('active', i < n);
+      // Init app
+      f159_performanceMark('app-init-start');
+      f23_async_initAndLoad().then(() => {
+        f159_performanceMark('app-init-end');
+        f160_performanceMeasure('app-init-time', 'app-init-start', 'app-init-end');
       });
-    }
-
-    function closeModal() {
-      document.getElementById('modal').classList.remove('active');
-      document.getElementById('modalBackdrop').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    // ── 收藏 ──
-    function toggleFav(id) {
-      if (favorites[id]) {
-        delete favorites[id];
-      } else {
-        favorites[id] = { date: new Date().toISOString() };
-      }
-      saveFavorites();
-      render();
-      showToast(favorites[id] ? '已添加到收藏' : '已取消收藏');
-    }
-
-    function updateFavoritesBadge() {
-      const btn = document.getElementById('favBtn');
-      const count = Object.keys(favorites).length;
-      if (count > 0) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    }
-
-    // ── 笔记 ──
-    function saveTastingNote(id) {
-      const stars = document.querySelectorAll('.modal__stars span[onclick]');
-      const activeCount = [...stars].filter(s => s.classList.contains('active')).length;
-      const textArea = document.getElementById('tastingNoteText');
-      const text = textArea ? textArea.value.trim() : '';
-
-      if (!activeCount && !text) {
-        delete TASTING_NOTES[id];
-      } else {
-        TASTING_NOTES[id] = { rating: activeCount, text, date: new Date().toISOString() };
-      }
-      saveTastingNotes();
-      renderNotesList();
-      showToast('笔记已保存');
-    }
-
-    function renderNotesList() {
-      const list = document.getElementById('notesList');
-      if (!list) return;
-
-      const notes = Object.entries(TASTING_NOTES);
-      if (!notes.length) {
-        list.innerHTML = '<div class="sidebar-empty"><div class="sidebar-empty__icon">📝</div><div class="sidebar-empty__text">暂无品酒笔记</div></div>';
-        return;
-      }
-
-      list.innerHTML = notes.map(([id, note]) => {
-        const d = DATA.find(x => x.id === id);
-        if (!d) return '';
-        const stars = '★'.repeat(note.rating || 0) + '☆'.repeat(5 - (note.rating || 0));
-        const date = new Date(note.date).toLocaleDateString('zh-CN');
-        return `<div class="notes-item" data-id="${escHtml(id)}">
-          <div class="notes-item-header">
-            <span class="notes-item-name">${escHtml(d.name)}</span>
-            <span class="notes-item-rating">${stars}</span>
-          </div>
-          ${note.text ? `<div class="notes-item-text">${escHtml(note.text)}</div>` : ''}
-          <div class="notes-item-date">${date}</div>
-        </div>`;
-      }).join('');
-
-      list.querySelectorAll('.notes-item').forEach(item => {
-        item.addEventListener('click', () => {
-          openM(item.dataset.id);
-          closeSidebar();
-        });
-      });
-    }
-
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebarOverlay');
-      sidebar.classList.toggle('active');
-      overlay.classList.toggle('active');
-      if (sidebar.classList.contains('active')) {
-        renderNotesList();
-      }
-    }
-
-    function closeSidebar() {
-      document.getElementById('sidebar').classList.remove('active');
-      document.getElementById('sidebarOverlay').classList.remove('active');
-    }
-
-    function importNotes() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = '.json';
-      input.onchange = async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        try {
-          const text = await file.text();
-          const data = JSON.parse(text);
-          if (typeof data === 'object') {
-            TASTING_NOTES = { ...TASTING_NOTES, ...data };
-            saveTastingNotes();
-            renderNotesList();
-            showToast('导入成功');
-          }
-        } catch (err) {
-          showToast('导入失败');
-        }
-      };
-      input.click();
-    }
-
-    function exportNotes() {
-      const blob = new Blob([JSON.stringify(TASTING_NOTES, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'liquor_tasting_notes.json';
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast('导出成功');
-    }
-
-    // ── 比较 ──
-    function addToCompare(id) {
-      if (COMPARE_LIST.includes(id)) {
-        COMPARE_LIST = COMPARE_LIST.filter(x => x !== id);
-      } else if (COMPARE_LIST.length < 4) {
-        COMPARE_LIST.push(id);
-      } else {
-        showToast('最多比较4款');
-        return;
-      }
-      updateCompareBar();
-      render();
-    }
-
-    function updateCompareBar() {
-      const bar = document.getElementById('compareBar');
-      const countEl = document.getElementById('compareCount');
-      const itemsEl = document.getElementById('compareItems');
-      const openBtn = document.getElementById('compareOpenBtn');
-
-      if (COMPARE_LIST.length > 0) {
-        bar.classList.add('active');
-        openBtn.style.display = 'flex';
-        countEl.textContent = COMPARE_LIST.length;
-        itemsEl.innerHTML = COMPARE_LIST.map(id => {
-          const d = DATA.find(x => x.id === id);
-          if (!d) return '';
-          return `<div class="compare-item">
-            <span>${escHtml(d.name)}</span>
-            <span class="compare-item__remove" onclick="event.stopPropagation(); removeFromCompare('${id}')">✕</span>
-          </div>`;
-        }).join('');
-      } else {
-        bar.classList.remove('active');
-        openBtn.style.display = 'none';
-      }
-    }
-
-    function removeFromCompare(id) {
-      COMPARE_LIST = COMPARE_LIST.filter(x => x !== id);
-      updateCompareBar();
-      render();
-    }
-
-    function openCompare() {
-      if (COMPARE_LIST.length >= 2) {
-        showCompareModal();
-      }
-    }
-
-    function showCompareModal() {
-      const overlay = document.getElementById('compareModalOverlay');
-      const body = document.getElementById('compareModalBody');
-      
-      const items = COMPARE_LIST.map(id => DATA.find(x => x.id === id)).filter(Boolean);
-
-      const fields = [
-        { key: 'type', label: '类型' },
-        { key: 'abv', label: '酒精度' },
-        { key: 'origin', label: '产地' },
-        { key: 'factory', label: '酒厂' },
-        { key: 'price', label: '价格', format: v => '¥' + formatPrice(v) },
-        { key: 'aging', label: '年份' },
-        { key: 'score', label: '评分' },
-        { key: 'aroma', label: '香气' },
-        { key: 'taste', label: '口感' },
-        { key: 'description', label: '描述' },
-        { key: 'tasting', label: '品鉴', format: v => Array.isArray(v) ? v.join(' / ') : v },
-        { key: 'pairing', label: '配餐', format: v => Array.isArray(v) ? v.join(', ') : v }
-      ];
-
-      body.innerHTML = `
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>属性</th>
-              ${items.map(d => `<th>${escHtml(d.name)}</th>`).join('')}
-            </tr>
-          </thead>
-          <tbody>
-            ${fields.map(f => `
-              <tr>
-                <th>${f.label}</th>
-                ${items.map(d => {
-                  let val = d[f.key];
-                  if (f.format) val = f.format(val);
-                  return `<td>${escHtml(val || '-')}</td>`;
-                }).join('')}
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      `;
-
-      overlay.classList.add('active');
-    }
-
-    function closeCompareModal() {
-      document.getElementById('compareModalOverlay').classList.remove('active');
-    }
-
-    // ── Toast ──
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
-    }
-
-    // ── 键盘导航 ──
-    function setupKeyboardNav() {
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeModal();
-          closeCompareModal();
-          closeSidebar();
-        }
-      });
-
-      document.getElementById('modalBackdrop').addEventListener('click', closeModal);
-    }
-
-    // ── 价格快捷筛选 ──
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('price-chip')) {
-        applyQuickPriceFilter(e.target.dataset.quickPrice);
-      }
     });
 
-    // ── 初始化 ──
-    loadData();
+    // Expose performSearch globally for onclick
+    window.performSearch = f41_performSearch;
+    window.clearSearch = f42_clearSearch;
+    window.toggleLang = f45_toggleLang;
+    window.randomPick = f46_randomPick;
+    window.toggleSidebar = f47_toggleSidebar;
+    window.toggleSidebarCollapse = f48_toggleSidebarCollapse;
+    window.toggleFavorites = f51_toggleFavorites;
+    window.toggleNotes = f52_toggleNotes;
+    window.clearFilters = f81_clearFilters;
+    window.handleSort = f95_handleSort;
+    window.switchView = f99_switchView;
+    window.openCompare = f110_openCompare;
+    window.showCompareModal = f113_showCompareModal;
+    window.closeCompareModal = f114_closeCompareModal;
+    window.openDetailModal = f116_openDetailModal;
+    window.closeDetailModal = f117_closeDetailModal;
+    window.showAchievements = f118_showAchievements;
+    window.closeAchievementModal = f119_closeAchievementModal;
+    window.showRadar = f122_showRadar;
+    window.closeRadarModal = f121_closeRadarModal;
+    window.renderNotesList = f124_renderNotesList;
+    window.openTastingModal = f125_openTastingModal;
+    window.closeTastingModal = f128_closeTastingModal;
+    window.saveTastingNote = f127_saveTastingNote;
+    window.deleteNote = f130_deleteNote;
+    window.addNewNote = f131_addNewNote;
+    window.editNote = f134_editNote;
+    window.goHome = f80_goHome;
+    window.exportNotes = f78_exportNotes;
+    window.exportFavoritesJSON = f75_exportFavoritesJSON;
+    window.exportAllData = f76_exportAllData;
+    window.importAllData = f77_importAllData;
+    window.importNotes = f79_importNotes;
+    window.exportAllUserData = f148_exportAllUserData;
+    window.importAllUserData = f149_importAllUserData;
   </script>
 </body>
 </html>
