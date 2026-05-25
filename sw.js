@@ -1,7 +1,7 @@
-// World Liquor Gallery - Service Worker v3.0.4
+// World Liquor Gallery - Service Worker v3.1.0
 // PWA Offline Support
 
-const CACHE_NAME = 'liquor-gallery-v304';
+const CACHE_NAME = 'liquor-gallery-v310';
 const urlsToCache = [
   './',
   './index.html',

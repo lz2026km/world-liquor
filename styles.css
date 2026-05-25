@@ -1,45 +1,45 @@
 /* ================================================
-   世界烈酒图鉴 v2.6.0
-   现代简约奢华 · Modern Minimal Luxury
+   世界烈酒图鉴 v3.1.0
+   商业级深色主题 · Commercial Dark Theme
    ================================================ */
 
 /* ================================================
-   1. CSS Variables - 现代简约配色
+   1. CSS Variables - 商业级深色配色
    ================================================ */
 :root {
-  /* 主背景 - 深邃炭黑 */
-  --bg-deepest: #0A0A0B;
-  --bg-deep: #111113;
-  --bg-card: #18181B;
-  --bg-elevated: #1C1C1F;
-  --bg-glass: rgba(17, 17, 19, 0.85);
+  /* 主背景 - 深邃藏青黑 */
+  --bg-deepest: #0c0d10;
+  --bg-deep: #12141a;
+  --bg-card: #181b22;
+  --bg-elevated: #1e222b;
+  --bg-glass: rgba(18, 20, 26, 0.88);
 
-  /* 强调色 - 琥珀精酿 (低饱和度) */
-  --amber-50: #fdf8f3;
-  --amber-100: #f7e8d8;
-  --amber-200: #e8d0b8;
-  --amber-300: #d4b896;
-  --amber-400: #c49d70;
-  --amber-500: #b8864e;
-  --amber-600: #a67440;
-  --amber-700: #8a5f33;
+  /* 强调色 - 商务蓝晶 (专业冷调) */
+  --accent-50: #f0f7ff;
+  --accent-100: #e0edff;
+  --accent-200: #bad4ff;
+  --accent-300: #7eb8ff;
+  --accent-400: #3b99ff;
+  --accent-500: #0f7cf5;
+  --accent-600: #0d68e0;
+  --accent-700: #0b52bb;
 
   /* 文字色 */
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --text-subtle: #52525b;
+  --text-primary: #f1f3f7;
+  --text-secondary: #939aa4;
+  --text-muted: #5c6370;
+  --text-subtle: #3d424d;
 
-  /* 边框 - 微妙灰 */
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  /* 边框 - 微光灰 */
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-default: rgba(255, 255, 255, 0.09);
+  --border-hover: rgba(255, 255, 255, 0.14);
 
   /* 阴影 - 柔和深邃 */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
-  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.7);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.8);
 
   /* 间距 */
   --space-xs: 4px;
@@ -111,8 +111,8 @@ body::before {
   position: fixed;
   inset: 0;
   background: 
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(184, 134, 78, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 95, 51, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(15, 124, 245, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(11, 82, 187, 0.03) 0%, transparent 50%),
     linear-gradient(180deg, var(--bg-deepest) 0%, var(--bg-deep) 50%, var(--bg-deepest) 100%);
   pointer-events: none;
   z-index: -1;
@@ -179,7 +179,7 @@ input, select, textarea {
 .initial-loading__text {
   font-family: var(--font-accent);
   font-size: 1.25rem;
-  color: var(--amber-400);
+  color: var(--accent-400);
   letter-spacing: 0.15em;
 }
 
@@ -196,7 +196,7 @@ input, select, textarea {
   display: block;
   width: 30%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, var(--amber-500), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent-500), transparent);
   border-radius: 1px;
   animation: loading 1.4s ease-in-out infinite;
 }
@@ -269,8 +269,8 @@ input, select, textarea {
 .header__version {
   font-size: 0.65rem;
   font-weight: 500;
-  color: var(--amber-500);
-  background: rgba(184, 134, 78, 0.12);
+  color: var(--accent-700);
+  background: rgba(17, 17, 19, 0.7);
   padding: 2px 8px;
   border-radius: 10px;
   margin-left: 8px;
@@ -303,7 +303,7 @@ input, select, textarea {
 }
 
 .search-bar:focus-within {
-  border-color: var(--amber-500);
+  color: var(--accent-700);
   background: var(--bg-elevated);
 }
 
@@ -337,7 +337,7 @@ input, select, textarea {
 
 .search-bar__clear:hover,
 .search-bar__submit:hover {
-  color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 .search-bar__submit {
@@ -351,9 +351,9 @@ input, select, textarea {
 }
 
 .search-bar__submit:hover {
-  background: var(--amber-600);
+  background: var(--accent-600);
   color: var(--text-primary);
-  border-color: var(--amber-600);
+  color: var(--accent-700);
 }
 
 .search-autocomplete {
@@ -390,7 +390,7 @@ input, select, textarea {
 }
 
 .search-autocomplete__item:hover {
-  background: rgba(184, 134, 78, 0.08);
+  background: rgba(15, 124, 245, 0.08);
 }
 
 .search-autocomplete__icon {
@@ -408,8 +408,8 @@ input, select, textarea {
 }
 
 .search-autocomplete__name .highlight {
-  color: var(--amber-400);
-  background: rgba(184, 134, 78, 0.15);
+  color: var(--accent-400);
+  background: rgba(15, 124, 245, 0.15);
   padding: 0 2px;
   border-radius: 3px;
 }
@@ -461,14 +461,14 @@ input, select, textarea {
 
 .search-history__clear {
   font-size: 0.7rem;
-  color: var(--amber-500);
+  color: var(--accent-700);
   cursor: pointer;
   background: none;
   border: none;
 }
 
 .search-history__clear:hover {
-  color: var(--amber-400);
+  color: var(--accent-700);
 }
 
 .search-history__list {
@@ -493,7 +493,7 @@ input, select, textarea {
 }
 
 .search-history__item:hover {
-  background: rgba(184, 134, 78, 0.08);
+  background: rgba(15, 124, 245, 0.08);
 }
 
 .search-history__item-icon {
@@ -528,9 +528,9 @@ input, select, textarea {
 }
 
 .header__btn.active {
-  background: rgba(184, 134, 78, 0.1);
-  border-color: var(--amber-500);
-  color: var(--amber-500);
+  background: rgba(15, 124, 245, 0.1);
+  border-color: var(--accent-500);
+  color: var(--accent-500);
 }
 
 .lang-btn {
@@ -581,9 +581,9 @@ input, select, textarea {
 }
 
 .favorites-bar__btn.active {
-  background: rgba(184, 134, 78, 0.12);
-  border-color: var(--amber-500);
-  color: var(--amber-500);
+  background: rgba(15, 124, 245, 0.12);
+  border-color: var(--accent-500);
+  color: var(--accent-500);
 }
 
 /* ================================================
@@ -653,7 +653,7 @@ input, select, textarea {
 
 .sidebar__title {
   font-size: 0.7rem;
-  color: var(--amber-500);
+  color: var(--accent-700);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
@@ -685,8 +685,8 @@ input, select, textarea {
 }
 
 .sidebar__tag.active {
-  background: var(--amber-600);
-  border-color: var(--amber-500);
+  background: var(--accent-600);
+  border-color: var(--accent-500);
   color: var(--text-primary);
 }
 
@@ -713,7 +713,7 @@ input, select, textarea {
 .sidebar__stat-value {
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--amber-400);
+  color: var(--accent-700);
   font-family: var(--font-accent);
 }
 
@@ -879,7 +879,7 @@ input, select, textarea {
 
 .filter-group__select:hover,
 .filter-group__select:focus {
-  border-color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 .filter-group__options {
@@ -906,8 +906,8 @@ input, select, textarea {
 }
 
 .filter-option.active {
-  background: var(--amber-600);
-  border-color: var(--amber-500);
+  background: var(--accent-600);
+  border-color: var(--accent-500);
   color: var(--text-primary);
 }
 
@@ -928,7 +928,7 @@ input, select, textarea {
 
 .price-tier:hover,
 .price-tier.active {
-  background: var(--amber-500);
+  background: var(--accent-500);
 }
 
 /* ================================================
@@ -971,9 +971,9 @@ input, select, textarea {
 }
 
 .view-toggle button.active {
-  background: rgba(184, 134, 78, 0.12);
-  border-color: var(--amber-500);
-  color: var(--amber-500);
+  background: rgba(15, 124, 245, 0.12);
+  border-color: var(--accent-500);
+  color: var(--accent-500);
 }
 
 .view-toggle button:hover:not(.active) {
@@ -1040,7 +1040,7 @@ input, select, textarea {
   top: var(--space-md);
   right: var(--space-md);
   padding: 3px 10px;
-  background: rgba(17, 17, 19, 0.85);
+  background: rgba(17, 17, 19, 0.7);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-full);
   color: var(--text-secondary);
@@ -1071,14 +1071,14 @@ input, select, textarea {
 }
 
 .liquor-card-fav:hover {
-  background: rgba(184, 134, 78, 0.2);
+  background: rgba(15, 124, 245, 0.2);
   color: var(--text-primary);
 }
 
 .liquor-card-fav.active {
-  background: rgba(184, 134, 78, 0.15);
-  color: var(--amber-400);
-  border-color: var(--amber-500);
+  background: rgba(15, 124, 245, 0.15);
+  border-color: var(--accent-500);
+  color: var(--accent-500);
 }
 
 .liquor-card-body {
@@ -1230,8 +1230,8 @@ input, select, textarea {
 /* Search highlight */
 .liquor-card-name .highlight,
 .liquor-card-name-en .highlight {
-  color: var(--amber-400);
-  background: rgba(184, 134, 78, 0.12);
+  color: var(--accent-400);
+  background: rgba(15, 124, 245, 0.12);
   padding: 0 2px;
   border-radius: 3px;
 }
@@ -1265,7 +1265,7 @@ input, select, textarea {
   align-items: center;
   gap: var(--space-sm);
   font-weight: 500;
-  color: var(--amber-500);
+  color: var(--accent-700);
   white-space: nowrap;
 }
 
@@ -1330,8 +1330,8 @@ input, select, textarea {
 .compare-btn {
   padding: var(--space-sm) var(--space-lg);
   border-radius: var(--radius-full);
-  background: var(--amber-600);
-  border: 1px solid var(--amber-500);
+  background: var(--accent-600);
+  border: 1px solid var(--accent-500);
   color: var(--text-primary);
   font-size: 0.8rem;
   font-weight: 500;
@@ -1340,7 +1340,7 @@ input, select, textarea {
 }
 
 .compare-btn:hover {
-  background: var(--amber-500);
+  background: var(--accent-500);
 }
 
 .compare-btn.share {
@@ -1521,13 +1521,13 @@ input, select, textarea {
 }
 
 .modal__btn.primary {
-  background: var(--amber-600);
-  border-color: var(--amber-500);
+  background: var(--accent-600);
+  border: 1px solid var(--accent-500);
   color: var(--text-primary);
 }
 
 .modal__btn.primary:hover {
-  background: var(--amber-500);
+  background: var(--accent-500);
 }
 
 .modal__section {
@@ -1536,7 +1536,7 @@ input, select, textarea {
 
 .modal__section-title {
   font-size: 0.75rem;
-  color: var(--amber-500);
+  color: var(--accent-700);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1552,7 +1552,7 @@ input, select, textarea {
   content: '';
   width: 2px;
   height: 1em;
-  background: var(--amber-600);
+  background: var(--accent-600);
   border-radius: 1px;
 }
 
@@ -1593,7 +1593,7 @@ input, select, textarea {
   background: var(--bg-elevated);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  border-left: 2px solid var(--amber-600);
+  border-left: 2px solid var(--accent-600);
   font-size: 0.9rem;
   line-height: 1.75;
   color: var(--text-secondary);
@@ -1748,7 +1748,7 @@ input, select, textarea {
 
 .form-group__input:focus,
 .form-group__textarea:focus {
-  border-color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 .form-group__textarea {
@@ -1770,7 +1770,7 @@ input, select, textarea {
 
 .form-rating__star:hover,
 .form-rating__star.active {
-  color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 .form-actions {
@@ -1865,7 +1865,7 @@ input, select, textarea {
 }
 
 .compare-stat__value.highlight {
-  color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 /* ================================================
@@ -1950,13 +1950,13 @@ input, select, textarea {
 }
 
 .folder-create__input:focus {
-  border-color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 .folder-create__btn {
   padding: var(--space-sm) var(--space-lg);
-  background: var(--amber-600);
-  border: 1px solid var(--amber-500);
+  background: var(--accent-600);
+  border: 1px solid var(--accent-500);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-size: 0.85rem;
@@ -1966,7 +1966,7 @@ input, select, textarea {
 }
 
 .folder-create__btn:hover {
-  background: var(--amber-500);
+  background: var(--accent-500);
 }
 
 /* ================================================
@@ -2008,11 +2008,11 @@ input, select, textarea {
   justify-content: center;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 .ranking-item__rank.gold {
-  background: linear-gradient(135deg, var(--amber-600), var(--amber-700));
+  background: linear-gradient(135deg, var(--accent-600), var(--accent-700));
   color: var(--text-primary);
 }
 
@@ -2023,7 +2023,7 @@ input, select, textarea {
 
 .ranking-item__rank.bronze {
   background: var(--bg-card);
-  color: var(--amber-600);
+  color: var(--accent-700);
 }
 
 .ranking-item__info {
@@ -2045,7 +2045,7 @@ input, select, textarea {
 .ranking-item__score {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--amber-500);
+  color: var(--accent-700);
 }
 
 /* ================================================
@@ -2245,9 +2245,9 @@ input, select, textarea {
 }
 
 .badge.premium {
-  background: linear-gradient(135deg, rgba(184, 134, 78, 0.2), rgba(184, 134, 78, 0.1));
-  color: var(--amber-400);
-  border: 1px solid rgba(184, 134, 78, 0.3);
+  background: linear-gradient(135deg, rgba(15, 124, 245, 0.2), rgba(15, 124, 245, 0.1));
+  color: var(--accent-400);
+  border: 1px solid rgba(15, 124, 245, 0.3);
 }
 
 .badge.limited {
@@ -2288,7 +2288,7 @@ input, select, textarea {
 .quick-stat__value {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--amber-400);
+  color: var(--accent-700);
   font-family: var(--font-accent);
 }
 
@@ -2353,9 +2353,9 @@ input, select, textarea {
   color: var(--text-primary);
 }
 
-.hot-search__item.rank-1 { color: var(--amber-500); }
+.hot-search__item.rank-1 { color: var(--accent-500); }
 .hot-search__item.rank-2 { color: var(--text-secondary); }
-.hot-search__item.rank-3 { color: var(--amber-600); }
+.hot-search__item.rank-3 { color: var(--accent-600); }
 
 /* FAQ折叠面板 */
 .faq-item {
@@ -2429,8 +2429,8 @@ input, select, textarea {
 }
 
 .detail-tab.active {
-  color: var(--amber-500);
-  border-bottom-color: var(--amber-500);
+  color: var(--accent-500);
+  border-bottom-color: var(--accent-500);
 }
 
 .detail-content {
@@ -2506,9 +2506,9 @@ input, select, textarea {
 }
 
 .feedback-type.selected {
-  background: rgba(184, 134, 78, 0.1);
-  border-color: var(--amber-500);
-  color: var(--amber-500);
+  background: rgba(15, 124, 245, 0.1);
+  border-color: var(--accent-500);
+  color: var(--accent-500);
 }
 
 /* ================================================
@@ -2583,13 +2583,13 @@ input, select, textarea {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--amber-500);
+  background: var(--accent-500);
   border: 2px solid var(--bg-card);
 }
 
 .timeline-item__year {
   font-size: 0.7rem;
-  color: var(--amber-500);
+  color: var(--accent-700);
   font-weight: 600;
   margin-bottom: var(--space-xs);
 }
