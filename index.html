@@ -1690,14 +1690,18 @@
     
     // 加载超时处理
     function f650_setupLoadingTimeout() {
-      setTimeout(() => {
+      // Clear any existing timeout
+      if (window._loadingTimeout) clearTimeout(window._loadingTimeout);
+      window._loadingTimeout = setTimeout(() => {
         const loading = document.getElementById('initialLoading');
         const app = document.getElementById('app');
         if (loading && loading.style.display !== 'none') {
           loading.innerHTML = `
             <div class="initial-loading__icon">⚠️</div>
             <div class="initial-loading__text">加载超时</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:#9a8b7a;">数据加载时间过长，请检查网络后重试</div>
             <button onclick="location.reload()" style="
+              margin-top:16px;
               padding: 12px 24px;
               background: linear-gradient(135deg, #c4891a, #9a6b12);
               border: none;
@@ -1709,6 +1713,30 @@
           `;
         }
       }, 15000); // 15秒超时
+      
+      // Second timeout: force hide loading after 30 seconds and show error state
+      if (window._loadingForceTimeout) clearTimeout(window._loadingForceTimeout);
+      window._loadingForceTimeout = setTimeout(() => {
+        const loading = document.getElementById('initialLoading');
+        if (loading && loading.style.display !== 'none') {
+          if (app) app.style.display = 'block';
+          loading.innerHTML = `
+            <div class="initial-loading__icon">⚠️</div>
+            <div class="initial-loading__text">加载失败</div>
+            <div style="margin-top:8px;font-size:0.85rem;color:#9a8b7a;">无法获取数据，请刷新页面重试</div>
+            <button onclick="location.reload()" style="
+              margin-top:16px;
+              padding: 12px 24px;
+              background: linear-gradient(135deg, #c4891a, #9a6b12);
+              border: none;
+              border-radius: 24px;
+              color: #f8f4f0;
+              cursor: pointer;
+              font-size: 14px;
+            ">刷新页面</button>
+          `;
+        }
+      }, 30000); // 30秒强制结束
     }
     
     // 图片加载失败占位符
@@ -1752,7 +1780,18 @@
           resolve(window.DATA); 
         } catch (err) { 
           console.error('Data load failed:', err); 
-          reject(err); 
+          // If fetch fails but we have old cache, try to use it anyway
+          const oldCache = f641_loadCachedData();
+          if (oldCache && oldCache.length > 0) {
+            console.warn('Using old cache as fallback');
+            window.DATA = oldCache;
+            window.FILTERED = [...window.DATA];
+            f14_initStorage();
+            f20_initAutoDarkMode();
+            resolve(window.DATA);
+          } else {
+            reject(err); 
+          }
         } 
       }); 
     }
@@ -1776,7 +1815,12 @@
         f43_setupKeyboardNav(); // 旧版键盘导航
         f44_setupTouchGestures(); // 触屏手势
         resolve(true); 
-      } catch (err) { f58_showToast('数据加载失败，请刷新重试', 'error'); resolve(false); } }); }
+      } catch (err) { 
+        console.error('Data load failed:', err);
+        f58_showToast('数据加载失败，请刷新重试', 'error');
+        f37_hideLoading(); // Always hide loading on error
+        resolve(false); 
+      } }); }
     function f24_validateData() { if (!Array.isArray(window.DATA) || window.DATA.length === 0) return false; return window.DATA.every(item => item.id && item.name); }
     
     function f25_initUI() { 
