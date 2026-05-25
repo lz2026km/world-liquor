@@ -1024,7 +1024,7 @@ input, select, textarea {
    ================================================ */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: var(--space-xl);
 }
 
@@ -1139,7 +1139,7 @@ input, select, textarea {
 
 .liquor-card-region {
   font-size: 0.7rem;
-  color: var(--gold-600);
+  color: var(--text-muted);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: var(--space-xs);
@@ -2831,7 +2831,7 @@ input, select, textarea {
 }
 
 /* ================================================
-   v3.0.4 新增样式
+   v3.0.5 新增样式
    ================================================ */
 
 /* 键盘导航焦点 */

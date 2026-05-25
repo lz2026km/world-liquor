@@ -264,7 +264,7 @@
     .liquor-card-fav:hover { background: rgba(232, 168, 41, 0.3); color: var(--gold-500); }
     .liquor-card-fav.active { background: rgba(232, 168, 41, 0.3); color: #e85a5a; border-color: #e85a5a; }
     .liquor-card-body { padding: var(--space-lg); }
-    .liquor-card-region { font-size: 0.7rem; color: var(--gold-600); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-xs); display: flex; align-items: center; gap: var(--space-xs); }
+    .liquor-card-region { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-xs); display: flex; align-items: center; gap: var(--space-xs); }
     .liquor-card-region::before { content: ''; width: 16px; height: 1px; background: var(--gold-600); }
     .liquor-card-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text-cream); margin-bottom: var(--space-xs); line-height: 1.3; }
     .liquor-card-name-en { font-size: 0.8rem; color: var(--midnight-400); font-style: italic; margin-bottom: var(--space-md); }
@@ -1098,7 +1098,7 @@
 
   <script>
     // ═══════════════════════════════════════════════════════════════════
-    // 世界烈酒图鉴 v3.0.4 - 最终优化版本
+    // 世界烈酒图鉴 v3.0.5 - 最终优化版本
     // 深邃鎏金 · 奢华酒廊
     // 10项优化：键盘导航/URL参数/分享功能/性能优化/离线支持
     // ═══════════════════════════════════════════════════════════════════
@@ -1246,7 +1246,7 @@
     function toggleTheme() { f20b_toggleTheme(); }
 
     // ═══════════════════════════════════════════════════════════════════
-    // v3.0.4 新增功能
+    // v3.0.5 新增功能
     // 1. 键盘导航 (Keyboard Navigation)
     // ═══════════════════════════════════════════════════════════════════
     
@@ -1620,8 +1620,8 @@
     // ═══════════════════════════════════════════════════════════════════
     
     // localStorage缓存
-    const LS_DATA_CACHE = 'liquor_data_cache_v304';
-    const LS_CACHE_TIMESTAMP = 'liquor_cache_timestamp_v304';
+    const LS_DATA_CACHE = 'liquor_data_cache_v305';
+    const LS_CACHE_TIMESTAMP = 'liquor_cache_timestamp_v305';
     
     function f640_cacheData(data) {
       try {
@@ -1798,14 +1798,14 @@
     }
     function f22_initApp() { f01_initGlobalState(); f02_initConstants(); f14_initStorage(); f20_initAutoDarkMode(); }
     function f23_async_initAndLoad() { return new Promise(async (resolve) => { f22_initApp(); try { 
-        // v3.0.4: Setup loading timeout first
+        // v3.0.5: Setup loading timeout first
         f650_setupLoadingTimeout();
         
         await f21_async_loadData(); 
         f25_initUI(); 
         f37_hideLoading(); 
         
-        // v3.0.4: Initialize new features
+        // v3.0.5: Initialize new features
         f601_setupKeyboardNavigation(); // 键盘导航
         f610_parseURLParams(); // URL参数
         f612_onURLParamChange(); // URL变化监听
@@ -2427,15 +2427,15 @@
       f101_updateCardFavState(id); 
       f32_updateStats(); 
       f305_renderFavRanking();
-      f122_updateCompareBarVisibility(); 
+      f124_updateCompareBarVisibility(); 
     }
     
-    function f106_openCompareItem(id) { if (window.COMPARE_LIST.includes(id)) { window.COMPARE_LIST = window.COMPARE_LIST.filter(i => i !== id); } else if (window.COMPARE_LIST.length >= 4) { f58_showToast('最多只能比较4款'); return; } else { window.COMPARE_LIST.push(id); } f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f122_updateCompareBarVisibility(); }
+    function f106_openCompareItem(id) { if (window.COMPARE_LIST.includes(id)) { window.COMPARE_LIST = window.COMPARE_LIST.filter(i => i !== id); } else if (window.COMPARE_LIST.length >= 4) { f58_showToast('最多只能比较4款'); return; } else { window.COMPARE_LIST.push(id); } f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f124_updateCompareBarVisibility(); }
     function f107_shareCard(id) { f74_shareItem(id); }
     function f108_renderCompareBar() { const bar = document.getElementById('compareBar'); const items = document.getElementById('compareItems'); const count = document.getElementById('compareCount'); if (!bar || !items) return; count.textContent = window.COMPARE_LIST.length; items.innerHTML = window.COMPARE_LIST.map(id => { const d = f69_findById(id); if (!d) return ''; return `<div class="compare-item"><div class="compare-item__name">${f63_escHtml(d.name)}</div><div class="compare-item__meta">${d.type} · ${d.abv}%</div><button class="compare-item__remove" onclick="f109_removeCompare('${id}')">✕</button></div>`; }).join(''); }
-    function f109_removeCompare(id) { window.COMPARE_LIST = window.COMPARE_LIST.filter(i => i !== id); f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f122_updateCompareBarVisibility(); }
+    function f109_removeCompare(id) { window.COMPARE_LIST = window.COMPARE_LIST.filter(i => i !== id); f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f124_updateCompareBarVisibility(); }
     function f110_openCompare() { if (window.COMPARE_LIST.length < 2) { f58_showToast('请至少选择2款进行比较'); return; } f113_showCompareModal(); }
-    function f111_clearCompare() { window.COMPARE_LIST = []; f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f122_updateCompareBarVisibility(); }
+    function f111_clearCompare() { window.COMPARE_LIST = []; f11_saveToStorage(window.LS_COMPARE, window.COMPARE_LIST); f108_renderCompareBar(); f124_updateCompareBarVisibility(); }
     
     // 对比结果分享
     function f112_shareCompareResult() {
@@ -3457,7 +3457,7 @@
     window.closePriceHistoryModal = f413_closePriceHistoryModal;
     window.openDetailModalWithTabs = f415_openDetailModalWithTabs;
     
-    // v3.0.4 新增功能绑定
+    // v3.0.5 新增功能绑定
     window.sharePoster = f621_sharePoster;
     window.copyShareLink = f622_copyShareLink;
     window.shareToSocial = f623_shareToSocial;
