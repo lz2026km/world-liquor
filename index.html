@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ================================================
-       世界烈酒图鉴 v3.0.1
-       深邃藏蓝 + 鎏金奢华 · 增强功能
+       世界烈酒图鉴 v3.0.2
+       深邃藏蓝 + 鎏金奢华 · P1进阶功能
        ================================================ */
     :root {
       --midnight-100: #f8f4f0;
@@ -430,10 +430,138 @@
     @media (max-width: 1024px) { .sidebar { display: none; } .sidebar.mobile-open { display: flex; position: fixed; top: 0; left: 0; bottom: 0; width: 300px; z-index: 200; } .favorites-bar { display: none; } }
     @media (max-width: 768px) { .header__container { padding: var(--space-sm) var(--space-md); gap: var(--space-md); } .header__search { max-width: none; } .hero__title { font-size: 1.8rem; } .filter-panel { padding: var(--space-md); } .filter-bar { flex-direction: column; align-items: flex-start; } .filter-sort { margin-left: 0; width: 100%; } .card-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--space-md); } .modal { width: 95%; max-height: 95vh; } .modal__image { height: 200px; } .modal__content { padding: var(--space-md); max-height: 70vh; } .modal__name { font-size: 1.3rem; } .modal__grid { grid-template-columns: 1fr; } .compare-bar { flex-wrap: wrap; padding: var(--space-sm) var(--space-md); } .compare-items { order: 3; width: 100%; } }
     @media (max-width: 480px) { .header__titles { display: none; } .card-grid { grid-template-columns: 1fr; } .liquor-card-image { height: 160px; } .liquor-card-body { padding: var(--space-md); } .modal__image { height: 160px; } .tasting-form__row { grid-template-columns: 1fr; } .achievements-grid { grid-template-columns: 1fr; } }
-    /* ===== ANIMATIONS ===== */
+    /* ===== 五行系统 ===== */
+    .liquor-card.wu-xing-木 { border-color: rgba(34, 197, 94, 0.4); box-shadow: inset 0 0 20px rgba(34, 197, 94, 0.1); }
+    .liquor-card.wu-xing-火 { border-color: rgba(239, 68, 68, 0.4); box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.1); }
+    .liquor-card.wu-xing-土 { border-color: rgba(234, 179, 8, 0.4); box-shadow: inset 0 0 20px rgba(234, 179, 8, 0.1); }
+    .liquor-card.wu-xing-金 { border-color: rgba(156, 163, 175, 0.4); box-shadow: inset 0 0 20px rgba(156, 163, 175, 0.1); }
+    .liquor-card.wu-xing-水 { border-color: rgba(59, 130, 246, 0.4); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1); }
+    
+    .wu-xing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .wu-xing-badge.木 { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .wu-xing-badge.火 { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .wu-xing-badge.土 { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+    .wu-xing-badge.金 { background: rgba(156, 163, 175, 0.15); color: #9ca3af; border: 1px solid rgba(156, 163, 175, 0.3); }
+    .wu-xing-badge.水 { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+    
+    /* ===== 徽章系统 ===== */
+    .badge-award { background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(234, 179, 8, 0.1)); border: 1px solid rgba(234, 179, 8, 0.4); color: #eab308; }
+    .badge-organic { background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1)); border: 1px solid rgba(34, 197, 94, 0.4); color: #22c55e; }
+    .badge-price { background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(139, 92, 246, 0.4); color: #a855f7; }
+    .badge-age { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1)); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b; }
+    
+    /* ===== 侧边栏增强 ===== */
+    .sidebar__link-list { display: flex; flex-direction: column; gap: 4px; }
+    .sidebar__link { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: var(--radius-md); background: rgba(26, 21, 18, 0.4); border: 1px solid transparent; color: var(--midnight-400); font-size: 0.85rem; cursor: pointer; transition: all var(--transition-fast); }
+    .sidebar__link:hover { background: rgba(232, 168, 41, 0.1); border-color: var(--border-gold); color: var(--gold-400); }
+    .sidebar__link-icon { font-size: 16px; }
+    
+    /* 成就展示 */
+    .achievement-mini { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-gold); }
+    .achievement-mini.locked { opacity: 0.5; }
+    .achievement-mini__icon { font-size: 18px; }
+    .achievement-mini__name { font-size: 0.75rem; color: var(--text-cream); }
+    
+    /* 热搜词 */
+    .hot-search { display: flex; flex-wrap: wrap; gap: 6px; }
+    .hot-search__item { padding: 4px 10px; border-radius: var(--radius-full); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-gold); color: var(--text-muted); font-size: 0.75rem; cursor: pointer; transition: all var(--transition-fast); }
+    .hot-search__item:hover { background: rgba(232, 168, 41, 0.15); border-color: var(--gold-600); color: var(--gold-400); }
+    .hot-search__item.hot { background: linear-gradient(135deg, var(--burgundy-600), var(--burgundy-500)); color: var(--gold-300); border-color: var(--copper-500); }
+    
+    /* FAQ折叠面板 */
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); margin-bottom: 8px; overflow: hidden; }
+    .faq-item__question { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; font-size: 0.85rem; color: var(--text-cream); transition: background var(--transition-fast); }
+    .faq-item__question:hover { background: rgba(232, 168, 41, 0.08); }
+    .faq-item__arrow { transition: transform var(--transition-fast); }
+    .faq-item.open .faq-item__arrow { transform: rotate(180deg); }
+    .faq-item__answer { display: none; padding: 0 16px 12px; font-size: 0.8rem; color: var(--midnight-400); line-height: 1.6; }
+    .faq-item.open .faq-item__answer { display: block; }
+    
+    /* ===== 详情模态框6标签 ===== */
+    .detail-tabs { display: flex; gap: 4px; padding: var(--space-md); background: var(--bg-deep); border-bottom: 1px solid var(--border-gold); }
+    .detail-tab { padding: 8px 16px; border-radius: var(--radius-md); background: transparent; border: 1px solid transparent; color: var(--midnight-400); font-size: 0.85rem; cursor: pointer; transition: all var(--transition-fast); }
+    .detail-tab:hover { color: var(--gold-400); }
+    .detail-tab.active { background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border-color: var(--gold-500); color: var(--gold-300); }
+    .detail-tab-content { display: none; padding: var(--space-lg); }
+    .detail-tab-content.active { display: block; }
+    
+    /* ===== 配餐模态框 ===== */
+    .pairing-modal { max-width: 600px; }
+    .pairing-category { margin-bottom: var(--space-lg); }
+    .pairing-category__title { font-size: 0.9rem; color: var(--gold-500); font-weight: 600; margin-bottom: var(--space-sm); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border-gold); }
+    .pairing-dishes { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+    .pairing-dish { padding: 6px 14px; border-radius: var(--radius-full); background: rgba(232, 168, 41, 0.08); border: 1px solid rgba(232, 168, 41, 0.2); color: var(--text-cream); font-size: 0.85rem; }
+    
+    /* ===== 反馈模态框 ===== */
+    .feedback-form { display: flex; flex-direction: column; gap: var(--space-md); }
+    .feedback-form__group { display: flex; flex-direction: column; gap: var(--space-xs); }
+    .feedback-form__label { font-size: 0.8rem; color: var(--midnight-500); }
+    .feedback-form__input, .feedback-form__textarea, .feedback-form__select { padding: var(--space-sm) var(--space-md); background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); color: var(--text-cream); font-size: 0.9rem; font-family: inherit; }
+    .feedback-form__input:focus, .feedback-form__textarea:focus, .feedback-form__select:focus { border-color: var(--gold-500); outline: none; box-shadow: var(--glow-gold); }
+    .feedback-form__textarea { resize: vertical; min-height: 120px; }
+    .feedback-form__actions { display: flex; gap: var(--space-md); justify-content: flex-end; margin-top: var(--space-lg); }
+    .feedback-form__btn { padding: var(--space-sm) var(--space-xl); border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); }
+    .feedback-form__btn.submit { background: linear-gradient(135deg, var(--gold-700), var(--gold-900)); border: 1px solid var(--gold-500); color: var(--gold-300); }
+    .feedback-form__btn.submit:hover { box-shadow: var(--glow-gold); }
+    .feedback-form__btn.cancel { background: transparent; border: 1px solid var(--border-gold); color: var(--midnight-400); }
+    
+    /* ===== 视频模态框 ===== */
+    .video-modal { max-width: 900px; }
+    .video-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(145deg, var(--midnight-700), var(--midnight-800)); border-radius: var(--radius-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-md); color: var(--midnight-400); }
+    .video-placeholder__icon { font-size: 64px; opacity: 0.5; }
+    .video-placeholder__text { font-size: 0.9rem; }
+    
+    /* ===== 时间线模态框 ===== */
+    .timeline-modal { max-width: 700px; }
+    .timeline { position: relative; padding-left: var(--space-xl); }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--gold-500), var(--gold-700)); }
+    .timeline-item { position: relative; margin-bottom: var(--space-xl); }
+    .timeline-item::before { content: ''; position: absolute; left: calc(-1 * var(--space-xl) + 4px); top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold-500); border: 2px solid var(--bg-card); }
+    .timeline-item__year { font-size: 0.75rem; color: var(--gold-500); font-weight: 700; margin-bottom: 4px; }
+    .timeline-item__title { font-size: 1rem; color: var(--text-cream); font-weight: 600; margin-bottom: 4px; }
+    .timeline-item__desc { font-size: 0.85rem; color: var(--midnight-400); line-height: 1.6; }
+    
+    /* ===== 价格历史折线图 ===== */
+    .price-chart { width: 100%; height: 200px; }
+    .price-chart-container { background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: var(--space-lg); }
+    .price-chart__title { font-size: 0.9rem; color: var(--gold-500); font-weight: 600; margin-bottom: var(--space-md); }
+    
+    /* ===== 产区分布饼图 ===== */
+    .pie-chart { width: 100%; max-width: 300px; margin: 0 auto; }
+    .pie-chart-container { background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: var(--space-lg); }
+    .pie-chart__title { font-size: 0.9rem; color: var(--gold-500); font-weight: 600; margin-bottom: var(--space-md); text-align: center; }
+    
+    /* ===== 风味雷达图增强 ===== */
+    .flavor-radar { width: 100%; max-width: 350px; }
+    .flavor-radar-container { background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: var(--space-lg); }
+    .flavor-radar__title { font-size: 0.9rem; color: var(--gold-500); font-weight: 600; margin-bottom: var(--space-md); text-align: center; }
+    
+    /* 卡片徽章叠加层 */
+    .card-badges-overlay { position: absolute; top: var(--space-md); left: var(--space-md); right: var(--space-md); display: flex; justify-content: space-between; align-items: flex-start; z-index: 3; }
+    .card-badge-left { display: flex; flex-direction: column; gap: 4px; }
+    .card-badge-right { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+    
+    /* 产区分布图 */
+    .region-chart { width: 100%; height: 250px; }
+    .region-chart-bar { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm); }
+    .region-chart-bar__label { width: 60px; font-size: 0.75rem; color: var(--midnight-400); text-align: right; }
+    .region-chart-bar__fill { height: 16px; background: linear-gradient(90deg, var(--gold-700), var(--gold-500)); border-radius: var(--radius-sm); transition: width var(--transition-slow); }
+    .region-chart-bar__value { font-size: 0.75rem; color: var(--gold-400); margin-left: var(--space-sm); }
+    
+    /* ===== 动画 ===== */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    
     .liquor-card { animation: slideUp 0.5s var(--ease-smooth) both; }
     .liquor-card:nth-child(1) { animation-delay: 0ms; }
     .liquor-card:nth-child(2) { animation-delay: 50ms; }
@@ -442,6 +570,20 @@
     .liquor-card:nth-child(5) { animation-delay: 200ms; }
     .liquor-card:nth-child(6) { animation-delay: 250ms; }
     .liquor-card:nth-child(n+7) { animation-delay: 300ms; }
+    
+    /* 模态框标签页动画 */
+    .detail-tab-content { animation: fadeIn 0.3s var(--ease-smooth); }
+    
+    /* 五行呼吸效果 */
+    @keyframes wuXingPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .liquor-card.wu-xing-木::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, transparent, rgba(34, 197, 94, 0.1)); pointer-events: none; animation: wuXingPulse 3s ease-in-out infinite; }
+    .liquor-card.wu-xing-火::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, transparent, rgba(239, 68, 68, 0.1)); pointer-events: none; animation: wuXingPulse 3s ease-in-out infinite; }
+    .liquor-card.wu-xing-土::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, transparent, rgba(234, 179, 8, 0.1)); pointer-events: none; animation: wuXingPulse 3s ease-in-out infinite; }
+    .liquor-card.wu-xing-金::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, transparent, rgba(156, 163, 175, 0.1)); pointer-events: none; animation: wuXingPulse 3s ease-in-out infinite; }
+    .liquor-card.wu-xing-水::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, transparent, rgba(59, 130, 246, 0.1)); pointer-events: none; animation: wuXingPulse 3s ease-in-out infinite; }
   </style>
 </head>
 <body>
@@ -553,6 +695,38 @@
         <div class="sidebar__section">
           <div class="sidebar__title">收藏排行</div>
           <div class="fav-ranking" id="favRanking"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__title">🏆 已获成就</div>
+          <div id="sidebarAchievements"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__title">🔥 热搜词</div>
+          <div class="hot-search" id="hotSearchWords"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__title">❓ FAQ</div>
+          <div id="sidebarFAQ"></div>
+        </div>
+
+        <div class="sidebar__divider"></div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__title">快捷链接</div>
+          <div class="sidebar__link-list">
+            <a class="sidebar__link" href="https://www.moutai.com" target="_blank"><span class="sidebar__link-icon">🏛️</span>茅台官网</a>
+            <a class="sidebar__link" href="https://www.wuliangye.com.cn" target="_blank"><span class="sidebar__link-icon">🏭</span>五粮液官网</a>
+            <a class="sidebar__link" onclick="f410_openRegionChartModal()"><span class="sidebar__link-icon">📊</span>产区统计</a>
+          </div>
         </div>
 
         <div class="sidebar__divider"></div>
@@ -787,11 +961,114 @@
       <span class="toast__icon">✓</span>
       <span class="toast__text" id="toastText"></span>
     </div>
+
+    <!-- Pairing Modal (配餐模态框) -->
+    <div class="modal-backdrop" id="pairingBackdrop" onclick="closePairingModal()"></div>
+    <div class="modal pairing-modal" id="pairingModal">
+      <button class="modal__close" onclick="closePairingModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title">🍽️ 配餐建议</div>
+          <div id="pairingModalContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Modal (反馈模态框) -->
+    <div class="modal-backdrop" id="feedbackBackdrop" onclick="closeFeedbackModal()"></div>
+    <div class="modal" id="feedbackModal" style="max-width: 500px;">
+      <button class="modal__close" onclick="closeFeedbackModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title">📝 问题反馈</div>
+          <div class="feedback-form">
+            <div class="feedback-form__group">
+              <label class="feedback-form__label">酒款名称</label>
+              <input type="text" class="feedback-form__input" id="feedbackLiquor" placeholder="请输入酒款名称">
+            </div>
+            <div class="feedback-form__group">
+              <label class="feedback-form__label">反馈类型</label>
+              <select class="feedback-form__select" id="feedbackType">
+                <option value="correct">信息纠错</option>
+                <option value="missing">信息缺失</option>
+                <option value="quality">品质问题</option>
+                <option value="price">价格问题</option>
+                <option value="other">其他</option>
+              </select>
+            </div>
+            <div class="feedback-form__group">
+              <label class="feedback-form__label">详细描述</label>
+              <textarea class="feedback-form__textarea" id="feedbackText" placeholder="请详细描述您发现的问题..."></textarea>
+            </div>
+            <div class="feedback-form__group">
+              <label class="feedback-form__label">您的联系方式（选填）</label>
+              <input type="text" class="feedback-form__input" id="feedbackContact" placeholder="邮箱或微信">
+            </div>
+            <div class="feedback-form__actions">
+              <button class="feedback-form__btn cancel" onclick="closeFeedbackModal()">取消</button>
+              <button class="feedback-form__btn submit" onclick="submitFeedback()">提交反馈</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Modal (视频模态框) -->
+    <div class="modal-backdrop" id="videoBackdrop" onclick="closeVideoModal()"></div>
+    <div class="modal video-modal" id="videoModal">
+      <button class="modal__close" onclick="closeVideoModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title">🎬 视频介绍</div>
+          <div class="video-placeholder">
+            <span class="video-placeholder__icon">🎬</span>
+            <span class="video-placeholder__text">视频功能预留区域</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Modal (时间线模态框) -->
+    <div class="modal-backdrop" id="timelineBackdrop" onclick="closeTimelineModal()"></div>
+    <div class="modal timeline-modal" id="timelineModal">
+      <button class="modal__close" onclick="closeTimelineModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title">📜 发展历史</div>
+          <div class="timeline" id="timelineContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Region Chart Modal (产区分布图) -->
+    <div class="modal-backdrop" id="regionChartBackdrop" onclick="closeRegionChartModal()"></div>
+    <div class="modal" id="regionChartModal">
+      <button class="modal__close" onclick="closeRegionChartModal()">✕</button>
+      <div class="modal__content">
+        <div class="region-chart-container">
+          <div class="pie-chart__title">📊 产区分布统计</div>
+          <div id="regionChartContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price History Modal (价格历史) -->
+    <div class="modal-backdrop" id="priceHistoryBackdrop" onclick="closePriceHistoryModal()"></div>
+    <div class="modal" id="priceHistoryModal">
+      <button class="modal__close" onclick="closePriceHistoryModal()">✕</button>
+      <div class="modal__content">
+        <div class="price-chart-container">
+          <div class="price-chart__title">📈 价格走势</div>
+          <div id="priceHistoryContent"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
     // ═══════════════════════════════════════════════════════════════════
-    // 世界烈酒图鉴 v3.0.1 - 增强功能架构
+    // 世界烈酒图鉴 v3.0.2 - P1进阶功能架构
     // 深邃鎏金 · 奢华酒廊
     // ═══════════════════════════════════════════════════════════════════
 
@@ -926,6 +1203,56 @@
       f301_initRegionSelector(); // 初始化三级产区选择器
       f302_updateFavBadge(); // 更新收藏徽章
       f303_renderFavRanking(); // 渲染收藏排行
+      // P1增强: 侧边栏内容
+      f425_renderSidebarEnhancements();
+    }
+    
+    function f425_renderSidebarEnhancements() {
+      // 成就展示
+      const achieveContainer = document.getElementById('sidebarAchievements');
+      if (achieveContainer) {
+        const achievements = f136_getAchievementsList().slice(0, 4);
+        achieveContainer.innerHTML = achievements.map(a => {
+          const status = f137_checkAchievementProgress(a.id);
+          return `<div class="achievement-mini ${status.unlocked ? '' : 'locked'}" style="margin-bottom:4px;">
+            <span class="achievement-mini__icon">${a.icon}</span>
+            <span class="achievement-mini__name">${a.name}</span>
+          </div>`;
+        }).join('');
+      }
+      
+      // 热搜词
+      const hotContainer = document.getElementById('hotSearchWords');
+      if (hotContainer) {
+        const hotWords = ['茅台', '五粮液', '酱香型', '浓香型', '威士忌', '白兰地'];
+        hotContainer.innerHTML = hotWords.map((word, i) => 
+          `<span class="hot-search__item ${i < 2 ? 'hot' : ''}" onclick="f419_searchHotWord('${f63_escHtml(word)}')">${f63_escHtml(word)}</span>`
+        ).join('');
+      }
+      
+      // FAQ
+      const faqContainer = document.getElementById('sidebarFAQ');
+      if (faqContainer) {
+        const faqs = [
+          { q: '如何收藏烈酒？', a: '点击卡片上的❤️即可收藏。' },
+          { q: '如何记录品鉴笔记？', a: '点击📝按钮或卡片上的品鉴按钮即可添加笔记。' },
+          { q: '如何比较不同酒款？', a: '点击⚖️按钮添加到比较栏，最多可比较4款。' }
+        ];
+        faqContainer.innerHTML = faqs.map((faq, i) => `
+          <div class="faq-item" id="sidebar-faq-${i}">
+            <div class="faq-item__question" onclick="f426_toggleSidebarFAQ(${i})">
+              <span style="font-size:0.8rem;">${f63_escHtml(faq.q)}</span>
+              <span class="faq-item__arrow">▼</span>
+            </div>
+            <div class="faq-item__answer" style="font-size:0.75rem;">${f63_escHtml(faq.a)}</div>
+          </div>
+        `).join('');
+      }
+    }
+    
+    function f426_toggleSidebarFAQ(index) {
+      const item = document.getElementById(`sidebar-faq-${index}`);
+      if (item) item.classList.toggle('open');
     }
     
     function f26_initLang() { const btn = document.getElementById('langBtn'); if (btn) btn.textContent = window.CUR_LANG === 'zh' ? '中' : 'EN'; }
@@ -1388,11 +1715,20 @@
       const displayNameEn = window.SEARCH_QUERY && nameEn ? f574_highlightText(nameEn, window.SEARCH_QUERY) : f63_escHtml(nameEn);
       
       const tags = (d.flavor_tags || []).slice(0, 3).map(t => `<span class="liquor-tag">${f63_escHtml(t)}</span>`).join(''); 
-      return `<div class="liquor-card" data-id="${d.id}" onclick="f69_openDetailModal('${d.id}')" style="animation-delay:${Math.min(index * 50, 300)}ms">
+      
+      // 五行样式
+      const wuXingClass = f422_getWuXingClass(d);
+      const cardBadges = f423_renderCardBadges(d);
+      
+      return `<div class="liquor-card ${wuXingClass}" data-id="${d.id}" onclick="f415_openDetailModalWithTabs('${d.id}')" style="animation-delay:${Math.min(index * 50, 300)}ms">
         <div class="liquor-card-image">
           ${d.image ? `<img src="${d.image}" alt="${f63_escHtml(d.name)}" loading="lazy">` : '🥃'}
           <span class="liquor-card-badge">${f63_escHtml(type)}</span>
-          <button class="liquor-card-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation();f105_toggleFavorite('${d.id}')">${isFav ? '❤️' : '🤍'}</button>
+          <button class="liquor-card-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation();f105_toggleFavorite('${d.id}');f101_updateCardFavState('${d.id}')">${isFav ? '❤️' : '🤍'}</button>
+        </div>
+        <div class="card-badges-overlay">
+          <div class="card-badge-left">${cardBadges}</div>
+          <div class="card-badge-right"></div>
         </div>
         <div class="liquor-card-body">
           <div class="liquor-card-region">${f63_escHtml(region)}</div>
@@ -1819,6 +2155,560 @@
     }
 
     // ═══════════════════════════════════════════════════════════════════
+    // 13. P1增强功能模态框与系统 (Functions 401-500)
+    // ═══════════════════════════════════════════════════════════════════
+
+    // --- 配餐模态框 ---
+    function f401_openPairingModal(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const backdrop = document.getElementById('pairingBackdrop');
+      const modal = document.getElementById('pairingModal');
+      const content = document.getElementById('pairingModalContent');
+      if (!backdrop || !modal || !content) return;
+      
+      // 从foodPairingDetail构建配餐内容
+      let html = '';
+      if (d.foodPairingDetail && Array.isArray(d.foodPairingDetail)) {
+        d.foodPairingDetail.forEach(category => {
+          html += `<div class="pairing-category">
+            <div class="pairing-category__title">${f63_escHtml(category.category)}</div>
+            <div class="pairing-dishes">${category.dishes.map(dish => `<span class="pairing-dish">${f63_escHtml(dish)}</span>`).join('')}</div>
+          </div>`;
+        });
+      } else if (d.pairing && Array.isArray(d.pairing)) {
+        html = `<div class="pairing-category">
+          <div class="pairing-dishes">${d.pairing.map(p => `<span class="pairing-dish">${f63_escHtml(p)}</span>`).join('')}</div>
+        </div>`;
+      }
+      
+      content.innerHTML = html || '<p style="color:var(--midnight-400)">暂无配餐信息</p>';
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+    }
+    function f402_closePairingModal() { document.getElementById('pairingBackdrop').classList.remove('show'); document.getElementById('pairingModal').classList.remove('show'); }
+
+    // --- 反馈模态框 ---
+    function f403_openFeedbackModal(liquorId) {
+      const backdrop = document.getElementById('feedbackBackdrop');
+      const modal = document.getElementById('feedbackModal');
+      if (!backdrop || !modal) return;
+      const d = liquorId ? f69_findById(liquorId) : null;
+      document.getElementById('feedbackLiquor').value = d ? d.name : '';
+      document.getElementById('feedbackText').value = '';
+      document.getElementById('feedbackContact').value = '';
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+    }
+    function f404_closeFeedbackModal() { document.getElementById('feedbackBackdrop').classList.remove('show'); document.getElementById('feedbackModal').classList.remove('show'); }
+    function f405_submitFeedback() {
+      const type = document.getElementById('feedbackType').value;
+      const liquor = document.getElementById('feedbackLiquor').value;
+      const text = document.getElementById('feedbackText').value;
+      const contact = document.getElementById('feedbackContact').value;
+      if (!text.trim()) { f58_showToast('请输入反馈内容'); return; }
+      // 保存到localStorage
+      const feedbacks = JSON.parse(localStorage.getItem('liquor_feedbacks') || '[]');
+      feedbacks.push({ type, liquor, text, contact, timestamp: Date.now() });
+      localStorage.setItem('liquor_feedbacks', JSON.stringify(feedbacks));
+      f404_closeFeedbackModal();
+      f58_showToast('感谢您的反馈！');
+    }
+
+    // --- 视频模态框 ---
+    function f406_openVideoModal(liquorId) {
+      const backdrop = document.getElementById('videoBackdrop');
+      const modal = document.getElementById('videoModal');
+      if (!backdrop || !modal) return;
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+    }
+    function f407_closeVideoModal() { document.getElementById('videoBackdrop').classList.remove('show'); document.getElementById('videoModal').classList.remove('show'); }
+
+    // --- 时间线模态框 ---
+    function f408_openTimelineModal(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const backdrop = document.getElementById('timelineBackdrop');
+      const modal = document.getElementById('timelineModal');
+      const content = document.getElementById('timelineContent');
+      if (!backdrop || !modal || !content) return;
+      
+      // 构建时间线内容（从history提取）
+      let timelineItems = [];
+      if (d.history) {
+        // 简单按句子分割
+        const sentences = d.history.split(/[。.！!]/).filter(s => s.trim().length > 10);
+        timelineItems = sentences.slice(0, 5).map((s, i) => ({
+          year: (2026 - i * 10) + '年代',
+          title: `发展阶段${i + 1}`,
+          desc: s.trim()
+        }));
+      }
+      
+      content.innerHTML = timelineItems.length > 0 ? timelineItems.map(item => `
+        <div class="timeline-item">
+          <div class="timeline-item__year">${f63_escHtml(item.year)}</div>
+          <div class="timeline-item__title">${f63_escHtml(item.title)}</div>
+          <div class="timeline-item__desc">${f63_escHtml(item.desc)}</div>
+        </div>
+      `).join('') : '<p style="color:var(--midnight-400)">暂无历史信息</p>';
+      
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+    }
+    function f409_closeTimelineModal() { document.getElementById('timelineBackdrop').classList.remove('show'); document.getElementById('timelineModal').classList.remove('show'); }
+
+    // --- 产区分布图 ---
+    function f410_openRegionChartModal() {
+      const backdrop = document.getElementById('regionChartBackdrop');
+      const modal = document.getElementById('regionChartModal');
+      const content = document.getElementById('regionChartContent');
+      if (!backdrop || !modal || !content) return;
+      
+      // 计算产区分布
+      const regionCounts = {};
+      window.DATA.forEach(d => {
+        const region = d.region || '未知';
+        regionCounts[region] = (regionCounts[region] || 0) + 1;
+      });
+      
+      const sorted = Object.entries(regionCounts).sort((a, b) => b[1] - a[1]);
+      const maxCount = sorted[0] ? sorted[0][1] : 1;
+      
+      content.innerHTML = `<div class="region-chart">
+        ${sorted.map(([region, count]) => `
+          <div class="region-chart-bar">
+            <span class="region-chart-bar__label">${f63_escHtml(region)}</span>
+            <div class="region-chart-bar__fill" style="width:${(count / maxCount) * 100}%"></div>
+            <span class="region-chart-bar__value">${count}款</span>
+          </div>
+        `).join('')}
+      </div>`;
+      
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+    }
+    function f411_closeRegionChartModal() { document.getElementById('regionChartBackdrop').classList.remove('show'); document.getElementById('regionChartModal').classList.remove('show'); }
+
+    // --- 价格历史折线图 ---
+    function f412_openPriceHistoryModal(liquorId) {
+      const d = f69_findById(liquorId);
+      if (!d) return;
+      const backdrop = document.getElementById('priceHistoryBackdrop');
+      const modal = document.getElementById('priceHistoryModal');
+      const content = document.getElementById('priceHistoryContent');
+      if (!backdrop || !modal || !content) return;
+      
+      const priceHistory = d.priceHistory || [];
+      if (priceHistory.length === 0) {
+        content.innerHTML = '<p style="color:var(--midnight-400)">暂无价格历史数据</p>';
+      } else {
+        // SVG折线图
+        const maxPrice = Math.max(...priceHistory.map(p => p.price));
+        const minPrice = Math.min(...priceHistory.map(p => p.price));
+        const range = maxPrice - minPrice || 1;
+        const width = 400;
+        const height = 180;
+        const padding = 40;
+        
+        const points = priceHistory.map((p, i) => {
+          const x = padding + (i / (priceHistory.length - 1)) * (width - padding * 2);
+          const y = height - padding - ((p.price - minPrice) / range) * (height - padding * 2);
+          return `${x},${y}`;
+        }).join(' ');
+        
+        const linePoints = priceHistory.map((p, i) => {
+          const x = padding + (i / (priceHistory.length - 1)) * (width - padding * 2);
+          const y = height - padding - ((p.price - minPrice) / range) * (height - padding * 2);
+          return `${x} ${y}`;
+        }).join(' L ');
+        
+        content.innerHTML = `
+          <svg class="price-chart" viewBox="0 0 ${width} ${height}">
+            <defs>
+              <linearGradient id="priceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#e8a829;stop-opacity:0.4"/>
+                <stop offset="100%" style="stop-color:#e8a829;stop-opacity:0"/>
+              </linearGradient>
+            </defs>
+            <!-- 网格线 -->
+            <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" stroke="rgba(232,168,41,0.2)" stroke-width="1"/>
+            <line x1="${padding}" y1="${height - padding - 45}" x2="${width - padding}" y2="${height - padding - 45}" stroke="rgba(232,168,41,0.1)" stroke-width="1" stroke-dasharray="4"/>
+            <line x1="${padding}" y1="${height - padding - 90}" x2="${width - padding}" y2="${height - padding - 90}" stroke="rgba(232,168,41,0.1)" stroke-width="1" stroke-dasharray="4"/>
+            <!-- 面积 -->
+            <polygon points="${padding},${height - padding} ${linePoints} ${width - padding},${height - padding}" fill="url(#priceGrad)"/>
+            <!-- 线 -->
+            <polyline points="${points}" fill="none" stroke="#e8a829" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- 点 -->
+            ${priceHistory.map((p, i) => {
+              const x = padding + (i / (priceHistory.length - 1)) * (width - padding * 2);
+              const y = height - padding - ((p.price - minPrice) / range) * (height - padding * 2);
+              return `<circle cx="${x}" cy="${y}" r="4" fill="#e8a829" stroke="#0d0a08" stroke-width="2"/>`;
+            }).join('')}
+            <!-- 标签 -->
+            ${priceHistory.map((p, i) => {
+              const x = padding + (i / (priceHistory.length - 1)) * (width - padding * 2);
+              return `<text x="${x}" y="${height - 10}" text-anchor="middle" fill="#9a8b7a" font-size="11">${p.year}</text>`;
+            }).join('')}
+          </svg>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:0.8rem;color:var(--midnight-400);">
+            <span>最高: ¥${maxPrice.toLocaleString()}</span>
+            <span>最低: ¥${minPrice.toLocaleString()}</span>
+          </div>
+        `;
+      }
+      
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+    }
+    function f413_closePriceHistoryModal() { document.getElementById('priceHistoryBackdrop').classList.remove('show'); document.getElementById('priceHistoryModal').classList.remove('show'); }
+
+    // --- 增强详情模态框（6标签页） ---
+    function f414_renderDetailModalWithTabs(d) {
+      if (!d) return '';
+      const name = window.CUR_LANG === 'en' && d.ename ? d.ename : d.name;
+      const isFav = f70_isFavorited(d.id);
+      
+      // 构建6个标签页内容
+      const tabContents = {
+        overview: `
+          <div class="modal__grid">
+            <div class="modal__grid-item"><div class="modal__grid-label">评分</div><div class="modal__grid-value">${d.score || '-'}分</div></div>
+            <div class="modal__grid-item"><div class="modal__grid-label">酒精度</div><div class="modal__grid-value">${d.abv}%vol</div></div>
+            <div class="modal__grid-item"><div class="modal__grid-label">产地</div><div class="modal__grid-value">${f63_escHtml(d.origin || d.region || '-')}</div></div>
+            <div class="modal__grid-item"><div class="modal__grid-label">价格</div><div class="modal__grid-value">¥${f64_formatPrice(d.price)}</div></div>
+            <div class="modal__grid-item"><div class="modal__grid-label">原料</div><div class="modal__grid-value">${f63_escHtml(d.原料 || d.raw_materials || '-')}</div></div>
+            <div class="modal__grid-item"><div class="modal__grid-label">工艺</div><div class="modal__grid-value">${f63_escHtml(d.工艺 || d.brewing?.method || '-')}</div></div>
+          </div>
+          ${d.description ? `<div class="modal__story" style="margin-top:var(--space-md);">${f63_escHtml(d.description)}</div>` : ''}
+        `,
+        history: `
+          <div class="modal__story">${f63_escHtml(d.history || '暂无历史信息')}</div>
+          <button class="modal__btn" style="margin-top:var(--space-md);" onclick="f408_openTimelineModal('${d.id}')">📜 查看时间线</button>
+        `,
+        tasting: `
+          <div class="modal__tasting">${(d.tasting || []).map(t => `<div class="modal__tasting-item"><span class="modal__tasting-icon">👅</span><span class="modal__tasting-text">${f63_escHtml(t)}</span></div>`).join('')}</div>
+          ${d.tips ? `<div style="margin-top:var(--space-md);padding:var(--space-md);background:var(--bg-elevated);border-radius:var(--radius-md);border:1px solid var(--border-gold);"><span style="color:var(--gold-500);">💡</span> <span style="color:var(--midnight-300);">${f63_escHtml(d.tips)}</span></div>` : ''}
+          <button class="modal__btn" style="margin-top:var(--space-md);" onclick="f135_openTastingForLiquor('${d.id}')">📝 记录品鉴</button>
+        `,
+        culture: `
+          <div class="modal__story">${f63_escHtml(d.origin_story || d.history || '暂无文化信息')}</div>
+          ${d.cultural_quote ? `<div style="margin-top:var(--space-md);padding:var(--space-lg);background:linear-gradient(135deg,rgba(232,168,41,0.1),rgba(232,168,41,0.05));border-radius:var(--radius-lg);border-left:3px solid var(--gold-700);font-style:italic;color:var(--gold-400);">"${f63_escHtml(d.cultural_quote)}"</div>` : ''}
+        `,
+        pairing: `
+          <button class="modal__btn" onclick="f401_openPairingModal('${d.id}')" style="margin-bottom:var(--space-md);">🍽️ 查看详细配餐</button>
+          <div class="pairing-dishes">${(d.pairing || []).map(p => `<span class="pairing-dish">${f63_escHtml(p)}</span>`).join('')}</div>
+          ${d.glass ? `<div style="margin-top:var(--space-md);"><span style="color:var(--gold-600);">🥂</span> <span style="color:var(--midnight-300);">推荐杯具：${f63_escHtml(d.glass)}</span></div>` : ''}
+        `,
+        compare: `
+          <button class="modal__btn" onclick="f106_openCompareItem('${d.id}');f58_showToast('已添加到比较栏')">⚖️ 添加到比较</button>
+          ${d.comparison ? `<div style="margin-top:var(--space-md);padding:var(--space-md);background:var(--bg-elevated);border-radius:var(--radius-md);border:1px solid var(--border-gold);"><span style="color:var(--gold-500);">🔍</span> <span style="color:var(--midnight-300);">${f63_escHtml(d.comparison)}</span></div>` : ''}
+          <button class="modal__btn" style="margin-top:var(--space-md);" onclick="f412_openPriceHistoryModal('${d.id}')">📈 查看价格走势</button>
+        `
+      };
+      
+      const tabs = ['概览', '历史', '品鉴', '文化', '配餐', '对比'];
+      const tabKeys = ['overview', 'history', 'tasting', 'culture', 'pairing', 'compare'];
+      
+      let html = `<div class="modal__image">${d.image ? `<img src="${d.image}" alt="${f63_escHtml(d.name)}">` : '🥃'}<div class="modal__image-overlay"></div></div>`;
+      html += `<div class="modal__header" style="padding:var(--space-lg);">
+        <div class="modal__title-group">
+          <div class="modal__name">${f63_escHtml(name)}</div>
+          <div class="modal__ename">${d.ename || ''}</div>
+          <div class="modal__badges">
+            <span class="modal__badge">${f63_escHtml(d.type)}</span>
+            <span class="modal__badge">${f63_escHtml(d.region)}</span>
+            <span class="modal__badge">${d.abv}%vol</span>
+            <span class="modal__badge">¥${f64_formatPrice(d.price)}</span>
+          </div>
+        </div>
+        <div class="modal__actions">
+          <button class="modal__btn ${isFav ? 'primary' : ''}" onclick="f105_toggleFavorite('${d.id}');f414_updateDetailModal('${d.id}')">${isFav ? '❤️ 已收藏' : '🤍 收藏'}</button>
+          <button class="modal__btn" onclick="f406_openVideoModal('${d.id}')">🎬 视频</button>
+          <button class="modal__btn" onclick="f403_openFeedbackModal('${d.id}')">📝 反馈</button>
+        </div>
+      </div>`;
+      
+      // 标签页导航
+      html += `<div class="detail-tabs">${tabs.map((tab, i) => `<button class="detail-tab ${i === 0 ? 'active' : ''}" data-tab="${tabKeys[i]}">${tab}</button>`).join('')}</div>`;
+      
+      // 标签页内容
+      html += `<div class="detail-tab-contents">${tabKeys.map((key, i) => `<div class="detail-tab-content ${i === 0 ? 'active' : ''}" data-content="${key}">${tabContents[key]}</div>`).join('')}</div>`;
+      
+      return html;
+    }
+    
+    function f414_updateDetailModal(id) {
+      const d = f69_findById(id);
+      if (!d) return;
+      const content = document.getElementById('detailModalContent');
+      if (content) content.innerHTML = f414_renderDetailModalWithTabs(d);
+      // 重新绑定标签切换
+      setTimeout(() => {
+        document.querySelectorAll('.detail-tab').forEach(tab => {
+          tab.addEventListener('click', function() {
+            document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.detail-tab-content').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelector(`.detail-tab-content[data-content="${this.dataset.tab}"]`).classList.add('active');
+          });
+        });
+      }, 100);
+    }
+    
+    function f415_openDetailModalWithTabs(id) {
+      const d = f69_findById(id);
+      if (!d) return;
+      const backdrop = document.getElementById('detailBackdrop');
+      const modal = document.getElementById('detailModal');
+      const content = document.getElementById('detailModalContent');
+      if (!backdrop || !modal || !content) return;
+      
+      content.innerHTML = f414_renderDetailModalWithTabs(d);
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+      f59_addToRecent(id);
+      f61_updateVisitCount(id);
+      f104_checkAchievement('explore_10');
+      
+      // 绑定标签切换
+      setTimeout(() => {
+        document.querySelectorAll('.detail-tab').forEach(tab => {
+          tab.addEventListener('click', function() {
+            document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.detail-tab-content').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelector(`.detail-tab-content[data-content="${this.dataset.tab}"]`).classList.add('active');
+          });
+        });
+      }, 100);
+    }
+
+    // --- 侧边栏增强：快捷链接 ---
+    function f416_renderSidebarLinks() {
+      return `
+        <div class="sidebar__section">
+          <div class="sidebar__title">快捷链接</div>
+          <div class="sidebar__link-list">
+            <a class="sidebar__link" href="https://www.moutai.com" target="_blank"><span class="sidebar__link-icon">🏛️</span>茅台官网</a>
+            <a class="sidebar__link" href="https://www.wuliangye.com.cn" target="_blank"><span class="sidebar__link-icon">🏭</span>五粮液官网</a>
+            <a class="sidebar__link" onclick="f410_openRegionChartModal()"><span class="sidebar__link-icon">📊</span>产区统计</a>
+          </div>
+        </div>
+      `;
+    }
+
+    // --- 侧边栏增强：成就展示 ---
+    function f417_renderSidebarAchievements() {
+      const achievements = f136_getAchievementsList().slice(0, 4);
+      return `
+        <div class="sidebar__section">
+          <div class="sidebar__title">🏆 已获成就</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            ${achievements.map(a => {
+              const status = f137_checkAchievementProgress(a.id);
+              return `<div class="achievement-mini ${status.unlocked ? '' : 'locked'}">
+                <span class="achievement-mini__icon">${a.icon}</span>
+                <span class="achievement-mini__name">${a.name}</span>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // --- 侧边栏增强：热搜词 ---
+    function f418_renderHotSearch() {
+      const hotWords = ['茅台', '五粮液', '酱香型', '浓香型', '威士忌', '白兰地'];
+      return `
+        <div class="sidebar__section">
+          <div class="sidebar__title">🔥 热搜词</div>
+          <div class="hot-search">
+            ${hotWords.map((word, i) => `<span class="hot-search__item ${i < 2 ? 'hot' : ''}" onclick="f419_searchHotWord('${f63_escHtml(word)}')">${f63_escHtml(word)}</span>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function f419_searchHotWord(word) {
+      const input = document.getElementById('searchInput');
+      if (input) input.value = word;
+      window.SEARCH_QUERY = word;
+      f31_applyFilters();
+      f57_renderAutocomplete();
+    }
+
+    // --- 侧边栏增强：FAQ折叠面板 ---
+    function f420_renderFAQ() {
+      const faqs = [
+        { q: '如何收藏烈酒？', a: '点击卡片上的❤️即可收藏。' },
+        { q: '如何记录品鉴笔记？', a: '点击📝按钮或卡片上的品鉴按钮即可添加笔记。' },
+        { q: '如何比较不同酒款？', a: '点击⚖️按钮添加到比较栏，最多可比较4款。' },
+        { q: '数据多久更新？', a: '我们会定期更新酒款信息和价格。' }
+      ];
+      return `
+        <div class="sidebar__section">
+          <div class="sidebar__title">❓ FAQ</div>
+          <div class="faq-list">
+            ${faqs.map((faq, i) => `
+              <div class="faq-item" id="faq-${i}">
+                <div class="faq-item__question" onclick="f421_toggleFAQ(${i})">
+                  <span>${f63_escHtml(faq.q)}</span>
+                  <span class="faq-item__arrow">▼</span>
+                </div>
+                <div class="faq-item__answer">${f63_escHtml(faq.a)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function f421_toggleFAQ(index) {
+      const item = document.getElementById(`faq-${index}`);
+      if (item) item.classList.toggle('open');
+    }
+
+    // --- 五行系统 ---
+    function f422_getWuXingClass(d) {
+      // 根据香型或其他属性判断五行
+      const type = d.type || '';
+      if (type.includes('酱') || type.includes('茅')) return 'wu-xing-火';
+      if (type.includes('浓') || type.includes('泸')) return 'wu-xing-土';
+      if (type.includes('清') || type.includes('汾')) return 'wu-xing-金';
+      if (type.includes('米') || type.includes('桂林')) return 'wu-xing-木';
+      if (type.includes('凤') || type.includes('西凤')) return 'wu-xing-水';
+      // 默认
+      return 'wu-xing-土';
+    }
+    
+    function f422_getWuXingLabel(d) {
+      const type = d.type || '';
+      if (type.includes('酱') || type.includes('茅')) return { element: '火', icon: '🔥' };
+      if (type.includes('浓') || type.includes('泸')) return { element: '土', icon: '🏺' };
+      if (type.includes('清') || type.includes('汾')) return { element: '金', icon: '⚔️' };
+      if (type.includes('米') || type.includes('桂林')) return { element: '木', icon: '🎋' };
+      if (type.includes('凤') || type.includes('西凤')) return { element: '水', icon: '💧' };
+      return { element: '土', icon: '🏺' };
+    }
+
+    // --- 卡片徽章渲染增强 ---
+    function f423_renderCardBadges(d) {
+      const badges = [];
+      
+      // 五行徽章
+      const wuXing = f422_getWuXingLabel(d);
+      badges.push(`<span class="wu-xing-badge ${wuXing.element}">${wuXing.icon} ${wuXing.element}</span>`);
+      
+      // 奖项徽章
+      if (d.awards && d.awards.length > 0) {
+        badges.push(`<span class="badge-award">🏅 ${d.awards.length}项奖</span>`);
+      }
+      
+      // 有机徽章
+      if (d.certification && d.certification.organic) {
+        badges.push(`<span class="badge-organic">🌿 有机</span>`);
+      }
+      
+      // 价格徽章
+      const priceTier = d.price_tier || '';
+      if (priceTier.includes('高端') || priceTier.includes('顶级')) {
+        badges.push(`<span class="badge-price">💰 高端</span>`);
+      }
+      
+      // 年份徽章
+      if (d.age) {
+        const ageMatch = d.age.match(/(\d+)/);
+        if (ageMatch && parseInt(ageMatch[1]) >= 10) {
+          badges.push(`<span class="badge-age">📅 ${d.age}</span>`);
+        }
+      }
+      
+      return badges.join('');
+    }
+
+    // --- 增强风味雷达图（6维） ---
+    function f424_renderFlavorRadar(d) {
+      // 6维: bitter(苦), sour(酸), sweet(甜), fragrance(香), returning(回), richness(醇)
+      const flavor = d.flavorProfile || {};
+      const bitter = Math.min(10, (flavor.intensity || 5) * 0.8);
+      const sour = Math.min(10, (flavor.acidity || 5) * 1.2);
+      const sweet = Math.min(10, (flavor.sweetness || 5) * 1.2);
+      const fragrance = Math.min(10, (d.aroma || 15) / 2);
+      const returning = Math.min(10, (d.afterglow || 16) / 2);
+      const richness = Math.min(10, (flavor.body_score || 10) / 1.5);
+      
+      const values = [bitter, sour, sweet, fragrance, returning, richness];
+      const labels = ['苦', '酸', '甜', '香', '回', '醇'];
+      const max = 10;
+      const cx = 150, cy = 150, r = 100;
+      
+      // 计算多边形顶点
+      const points = values.map((v, i) => {
+        const angle = (Math.PI * 2 * i / 6) - Math.PI / 2;
+        const x = cx + (v / max) * r * Math.cos(angle);
+        const y = cy + (v / max) * r * Math.sin(angle);
+        return `${x},${y}`;
+      }).join(' ');
+      
+      // 标签位置
+      const labelPoints = values.map((v, i) => {
+        const angle = (Math.PI * 2 * i / 6) - Math.PI / 2;
+        const x = cx + ((max + 0.8) / max) * r * Math.cos(angle);
+        const y = cy + ((max + 0.8) / max) * r * Math.sin(angle);
+        return { x, y, label: labels[i], value: values[i].toFixed(1) };
+      });
+      
+      return `
+        <div class="flavor-radar-container">
+          <div class="flavor-radar__title">🎯 风味雷达图（6维）</div>
+          <svg class="flavor-radar" viewBox="0 0 300 300">
+            <defs>
+              <linearGradient id="flavorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#e8a829;stop-opacity:0.5"/>
+                <stop offset="100%" style="stop-color:#c4891a;stop-opacity:0.3"/>
+              </linearGradient>
+            </defs>
+            <!-- 网格 -->
+            ${[0.2, 0.4, 0.6, 0.8, 1].map(scale => `
+              <polygon points="${values.map((v, i) => {
+                const angle = (Math.PI * 2 * i / 6) - Math.PI / 2;
+                const x = cx + (scale * r * Math.cos(angle));
+                const y = cy + (scale * r * Math.sin(angle));
+                return `${x},${y}`;
+              }).join(' ')}" fill="none" stroke="rgba(232,168,41,0.15)" stroke-width="1"/>
+            `).join('')}
+            <!-- 轴线 -->
+            ${values.map((v, i) => {
+              const angle = (Math.PI * 2 * i / 6) - Math.PI / 2;
+              const x = cx + r * Math.cos(angle);
+              const y = cy + r * Math.sin(angle);
+              return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(232,168,41,0.2)" stroke-width="1"/>`;
+            }).join('')}
+            <!-- 数据多边形 -->
+            <polygon points="${points}" fill="url(#flavorGrad)" stroke="#e8a829" stroke-width="2"/>
+            <!-- 数据点 -->
+            ${values.map((v, i) => {
+              const angle = (Math.PI * 2 * i / 6) - Math.PI / 2;
+              const x = cx + (v / max) * r * Math.cos(angle);
+              const y = cy + (v / max) * r * Math.sin(angle);
+              return `<circle cx="${x}" cy="${y}" r="4" fill="#e8a829" stroke="#0d0a08" stroke-width="2"/>`;
+            }).join('')}
+            <!-- 标签 -->
+            ${labelPoints.map(lp => `
+              <text x="${lp.x}" y="${lp.y + 4}" text-anchor="middle" fill="#f5cc6a" font-size="11">${lp.label}</text>
+              <text x="${lp.x}" y="${lp.y - 12}" text-anchor="middle" fill="#9a8b7a" font-size="10">${lp.value}</text>
+            `).join('')}
+          </svg>
+          <div class="radar-legend">
+            ${labels.map((l, i) => `<span class="radar-legend-item"><span class="radar-legend-dot" style="background:hsl(${(i * 60)},70%,50%)"></span>${l}</span>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════
     // 初始化
     // ═══════════════════════════════════════════════════════════════════
 
@@ -1890,6 +2780,22 @@
     window.onCityChange = f303_onCityChange;
     window.togglePriceTier = f321_togglePriceTier;
     window.clearPriceTiers = f322_clearPriceTiers;
+    
+    // P1增强功能绑定
+    window.openPairingModal = f401_openPairingModal;
+    window.closePairingModal = f402_closePairingModal;
+    window.openFeedbackModal = f403_openFeedbackModal;
+    window.closeFeedbackModal = f404_closeFeedbackModal;
+    window.submitFeedback = f405_submitFeedback;
+    window.openVideoModal = f406_openVideoModal;
+    window.closeVideoModal = f407_closeVideoModal;
+    window.openTimelineModal = f408_openTimelineModal;
+    window.closeTimelineModal = f409_closeTimelineModal;
+    window.openRegionChartModal = f410_openRegionChartModal;
+    window.closeRegionChartModal = f411_closeRegionChartModal;
+    window.openPriceHistoryModal = f412_openPriceHistoryModal;
+    window.closePriceHistoryModal = f413_closePriceHistoryModal;
+    window.openDetailModalWithTabs = f415_openDetailModalWithTabs;
   </script>
 </body>
 </html>
