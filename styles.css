@@ -1,73 +1,73 @@
 /* ================================================
-   世界烈酒图鉴 v3.1.0
-   商业级深色主题 · Commercial Dark Theme
+   世界烈酒图鉴 v3.2.0
+   黑髪漆面 · 香槟金蕴 · Luxury Edition
    ================================================ */
 
 /* ================================================
-   1. CSS Variables - 商业级深色配色
+   1. CSS Variables - 奢华黑金配色
    ================================================ */
 :root {
-  /* 主背景 - 深邃藏青黑 */
-  --bg-deepest: #0c0d10;
-  --bg-deep: #12141a;
-  --bg-card: #181b22;
-  --bg-elevated: #1e222b;
-  --bg-glass: rgba(18, 20, 26, 0.88);
+  /* 主背景 - 黑髪漆面 */
+  --bg-deepest: #080706;
+  --bg-deep: #0f0d0a;
+  --bg-card: #151310;
+  --bg-elevated: #1c1813;
+  --bg-glass: rgba(8, 7, 6, 0.88);
 
-  /* 强调色 - 商务蓝晶 (专业冷调) */
-  --accent-50: #f0f7ff;
-  --accent-100: #e0edff;
-  --accent-200: #bad4ff;
-  --accent-300: #7eb8ff;
-  --accent-400: #3b99ff;
-  --accent-500: #0f7cf5;
-  --accent-600: #0d68e0;
-  --accent-700: #0b52bb;
+  /* 强调色 - 香槟金蕴 */
+  --accent-50: #fdf8f0;
+  --accent-100: #f5ebd0;
+  --accent-200: #e8d4a0;
+  --accent-300: #d8b87a;
+  --accent-400: #cfa85e;
+  --accent-500: #c6a15b;
+  --accent-600: #b08a42;
+  --accent-700: #9a7a3f;
 
-  /* 文字色 */
-  --text-primary: #f1f3f7;
-  --text-secondary: #939aa4;
-  --text-muted: #5c6370;
-  --text-subtle: #3d424d;
+  /* 文字色 - 暖白宣纸 */
+  --text-primary: #fff8ea;
+  --text-secondary: #d8cdb7;
+  --text-muted: #9f927c;
+  --text-subtle: #6a5f4e;
 
-  /* 边框 - 微光灰 */
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-default: rgba(255, 255, 255, 0.09);
-  --border-hover: rgba(255, 255, 255, 0.14);
+  /* 边框 - 鎏金微光 */
+  --border-subtle: rgba(198, 161, 91, 0.08);
+  --border-default: #282217;
+  --border-hover: #3a3020;
 
-  /* 阴影 - 柔和深邃 */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.7);
-  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.8);
+  /* 阴影 - 深邃奢华 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.8);
 
-  /* 间距 */
+  /* 间距 - 从容奢华 */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
-  --space-xl: 32px;
-  --space-2xl: 48px;
-  --space-3xl: 64px;
+  --space-xl: 36px;
+  --space-2xl: 56px;
+  --space-3xl: 80px;
 
-  /* 圆角 - 柔和圆润 */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
-  --radius-2xl: 28px;
+  /* 圆角 - 温润雅致 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 36px;
   --radius-full: 9999px;
 
   /* 字体 */
-  --font-display: "Noto Serif SC", "Songti SC", "SimSun", serif;
-  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Playfair Display", "Noto Serif SC", "Songti SC", serif;
+  --font-body: "Avenir Next", "Inter", "Noto Sans SC", "PingFang SC", sans-serif;
   --font-accent: "Playfair Display", "Noto Serif SC", serif;
 
   /* 动画 */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --transition-fast: 150ms var(--ease-smooth);
+  --transition-fast: 180ms var(--ease-smooth);
   --transition-normal: 300ms var(--ease-smooth);
   --transition-slow: 500ms var(--ease-smooth);
 
@@ -79,6 +79,23 @@
   --z-modal-backdrop: 300;
   --z-modal: 400;
   --z-toast: 500;
+
+  /* 兼容性别名 - 旧版映射 */
+  --midnight-100: var(--text-primary);
+  --midnight-200: var(--text-secondary);
+  --midnight-300: var(--text-muted);
+  --midnight-400: var(--text-muted);
+  --midnight-500: var(--text-subtle);
+  --midnight-600: #4a4030;
+  --midnight-700: #1c1813;
+  --midnight-800: #151310;
+  --midnight-900: #0f0d0a;
+  --midnight-950: #080706;
+  --text-cream: var(--text-primary);
+  --glow-accent: 0 0 20px rgba(198, 161, 91, 0.2);
+  --glow-accent-strong: 0 0 40px rgba(198, 161, 91, 0.25), 0 0 80px rgba(198, 161, 91, 0.1);
+  --border-accent: rgba(198, 161, 91, 0.2);
+  --copper-800: #5c4a2a;
 }
 
 /* ================================================
@@ -105,14 +122,14 @@ body {
   overflow-x: hidden;
 }
 
-/* 细腻背景渐变 */
+/* 细腻背景渐变 - 暖金微光 */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background: 
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(15, 124, 245, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(11, 82, 187, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(198, 161, 91, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(154, 122, 63, 0.03) 0%, transparent 50%),
     linear-gradient(180deg, var(--bg-deepest) 0%, var(--bg-deep) 50%, var(--bg-deepest) 100%);
   pointer-events: none;
   z-index: -1;
@@ -129,12 +146,12 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-default);
-  border-radius: 3px;
+  background: linear-gradient(180deg, var(--accent-500), var(--accent-700));
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border-hover);
+  background: linear-gradient(180deg, var(--accent-400), var(--accent-600));
 }
 
 a {
