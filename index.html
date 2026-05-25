@@ -650,6 +650,8 @@
           <button class="header__btn" id="achieveHeaderBtn" onclick="showAchievements()" title="成就">🏆</button>
           <button class="header__btn lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
           <button class="header__btn" onclick="randomPick()" title="随机推荐">🎲</button>
+          <button class="header__btn" id="compareOpenBtn2" onclick="openCompare()" title="比较" style="display:none">⚖️</button>
+          <button class="header__btn" id="folderOpenBtn2" onclick="openFolderModal()" title="收藏夹">📁</button>
           <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
             <span class="theme-toggle__icon sun">☀️</span>
             <span class="theme-toggle__icon moon">🌙</span>
@@ -659,11 +661,7 @@
     </header>
 
     <!-- Favorites Bar -->
-    <nav class="favorites-bar" id="favoritesBar">
-      <button class="favorites-bar__btn" id="favBarBtn" onclick="toggleSidebar()" title="收藏">❤️</button>
-      <button class="favorites-bar__btn" id="compareOpenBtn" onclick="openCompare()" title="比较" style="display:none">⚖️</button>
-      <button class="favorites-bar__btn" id="folderOpenBtn" onclick="openFolderModal()" title="收藏夹">📁</button>
-    </nav>
+    <nav class="favorites-bar" id="favoritesBar" style="display:none">
 
     <!-- Layout -->
     <div class="app-layout">
