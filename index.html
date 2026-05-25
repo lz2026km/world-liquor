@@ -1835,7 +1835,7 @@
       f34_setupInfiniteScroll(); 
       f35_bindGlobalEvents();
       f301_initRegionSelector(); // 初始化三级产区选择器
-      f302_updateFavBadge(); // 更新收藏徽章
+      f304_updateFavBadge(); // 更新收藏徽章
       f303_renderFavRanking(); // 渲染收藏排行
       // P1增强: 侧边栏内容
       f425_renderSidebarEnhancements();
@@ -2001,7 +2001,7 @@
       document.getElementById('favCount').textContent = Object.keys(window.FAVORITES).length; 
       document.getElementById('notesCount').textContent = Object.keys(window.TASTING_NOTES).length; 
       document.getElementById('achieveCount').textContent = Object.values(window.ACHIEVEMENTS).filter(a => a.unlocked).length;
-      f302_updateFavBadge();
+      f304_updateFavBadge(); // Fixed: was calling f302 which is onProvinceChange, correct is f304_updateFavBadge
     }
     
     function f33_setupSearch() { 
