@@ -534,6 +534,7 @@ input, select, textarea {
   border-right: 1px solid var(--border-gold);
   padding: var(--space-lg);
   overflow-y: auto;
+  overflow-x: auto;
   max-height: calc(100vh - 70px);
   position: sticky;
   top: 70px;
