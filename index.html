@@ -137,14 +137,19 @@
           `<button class="filter-tag${currentFilters.type === t ? ' filter-tag-active' : ''}" data-type="${t}">${t}</button>`
         ).join('');
 
-        // 产区筛选
-        const regionMap = { '黔': '贵州', '川': '四川', '苏': '江苏', '皖': '安徽', '晋': '山西', '冀': '河北', '豫': '河南', '京': '北京', '津': '天津', '浙': '浙江', '沪': '上海', '湘': '湖南', '鄂': '湖北', '赣': '江西', '鲁': '山东', '蒙': '内蒙古', '东北': '东北', '西北': '西北', '西南': '西南', '境外': '境外' };
+        // 产区筛选（动态数据 + 中文映射）
+        const regionMap = {
+          '京': '北京', '冀': '河北', '华': '华中', '台': '台湾', '国际': '国际',
+          '川': '四川', '徽': '安徽', '汾': '山西', '浙': '浙江', '湘': '湖南',
+          '苏': '江苏', '西北': '西北', '豫': '河南', '赣': '江西', '鄂': '湖北',
+          '鲁': '山东', '黔': '贵州'
+        };
         regionFilter.innerHTML = Object.entries(regionMap).map(([k, v]) =>
           `<button class="filter-tag${currentFilters.region === k ? ' filter-tag-active' : ''}" data-region="${k}">${v}</button>`
         ).join('');
 
-        // 价位筛选
-        const priceTiers = ['入门', '中端', '高端', '顶级'];
+        // 价位筛选（7个价格等级，与数据 price_tier 精确匹配）
+        const priceTiers = ['入门级', '中低端', '中端', '中高端', '高端', '超高端', '低端'];
         priceFilter.innerHTML = priceTiers.map(t =>
           `<button class="filter-tag${currentFilters.price === t ? ' filter-tag-active' : ''}" data-price="${t}">${t}</button>`
         ).join('');
@@ -165,7 +170,7 @@
           const options = {
             type: currentFilters.type,
             region: currentFilters.region,
-            price: currentFilters.price,
+            priceTier: currentFilters.price,
             query: currentQuery
           };
 

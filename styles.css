@@ -1373,7 +1373,161 @@ input, select, textarea {
 }
 
 /* ================================================
-   15. Modal
+   14b. 酒款详情弹窗
+   ================================================ */
+.detail-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 400);
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-modal.detail-modal-open {
+  display: flex;
+}
+
+.detail-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.detail-content {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-2xl);
+  width: 90%;
+  max-width: 760px;
+  max-height: 88vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  animation: modalIn 0.25s var(--ease-spring, ease);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.detail-close {
+  position: absolute;
+  top: var(--space-md, 12px);
+  right: var(--space-md, 12px);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.detail-close:hover {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.detail-body {
+  overflow-y: auto;
+  max-height: 88vh;
+}
+
+/* ================================================
+   7b. 卡片模板扩展（兼容 createCard 模板）
+   ================================================ */
+.card-image-wrap {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-deep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: var(--text-muted);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-type-badge {
+  position: absolute;
+  top: var(--space-md, 12px);
+  right: var(--space-md, 12px);
+  padding: 3px 10px;
+  background: rgba(17, 17, 19, 0.7);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  z-index: 2;
+}
+
+.card-info {
+  padding: var(--space-lg, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs, 4px);
+}
+
+.card-name {
+  font-family: var(--font-display, serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.card-ename {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm, 6px);
+  margin: var(--space-sm, 6px) 0;
+  align-items: center;
+}
+
+.card-abv {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.card-score {
+  font-size: 0.8rem;
+  color: var(--accent-400, #e0a030);
+}
+
+.card-price {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ================================================
+   15. Modal (原通用模态框，保留兼容)
    ================================================ */
 .modal-backdrop {
   display: none;

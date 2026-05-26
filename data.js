@@ -473,11 +473,6 @@ const DataManager = (() => {
   };
 })();
 
-// ES Module 导出
-export default DataManager;
-export {
-  DataManager
-};
 // 全局挂钩（供 index.html 直接调用）
 window.LiquorData = DataManager;
 window.LiquorData.getTypes = DataManager.getAllTypes;

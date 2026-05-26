@@ -237,14 +237,7 @@ class ParticleSystem {
   }
 }
 
-// 创建默认粒子系统实例的工厂函数
+// 工厂函数
 const createParticleSystem = (canvas, config) => {
   return new ParticleSystem(canvas, config);
-};
-
-// ES Module 导出
-export default ParticleSystem;
-export {
-  ParticleSystem,
-  createParticleSystem
 };

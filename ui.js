@@ -25,6 +25,16 @@ const UIRenderer = (() => {
   };
 
   // 图片错误处理
+  const escapeHtml = (str) => {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  };
+
   const getImageUrl = (liquor) => {
     return liquor.image || `/images/${liquor.name}.jpg`;
   };
@@ -37,32 +47,32 @@ const UIRenderer = (() => {
     const typeDisplay = liquor.type || '';
     const regionDisplay = liquor.region ? `【${liquor.region}】` : '';
 
-    return `
-      <article class="${CONFIG.cardClass} ${CONFIG.shimmerClass}" data-id="${liquor.id}">
+return `
+      <article class="${CONFIG.cardClass} ${CONFIG.shimmerClass}" data-id="${escapeHtml(liquor.id)}">
         <div class="${CONFIG.cardImageClass}">
-          <img 
-            src="${getImageUrl(liquor)}" 
-            alt="${liquor.name}"
+          <img
+            src="${getImageUrl(liquor)}"
+            alt="${escapeHtml(liquor.name)}"
             loading="lazy"
             onerror="this.src='/images/placeholder.jpg'"
           />
-          <span class="card-type-badge">${typeDisplay}</span>
+          <span class="card-type-badge">${escapeHtml(typeDisplay)}</span>
         </div>
         <div class="card-content">
           <header class="card-header">
-            <h3 class="${CONFIG.cardTitleClass}">${regionDisplay}${liquor.name}</h3>
-            <p class="${CONFIG.cardSubtitleClass}">${liquor.ename || ''}</p>
+            <h3 class="${CONFIG.cardTitleClass}">${escapeHtml(regionDisplay)}${escapeHtml(liquor.name)}</h3>
+            <p class="${CONFIG.cardSubtitleClass}">${escapeHtml(liquor.ename || '')}</p>
           </header>
           <div class="card-meta">
             <span class="${CONFIG.cardScoreClass}">
               <i class="icon-score"></i>
-              ${scoreDisplay}
+              ${escapeHtml(scoreDisplay)}
             </span>
-            <span class="${CONFIG.cardPriceClass}">${priceDisplay}</span>
+            <span class="${CONFIG.cardPriceClass}">${escapeHtml(priceDisplay)}</span>
           </div>
           <div class="card-tags">
-            ${(liquor.flavor_tags || []).slice(0, 3).map(tag => 
-              `<span class="tag">${tag}</span>`
+            ${(liquor.flavor_tags || []).slice(0, 3).map(tag =>
+              `<span class="tag">${escapeHtml(tag)}</span>`
             ).join('')}
           </div>
         </div>
@@ -589,11 +599,6 @@ const UIRenderer = (() => {
   };
 })();
 
-// ES Module 导出
-export default UIRenderer;
-export {
-  UIRenderer
-};
 // 全局挂钩（供 index.html 直接调用）
 window.UI = UIRenderer;
 window.UI.createCard = function(liquor) {
@@ -626,28 +631,28 @@ window.UI.openDetail = function(liquor) {
   body.innerHTML = `
     <div class="detail-layout">
       <div class="detail-left">
-        <img src="${liquor.image || '/images/placeholder.jpg'}" alt="${liquor.name}" class="detail-image"
+        <img src="${liquor.image || '/images/placeholder.jpg'}" alt="${escapeHtml(liquor.name)}" class="detail-image"
              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22><rect fill=%22%23151310%22 width=%22200%22 height=%22300%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c6a15b%22 font-size=%2240%22>🍶</text></svg>'">
         <div class="detail-basic">
-          <h2 class="detail-name">${liquor.name}</h2>
-          <p class="detail-ename">${liquor.ename || ''}</p>
+          <h2 class="detail-name">${escapeHtml(liquor.name)}</h2>
+          <p class="detail-ename">${escapeHtml(liquor.ename || '')}</p>
           <div class="detail-tags">
-            <span class="detail-tag">${liquor.type}</span>
-            <span class="detail-tag">${liquor.abv}%vol</span>
-            <span class="detail-tag">${liquor.region || ''}</span>
+            <span class="detail-tag">${escapeHtml(liquor.type)}</span>
+            <span class="detail-tag">${escapeHtml(String(liquor.abv))}%vol</span>
+            <span class="detail-tag">${escapeHtml(liquor.region || '')}</span>
           </div>
-          <div class="detail-price">¥${liquor.price}</div>
+          <div class="detail-price">¥${escapeHtml(String(liquor.price))}</div>
         </div>
       </div>
       <div class="detail-right">
         <div class="detail-radar">
           <canvas id="radar-canvas" width="240" height="240"></canvas>
         </div>
-        <div class="detail-description">${liquor.description || ''}</div>
-        ${liquor.tasting ? `<div class="detail-section"><h4>品鉴笔记</h4><ul>${liquor.tasting.map(t => `<li>${t}</li>`).join('')}</ul></div>` : ''}
-        ${liquor.pairing ? `<div class="detail-section"><h4>配餐建议</h4><p>${liquor.pairing.join(' / ')}</p></div>` : ''}
-        ${liquor.awards && liquor.awards.length ? `<div class="detail-section"><h4>荣誉</h4><ul>${liquor.awards.map(a => `<li>${a}</li>`).join('')}</ul></div>` : ''}
-        ${liquor.history ? `<div class="detail-section"><h4>历史背景</h4><p>${liquor.history.substring(0, 200)}...</p></div>` : ''}
+        <div class="detail-description">${escapeHtml(liquor.description || '')}</div>
+        ${liquor.tasting ? `<div class="detail-section"><h4>品鉴笔记</h4><ul>${liquor.tasting.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul></div>` : ''}
+        ${liquor.pairing ? `<div class="detail-section"><h4>配餐建议</h4><p>${escapeHtml(liquor.pairing.join(' / '))}</p></div>` : ''}
+        ${liquor.awards && liquor.awards.length ? `<div class="detail-section"><h4>荣誉</h4><ul>${liquor.awards.map(a => `<li>${escapeHtml(a)}</li>`).join('')}</ul></div>` : ''}
+        ${liquor.history ? `<div class="detail-section"><h4>历史背景</h4><p>${escapeHtml(liquor.history.substring(0, 200))}...</p></div>` : ''}
       </div>
     </div>
   `;
