@@ -3,6 +3,19 @@
  * 职责：UI渲染逻辑，与数据层解耦
  */
 
+// ================================================
+// 全局工具函数（在 IIFE 外定义，供全局使用）
+// ================================================
+const escapeHtml = (str) => {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
 const UIRenderer = (() => {
   // DOM 元素引用
   let cardContainer = null;
