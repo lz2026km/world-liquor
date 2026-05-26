@@ -365,7 +365,13 @@ const DataManager = (() => {
       }
 
       // 2. 尝试从网络加载并解压
-      const response = await fetch('/baijiu_data.json');
+      let response;
+      try {
+        response = await fetch('/baijiu_data.json');
+      } catch(e) {
+        window.__fetch_err = e.message;
+        throw new Error('fetch failed: ' + e.message);
+      }
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-liquor-v5';
+const CACHE_NAME = 'world-liquor-v5-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
