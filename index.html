@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>世界烈酒图鉴 · World Liquor Gallery v5</title>
+  <meta name="description" content="探索全球300款顶级烈酒 - 茅台、五粮液、威士忌、白兰地、伏特加、金酒、朗姆酒、龙舌兰。极暗奢华·琥珀流光。">
+  <meta name="theme-color" content="#080706">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+  <!-- 粒子背景 -->
+  <canvas id="particle-bg" class="particle-bg"></canvas>
+
+  <!-- 主应用 -->
+  <div class="app" id="app">
+    <!-- 顶部导航 -->
+    <header class="header" id="header">
+      <div class="header-inner">
+        <div class="logo-wrap">
+          <h1 class="logo">世界烈酒图鉴</h1>
+          <span class="logo-en">World Liquor Gallery</span>
+        </div>
+        <div class="header-actions">
+          <button class="achievements-btn" id="achievements-btn" title="成就系统">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="6"/>
+              <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- 搜索栏 -->
+      <div class="search-wrap">
+        <input type="search" class="search-input" id="search-input" placeholder="搜索酒款、品牌、产区..." autocomplete="off">
+        <div class="search-count" id="search-count"></div>
+      </div>
+    </header>
+
+    <!-- 筛选栏 -->
+    <div class="filter-bar" id="filter-bar">
+      <div class="filter-section">
+        <span class="filter-label">类型</span>
+        <div class="filter-tags" id="type-filter"></div>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">产区</span>
+        <div class="filter-tags" id="region-filter"></div>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">价位</span>
+        <div class="filter-tags" id="price-filter"></div>
+      </div>
+    </div>
+
+    <!-- 卡片网格 -->
+    <main class="main">
+      <div class="card-grid" id="card-grid"></div>
+      <div class="loading-indicator" id="loading">
+        <div class="spinner-amber"></div>
+        <span>加载中...</span>
+      </div>
+      <div class="scroll-trigger" id="scroll-trigger"></div>
+    </main>
+
+    <!-- 详情Modal -->
+    <div class="detail-modal" id="detail-modal">
+      <div class="detail-backdrop"></div>
+      <div class="detail-content">
+        <button class="detail-close" id="detail-close">×</button>
+        <div class="detail-body" id="detail-body"></div>
+      </div>
+    </div>
+
+    <!-- 成就面板 -->
+    <div class="achievements-panel" id="achievements-panel">
+      <div class="achievements-header">
+        <h3>成就系统</h3>
+        <button class="achievements-close" id="achievements-close">×</button>
+      </div>
+      <div class="achievements-list" id="achievements-list"></div>
+    </div>
+  </div>
+
+  <!-- 错误提示 -->
+  <div class="error-toast" id="error-toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+  <script src="particle.js"></script>
+  <script src="data.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    (async () => {
+      const app = document.getElementById('app');
+      const cardGrid = document.getElementById('card-grid');
+      const loading = document.getElementById('loading');
+      const searchInput = document.getElementById('search-input');
+      const searchCount = document.getElementById('search-count');
+      const errorToast = document.getElementById('error-toast');
+
+      // 全局状态
+      let particleSystem = null;
+      let currentFilters = { type: null, region: null, price: null };
+      let currentQuery = '';
+      let currentPage = 1;
+      let isLoading = false;
+      let allCards = [];
+
+      // 显示错误
+      function showError(msg) {
+        errorToast.textContent = msg;
+        errorToast.classList.add('error-toast-show');
+        setTimeout(() => errorToast.classList.remove('error-toast-show'), 4000);
+      }
+
+      // 更新搜索计数
+      function updateSearchCount() {
+        const total = allCards.length;
+        const typeCount = LiquorData.getTypes().length;
+        searchCount.textContent = total > 0 ? `共 ${total} 款酒` : '';
+      }
+
+      // 渲染筛选栏
+      function renderFilters() {
+        const types = LiquorData.getTypes();
+        const regions = LiquorData.getRegions();
+
+        const typeFilter = document.getElementById('type-filter');
+        const regionFilter = document.getElementById('region-filter');
+        const priceFilter = document.getElementById('price-filter');
+
+        // 类型筛选
+        typeFilter.innerHTML = types.map(t => 
+          `<button class="filter-tag${currentFilters.type === t ? ' filter-tag-active' : ''}" data-type="${t}">${t}</button>`
+        ).join('');
+
+        // 产区筛选
+        const regionMap = { '黔': '贵州', '川': '四川', '苏': '江苏', '皖': '安徽', '晋': '山西', '冀': '河北', '豫': '河南', '京': '北京', '津': '天津', '浙': '浙江', '沪': '上海', '湘': '湖南', '鄂': '湖北', '赣': '江西', '鲁': '山东', '蒙': '内蒙古', '东北': '东北', '西北': '西北', '西南': '西南', '境外': '境外' };
+        regionFilter.innerHTML = Object.entries(regionMap).map(([k, v]) =>
+          `<button class="filter-tag${currentFilters.region === k ? ' filter-tag-active' : ''}" data-region="${k}">${v}</button>`
+        ).join('');
+
+        // 价位筛选
+        const priceTiers = ['入门', '中端', '高端', '顶级'];
+        priceFilter.innerHTML = priceTiers.map(t =>
+          `<button class="filter-tag${currentFilters.price === t ? ' filter-tag-active' : ''}" data-price="${t}">${t}</button>`
+        ).join('');
+      }
+
+      // 渲染卡片
+      async function renderCards(reset = true) {
+        if (isLoading) return;
+        isLoading = true;
+        loading.style.display = 'flex';
+
+        if (reset) {
+          cardGrid.innerHTML = '';
+          currentPage = 1;
+        }
+
+        try {
+          const options = {
+            type: currentFilters.type,
+            region: currentFilters.region,
+            price: currentFilters.price,
+            query: currentQuery
+          };
+
+          const cards = await LiquorData.getFiltered(options, currentPage, 20);
+          allCards = await LiquorData.getFiltered(options, 1, 9999);
+
+          if (cards.length === 0 && reset) {
+            cardGrid.innerHTML = `
+              <div class="empty-state">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <p>未找到符合条件的酒款</p>
+                <button class="btn-reset" onclick="resetFilters()">重置筛选</button>
+              </div>`;
+          } else {
+            cards.forEach((card, i) => {
+              const el = UI.createCard(card);
+              el.style.animationDelay = `${(i % 20) * 50}ms`;
+              cardGrid.appendChild(el);
+            });
+          }
+
+          updateSearchCount();
+          currentPage++;
+        } catch (e) {
+          showError('加载失败，请刷新重试');
+        } finally {
+          isLoading = false;
+          loading.style.display = 'none';
+        }
+      }
+
+      // 重置筛选
+      window.resetFilters = () => {
+        currentFilters = { type: null, region: null, price: null };
+        currentQuery = '';
+        searchInput.value = '';
+        renderFilters();
+        renderCards(true);
+      };
+
+      // 防抖
+      function debounce(fn, ms) {
+        let t;
+        return (...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn(...args), ms);
+        };
+      }
+
+      // 绑定事件
+      function bindEvents() {
+        // 筛选标签点击
+        document.getElementById('type-filter').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-tag')) {
+            const type = e.target.dataset.type;
+            currentFilters.type = currentFilters.type === type ? null : type;
+            renderFilters();
+            renderCards(true);
+          }
+        });
+
+        document.getElementById('region-filter').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-tag')) {
+            const region = e.target.dataset.region;
+            currentFilters.region = currentFilters.region === region ? null : region;
+            renderFilters();
+            renderCards(true);
+          }
+        });
+
+        document.getElementById('price-filter').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-tag')) {
+            const price = e.target.dataset.price;
+            currentFilters.price = currentFilters.price === price ? null : price;
+            renderFilters();
+            renderCards(true);
+          }
+        });
+
+        // 搜索
+        searchInput.addEventListener('input', debounce(() => {
+          currentQuery = searchInput.value.trim();
+          renderCards(true);
+        }, 300));
+
+        // 卡片点击 → 详情
+        cardGrid.addEventListener('click', e => {
+          const card = e.target.closest('.liquor-card');
+          if (card) {
+            const id = card.dataset.id;
+            const liquor = LiquorData.getById(id);
+            if (liquor) UI.openDetail(liquor);
+          }
+        });
+
+        // 详情关闭
+        document.getElementById('detail-close').addEventListener('click', UI.closeDetail);
+        document.querySelector('.detail-backdrop').addEventListener('click', UI.closeDetail);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') UI.closeDetail(); });
+
+        // 成就面板
+        document.getElementById('achievements-btn').addEventListener('click', () => {
+          document.getElementById('achievements-panel').classList.add('achievements-panel-open');
+          UI.renderAchievementsPanel();
+        });
+        document.getElementById('achievements-close').addEventListener('click', () => {
+          document.getElementById('achievements-panel').classList.remove('achievements-panel-open');
+        });
+
+        // 无限滚动
+        const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting && !isLoading) {
+            renderCards(false);
+          }
+        }, { rootMargin: '200px' });
+        observer.observe(document.getElementById('scroll-trigger'));
+      }
+
+      // 初始化
+      try {
+        // 粒子背景
+        particleSystem = new ParticleSystem(document.getElementById('particle-bg'));
+        particleSystem.start();
+
+        // 加载数据
+        await LiquorData.init();
+
+        // 渲染
+        renderFilters();
+        await renderCards(true);
+        bindEvents();
+
+      } catch (e) {
+        showError('初始化失败：' + e.message);
+      }
+    })();
+  </script>
+</body>
+</html>

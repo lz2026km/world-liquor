@@ -1,0 +1,1051 @@
+/* ================================================
+   世界烈酒图鉴 v5.0.0
+   极暗奢华 · 琥珀流光
+   animations.css - 动效类集合
+   ================================================ */
+
+/* ================================================
+   1. 卡片流光动画 (Scan Line Effect)
+   ================================================ */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(198, 161, 91, 0.08) 40%,
+    rgba(198, 161, 91, 0.15) 50%,
+    rgba(198, 161, 91, 0.08) 60%,
+    transparent 100%
+  );
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* 悬浮增强流光 */
+.liquor-card:hover::before {
+  animation-duration: 1.2s;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(198, 161, 91, 0.12) 40%,
+    rgba(212, 168, 75, 0.25) 50%,
+    rgba(198, 161, 91, 0.12) 60%,
+    transparent 100%
+  );
+}
+
+/* ================================================
+   2. 悬浮动效 (Hover Lift & Glow)
+   ================================================ */
+.liquor-card {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquor-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-500);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(198, 161, 91, 0.15),
+    inset 0 1px 0 rgba(198, 161, 91, 0.1);
+}
+
+/* 悬浮发光变体 */
+.hover-lift {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg), 0 0 15px rgba(198, 161, 91, 0.15);
+}
+
+.hover-glow {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-glow:hover {
+  box-shadow: 
+    0 0 20px rgba(198, 161, 91, 0.2),
+    0 0 40px rgba(198, 161, 91, 0.15),
+    0 0 60px rgba(198, 161, 91, 0.1);
+}
+
+/* ================================================
+   3. 雷达图动画 (Radar Chart Reveal)
+   ================================================ */
+.radar-fill {
+  fill: rgba(198, 161, 91, 0.25);
+  filter: drop-shadow(0 0 8px rgba(198, 161, 91, 0.4));
+  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radar-fill-animate {
+  animation: radarReveal 600ms ease-out forwards;
+  transform-origin: center;
+}
+
+@keyframes radarReveal {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.radar-stroke {
+  stroke: var(--accent-500);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px rgba(198, 161, 91, 0.5));
+}
+
+.radar-point {
+  fill: var(--accent-400);
+  filter: drop-shadow(0 0 6px rgba(198, 161, 91, 0.6));
+}
+
+/* ================================================
+   4. 成就徽章3D翻转 (Achievement 3D Flip)
+   ================================================ */
+.achievement-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.achievement-card__inner {
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.achievement-card:hover .achievement-card__inner,
+.achievement-card.flipped .achievement-card__inner {
+  transform: rotateY(180deg);
+}
+
+.achievement-card__front,
+.achievement-card__back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.achievement-card__back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-600), var(--accent-700));
+  border-radius: var(--radius-lg);
+}
+
+/* ================================================
+   5. 详情页全屏沉浸效果
+   ================================================ */
+.detail-modal-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(8, 7, 6, 0.92);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  animation: modalFadeIn 400ms ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* 底部琥珀渗透光 */
+.detail-modal-fullscreen::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(
+    to top,
+    rgba(198, 161, 91, 0.08) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ================================================
+   6. 时间轴酿造故事动效
+   ================================================ */
+.timeline-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: timelineReveal 500ms ease-out forwards;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 100ms; }
+.timeline-item:nth-child(2) { animation-delay: 200ms; }
+.timeline-item:nth-child(3) { animation-delay: 300ms; }
+.timeline-item:nth-child(4) { animation-delay: 400ms; }
+.timeline-item:nth-child(5) { animation-delay: 500ms; }
+
+@keyframes timelineReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================
+   7. 琥珀发光阴影 (Amber Glow Shadows)
+   ================================================ */
+.glow-amber-sm {
+  box-shadow: 0 0 15px rgba(198, 161, 91, 0.15);
+}
+
+.glow-amber-md {
+  box-shadow: 0 0 30px rgba(198, 161, 91, 0.2);
+}
+
+.glow-amber-lg {
+  box-shadow: 0 0 50px rgba(198, 161, 91, 0.25), 0 0 100px rgba(198, 161, 91, 0.1);
+}
+
+/* ================================================
+   8. 通用渐入动画
+   ================================================ */
+.fade-in {
+  animation: fadeIn 400ms ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-in-up {
+  animation: fadeInUp 500ms ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-scale {
+  animation: fadeInScale 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 400ms ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 400ms ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================================================
+   9. 脉冲发光效果
+   ================================================ */
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(198, 161, 91, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(198, 161, 91, 0.4), 0 0 60px rgba(198, 161, 91, 0.2);
+  }
+}
+
+/* ================================================
+   10. 浮行动画
+   ================================================ */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-slow {
+  animation: float 4s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* ================================================
+   11. 旋转动画
+   ================================================ */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+/* ================================================
+   12. 卡片加载骨架屏动画
+   ================================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    var(--bg-elevated) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ================================================
+   13. 按钮点击反馈
+   ================================================ */
+.btn-press {
+  transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* ================================================
+   14. 进度条动画
+   ================================================ */
+.progress-bar {
+  animation: progressGrow 1s ease-out forwards;
+  transform-origin: left;
+}
+
+@keyframes progressGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ================================================
+   15. 闪烁动画
+   ================================================ */
+.twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ================================================
+   16. 强调色边框流动
+   ================================================ */
+.border-flow {
+  position: relative;
+}
+
+.border-flow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-500) 50%,
+    transparent 100%
+  );
+  border-radius: inherit;
+  animation: borderFlow 2s ease-in-out infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.border-flow:hover::before {
+  opacity: 1;
+}
+
+@keyframes borderFlow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ================================================
+   17. 比较栏滑动动画
+   ================================================ */
+.compare-bar {
+  transform: translateY(100%);
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.compare-bar.visible {
+  transform: translateY(0);
+}
+
+/* ================================================
+   18. 筛选标签切换动画
+   ================================================ */
+.filter-tag {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-tag:hover {
+  background: var(--bg-elevated);
+  border-color: var(--accent-600);
+}
+
+.filter-tag.active {
+  background: linear-gradient(135deg, var(--accent-600), var(--accent-700));
+  border-color: var(--accent-500);
+  color: var(--text-primary);
+}
+
+/* ================================================
+   19. 降低动画偏好 (Reduced Motion)
+   ================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .card-shimmer::before,
+  .pulse-glow,
+  .float,
+  .twinkle {
+    animation: none !important;
+  }
+}
+
+/* ================================================
+   20. 移动端性能优化
+   ================================================ */
+@media (max-width: 768px) {
+  .liquor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(198, 161, 91, 0.1);
+  }
+  
+  .card-shimmer::before {
+    animation-duration: 2.5s;
+  }
+  
+  .liquor-card:hover::before {
+    animation-duration: 1.8s;
+  }
+  
+  .radar-fill-animate {
+    animation-duration: 800ms;
+  }
+  
+  .achievement-card__inner {
+    transition-duration: 500ms;
+  }
+}
+
+/* ============================
+   世界烈酒图鉴 v5 · 补充样式
+   ============================ */
+
+/* 粒子背景 */
+.particle-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background: #080706;
+}
+
+/* App容器 */
+.app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header, 100);
+  background: rgba(8,7,6,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(198,161,91,0.1);
+  padding: 16px 24px;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-400, #cfa85e);
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.logo-en {
+  font-size: 11px;
+  color: var(--text-muted, #9f927c);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.achievements-btn {
+  background: rgba(198,161,91,0.1);
+  border: 1px solid rgba(198,161,91,0.2);
+  color: var(--accent-400, #cfa85e);
+  border-radius: 8px;
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.achievements-btn:hover {
+  background: rgba(198,161,91,0.2);
+  border-color: var(--accent-500, #c6a15b);
+}
+
+/* 搜索 */
+.search-wrap {
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  background: rgba(21,19,16,0.8);
+  border: 1px solid rgba(198,161,91,0.15);
+  border-radius: 12px;
+  padding: 12px 20px;
+  color: var(--text-primary, #fff8ea);
+  font-size: 15px;
+  font-family: 'Noto Sans SC', sans-serif;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: var(--text-subtle, #6a5f4e);
+}
+
+.search-input:focus {
+  border-color: rgba(198,161,91,0.4);
+  background: rgba(21,19,16,0.95);
+}
+
+.search-count {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--text-muted, #9f927c);
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 24px;
+  background: rgba(15,13,10,0.6);
+  border-bottom: 1px solid rgba(198,161,91,0.06);
+  position: sticky;
+  top: 80px;
+  z-index: 90;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter-section::-webkit-scrollbar { display: none; }
+
+.filter-label {
+  font-size: 12px;
+  color: var(--text-muted, #9f927c);
+  white-space: nowrap;
+  min-width: 32px;
+}
+
+.filter-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.filter-tag {
+  background: rgba(198,161,91,0.06);
+  border: 1px solid rgba(198,161,91,0.12);
+  color: var(--text-secondary, #d8cdb7);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.filter-tag:hover {
+  background: rgba(198,161,91,0.12);
+  border-color: rgba(198,161,91,0.25);
+  color: var(--text-primary, #fff8ea);
+}
+
+.filter-tag-active,
+.filter-tag.filter-tag-active {
+  background: rgba(198,161,91,0.18);
+  border-color: var(--accent-500, #c6a15b);
+  color: var(--accent-300, #d8b87a);
+}
+
+/* 卡片网格 */
+.main {
+  padding: 24px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 32px;
+  color: var(--text-muted, #9f927c);
+  font-size: 14px;
+}
+
+.spinner-amber {
+  width: 24px; height: 24px;
+  border: 2px solid rgba(198,161,91,0.2);
+  border-top-color: var(--accent-500, #c6a15b);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.scroll-trigger { height: 1px; }
+
+/* 详情Modal */
+.detail-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+
+.detail-modal-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,7,6,0.85);
+  backdrop-filter: blur(20px);
+}
+
+.detail-content {
+  position: relative;
+  z-index: 1;
+  background: #151310;
+  border: 1px solid rgba(198,161,91,0.15);
+  border-radius: 24px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.8), 0 0 60px rgba(198,161,91,0.08);
+}
+
+.detail-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  background: rgba(198,161,91,0.1);
+  border: 1px solid rgba(198,161,91,0.2);
+  border-radius: 50%;
+  color: var(--text-secondary, #d8cdb7);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 2;
+}
+
+.detail-close:hover {
+  background: rgba(198,161,91,0.2);
+  color: var(--text-primary, #fff8ea);
+}
+
+.detail-body {
+  padding: 40px;
+}
+
+/* 详情布局 */
+.detail-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+}
+
+.detail-image {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 4/5;
+  border: 1px solid rgba(198,161,91,0.1);
+}
+
+.detail-basic { margin-top: 20px; }
+
+.detail-name {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 26px;
+  color: var(--accent-300, #d8b87a);
+  margin: 0 0 4px;
+}
+
+.detail-ename {
+  font-size: 14px;
+  color: var(--text-muted, #9f927c);
+  margin: 0 0 16px;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.detail-tag {
+  background: rgba(198,161,91,0.08);
+  border: 1px solid rgba(198,161,91,0.15);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--text-secondary, #d8cdb7);
+}
+
+.detail-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-400, #cfa85e);
+  font-family: 'Playfair Display', serif;
+}
+
+.detail-radar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.detail-description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary, #d8cdb7);
+  margin-bottom: 24px;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-section h4 {
+  font-size: 13px;
+  color: var(--accent-500, #c6a15b);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.detail-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detail-section li {
+  font-size: 14px;
+  color: var(--text-secondary, #d8cdb7);
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(198,161,91,0.05);
+}
+
+.detail-section p {
+  font-size: 14px;
+  color: var(--text-secondary, #d8cdb7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 成就面板 */
+.achievements-panel {
+  position: fixed;
+  top: 0; right: -360px;
+  width: 340px;
+  height: 100vh;
+  background: #0f0d0a;
+  border-left: 1px solid rgba(198,161,91,0.1);
+  z-index: 150;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.achievements-panel-open { right: 0; }
+
+.achievements-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(198,161,91,0.1);
+}
+
+.achievements-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--accent-300, #d8b87a);
+  margin: 0;
+}
+
+.achievements-close {
+  width: 32px; height: 32px;
+  background: rgba(198,161,91,0.08);
+  border: 1px solid rgba(198,161,91,0.15);
+  border-radius: 50%;
+  color: var(--text-muted, #9f927c);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.achievements-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.achievement-card {
+  background: #151310;
+  border: 1px solid rgba(198,161,91,0.1);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.achievement-locked {
+  opacity: 0.5;
+  filter: grayscale(0.8);
+}
+
+.achievement-icon {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(198,161,91,0.08);
+  border-radius: 12px;
+}
+
+.achievement-info h4 {
+  font-size: 15px;
+  color: var(--text-primary, #fff8ea);
+  margin: 0 0 4px;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.achievement-info p {
+  font-size: 12px;
+  color: var(--text-muted, #9f927c);
+  margin: 0;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80px 40px;
+  color: var(--text-muted, #9f927c);
+  grid-column: 1 / -1;
+}
+
+.empty-state svg { margin-bottom: 16px; opacity: 0.4; }
+
+.empty-state p { font-size: 16px; margin: 0 0 24px; }
+
+.btn-reset {
+  background: rgba(198,161,91,0.1);
+  border: 1px solid rgba(198,161,91,0.2);
+  color: var(--accent-400, #cfa85e);
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.btn-reset:hover {
+  background: rgba(198,161,91,0.2);
+  border-color: var(--accent-500, #c6a15b);
+}
+
+/* 错误提示 */
+.error-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #2a1a1a;
+  border: 1px solid rgba(200,80,80,0.3);
+  color: #f0a0a0;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  z-index: 300;
+  opacity: 0;
+  transition: all 0.3s ease;
+  max-width: 90%;
+  text-align: center;
+}
+
+.error-toast-show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .header { padding: 12px 16px; }
+  .logo { font-size: 22px; }
+  .filter-bar { top: 70px; padding: 12px 16px; }
+  .main { padding: 16px; }
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-body { padding: 24px; }
+  .detail-content { width: 95%; max-height: 90vh; }
+  .achievements-panel { width: 100%; right: -100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
