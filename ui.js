@@ -650,11 +650,11 @@ window.UI.openDetail = function(liquor) {
           <h2 class="detail-name">${escapeHtml(liquor.name)}</h2>
           <p class="detail-ename">${escapeHtml(liquor.ename || '')}</p>
           <div class="detail-tags">
-            <span class="detail-tag">${escapeHtml(liquor.type)}</span>
-            <span class="detail-tag">${escapeHtml(String(liquor.abv))}%vol</span>
+            <span class="detail-tag">${escapeHtml(liquor.type || '--')}</span>
+            <span class="detail-tag">${liquor.abv != null ? escapeHtml(String(liquor.abv)) + '%vol' : '--'}</span>
             <span class="detail-tag">${escapeHtml(liquor.region || '')}</span>
           </div>
-          <div class="detail-price">¥${escapeHtml(String(liquor.price))}</div>
+          <div class="detail-price">¥${liquor.price != null ? Number(liquor.price).toLocaleString() : '--'}</div>
         </div>
       </div>
       <div class="detail-right">
@@ -662,8 +662,8 @@ window.UI.openDetail = function(liquor) {
           <canvas id="radar-canvas" width="240" height="240"></canvas>
         </div>
         <div class="detail-description">${escapeHtml(liquor.description || '')}</div>
-        ${liquor.tasting ? `<div class="detail-section"><h4>品鉴笔记</h4><ul>${liquor.tasting.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul></div>` : ''}
-        ${liquor.pairing ? `<div class="detail-section"><h4>配餐建议</h4><p>${escapeHtml(liquor.pairing.join(' / '))}</p></div>` : ''}
+        ${liquor.tasting?.length ? `<div class="detail-section"><h4>品鉴笔记</h4><ul>${(Array.isArray(liquor.tasting) ? liquor.tasting : []).map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul></div>` : ''}
+        ${liquor.pairing?.length ? `<div class="detail-section"><h4>配餐建议</h4><p>${escapeHtml(Array.isArray(liquor.pairing) ? liquor.pairing.join(' / ') : String(liquor.pairing || ''))}</p></div>` : ''}
         ${liquor.awards && liquor.awards.length ? `<div class="detail-section"><h4>荣誉</h4><ul>${liquor.awards.map(a => `<li>${escapeHtml(a)}</li>`).join('')}</ul></div>` : ''}
         ${liquor.history ? `<div class="detail-section"><h4>历史背景</h4><p>${escapeHtml(liquor.history.substring(0, 200))}...</p></div>` : ''}
       </div>
