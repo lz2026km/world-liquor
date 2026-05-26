@@ -367,7 +367,14 @@ const DataManager = (() => {
       // 2. 尝试从网络加载并解压
       let response;
       try {
-        response = await fetch('./baijiu_data.json');
+        try {
+          response = await fetch('./baijiu_data.json');
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+        } catch(e) {
+          // Fallback: load from GitHub API raw (works around GitHub Pages CORS/timeout issues)
+          const apiUrl = 'https://raw.githubusercontent.com/lz2026km/world-liquor/master/baijiu_data.json';
+          response = await fetch(apiUrl);
+        }
       } catch(e) {
         window.__fetch_err = e.message;
         throw new Error('fetch failed: ' + e.message);
