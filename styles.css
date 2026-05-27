@@ -1,11 +1,11 @@
 /* ================================================
-   世界烈酒图鉴 v5.0.0
-   黑髪漆面 · 香槟金蕴 · Luxury Edition
-   Phase 3: UI优化18项 + 现代简约蓝紫调
+   世界烈酒图鉴 v5.5.0
+   黑髪漆面 · 香槟金蕴 · 现代蓝紫调
+   Phase 4: UI优化25项 · 商业软件气息
    ================================================ */
 
 /* ================================================
-   1. CSS Variables - 奢华黑金配色（优化版）
+   1. CSS Variables - 奢华黑金配色+蓝紫调（优化版）
    ================================================ */
 :root {
   /* 主背景 - 黑髪漆面 */
@@ -15,7 +15,7 @@
   --bg-elevated: #1c1813;
   --bg-glass: rgba(8, 7, 6, 0.88);
 
-  /* 强调色 - 香槟金蕴（优化：减少土气金色） */
+  /* 强调色 - 香槟金蕴（优化：减少土气金色，保留基础金色） */
   --accent-50: #fdf8f0;
   --accent-100: #f5ebd0;
   --accent-200: #e8d4a0;
@@ -25,7 +25,7 @@
   --accent-600: #b08a42;
   --accent-700: #9a7a3f;
 
-  /* 新增：蓝紫调强调色（商业软件气息） */
+  /* 蓝紫调强调色（商业软件气息 - 主公偏好） */
   --blue-accent: #6366f1;
   --blue-light: #818cf8;
   --blue-dark: #4f46e5;
@@ -38,23 +38,21 @@
   --text-muted: #9f927c;
   --text-subtle: #6a5f4e;
 
-  /* 边框 - 鎏金微光（优化：更现代） */
-  --border-subtle: rgba(198, 161, 91, 0.08);
+  /* 边框 - 蓝紫微光（替代土气金色边框） */
+  --border-subtle: rgba(99, 102, 241, 0.08);
   --border-default: #282217;
   --border-hover: #3a3020;
-  /* 新增：蓝紫边框 */
-  --border-blue: rgba(99, 102, 241, 0.2);
-  --border-blue-hover: rgba(99, 102, 241, 0.4);
+  --border-blue: rgba(99, 102, 241, 0.25);
+  --border-blue-hover: rgba(99, 102, 241, 0.45);
 
-  /* 阴影 - 深邃奢华（优化：蓝紫光晕） */
+  /* 阴影 - 深邃奢华（蓝紫光晕替代金色光晕） */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
   --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.8);
-  /* 新增：蓝紫发光效果 */
-  --glow-blue: 0 0 20px rgba(99, 102, 241, 0.3);
-  --glow-blue-strong: 0 0 40px rgba(99, 102, 241, 0.4), 0 0 80px rgba(99, 102, 241, 0.15);
-  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
+  --glow-blue: 0 0 20px rgba(99, 102, 241, 0.25);
+  --glow-blue-strong: 0 0 40px rgba(99, 102, 241, 0.35), 0 0 80px rgba(99, 102, 241, 0.12);
+  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.25);
 
   /* 兼容性别名 - 旧版映射 */
   --midnight-100: var(--text-primary);
@@ -72,6 +70,14 @@
   --glow-accent-strong: var(--glow-blue-strong);
   --border-accent: var(--border-blue);
   --copper-800: #5c4a2a;
+}
+
+/* OLED纯黑主题支持 */
+[data-theme="oled"] {
+  --bg-deepest: #000000;
+  --bg-deep: #000000;
+  --bg-card: #0a0a0a;
+  --bg-elevated: #111111;
 }
 
 /* ================================================
@@ -893,15 +899,86 @@ input, select, textarea {
 }
 
 .filter-option:hover {
-  background: var(--bg-card);
-  border-color: var(--border-hover);
-  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--border-blue);
+  color: var(--blue-light);
 }
 
 .filter-option.active {
-  background: var(--accent-600);
-  border-color: var(--accent-500);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--blue-accent), var(--blue-dark));
+  border-color: var(--blue-accent);
+  color: #ffffff;
+  box-shadow: var(--glow-blue);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U09: 标签样式 - 圆角胶囊样式优化
+   ─────────────────────────────────────────────────────────────────── */
+.filter-chip,
+.sidebar__tag,
+.liquor-tag,
+.price-chip {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-chip:hover,
+.sidebar__tag:hover,
+.liquor-tag:hover,
+.price-chip:hover {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--border-blue);
+  color: var(--blue-light);
+}
+
+.filter-chip.active,
+.sidebar__tag.active,
+.liquor-tag.active,
+.price-chip.active {
+  background: linear-gradient(135deg, var(--blue-accent), var(--blue-dark));
+  border-color: var(--blue-accent);
+  color: #ffffff;
+  box-shadow: var(--glow-blue);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U24: 筛选器动画 - 标签展开收起动画
+   ─────────────────────────────────────────────────────────────────── */
+.filter-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  overflow: hidden;
+  max-height: 200px;
+  transition: max-height 0.4s var(--ease-smooth);
+}
+
+.filter-tags-container.collapsed {
+  max-height: 44px;
+}
+
+.filter-tags-toggle {
+  width: 100%;
+  padding: var(--space-sm);
+  background: transparent;
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: var(--space-sm);
+}
+
+.filter-tags-toggle:hover {
+  border-color: var(--border-blue);
+  color: var(--blue-light);
 }
 
 /* Price tier visualization */
@@ -2762,13 +2839,16 @@ input, select, textarea {
   cursor: pointer;
   transition: all var(--transition-normal);
   position: relative;
+  /* GPU加速优化动画性能 */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .liquor-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, transparent 50%);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.04) 0%, transparent 50%);
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--transition-fast);
@@ -2782,6 +2862,184 @@ input, select, textarea {
 
 .liquor-card:hover::before {
   opacity: 1;
+}
+
+/* 点击时缩放反馈 */
+.liquor-card:active {
+  transform: translateY(-2px) scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U03: 字体层级优化 - 确保可读性
+   ─────────────────────────────────────────────────────────────────── */
+/* 标题层级 */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+h1 { font-size: 2rem; font-weight: 700; }
+h2 { font-size: 1.5rem; font-weight: 600; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+
+/* 正文层级 */
+p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* 辅助文字 */
+.text-muted {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.text-small {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U06: 卡片动效 - 微交互优化
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card {
+  transition: transform 0.3s var(--ease-smooth), 
+              box-shadow 0.3s var(--ease-smooth),
+              border-color 0.3s var(--ease-smooth);
+}
+
+/* 按钮点击反馈 */
+button:active {
+  transform: scale(0.96);
+  transition: transform 0.1s;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U07: 页面过渡 - 淡入淡出+滑动切换
+   ─────────────────────────────────────────────────────────────────── */
+.page-transition {
+  animation: pageSlideIn 0.4s var(--ease-smooth);
+}
+
+@keyframes pageSlideIn {
+  from { 
+    opacity: 0; 
+    transform: translateX(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+.page-fade-in {
+  animation: fadeIn 0.4s var(--ease-smooth);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal {
+  animation: modalFadeIn 0.3s var(--ease-spring);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U19: 暗色优化 - 优化对比度确保可读性
+   ─────────────────────────────────────────────────────────────────── */
+body {
+  /* 确保文字有足够对比度 */
+  --text-primary: #fff8ea;
+  --text-secondary: #d8cdb7;
+  --text-muted: #9f927c;
+  --text-subtle: #6a5f4e;
+}
+
+/* 对比度优化：高对比度文字 */
+.text-high-contrast {
+  color: var(--text-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U20: 动画性能优化 - GPU加速+60fps
+   ─────────────────────────────────────────────────────────────────── */
+/* 使用transform和opacity进行动画以确保GPU加速 */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* 60fps流畅动画 */
+.smooth-animation {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U22: 收藏动画 - 心形点赞动画
+   ─────────────────────────────────────────────────────────────────── */
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.3); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.2); }
+  60% { transform: scale(1); }
+}
+
+.heart-animation {
+  animation: heartBeat 0.6s ease-in-out;
+}
+
+.liquor-card-fav.active {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.liquor-card-fav.active::before {
+  content: '❤';
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U23: 页面切换动画 - 左右滑动+淡入淡出
+   ─────────────────────────────────────────────────────────────────── */
+.slide-left-enter {
+  animation: slideLeftIn 0.35s var(--ease-smooth);
+}
+
+@keyframes slideLeftIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-right-enter {
+  animation: slideRightIn 0.35s var(--ease-smooth);
+}
+
+@keyframes slideRightIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-fade-enter {
+  animation: slideFadeIn 0.3s var(--ease-smooth);
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ───────────────────────────────────────────────────────────────────
@@ -2837,12 +3095,12 @@ button:active {
 }
 
 /* ───────────────────────────────────────────────────────────────────
-   U08: 骨架屏加载
+   U25: 骨架屏样式 - 优雅渐变闪烁动画
    ─────────────────────────────────────────────────────────────────── */
 .skeleton {
   background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elevated) 50%, var(--bg-card) 75%);
   background-size: 200% 100%;
-  animation: skeleton 1.5s ease-in-out infinite;
+  animation: skeleton 1.8s ease-in-out infinite;
   border-radius: var(--radius-md);
 }
 
@@ -2851,9 +3109,39 @@ button:active {
   100% { background-position: -200% 0; }
 }
 
+/* 骨架屏卡片 */
 .skeleton-card {
   height: 360px;
   border-radius: var(--radius-xl);
+}
+
+/* 骨架屏列表 */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.skeleton-list__item {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+}
+
+.skeleton-list__image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.skeleton-list__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 
 .skeleton-text {
@@ -2866,9 +3154,33 @@ button:active {
   width: 60%;
 }
 
+.skeleton-text.medium {
+  width: 80%;
+}
+
 .skeleton-image {
   height: 180px;
   border-radius: var(--radius-lg);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U05: 骨架屏加载 - 列表加载时显示骨架屏动画
+   ─────────────────────────────────────────────────────────────────── */
+.card-grid.loading {
+  position: relative;
+}
+
+.card-grid.loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.05), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 /* ───────────────────────────────────────────────────────────────────

@@ -15,9 +15,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
   <style>
     /* ================================================
-       世界烈酒图鉴 v5.0.0
-       黑髪漆面 · 香槟金蕴 · Luxury Edition
-       Phase 3: UI优化18项 + 现代简约蓝紫调
+       世界烈酒图鉴 v5.5.0
+       黑髪漆面 · 香槟金蕴 · 现代蓝紫调
+       Phase 4: UI优化25项 · 商业软件气息
        ================================================ */
     :root {
       /* 主背景 - 黑髪漆面 */
@@ -80,7 +80,6 @@
       --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
       --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      --transition-fast: 180ms var(--ease-smooth);
       --transition-normal: 300ms var(--ease-smooth);
       --transition-slow: 500ms var(--ease-smooth);
 
@@ -105,19 +104,22 @@
       --midnight-900: #0f0d0a;
       --midnight-950: #080706;
       --text-cream: var(--text-primary);
-      --glow-accent: 0 0 20px rgba(198, 161, 91, 0.2);
-      --glow-accent-strong: 0 0 40px rgba(198, 161, 91, 0.25), 0 0 80px rgba(198, 161, 91, 0.1);
-      --border-accent: rgba(198, 161, 91, 0.2);
       --copper-800: #5c4a2a;
+    }
+    /* OLED纯黑主题 */
+    [data-theme="oled"] {
+      --bg-deepest: #000000;
+      --bg-deep: #000000;
+      --bg-card: #0a0a0a;
+      --bg-elevated: #111111;
     }
     [data-theme="dark"] { --bg: var(--bg-deepest); --text: var(--text-secondary); }
     [data-theme="light"] { --bg: #f5f0e8; --text: #2d2520; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body { font-family: var(--font-body); background: var(--bg-deepest); color: var(--text-cream); min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 20% 0%, rgba(198, 161, 91, 0.04) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(154, 122, 63, 0.03) 0%, transparent 50%), linear-gradient(180deg, var(--bg-deepest) 0%, var(--bg-deep) 50%, var(--bg-deepest) 100%); pointer-events: none; z-index: -1; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99, 102, 241, 0.04) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(99, 102, 241, 0.02) 0%, transparent 50%), linear-gradient(180deg, var(--bg-deepest) 0%, var(--bg-deep) 50%, var(--bg-deepest) 100%); pointer-events: none; z-index: -1; }
     ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-deep); }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #b08a42, #9a7a3f); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #c6a15b, #b08a42); }
     a { color: inherit; text-decoration: none; }
@@ -1453,7 +1455,7 @@
         <a href="#" class="header__brand" onclick="goHome()">
           <div class="header__logo">🥃</div>
           <div class="header__titles">
-            <span class="header__title">世界烈酒图鉴 <span class="header__version">v5.0.0</span></span>
+            <span class="header__title">世界烈酒图鉴 <span class="header__version">v5.5.0</span></span>
             <span class="header__subtitle">World Liquor Gallery · 出品人：LZ</span>
           </div>
         </a>
