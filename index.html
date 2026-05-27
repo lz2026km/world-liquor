@@ -566,7 +566,29 @@
     .achievement-mini.locked { opacity: 0.5; }
     .achievement-mini__icon { font-size: 18px; }
     .achievement-mini__name { font-size: 0.75rem; color: var(--text-cream); }
-    
+
+    /* ===== 品鉴指南模态框样式 ===== */
+    .guide-modal { max-width: 900px; }
+    .guide-section { margin-bottom: var(--space-xl); }
+    .guide-section__title { font-size: 1.1rem; color: var(--accent-400); font-weight: 600; margin-bottom: var(--space-md); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--border-accent); display: flex; align-items: center; gap: var(--space-sm); }
+    .guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-md); }
+    .guide-card { background: var(--bg-elevated); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: var(--space-md); transition: all var(--transition-fast); }
+    .guide-card:hover { border-color: var(--accent-600); transform: translateY(-4px); }
+    .guide-card__icon { font-size: 32px; margin-bottom: var(--space-sm); }
+    .guide-card__title { font-size: 0.95rem; font-weight: 600; color: var(--text-cream); margin-bottom: var(--space-xs); }
+    .guide-card__desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+    .guide-list { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .guide-item { background: var(--bg-elevated); border: 1px solid var(--border-accent); border-radius: var(--radius-md); padding: var(--space-md); }
+    .guide-item__title { font-size: 0.9rem; font-weight: 600; color: var(--accent-400); margin-bottom: var(--space-xs); }
+    .guide-item__text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .guide-timeline { position: relative; padding-left: var(--space-lg); }
+    .guide-timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent-500), var(--accent-700)); }
+    .guide-timeline-item { position: relative; margin-bottom: var(--space-lg); }
+    .guide-timeline-item::before { content: ''; position: absolute; left: calc(-1 * var(--space-lg) + 4px); top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-500); border: 2px solid var(--bg-card); }
+    .guide-timeline-item__year { font-size: 0.75rem; color: var(--accent-500); font-weight: 700; margin-bottom: 4px; }
+    .guide-timeline-item__title { font-size: 1rem; color: var(--text-cream); font-weight: 600; margin-bottom: 4px; }
+    .guide-timeline-item__text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
     /* 热搜词 */
     .hot-search { display: flex; flex-wrap: wrap; gap: 6px; }
     .hot-search__item { padding: 4px 10px; border-radius: var(--radius-full); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-accent); color: var(--text-muted); font-size: 0.75rem; cursor: pointer; transition: all var(--transition-fast); }
@@ -1481,6 +1503,15 @@
           <button class="header__btn" id="achieveHeaderBtn" onclick="showAchievements()" title="成就">🏆</button>
           <button class="header__btn lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
           <button class="header__btn" onclick="randomPick()" title="随机推荐">🎲</button>
+          <button class="header__btn" onclick="openGuideModal('c01')" title="品鉴指南">📖</button>
+          <button class="header__btn" onclick="openGuideModal('c02')" title="产区介绍">🗺️</button>
+          <button class="header__btn" onclick="openGuideModal('c03')" title="酿酒文化">🏺</button>
+          <button class="header__btn" onclick="openGuideModal('c04')" title="调酒艺术">🍸</button>
+          <button class="header__btn" onclick="openGuideModal('c05')" title="酒具指南">🥂</button>
+          <button class="header__btn" onclick="openGuideModal('c06')" title="收藏指南">💎</button>
+          <button class="header__btn" onclick="openGuideModal('c07')" title="配餐文化">🍽️</button>
+          <button class="header__btn" onclick="openGuideModal('c08')" title="品牌故事">📜</button>
+          <button class="header__btn" onclick="openGuideModal('c09')" title="行业新闻">📰</button>
           <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
             <span class="theme-toggle__icon sun">☀️</span>
             <span class="theme-toggle__icon moon">🌙</span>
@@ -1943,6 +1974,18 @@
         <div class="price-chart-container">
           <div class="price-chart__title">📈 价格走势</div>
           <div id="priceHistoryContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guide Modal (品鉴指南模态框 C01-C10) -->
+    <div class="modal-backdrop" id="guideBackdrop" onclick="closeGuideModal()"></div>
+    <div class="modal" id="guideModal" style="max-width: 900px;">
+      <button class="modal__close" onclick="closeGuideModal()">✕</button>
+      <div class="modal__content">
+        <div class="modal__section">
+          <div class="modal__section-title" id="guideModalTitle">📖 品鉴指南</div>
+          <div id="guideModalContent"></div>
         </div>
       </div>
     </div>
@@ -10035,6 +10078,1116 @@
     window.f18_相关酒款推荐 = f18_相关酒款推荐;
     window.f19_酿酒厂档案 = f19_酿酒厂档案;
     window.f20_品鉴活动 = f20_品鉴活动;
+
+    // ═══════════════════════════════════════════════════════════════════
+    // C01-C10 品鉴指南内容模块
+    // ═══════════════════════════════════════════════════════════════════
+    
+    // 品鉴指南内容数据
+    const _品鉴指南内容 = {
+      c01: {
+        title: '📖 品鉴指南',
+        icon: '📖',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍶 中国白酒品鉴（17大香型）</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🥢</div>
+                <div class="guide-card__title">酱香型</div>
+                <div class="guide-card__desc">以茅台为代表，酱香突出、幽雅细腻、酒体醇厚。品鉴时先闻香，感受酱香与焦香的复合香气，再小口品鉴体会其醇厚与回甘。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌾</div>
+                <div class="guide-card__title">浓香型</div>
+                <div class="guide-card__desc">以五粮液、泸州老窖为代表，窖香浓郁、绵甜甘冽。品鉴要点在于感受窖香与甘甜的协调，回味悠长。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌿</div>
+                <div class="guide-card__title">清香型</div>
+                <div class="guide-card__desc">以汾酒为代表，清香纯正、醇甜柔和。品鉴时注重其纯净无杂的特点，一清到底的风格。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍯</div>
+                <div class="guide-card__title">米香型</div>
+                <div class="guide-card__desc">以桂林三花酒为代表，米香清雅、入口绵柔。品鉴要点在于感受米香的自然纯净。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌺</div>
+                <div class="guide-card__title">凤香型</div>
+                <div class="guide-card__desc">以西凤酒为代表，清香与浓香结合，醇香秀雅。品鉴时感受其独特的醇香与清爽。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍂</div>
+                <div class="guide-card__title">老白干香型</div>
+                <div class="guide-card__desc">以衡水老白干为代表，酒香清雅、醇厚甘冽。品鉴要点在于体验其醇厚与甘冽的平衡。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🥃 威士忌品鉴（6大产区）</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+                <div class="guide-card__title">苏格兰威士忌</div>
+                <div class="guide-card__desc">以泥煤烟熏为特色，常见石楠花蜜、香草、苹果香气。品鉴时先闻泥煤香，再感受麦芽甜与果香的层次。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+                <div class="guide-card__title">爱尔兰威士忌</div>
+                <div class="guide-card__desc">三次蒸馏，口感顺滑细腻，带有花香与蜂蜜甜香。品鉴要点在于体验其柔和与细腻。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇺🇸</div>
+                <div class="guide-card__title">波本威士忌</div>
+                <div class="guide-card__desc">以玉米为基础，带有香草、焦糖、橡木桶香气。品鉴时感受甜香与辛辣的完美平衡。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇯🇵</div>
+                <div class="guide-card__title">日本威士忌</div>
+                <div class="guide-card__desc">精致细腻，常见樱花、桃子、檀木香气。品鉴要点在于体验东方禅意与果香的优雅。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏴󠁧󠁢󠁣󠁡󠁿</div>
+                <div class="guide-card__title">加拿大威士忌</div>
+                <div class="guide-card__desc">以黑麦为特色，口感顺滑，带有香料与焦糖风味。品鉴时感受其独特的辛辣与甜美。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌍</div>
+                <div class="guide-card__title">印度威士忌</div>
+                <div class="guide-card__desc">炎热气候成熟，口感饱满，果香浓郁。品鉴要点在于体验热带风情与丰富层次。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍷 白兰地品鉴</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">法国干邑（COGNAC）</div>
+                <div class="guide-item__text">等级：VS、VSOP、XO、Extra。品鉴时感受葡萄果香与橡木桶陈酿的复合香气，口感圆润，余韵悠长。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">雅文邑（ARMAGNAC）</div>
+                <div class="guide-item__text">风格更为粗犷直接，带有明显的产区特色与年份特征。品鉴要点在于体验其原始与纯粹。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">加州白兰地</div>
+                <div class="guide-item__text">以水果风味为主，风格现代。品鉴时感受其清新果香与橡木桶影响的平衡。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍸 其他烈酒品鉴</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🌾</div>
+                <div class="guide-card__title">金酒（GIN）</div>
+                <div class="guide-card__desc">杜松子为主，伴有柑橘与草本香气。品鉴要点在于感受其清新草木香与杜松子的独特风味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🥔</div>
+                <div class="guide-card__title">伏特加（VODKA）</div>
+                <div class="guide-card__desc">纯净中性，可感受原料与水质的纯净度。品鉴要点在于体验其纯净无杂的特点。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌴</div>
+                <div class="guide-card__title">朗姆酒（RUM）</div>
+                <div class="guide-card__desc">甘蔗为基础，带有焦糖、热带水果与香料风味。品鉴时感受甜美与辛辣的交织。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌵</div>
+                <div class="guide-card__title">龙舌兰（TEQUILA）</div>
+                <div class="guide-card__desc">以蓝色龙舌兰为原料，带有植物、草本与矿物风味。品鉴要点在于体验其独特的墨西哥风情。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c02: {
+        title: '🗺️ 产区介绍',
+        icon: '🗺️',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🇨🇳 中国8大产区</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🏔️</div>
+                <div class="guide-card__title">贵州产区</div>
+                <div class="guide-card__desc">以茅台为核心的酱香型白酒核心产区，得益于独特的赤水河谷气候与紫红土壤。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌊</div>
+                <div class="guide-card__title">四川产区</div>
+                <div class="guide-card__desc">浓香型白酒发源地，拥有世界上最大规模的窖池群，气候温润适合酿酒。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏯</div>
+                <div class="guide-card__title">宜宾产区</div>
+                <div class="guide-card__desc">五粮液所在地，多粮浓香型代表，金沙江与岷江交汇形成的独特气候。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">⛩️</div>
+                <div class="guide-card__title">山西产区</div>
+                <div class="guide-card__desc">清香型白酒核心产区，杏花村酒所在地，有着悠久的酿酒历史传承。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌾</div>
+                <div class="guide-card__title">江苏产区</div>
+                <div class="guide-card__desc">洋河、双沟所在地，淡雅浓香型代表，口感绵柔细腻。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌊</div>
+                <div class="guide-card__title">安徽产区</div>
+                <div class="guide-card__desc">古井贡酒所在地，口感绵柔甘冽，具有江淮地区独特的风味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏜️</div>
+                <div class="guide-card__title">河北产区</div>
+                <div class="guide-card__desc">衡水老白干与刘伶醉所在地，老白干香型代表，口感醇厚甘冽。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">⛰️</div>
+                <div class="guide-card__title">陕西产区</div>
+                <div class="guide-card__desc">西凤酒所在地，凤香型代表，风格介于清香与浓香之间。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰6大产区</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🏔️</div>
+                <div class="guide-card__title">斯佩塞德（SPEYSIDE）</div>
+                <div class="guide-card__desc">威士忌重镇，果香与花蜜香浓郁，众多顶级蒸馏厂所在地。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏝️</div>
+                <div class="guide-card__title">艾雷岛（ISLAY）</div>
+                <div class="guide-card__desc">泥煤烟熏威士忌圣地，浓烈的碘酒与海藻风味是其标志。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌄</div>
+                <div class="guide-card__title">高地（HIGHLAND）</div>
+                <div class="guide-card__desc">风格多样，从浓郁到轻盈，展现苏格兰广阔天地的风味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌿</div>
+                <div class="guide-card__title">低地（LOWLAND）</div>
+                <div class="guide-card__desc">轻柔细腻，三次蒸馏带来顺滑口感，适合初学者入门。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌊</div>
+                <div class="guide-card__title">坎贝尔镇（CAMPBELTOWN）</div>
+                <div class="guide-card__desc">曾经的世界威士忌之都，风格介于岛屿与斯佩塞德之间。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏝️</div>
+                <div class="guide-card__title">岛屿区（ISLANDS）</div>
+                <div class="guide-card__desc">包括天空岛、 Orkney等，各具特色，从轻柔到浓郁均有。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🇯🇵 日本威士忌产区</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">山崎蒸馏厂</div>
+                <div class="guide-item__text">大阪近郊，日本威士忌发源地。受到多样化水源与气候影响，产出层次丰富的原酒。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">白州蒸馏厂</div>
+                <div class="guide-item__text">位于南阿尔卑斯山脚下，日本森林威士忌代表。清新草本风味为主。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">余市蒸馏厂</div>
+                <div class="guide-item__text">北海道，余市蒸馏厂。寒冷气候带来缓慢成熟，产出厚重有力的威士忌。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🌍 世界主要烈酒产区</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🇫🇷</div>
+                <div class="guide-card__title">法国干邑区</div>
+                <div class="guide-card__desc">夏朗德省为中心，大西洋气候与独特白垩土质造就顶级白兰地。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇺🇸</div>
+                <div class="guide-card__title">美国波本区</div>
+                <div class="guide-card__desc">肯塔基州为核心，新橡木桶陈酿带来独特的香草与焦糖风味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇬🇹</div>
+                <div class="guide-card__title">墨西哥龙舌兰区</div>
+                <div class="guide-card__desc">哈利斯科州为核心，蓝色龙舌兰在火山土壤中汲取独特风味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+                <div class="guide-card__title">牙买加朗姆区</div>
+                <div class="guide-card__desc">加勒比海地区，甘蔗 rum 传统产地，带有浓郁的热带水果与香料风味。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c03: {
+        title: '🏺 酿酒文化',
+        icon: '🏺',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍶 中国白酒酿造历史</h3>
+            <div class="guide-timeline">
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">上古时期</div>
+                <div class="guide-timeline-item__title">酒曲起源</div>
+                <div class="guide-timeline-item__text">先民偶然发现发酵现象，发明了酒曲，为白酒酿造奠定基础。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">商周时期</div>
+                <div class="guide-timeline-item__title">礼酒文化</div>
+                <div class="guide-timeline-item__text">酿酒技术成熟，酒器精美，酒成为祭祀与礼制的重要组成部分。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">唐宋时期</div>
+                <div class="guide-timeline-item__title">诗词歌赋</div>
+                <div class="guide-timeline-item__text">蒸馏技术传入，酒文化繁荣，众多诗词歌赋中可见其身影。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">明清时期</div>
+                <div class="guide-timeline-item__title">名酒辈出</div>
+                <div class="guide-timeline-item__text">茅台、汾酒、五粮液等名酒工艺成型，形成独特风格与品牌。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">近现代</div>
+                <div class="guide-timeline-item__title">工艺革新</div>
+                <div class="guide-timeline-item__text">新中国成立后，白酒工艺科学化、标准化，走向国际化。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🥃 威士忌酿造文化</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">发芽（ MALTING）</div>
+                <div class="guide-item__text">大麦浸泡、发芽、干燥，制成麦芽。泥煤干燥赋予威士忌独特的烟熏风味。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">糖化（ MASHING）</div>
+                <div class="guide-item__text">麦芽磨碎后与热水混合，提取麦芽糖，形成麦芽汁。这一步决定甜度和风味基础。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">发酵（ FERMENTATION）</div>
+                <div class="guide-item__text">加入酵母发酵，将麦芽糖转化为酒精。不同酵母菌株带来不同风味。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">蒸馏（ DISTILLATION）</div>
+                <div class="guide-item__text">铜制蒸馏器中加热，提取酒精。壶式蒸馏带来更多杂质与风味，柱式蒸馏更纯净。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">陈酿（ MATURATION）</div>
+                <div class="guide-item__text">橡木桶中陈酿数年至数十年，酒精与木质、空气相互作用，形成复杂风味。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍷 白兰地酿造文化</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">葡萄品种</div>
+                <div class="guide-item__text">干邑主要使用白玉霓（UGNI BLANC）、鸽笼白（COLOMBARD）等白葡萄品种。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">发酵与蒸馏</div>
+                <div class="guide-item__text">葡萄汁发酵后，使用铜制夏朗德壶式蒸馏器进行两次蒸馏，取"生命之水"。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">陈酿分级</div>
+                <div class="guide-item__text">VS陈酿至少2年，VSOP至少4年，XO至少6年。年份越老，风味越复杂。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🌍 各国特色酿酒工艺</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🇷🇺</div>
+                <div class="guide-card__title">俄罗斯伏特加</div>
+                <div class="guide-card__desc">传统使用黑麦与现代谷物，经多次蒸馏与活性炭过滤，追求极致纯净。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇬🇧</div>
+                <div class="guide-card__title">英式金酒</div>
+                <div class="guide-card__desc">伦敦干金酒以粮食为原料，三次蒸馏配合杜松子与草本，口感纯净。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇧🇷</div>
+                <div class="guide-card__title">巴西卡莎萨</div>
+                <div class="guide-card__desc">以甘蔗汁为原料，经铜制蒸馏器一次蒸馏，风格清新直接。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇵🇭</div>
+                <div class="guide-card__title">菲律宾朗姆</div>
+                <div class="guide-card__desc">糖蜜为基础，带有丰富热带水果风味，兼具甜美与辛辣。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c04: {
+        title: '🍸 调酒艺术',
+        icon: '🍸',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍹 经典鸡尾酒历史</h3>
+            <div class="guide-timeline">
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">1800年代</div>
+                <div class="guide-timeline-item__title">古典鸡尾酒诞生</div>
+                <div class="guide-timeline-item__text">最早鸡尾酒诞生于美国，烈酒、糖、水、冰的完美结合。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">1860年代</div>
+                <div class="guide-timeline-item__title">斯曼科诞生</div>
+                <div class="guide-timeline-item__text">杰里米·切亚特发明斯曼科鸡尾酒，开创功能性调酒时代。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">1920年代</div>
+                <div class="guide-timeline-item__title">禁酒令时期</div>
+                <div class="guide-timeline-item__text">私酒泛滥，地下酒吧兴起，调酒技艺飞速发展。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">1950年代</div>
+                <div class="guide-timeline-item__title">古典鸡尾酒复兴</div>
+                <div class="guide-timeline-item__text">经典配方回归，调酒师开始追求更高品质与创意表达。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">2000年代</div>
+                <div class="guide-timeline-item__title">精酿鸡尾酒革命</div>
+                <div class="guide-timeline-item__text">分子调酒、农场到酒吧运动兴起，鸡尾酒进入新时代。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🧪 调制方法详解</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🥄</div>
+                <div class="guide-card__title">搅拌法（STIR）</div>
+                <div class="guide-card__desc">用于烈酒为主的无气泡鸡尾酒，如马天尼、曼哈顿。需充分搅拌稀释与冷却。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">摇</div>
+                <div class="guide-card__title">摇和法（SHAKE）</div>
+                <div class="guide-card__desc">用于含果汁、蛋清等需要稀释的鸡尾酒，如玛格丽特、大蒜酸。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🫧</div>
+                <div class="guide-card__title">冲调法（BUILD）</div>
+                <div class="guide-card__desc">直接在杯中混合，加冰后搅拌或直饮，如金汤力、莫斯科骡子。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">💧</div>
+                <div class="guide-card__title">漂浮法（FLOAT）</div>
+                <div class="guide-card__desc">按密度依次倒入各成分，含酒精较高的层次浮于上方，如教父。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🔥</div>
+                <div class="guide-card__title">火焰法（FLAMBE）</div>
+                <div class="guide-card__desc">点燃高酒精成分增添视觉效果，如B-52咖啡、新加坡司令。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🧪</div>
+                <div class="guide-card__title">离心法（DRY）</div>
+                <div class="guide-card__desc">使用离心机分离成分，追求极致清澈的鸡尾酒，如Clear Martini。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">⚖️ 配料比例</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">经典琴酒（60ml） + 干苦艾酒（15ml） + 橄榄/柠檬皮 = 马天尼</div>
+                <div class="guide-item__text">可根据口味调整干苦艾酒比例，从1:1到6:1不等。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">威士忌（45ml） + 甜苦艾酒（15ml） + 安格式苦精 = 曼哈顿</div>
+                <div class="guide-item__text">被称为"鸡尾酒皇后"，是最具代表性的苦型鸡尾酒。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">龙舌兰（45ml） + 君度（20ml） + 青柠汁（15ml） + 盐 = 玛格丽特</div>
+                <div class="guide-item__text">最著名的龙舌兰鸡尾酒，果香与柑橘的完美平衡。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">白朗姆（45ml） + 青柠汁（20ml） + 糖浆（15ml） = 自由古巴</div>
+                <div class="guide-item__text">古巴代表性鸡尾酒，可乐与青柠的经典组合。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🌿 装饰技巧</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🍋</div>
+                <div class="guide-card__title">柑橘类装饰</div>
+                <div class="guide-card__desc">柠檬皮、青柠皮、橙皮卷等，挤压皮油增加香气，兼具装饰与调味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍒</div>
+                <div class="guide-card__title">樱桃装饰</div>
+                <div class="guide-card__desc">马拉斯奇诺樱桃或鸡尾酒樱桃，常用于古典与酸味鸡尾酒。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌿</div>
+                <div class="guide-card__title">草本装饰</div>
+                <div class="guide-card__desc">薄荷叶、迷迭香、罗勒等，为鸡尾酒增添草本香气与清新感。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🧊</div>
+                <div class="guide-card__title">冰块艺术</div>
+                <div class="guide-card__desc">大冰块、凿冰、球形冰等，冰块化水速度影响鸡尾酒风味与口感。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c05: {
+        title: '🥂 酒具指南',
+        icon: '🥂',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍷 各类型酒杯选择</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🥃</div>
+                <div class="guide-card__title">古典杯（ROCK玻璃杯）</div>
+                <div class="guide-card__desc">矮杯身、厚底，用于加冰的古典鸡尾酒与烈酒净饮，如古典、威士忌。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍸</div>
+                <div class="guide-card__title">马天尼杯</div>
+                <div class="guide-card__desc">倒三角形高脚杯，用于干马天尼等短饮类鸡尾酒，展现优雅姿态。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🥛</div>
+                <div class="guide-card__title">飓风杯</div>
+                <div class="guide-card__desc">碗形长杯，用于热带风格鸡尾酒，如飓风、自由古巴。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍹</div>
+                <div class="guide-card__title">高球杯（HIGHBALL）</div>
+                <div class="guide-card__desc">直身高杯，用于软饮调酒，如金汤力、莫斯科骡子。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍷</div>
+                <div class="guide-card__title">白兰地杯（SNIFTER）</div>
+                <div class="guide-card__desc">球形杯身，大口径，让酒与空气接触释放香气，适合白兰地与雅文邑。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🥃</div>
+                <div class="guide-card__title">威士忌杯</div>
+                <div class="guide-card__desc">平底小杯或格兰凯恩杯，前者用于纯饮，后者适合品鉴与闻香。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏆</div>
+                <div class="guide-card__title">笛形香槟杯</div>
+                <div class="guide-card__desc">细长笛形，优雅修长，保持气泡同时展示香槟色泽。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍺</div>
+                <div class="guide-card__title">啤酒杯</div>
+                <div class="guide-card__desc">德式小麦啤酒杯、IPA皮尔森杯等，不同啤酒类型配不同杯具。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">✨ 酒具保养</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">清洗</div>
+                <div class="guide-item__text">使用温水与中性清洁剂，手工清洗避免碰撞。水晶杯更需轻柔对待。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">干燥</div>
+                <div class="guide-item__text">倒扣晾干或使用柔软布料擦拭，避免留下水渍与纤维。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">存放</div>
+                <div class="guide-item__text">酒杯倒扣存放，杯口朝下避免灰尘落入。避免堆叠存放以防破损。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">抛光</div>
+                <div class="guide-item__text">使用微湿的超细纤维布轻轻抛光，去除指纹与水渍，恢复光泽。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">专业清洗</div>
+                <div class="guide-item__text">对于顽固污渍，可使用白醋水溶液浸泡后再清洗。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🔧 品鉴用具</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🍶</div>
+                <div class="guide-card__title">白酒品鉴杯</div>
+                <div class="guide-card__desc">以茅台酒杯为参考，小巧玲珑便于闻香与品味，杯口收拢集中香气。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🥃</div>
+                <div class="guide-card__title">格兰凯恩杯</div>
+                <div class="guide-card__desc">专业威士忌品鉴杯，郁金香形收口，增强香气集中度。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📏</div>
+                <div class="guide-card__title">量酒器（JIGGER）</div>
+                <div class="guide-card__desc">标准30ml/45ml双头量器，确保调酒配比精准。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🥄</div>
+                <div class="guide-card__title">调酒勺（BAR SPOON）</div>
+                <div class="guide-card__desc">长柄调酒勺，带螺纹便于搅拌与分层，优雅调酒必备。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🧊</div>
+                <div class="guide-card__title">冰锥与冰袋</div>
+                <div class="guide-card__desc">专业冰锥凿取大块透明冰，调酒球形冰模具制作完美冰球。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍸</div>
+                <div class="guide-card__title">过滤器（STRAINER）</div>
+                <div class="guide-card__desc">霍桑过滤器和朱丽叶过滤器，分别适用于摇和与搅拌法调酒。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c06: {
+        title: '💎 收藏指南',
+        icon: '💎',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🎯 烈酒收藏入门</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">了解价值因素</div>
+                <div class="guide-item__text">年份、限量版、酒厂历史、保存状态、包装完整性是影响价值的核心因素。稀缺性越高，收藏价值越大。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">从主流开始</div>
+                <div class="guide-item__text">入门可从知名酒厂的标准款开始，如茅台飞天、五粮液普五、苏格兰单一麦芽。了解市场后再逐步扩展。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">关注特殊年份</div>
+                <div class="guide-item__text">特定年份的酒款因气候、事件等因素具有特殊意义，如1980年代茅台、1970年代麦卡伦等。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">建立收藏体系</div>
+                <div class="guide-item__text">按酒种、产区、年份分类整理，建立收藏目录，便于管理与查找。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">📈 投资价值分析</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🏆</div>
+                <div class="guide-card__title">稀缺性</div>
+                <div class="guide-card__desc">限量版、绝版酒厂、年份久远的产品更具投资价值。全球限量发售的酒款往往升值空间更大。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏭</div>
+                <div class="guide-card__title">酒厂声誉</div>
+                <div class="guide-card__desc">历史悠久、品质卓越的酒厂更受市场认可。茅台、麦卡伦、山崎等品牌具有稳健的投资回报。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📅</div>
+                <div class="guide-card__title">年份价值</div>
+                <div class="guide-card__desc">老年份酒因稀缺性而价值更高，但需确保保存状态良好。80年代茅台价格已达数十万元。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📦</div>
+                <div class="guide-card__title">包装完整性</div>
+                <div class="guide-card__desc">原盒、封膜、酒标完整无损是收藏价值的关键。外包装也是价值的一部分。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">❄️ 存储条件</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">温度</div>
+                <div class="guide-item__text">恒温12-18°C为最佳，避免温度剧烈波动。高温会加速酒液与橡木桶反应，影响风味。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">湿度</div>
+                <div class="guide-item__text">相对湿度60-80%为宜，过干导致橡木桶干缩，过湿导致酒标发霉。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">光线</div>
+                <div class="guide-item__text">避光保存，阳光与紫外线会引发酒液化学反应，破坏风味与色泽。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">摆放</div>
+                <div class="guide-item__text">葡萄酒与白兰地需横放保持酒液与橡木塞接触，烈酒则直立存放即可。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">震动</div>
+                <div class="guide-item__text">避免震动环境，震动会干扰酒液的自然成熟过程。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🔍 鉴定要点</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🏷️</div>
+                <div class="guide-card__title">酒标鉴定</div>
+                <div class="guide-card__desc">真品酒标印刷精细，色彩均匀，文字清晰。假酒往往存在印刷模糊、色彩偏差问题。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🔐</div>
+                <div class="guide-card__title">封口鉴定</div>
+                <div class="guide-card__desc">原厂封口膜应完整无损，茅台的防伪标签、五粮液的防伪码都是重要鉴定依据。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍾</div>
+                <div class="guide-card__title">酒液鉴定</div>
+                <div class="guide-card__desc">观察酒液色泽是否正常，有无沉淀物或浑浊。高端白酒应为清澈透明。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📝</div>
+                <div class="guide-card__title">来源追溯</div>
+                <div class="guide-card__desc">了解购买渠道与来源，正规渠道更有保障。索要发票与鉴定证书。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c07: {
+        title: '🍽️ 配餐文化',
+        icon: '🍽️',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🥢 中餐配酒文化</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🥬</div>
+                <div class="guide-card__title">清香型白酒</div>
+                <div class="guide-card__desc">搭配清淡粤菜、海鲜、蔬菜。酒的低度与纯净正好衬托食材原味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🥘</div>
+                <div class="guide-card__title">浓香型白酒</div>
+                <div class="guide-card__desc">搭配川菜、湘菜等重口味菜系。酒的甘甜与菜肴的麻辣相互平衡。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍖</div>
+                <div class="guide-card__title">酱香型白酒</div>
+                <div class="guide-card__desc">搭配鲁菜、官府菜、烤肉等油脂丰富的菜肴。酱香与肉香相得益彰。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🦆</div>
+                <div class="guide-card__title">凤香型白酒</div>
+                <div class="guide-card__desc">搭配陕西菜系、面食、小吃。其清爽风格适合各种小吃与凉菜。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍽️ 西餐配酒原则</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">红酒配红肉</div>
+                <div class="guide-item__text">单宁与蛋白质结合去油腻，提升肉质鲜嫩感。牛排配波本威士忌是经典组合。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">白酒配白肉</div>
+                <div class="guide-item__text">白葡萄酒的酸度能去腥增鲜，适合海鲜与禽类。威士忌配烤鸡也是不错的选择。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">甜酒配甜点</div>
+                <div class="guide-item__text">甜品配甜型酒，如贵腐酒配鹅肝或甜点。避免甜酒配苦味食物产生冲突。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">地区搭配</div>
+                <div class="guide-item__text">"当地酒配当地菜"是经典原则，如法国酒配法餐，意大利酒配意大利菜。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍽️ 餐酒搭配实例</h3>
+            <div class="guide-timeline">
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">前菜</div>
+                <div class="guide-timeline-item__title">金酒 + 凯普罗酒</div>
+                <div class="guide-timeline-item__text">金酒的草本风味与番茄的清爽搭配，开胃提鲜。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">汤品</div>
+                <div class="guide-timeline-item__title">白兰地 + 奶油蘑菇汤</div>
+                <div class="guide-timeline-item__text">白兰地的果香与奶油蘑菇汤的浓郁相互提升。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">主菜</div>
+                <div class="guide-timeline-item__title">单一麦芽威士忌 + 烤羊排</div>
+                <div class="guide-timeline-item__text">泥煤烟熏风味与羊肉的油脂完美结合。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">海鲜</div>
+                <div class="guide-timeline-item__title">伏特加 + 烟熏三文鱼</div>
+                <div class="guide-timeline-item__text">伏特加的纯净不抢三文鱼风味，清爽相配。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">甜点</div>
+                <div class="guide-timeline-item__title">朗姆酒 + 椰奶布丁</div>
+                <div class="guide-timeline-item__text">热带风情一致，甜美与温暖的完美收尾。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍜 中式美食配酒推荐</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🥟</div>
+                <div class="guide-card__title">小笼包 + 汾酒</div>
+                <div class="guide-card__desc">清香型汾酒衬托小笼包的鲜甜，清爽不抢味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🦆</div>
+                <div class="guide-card__title">烤鸭 + 茅台</div>
+                <div class="guide-card__desc">经典京鲁搭配，酱香与烤鸭油脂的完美结合。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌶️</div>
+                <div class="guide-card__title">麻辣火锅 + 五粮液</div>
+                <div class="guide-card__desc">浓香型五粮液解辣又提鲜，聚会必备。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🦀</div>
+                <div class="guide-card__title">大闸蟹 + 黄酒</div>
+                <div class="guide-card__desc">传统时令搭配，温热的黄酒激发蟹肉鲜美。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c08: {
+        title: '📜 品牌故事',
+        icon: '📜',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🏛️ 茅台故事</h3>
+            <div class="guide-timeline">
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">汉代</div>
+                <div class="guide-timeline-item__title">枸酱酒起源</div>
+                <div class="guide-timeline-item__text">司马迁《史记》记载，汉代茅台镇一带已产出名酒"枸酱"，被视为茅台酒起源。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">1915年</div>
+                <div class="guide-timeline-item__title">巴拿马万国博览会</div>
+                <div class="guide-timeline-item__text">茅台酒在旧金山巴拿马万国博览会上获金奖，从此走向世界舞台。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">1951年</div>
+                <div class="guide-timeline-item__title">茅台酒厂成立</div>
+                <div class="guide-timeline-item__text">新中国成立后将三家烧坊合并成立国营茅台酒厂，开启现代化生产。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">1972年</div>
+                <div class="guide-timeline-item__title">国宴用酒</div>
+                <div class="guide-timeline-item__text">茅台酒成为国宴用酒，招待外宾时常用，被视为中国国酒代表。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">2021年</div>
+                <div class="guide-timeline-item__title">市值万亿</div>
+                <div class="guide-timeline-item__text">贵州茅台股价突破2000元，成为A股第一高价股，市值超过2万亿元。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🥃 威士忌品牌历史</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🏔️</div>
+                <div class="guide-card__title">麦卡伦（MACALLAN）</div>
+                <div class="guide-card__desc">1824年创立，以"苏格兰精神的麦芽威士忌"著称。始终坚持雪莉桶陈酿，产出浓郁果香风味。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🌊</div>
+                <div class="guide-card__title">格兰菲迪（GLENFIDDICH）</div>
+                <div class="guide-card__desc">1886年创立，格兰威特蒸馏厂是世界上第一个合法的麦芽威士忌蒸馏厂。以清新果香风格著称。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏝️</div>
+                <div class="guide-card__title">拉加维林（LAGAVULIN）</div>
+                <div class="guide-card__desc">1798年创立，艾雷岛泥煤烟熏威士忌代表。浓郁碘酒、海藻与泥煤风味深受老饕喜爱。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+                <div class="guide-card__title">云顶（SPRINGBANK）</div>
+                <div class="guide-card__desc">1828年创立，坎贝尔镇最古老的蒸馏厂。传统地板发麦，产出极具个性的威士忌。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍷 白兰地名庄故事</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">轩尼诗（HENNESSY）</div>
+                <div class="guide-item__text">1765年由理查德·轩尼诗创立，是最著名的干邑品牌之一。拥有200余年历史的家族企业，将干邑推向全球。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">人头马（REMY MARTIN）</div>
+                <div class="guide-item__text">1724年创立，专注于特优香槟干邑（Fine Champagne Cognac）。以其圆润芳香的XO闻名于世。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">马爹利（MARTELL）</div>
+                <div class="guide-item__text">1715年创立，是最古老的干邑世家。风格以顺滑细腻著称，深受女性喜爱。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">卡慕（CAMUS）</div>
+                <div class="guide-item__text">1863年创立，最后一个独立的干邑大家族。以其"岛屿干邑"风格的独特性著称。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🌍 其他传奇品牌</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🇯🇵</div>
+                <div class="guide-card__title">山崎（YAMAZAKI）</div>
+                <div class="guide-card__desc">1924年日本首个威士忌蒸馏厂，三得利旗下。以东方禅意与精致果香著称。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇺🇸</div>
+                <div class="guide-card__title">杰克·丹尼（JACK DANIELS）</div>
+                <div class="guide-card__desc">1866年创立，美国最早的蒸馏厂之一。以田纳西威士忌特有的枫糖浆风味著称。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇲🇽</div>
+                <div class="guide-card__title">培恩·洛（PATEŃ）</div>
+                <div class="guide-card__desc">1938年创立的墨西哥龙舌兰品牌，以其高品质与独特的蓝色龙舌兰酿造工艺著称。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇬🇧</div>
+                <div class="guide-card__title">添加利（TANQUERAY）</div>
+                <div class="guide-card__desc">1830年创立的伦敦干金酒，坚持传统配方与四次蒸馏，草本风味复杂精致。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c09: {
+        title: '📰 行业新闻',
+        icon: '📰',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🔥 最新行业动态</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">中国白酒出海潮</div>
+                <div class="guide-item__text">茅台、五粮液等知名酒企加速国际化布局，海外市场增长率超过30%。白酒正在成为新的"中国符号"。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">威士忌拍卖纪录</div>
+                <div class="guide-item__text">2024年，一瓶1926年麦卡伦60年在拍卖会上以210万美元成交，创下威士忌拍卖价格新高。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">精酿烈酒崛起</div>
+                <div class="guide-item__text">全球精酿烈酒市场蓬勃发展，小型蒸馏厂数量过去5年增长近200%，消费者追求个性化与本地特色。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">可持续酿酒理念</div>
+                <div class="guide-item__text">越来越多酒厂采用可持续发展理念，如使用本地原料、太阳能供电、水循环利用等环保措施。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🆕 新品发布</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">🥃</div>
+                <div class="guide-card__title">茅台1935新品</div>
+                <div class="guide-card__desc">茅台集团推出遵义1935新品，复刻经典风味，限量发售引发抢购热潮。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+                <div class="guide-card__title">麦卡伦焕新系列</div>
+                <div class="guide-card__desc">麦卡伦推出"卓越复刻"系列，致敬70年代经典风味，限量版引发收藏热潮。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🇯🇵</div>
+                <div class="guide-card__title">山崎18年限量版</div>
+                <div class="guide-card__desc">三得利发布山崎18年新版，精选雪莉桶陈酿原酒，散发浓郁果香与木质香气。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">🍸</div>
+                <div class="guide-card__title">植物学家新金酒</div>
+                <div class="guide-card__desc">植物学家酒厂推出限量版金酒，添加三种新草本植物，风味更加复杂细腻。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🏛️ 展会信息</h3>
+            <div class="guide-timeline">
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">每年3月</div>
+                <div class="guide-timeline-item__title">成都糖酒会</div>
+                <div class="guide-timeline-item__text">中国最大的酒类展会之一，汇聚国内外知名酒企新品发布与交流。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">每年5月</div>
+                <div class="guide-timeline-item__title">ProWein酒展</div>
+                <div class="guide-timeline-item__text">德国杜塞尔多夫国际酒展，全球最大规模的专业酒展，涵盖各类烈酒。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">每年6月</div>
+                <div class="guide-timeline-item__title">香港国际美酒展</div>
+                <div class="guide-timeline-item__text">亚洲最大酒类展会之一，连接东西方酒类市场，是了解亚太酒业的重要窗口。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">每年11月</div>
+                <div class="guide-timeline-item__title">Whisky Live</div>
+                <div class="guide-timeline-item__text">全球最大的威士忌展会，在巴黎、伦敦、东京等城市巡回举办，吸引数万威士忌爱好者。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">📊 行业趋势分析</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">高端化趋势</div>
+                <div class="guide-item__text">消费者愿意为高品质稀缺酒款支付溢价，高端烈酒市场份额持续增长，万元级白酒、数十万的威士忌愈发抢手。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">数字化转型</div>
+                <div class="guide-item__text">酒企纷纷布局区块链防伪、 NFT数字收藏、线上品鉴等数字化营销与销售模式。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">健康饮酒理念</div>
+                <div class="guide-item__text">消费者意识提升，低度酒、无酒精替代品市场快速增长，"理性饮酒"成为新趋势。</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      c10: {
+        title: '🎬 视频内容',
+        icon: '🎬',
+        content: `
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍶 品鉴教学视频</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">📹</div>
+                <div class="guide-card__title">白酒品鉴入门</div>
+                <div class="guide-card__desc">从观色、闻香、品评、回味四个步骤详细讲解白酒品鉴技巧，适合初学者建立基础认知。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📹</div>
+                <div class="guide-card__title">威士忌品鉴指南</div>
+                <div class="guide-card__desc">格兰凯恩杯使用、闻香技巧、批次品鉴方法，由资深威士忌大师亲自示范。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📹</div>
+                <div class="guide-card__title">白兰地品鉴艺术</div>
+                <div class="guide-card__desc">干邑品鉴的绅士风范，如何欣赏白兰地的香气层次与余韵变化。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🍸 调酒演示视频</h3>
+            <div class="guide-grid">
+              <div class="guide-card">
+                <div class="guide-card__icon">📹</div>
+                <div class="guide-card__title">经典鸡尾酒调制</div>
+                <div class="guide-card__desc">马天尼、曼哈顿、玛格丽特等10款经典鸡尾酒的标准化调制流程演示。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📹</div>
+                <div class="guide-card__title">家庭调酒入门</div>
+                <div class="guide-card__desc">基础调酒工具介绍、常见配料购买指南，在家也能调出专业水准鸡尾酒。</div>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card__icon">📹</div>
+                <div class="guide-card__title">分子调酒技术</div>
+                <div class="guide-card__desc">使用Sphere ice、液氮等现代调酒技术，让调酒更具视觉冲击力。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🏭 产区探访视频</h3>
+            <div class="guide-timeline">
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">贵州</div>
+                <div class="guide-timeline-item__title">茅台镇探秘</div>
+                <div class="guide-timeline-item__text">深入赤水河谷，探访茅台酒厂与老酒坊，了解酱香型白酒的神秘酿造过程。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">苏格兰</div>
+                <div class="guide-timeline-item__title">斯佩塞德之旅</div>
+                <div class="guide-timeline-item__text">走访麦卡伦、格兰威特等著名蒸馏厂，体验威士忌圣地的独特魅力与酿造传统。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">日本</div>
+                <div class="guide-timeline-item__title">山崎蒸馏厂参观</div>
+                <div class="guide-timeline-item__text">跟随导览走进三得利山崎蒸馏厂，探访百年橡木桶仓库，品味日本威士忌的匠心工艺。</div>
+              </div>
+              <div class="guide-timeline-item">
+                <div class="guide-timeline-item__year">法国</div>
+                <div class="guide-timeline-item__title">干邑区探访</div>
+                <div class="guide-timeline-item__text">参观轩尼诗、人头马等干邑名厂，体验"生命之水"的陈酿奥秘与白兰地文化。</div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <h3 class="guide-section__title">🎥 视频内容推荐</h3>
+            <div class="guide-list">
+              <div class="guide-item">
+                <div class="guide-item__title">品鉴教程系列</div>
+                <div class="guide-item__text">联合国家级品酒师，推出白酒、威士忌、白兰地三大品类的系统教学视频，从入门到精通。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">酒厂纪录片</div>
+                <div class="guide-item__text">跟拍知名酒厂的生产过程，讲述酒厂历史与匠人故事，深入了解每滴酒背后的心血。</div>
+              </div>
+              <div class="guide-item">
+                <div class="guide-item__title">调酒比赛转播</div>
+                <div class="guide-item__text">World Class调酒大赛、芝华士大师赛等顶级赛事精彩片段，学习顶级调酒师技艺。</div>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    // 打开品鉴指南模态框
+    window.openGuideModal = function(category) {
+      const guideData = _品鉴指南内容[category];
+      if (!guideData) return;
+      
+      const backdrop = document.getElementById('guideBackdrop');
+      const modal = document.getElementById('guideModal');
+      const titleEl = document.getElementById('guideModalTitle');
+      const contentEl = document.getElementById('guideModalContent');
+      
+      if (!backdrop || !modal) return;
+      
+      titleEl.innerHTML = guideData.icon + ' ' + guideData.title;
+      contentEl.innerHTML = guideData.content;
+      
+      backdrop.classList.add('show');
+      modal.classList.add('show');
+    };
+
+    // 关闭品鉴指南模态框
+    window.closeGuideModal = function() {
+      const backdrop = document.getElementById('guideBackdrop');
+      const modal = document.getElementById('guideModal');
+      if (backdrop) backdrop.classList.remove('show');
+      if (modal) modal.classList.remove('show');
+    };
   </script>
 </body>
 </html>
