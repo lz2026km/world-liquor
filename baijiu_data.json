@@ -286,7 +286,12 @@
       "aldehyde_content": "0.074g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "36年"
-    }
+    },
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ001"
   },
   {
     "id": "MJ002",
@@ -567,7 +572,12 @@
       "aldehyde_content": "0.032g/L",
       "metanol_content": "0.24g/L",
       "reliable_shelf_life": "41年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ002"
   },
   {
     "id": "MJ003",
@@ -841,7 +851,12 @@
       "aldehyde_content": "0.013g/L",
       "metanol_content": "0.13g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ003"
   },
   {
     "id": "MJ004",
@@ -1122,7 +1137,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ004"
   },
   {
     "id": "MJ005",
@@ -1411,7 +1431,12 @@
       "aldehyde_content": "0.010g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ005"
   },
   {
     "id": "MJ006",
@@ -1691,7 +1716,12 @@
       "aldehyde_content": "0.088g/L",
       "metanol_content": "0.34g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ006"
   },
   {
     "id": "MJ007",
@@ -1971,7 +2001,12 @@
       "aldehyde_content": "0.082g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "19年"
-    }
+    },
+    "year": 2022,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ007"
   },
   {
     "id": "MJ008",
@@ -2251,7 +2286,12 @@
       "aldehyde_content": "0.093g/L",
       "metanol_content": "0.43g/L",
       "reliable_shelf_life": "31年"
-    }
+    },
+    "year": 2023,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ008"
   },
   {
     "id": "MJ009",
@@ -2530,7 +2570,12 @@
       "aldehyde_content": "0.069g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "22年"
-    }
+    },
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ009"
   },
   {
     "id": "MJ010",
@@ -2817,7 +2862,12 @@
       "aldehyde_content": "0.095g/L",
       "metanol_content": "0.10g/L",
       "reliable_shelf_life": "21年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ010"
   },
   {
     "id": "MJ011",
@@ -3096,7 +3146,12 @@
       "aldehyde_content": "0.020g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2022,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ011"
   },
   {
     "id": "MJ012",
@@ -3376,7 +3431,12 @@
       "aldehyde_content": "0.079g/L",
       "metanol_content": "0.30g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2023,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ012"
   },
   {
     "id": "MJ013",
@@ -3648,7 +3708,12 @@
       "aldehyde_content": "0.097g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ013"
   },
   {
     "id": "MJ014",
@@ -3936,7 +4001,12 @@
       "aldehyde_content": "0.052g/L",
       "metanol_content": "0.15g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2015,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ014"
   },
   {
     "id": "MJ015",
@@ -4215,7 +4285,12 @@
       "aldehyde_content": "0.059g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "46年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ015"
   },
   {
     "id": "MJ016",
@@ -4503,7 +4578,12 @@
       "aldehyde_content": "0.079g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "46年"
-    }
+    },
+    "year": 2017,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ016"
   },
   {
     "id": "MJ017",
@@ -4782,7 +4862,12 @@
       "aldehyde_content": "0.078g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ017"
   },
   {
     "id": "MJ018",
@@ -5062,7 +5147,12 @@
       "aldehyde_content": "0.077g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2019,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ018"
   },
   {
     "id": "MJ019",
@@ -5335,7 +5425,12 @@
       "aldehyde_content": "0.024g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "21年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ019"
   },
   {
     "id": "MJ020",
@@ -5606,7 +5701,12 @@
       "aldehyde_content": "0.019g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ020"
   },
   {
     "id": "MJ021",
@@ -5877,7 +5977,12 @@
       "aldehyde_content": "0.036g/L",
       "metanol_content": "0.21g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ021"
   },
   {
     "id": "MJ022",
@@ -6149,7 +6254,12 @@
       "aldehyde_content": "0.014g/L",
       "metanol_content": "0.24g/L",
       "reliable_shelf_life": "16年"
-    }
+    },
+    "year": 2019,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ022"
   },
   {
     "id": "MJ023",
@@ -6422,7 +6532,12 @@
       "aldehyde_content": "0.064g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ023"
   },
   {
     "id": "MJ024",
@@ -6693,7 +6808,12 @@
       "aldehyde_content": "0.072g/L",
       "metanol_content": "0.31g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ024"
   },
   {
     "id": "MJ025",
@@ -6964,7 +7084,12 @@
       "aldehyde_content": "0.020g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "18年"
-    }
+    },
+    "year": 2022,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ025"
   },
   {
     "id": "MJ026",
@@ -7252,7 +7377,12 @@
       "aldehyde_content": "0.050g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ026"
   },
   {
     "id": "MJ027",
@@ -7524,7 +7654,12 @@
       "aldehyde_content": "0.083g/L",
       "metanol_content": "0.16g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ027"
   },
   {
     "id": "MJ028",
@@ -7804,7 +7939,12 @@
       "aldehyde_content": "0.096g/L",
       "metanol_content": "0.27g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2015,
+    "price_range": "100元以下",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ028"
   },
   {
     "id": "MJ029",
@@ -8083,7 +8223,12 @@
       "aldehyde_content": "0.021g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "18年"
-    }
+    },
+    "year": 2016,
+    "price_range": "100元以下",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ029"
   },
   {
     "id": "MJ030",
@@ -8362,7 +8507,12 @@
       "aldehyde_content": "0.023g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2023,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ030"
   },
   {
     "id": "MJ031",
@@ -8633,7 +8783,12 @@
       "aldehyde_content": "0.057g/L",
       "metanol_content": "0.26g/L",
       "reliable_shelf_life": "11年"
-    }
+    },
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ031"
   },
   {
     "id": "MJ032",
@@ -8912,7 +9067,12 @@
       "aldehyde_content": "0.035g/L",
       "metanol_content": "0.42g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ032"
   },
   {
     "id": "MJ033",
@@ -9191,7 +9351,12 @@
       "aldehyde_content": "0.068g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2016,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ033"
   },
   {
     "id": "MJ034",
@@ -9462,7 +9627,12 @@
       "aldehyde_content": "0.021g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ034"
   },
   {
     "id": "MJ035",
@@ -9749,7 +9919,12 @@
       "aldehyde_content": "0.035g/L",
       "metanol_content": "0.49g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2018,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ035"
   },
   {
     "id": "MJ036",
@@ -10036,7 +10211,12 @@
       "aldehyde_content": "0.066g/L",
       "metanol_content": "0.17g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2019,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ036"
   },
   {
     "id": "MJ037",
@@ -10323,7 +10503,12 @@
       "aldehyde_content": "0.073g/L",
       "metanol_content": "0.15g/L",
       "reliable_shelf_life": "41年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ037"
   },
   {
     "id": "MJ038",
@@ -10594,7 +10779,12 @@
       "aldehyde_content": "0.071g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ038"
   },
   {
     "id": "MJ039",
@@ -10882,7 +11072,12 @@
       "aldehyde_content": "0.074g/L",
       "metanol_content": "0.15g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2022,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ039"
   },
   {
     "id": "MJ040",
@@ -11162,7 +11357,12 @@
       "aldehyde_content": "0.053g/L",
       "metanol_content": "0.27g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ040"
   },
   {
     "id": "MJ041",
@@ -11449,7 +11649,12 @@
       "aldehyde_content": "0.048g/L",
       "metanol_content": "0.42g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2020,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ041"
   },
   {
     "id": "MJ042",
@@ -11728,7 +11933,12 @@
       "aldehyde_content": "0.036g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "37年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ042"
   },
   {
     "id": "MJ043",
@@ -12007,7 +12217,12 @@
       "aldehyde_content": "0.083g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ043"
   },
   {
     "id": "MJ044",
@@ -12279,7 +12494,12 @@
       "aldehyde_content": "0.051g/L",
       "metanol_content": "0.45g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2023,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ044"
   },
   {
     "id": "MJ045",
@@ -12566,7 +12786,12 @@
       "aldehyde_content": "0.032g/L",
       "metanol_content": "0.26g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ045"
   },
   {
     "id": "MJ046",
@@ -12853,7 +13078,12 @@
       "aldehyde_content": "0.058g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "36年"
-    }
+    },
+    "year": 2015,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ046"
   },
   {
     "id": "MJ047",
@@ -13132,7 +13362,12 @@
       "aldehyde_content": "0.024g/L",
       "metanol_content": "0.37g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ047"
   },
   {
     "id": "MJ048",
@@ -13410,7 +13645,12 @@
       "aldehyde_content": "0.028g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ048"
   },
   {
     "id": "MJ049",
@@ -13698,7 +13938,12 @@
       "aldehyde_content": "0.094g/L",
       "metanol_content": "0.31g/L",
       "reliable_shelf_life": "36年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ049"
   },
   {
     "id": "MJ050",
@@ -13969,7 +14214,12 @@
       "aldehyde_content": "0.099g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2015,
+    "price_range": "100元以下",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ050"
   },
   {
     "id": "IS001",
@@ -14249,7 +14499,12 @@
       "aldehyde_content": "0.087g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2016,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS001"
   },
   {
     "id": "IS002",
@@ -14528,7 +14783,12 @@
       "aldehyde_content": "0.037g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2017,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS002"
   },
   {
     "id": "IS003",
@@ -14816,7 +15076,12 @@
       "aldehyde_content": "0.080g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS003"
   },
   {
     "id": "IS004",
@@ -15096,7 +15361,12 @@
       "aldehyde_content": "0.069g/L",
       "metanol_content": "0.26g/L",
       "reliable_shelf_life": "31年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS004"
   },
   {
     "id": "IS005",
@@ -15367,7 +15637,12 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS005"
   },
   {
     "id": "IS006",
@@ -15647,7 +15922,12 @@
       "aldehyde_content": "0.038g/L",
       "metanol_content": "0.49g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2021,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS006"
   },
   {
     "id": "IS007",
@@ -15917,7 +16197,12 @@
       "aldehyde_content": "0.012g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2022,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQIS007"
   },
   {
     "id": "IS008",
@@ -16204,7 +16489,12 @@
       "aldehyde_content": "0.085g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2023,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQIS008"
   },
   {
     "id": "IS009",
@@ -16475,7 +16765,12 @@
       "aldehyde_content": "0.093g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "29年"
-    }
+    },
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS009"
   },
   {
     "id": "IS010",
@@ -16755,7 +17050,12 @@
       "aldehyde_content": "0.087g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS010"
   },
   {
     "id": "IS011",
@@ -17043,7 +17343,12 @@
       "aldehyde_content": "0.073g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "19年"
-    }
+    },
+    "year": 2022,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS011"
   },
   {
     "id": "IS012",
@@ -17330,7 +17635,12 @@
       "aldehyde_content": "0.098g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS012"
   },
   {
     "id": "IS013",
@@ -17619,7 +17929,12 @@
       "aldehyde_content": "0.032g/L",
       "metanol_content": "0.42g/L",
       "reliable_shelf_life": "25年"
-    }
+    },
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQIS013"
   },
   {
     "id": "IS014",
@@ -17892,7 +18207,12 @@
       "aldehyde_content": "0.061g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2015,
+    "price_range": "100元以下",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS014"
   },
   {
     "id": "IS015",
@@ -18163,7 +18483,12 @@
       "aldehyde_content": "0.010g/L",
       "metanol_content": "0.39g/L",
       "reliable_shelf_life": "46年"
-    }
+    },
+    "year": 2016,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS015"
   },
   {
     "id": "IS016",
@@ -18434,7 +18759,12 @@
       "aldehyde_content": "0.089g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "28年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS016"
   },
   {
     "id": "IS017",
@@ -18722,7 +19052,12 @@
       "aldehyde_content": "0.057g/L",
       "metanol_content": "0.16g/L",
       "reliable_shelf_life": "16年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQIS017"
   },
   {
     "id": "IS018",
@@ -19002,7 +19337,12 @@
       "aldehyde_content": "0.047g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "11年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS018"
   },
   {
     "id": "IS019",
@@ -19283,7 +19623,12 @@
       "aldehyde_content": "0.085g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "18年"
-    }
+    },
+    "year": 2020,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQIS019"
   },
   {
     "id": "MJ070",
@@ -19562,7 +19907,12 @@
       "aldehyde_content": "0.066g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2017,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ070"
   },
   {
     "id": "MJ071",
@@ -19832,7 +20182,12 @@
       "aldehyde_content": "0.065g/L",
       "metanol_content": "0.49g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ071"
   },
   {
     "id": "MJ072",
@@ -20118,7 +20473,12 @@
       "aldehyde_content": "0.049g/L",
       "metanol_content": "0.17g/L",
       "reliable_shelf_life": "44年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ072"
   },
   {
     "id": "MJ073",
@@ -20396,7 +20756,12 @@
       "aldehyde_content": "0.087g/L",
       "metanol_content": "0.13g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ073"
   },
   {
     "id": "MJ074",
@@ -20666,7 +21031,12 @@
       "aldehyde_content": "0.020g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ074"
   },
   {
     "id": "MJ075",
@@ -20944,7 +21314,12 @@
       "aldehyde_content": "0.021g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2022,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ075"
   },
   {
     "id": "MJ076",
@@ -21214,7 +21589,12 @@
       "aldehyde_content": "0.029g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ076"
   },
   {
     "id": "MJ077",
@@ -21493,7 +21873,12 @@
       "aldehyde_content": "0.033g/L",
       "metanol_content": "0.43g/L",
       "reliable_shelf_life": "41年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ077"
   },
   {
     "id": "MJ078",
@@ -21763,7 +22148,12 @@
       "aldehyde_content": "0.025g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2015,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ078"
   },
   {
     "id": "MJ080",
@@ -22049,7 +22439,12 @@
       "aldehyde_content": "0.096g/L",
       "metanol_content": "0.10g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ080"
   },
   {
     "id": "MJ081",
@@ -22335,7 +22730,12 @@
       "aldehyde_content": "0.019g/L",
       "metanol_content": "0.37g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ081"
   },
   {
     "id": "MJ082",
@@ -22613,7 +23013,12 @@
       "aldehyde_content": "0.023g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2015,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ082"
   },
   {
     "id": "MJ083",
@@ -22891,7 +23296,12 @@
       "aldehyde_content": "0.096g/L",
       "metanol_content": "0.42g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2016,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ083"
   },
   {
     "id": "MJ084",
@@ -23161,7 +23571,12 @@
       "aldehyde_content": "0.080g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2017,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ084"
   },
   {
     "id": "MJ085",
@@ -23439,7 +23854,12 @@
       "aldehyde_content": "0.035g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ085"
   },
   {
     "id": "MJ086",
@@ -23709,7 +24129,12 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ086"
   },
   {
     "id": "MJ087",
@@ -23995,7 +24420,12 @@
       "aldehyde_content": "0.024g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "36年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ087"
   },
   {
     "id": "MJ088",
@@ -24281,7 +24711,12 @@
       "aldehyde_content": "0.018g/L",
       "metanol_content": "0.32g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2021,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ088"
   },
   {
     "id": "MJ089",
@@ -24551,7 +24986,12 @@
       "aldehyde_content": "0.098g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ089"
   },
   {
     "id": "MJ090",
@@ -24837,7 +25277,12 @@
       "aldehyde_content": "0.099g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "25年"
-    }
+    },
+    "year": 2019,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ090"
   },
   {
     "id": "MJ091",
@@ -25107,7 +25552,12 @@
       "aldehyde_content": "0.016g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "19年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ091"
   },
   {
     "id": "MJ092",
@@ -25377,7 +25827,12 @@
       "aldehyde_content": "0.064g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "37年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ092"
   },
   {
     "id": "MJ093",
@@ -25647,7 +26102,12 @@
       "aldehyde_content": "0.037g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "10年"
-    }
+    },
+    "year": 2022,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ093"
   },
   {
     "id": "MJ094",
@@ -25925,7 +26385,12 @@
       "aldehyde_content": "0.018g/L",
       "metanol_content": "0.15g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2023,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ094"
   },
   {
     "id": "MJ095",
@@ -26203,7 +26668,12 @@
       "aldehyde_content": "0.081g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "42年"
-    }
+    },
+    "year": 2024,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ095"
   },
   {
     "id": "MJ096",
@@ -26490,7 +26960,12 @@
       "aldehyde_content": "0.028g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "44年"
-    }
+    },
+    "year": 2015,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ096"
   },
   {
     "id": "MJ097",
@@ -26776,7 +27251,12 @@
       "aldehyde_content": "0.020g/L",
       "metanol_content": "0.32g/L",
       "reliable_shelf_life": "47年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ097"
   },
   {
     "id": "MJ098",
@@ -27063,7 +27543,12 @@
       "aldehyde_content": "0.056g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "18年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ098"
   },
   {
     "id": "MJ099",
@@ -27349,7 +27834,12 @@
       "aldehyde_content": "0.096g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "21年"
-    }
+    },
+    "year": 2018,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ099"
   },
   {
     "id": "MJ100",
@@ -27619,7 +28109,12 @@
       "aldehyde_content": "0.076g/L",
       "metanol_content": "0.31g/L",
       "reliable_shelf_life": "19年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ100"
   },
   {
     "id": "MJ101",
@@ -27905,7 +28400,12 @@
       "aldehyde_content": "0.074g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "21年"
-    }
+    },
+    "year": 2022,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ101"
   },
   {
     "id": "MJ102",
@@ -28176,7 +28676,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ102"
   },
   {
     "id": "MJ103",
@@ -28446,7 +28951,12 @@
       "aldehyde_content": "0.051g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ103"
   },
   {
     "id": "MJ104",
@@ -28724,7 +29234,12 @@
       "aldehyde_content": "0.011g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2015,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ104"
   },
   {
     "id": "MJ105",
@@ -29011,7 +29526,12 @@
       "aldehyde_content": "0.072g/L",
       "metanol_content": "0.15g/L",
       "reliable_shelf_life": "36年"
-    }
+    },
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ105"
   },
   {
     "id": "MJ106",
@@ -29289,7 +29809,12 @@
       "aldehyde_content": "0.089g/L",
       "metanol_content": "0.21g/L",
       "reliable_shelf_life": "16年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ106"
   },
   {
     "id": "MJ107",
@@ -29558,7 +30083,12 @@
       "aldehyde_content": "0.053g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ107"
   },
   {
     "id": "MJ108",
@@ -29844,7 +30374,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ108"
   },
   {
     "id": "MJ109",
@@ -30114,7 +30649,12 @@
       "aldehyde_content": "0.047g/L",
       "metanol_content": "0.49g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ109"
   },
   {
     "id": "MJ110",
@@ -30384,7 +30924,12 @@
       "aldehyde_content": "0.028g/L",
       "metanol_content": "0.15g/L",
       "reliable_shelf_life": "16年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ110"
   },
   {
     "id": "MJ111",
@@ -30670,7 +31215,12 @@
       "aldehyde_content": "0.088g/L",
       "metanol_content": "0.42g/L",
       "reliable_shelf_life": "33年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ111"
   },
   {
     "id": "MJ112",
@@ -30957,7 +31507,12 @@
       "aldehyde_content": "0.079g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "28年"
-    }
+    },
+    "year": 2019,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ112"
   },
   {
     "id": "MJ113",
@@ -31236,7 +31791,12 @@
       "aldehyde_content": "0.052g/L",
       "metanol_content": "0.26g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ113"
   },
   {
     "id": "MJ114",
@@ -31506,7 +32066,12 @@
       "aldehyde_content": "0.093g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ114"
   },
   {
     "id": "MJ115",
@@ -31793,7 +32358,12 @@
       "aldehyde_content": "0.071g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2022,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ115"
   },
   {
     "id": "MJ116",
@@ -32064,7 +32634,12 @@
       "aldehyde_content": "0.086g/L",
       "metanol_content": "0.22g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ116"
   },
   {
     "id": "MJ117",
@@ -32334,7 +32909,12 @@
       "aldehyde_content": "0.011g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "39年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ117"
   },
   {
     "id": "MJ118",
@@ -32612,7 +33192,12 @@
       "aldehyde_content": "0.045g/L",
       "metanol_content": "0.42g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ118"
   },
   {
     "id": "MJ119",
@@ -32882,7 +33467,12 @@
       "aldehyde_content": "0.010g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "23年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ119"
   },
   {
     "id": "MJ120",
@@ -33168,7 +33758,12 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.21g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2023,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ120"
   },
   {
     "id": "MJ121",
@@ -33437,7 +34032,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "11年"
-    }
+    },
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ121"
   },
   {
     "id": "MJ122",
@@ -33706,7 +34306,12 @@
       "aldehyde_content": "0.035g/L",
       "metanol_content": "0.17g/L",
       "reliable_shelf_life": "16年"
-    }
+    },
+    "year": 2015,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ122"
   },
   {
     "id": "MJ123",
@@ -33975,7 +34580,12 @@
       "aldehyde_content": "0.072g/L",
       "metanol_content": "0.32g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2016,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ123"
   },
   {
     "id": "MJ124",
@@ -34252,7 +34862,12 @@
       "aldehyde_content": "0.098g/L",
       "metanol_content": "0.27g/L",
       "reliable_shelf_life": "37年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ124"
   },
   {
     "id": "MJ125",
@@ -34537,7 +35152,12 @@
       "aldehyde_content": "0.097g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2018,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ125"
   },
   {
     "id": "MJ126",
@@ -34821,7 +35441,12 @@
       "aldehyde_content": "0.029g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "46年"
-    }
+    },
+    "year": 2019,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ126"
   },
   {
     "id": "MJ127",
@@ -35107,7 +35732,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.30g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ127"
   },
   {
     "id": "MJ128",
@@ -35392,7 +36022,12 @@
       "aldehyde_content": "0.079g/L",
       "metanol_content": "0.37g/L",
       "reliable_shelf_life": "25年"
-    }
+    },
+    "year": 2021,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ128"
   },
   {
     "id": "MJ129",
@@ -35661,7 +36296,12 @@
       "aldehyde_content": "0.046g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2022,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ129"
   },
   {
     "id": "MJ130",
@@ -35930,7 +36570,12 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "23年"
-    }
+    },
+    "year": 2019,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ130"
   },
   {
     "id": "MJ131",
@@ -36207,7 +36852,12 @@
       "aldehyde_content": "0.027g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ131"
   },
   {
     "id": "MJ132",
@@ -36477,7 +37127,12 @@
       "aldehyde_content": "0.045g/L",
       "metanol_content": "0.32g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2021,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ132"
   },
   {
     "id": "MJ133",
@@ -36762,7 +37417,12 @@
       "aldehyde_content": "0.084g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2022,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ133"
   },
   {
     "id": "MJ134",
@@ -37047,7 +37707,12 @@
       "aldehyde_content": "0.090g/L",
       "metanol_content": "0.47g/L",
       "reliable_shelf_life": "11年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ134"
   },
   {
     "id": "MJ135",
@@ -37316,7 +37981,12 @@
       "aldehyde_content": "0.095g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ135"
   },
   {
     "id": "MJ136",
@@ -37593,7 +38263,12 @@
       "aldehyde_content": "0.028g/L",
       "metanol_content": "0.50g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ136"
   },
   {
     "id": "MJ137",
@@ -37878,7 +38553,12 @@
       "aldehyde_content": "0.045g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "42年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ137"
   },
   {
     "id": "MJ138",
@@ -38155,7 +38835,12 @@
       "aldehyde_content": "0.069g/L",
       "metanol_content": "0.30g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ138"
   },
   {
     "id": "MJ139",
@@ -38440,7 +39125,12 @@
       "aldehyde_content": "0.045g/L",
       "metanol_content": "0.31g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ139"
   },
   {
     "id": "MJ140",
@@ -38726,7 +39416,12 @@
       "aldehyde_content": "0.058g/L",
       "metanol_content": "0.45g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ140"
   },
   {
     "id": "MJ141",
@@ -39003,7 +39698,12 @@
       "aldehyde_content": "0.034g/L",
       "metanol_content": "0.39g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ141"
   },
   {
     "id": "MJ142",
@@ -39280,7 +39980,12 @@
       "aldehyde_content": "0.049g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "28年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ142"
   },
   {
     "id": "MJ143",
@@ -39565,7 +40270,12 @@
       "aldehyde_content": "0.072g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ143"
   },
   {
     "id": "MJ144",
@@ -39835,7 +40545,12 @@
       "aldehyde_content": "0.036g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "11年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ144"
   },
   {
     "id": "MJ145",
@@ -40104,7 +40819,12 @@
       "aldehyde_content": "0.046g/L",
       "metanol_content": "0.22g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ145"
   },
   {
     "id": "MJ146",
@@ -40381,7 +41101,12 @@
       "aldehyde_content": "0.080g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ146"
   },
   {
     "id": "MJ147",
@@ -40666,7 +41391,12 @@
       "aldehyde_content": "0.022g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ147"
   },
   {
     "id": "IS020",
@@ -40935,7 +41665,12 @@
       "aldehyde_content": "0.088g/L",
       "metanol_content": "0.30g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS020"
   },
   {
     "id": "IS021",
@@ -41220,7 +41955,12 @@
       "aldehyde_content": "0.097g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "11年"
-    }
+    },
+    "year": 2018,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS021"
   },
   {
     "id": "IS022",
@@ -41489,7 +42229,12 @@
       "aldehyde_content": "0.012g/L",
       "metanol_content": "0.26g/L",
       "reliable_shelf_life": "44年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS022"
   },
   {
     "id": "IS023",
@@ -41775,7 +42520,12 @@
       "aldehyde_content": "0.058g/L",
       "metanol_content": "0.34g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2020,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQIS023"
   },
   {
     "id": "IS024",
@@ -42061,7 +42811,12 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.28g/L",
       "reliable_shelf_life": "42年"
-    }
+    },
+    "year": 2021,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS024"
   },
   {
     "id": "IS025",
@@ -42339,7 +43094,12 @@
       "aldehyde_content": "0.063g/L",
       "metanol_content": "0.28g/L",
       "reliable_shelf_life": "33年"
-    }
+    },
+    "year": 2022,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS025"
   },
   {
     "id": "IS026",
@@ -42617,7 +43377,12 @@
       "aldehyde_content": "0.069g/L",
       "metanol_content": "0.21g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS026"
   },
   {
     "id": "IS027",
@@ -42895,7 +43660,12 @@
       "aldehyde_content": "0.045g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQIS027"
   },
   {
     "id": "IS028",
@@ -43172,7 +43942,12 @@
       "aldehyde_content": "0.056g/L",
       "metanol_content": "0.21g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2015,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQIS028"
   },
   {
     "id": "IS029",
@@ -43457,7 +44232,12 @@
       "aldehyde_content": "0.018g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2016,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQIS029"
   },
   {
     "id": "IS030",
@@ -43742,7 +44522,12 @@
       "aldehyde_content": "0.021g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "37年"
-    }
+    },
+    "year": 2023,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQIS030"
   },
   {
     "id": "IS031",
@@ -44011,7 +44796,12 @@
       "aldehyde_content": "0.020g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQIS031"
   },
   {
     "id": "IS032",
@@ -44280,7 +45070,12 @@
       "aldehyde_content": "0.085g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQIS032"
   },
   {
     "id": "IS033",
@@ -44566,7 +45361,12 @@
       "aldehyde_content": "0.093g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS033"
   },
   {
     "id": "IS034",
@@ -44851,7 +45651,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.30g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQIS034"
   },
   {
     "id": "IS035",
@@ -45136,7 +45941,12 @@
       "aldehyde_content": "0.095g/L",
       "metanol_content": "0.26g/L",
       "reliable_shelf_life": "47年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQIS035"
   },
   {
     "id": "IS036",
@@ -45414,7 +46224,12 @@
       "aldehyde_content": "0.035g/L",
       "metanol_content": "0.34g/L",
       "reliable_shelf_life": "47年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQIS036"
   },
   {
     "id": "IS037",
@@ -45683,7 +46498,12 @@
       "aldehyde_content": "0.037g/L",
       "metanol_content": "0.27g/L",
       "reliable_shelf_life": "46年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS037"
   },
   {
     "id": "IS038",
@@ -45960,7 +46780,12 @@
       "aldehyde_content": "0.032g/L",
       "metanol_content": "0.50g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQIS038"
   },
   {
     "id": "IS039",
@@ -46229,7 +47054,12 @@
       "aldehyde_content": "0.097g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "23年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQIS039"
   },
   {
     "id": "IS040",
@@ -46499,7 +47329,12 @@
       "aldehyde_content": "0.049g/L",
       "metanol_content": "0.43g/L",
       "reliable_shelf_life": "28年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS040"
   },
   {
     "id": "IS041",
@@ -46784,7 +47619,12 @@
       "aldehyde_content": "0.020g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS041"
   },
   {
     "id": "IS042",
@@ -47069,7 +47909,12 @@
       "aldehyde_content": "0.071g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQIS042"
   },
   {
     "id": "IS043",
@@ -47354,7 +48199,12 @@
       "aldehyde_content": "0.027g/L",
       "metanol_content": "0.10g/L",
       "reliable_shelf_life": "23年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS043"
   },
   {
     "id": "IS044",
@@ -47631,7 +48481,12 @@
       "aldehyde_content": "0.045g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "33年"
-    }
+    },
+    "year": 2023,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQIS044"
   },
   {
     "id": "IS045",
@@ -47901,7 +48756,12 @@
       "aldehyde_content": "0.062g/L",
       "metanol_content": "0.13g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS045"
   },
   {
     "id": "IS046",
@@ -48170,7 +49030,12 @@
       "aldehyde_content": "0.072g/L",
       "metanol_content": "0.36g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQIS046"
   },
   {
     "id": "IS047",
@@ -48440,7 +49305,12 @@
       "aldehyde_content": "0.094g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQIS047"
   },
   {
     "id": "IS048",
@@ -48725,7 +49595,12 @@
       "aldehyde_content": "0.081g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2017,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS048"
   },
   {
     "id": "IS049",
@@ -48994,7 +49869,12 @@
       "aldehyde_content": "0.091g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "42年"
-    }
+    },
+    "year": 2018,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQIS049"
   },
   {
     "id": "IS050",
@@ -49263,7 +50143,12 @@
       "aldehyde_content": "0.090g/L",
       "metanol_content": "0.24g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2015,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS050"
   },
   {
     "id": "IS051",
@@ -49548,7 +50433,12 @@
       "aldehyde_content": "0.095g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQIS051"
   },
   {
     "id": "IS052",
@@ -49818,7 +50708,12 @@
       "aldehyde_content": "0.082g/L",
       "metanol_content": "0.32g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2017,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS052"
   },
   {
     "id": "IS053",
@@ -50095,7 +50990,12 @@
       "aldehyde_content": "0.058g/L",
       "metanol_content": "0.22g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2018,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS053"
   },
   {
     "id": "IS054",
@@ -50364,7 +51264,12 @@
       "aldehyde_content": "0.075g/L",
       "metanol_content": "0.47g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2019,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS054"
   },
   {
     "id": "IS055",
@@ -50650,7 +51555,12 @@
       "aldehyde_content": "0.028g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "25年"
-    }
+    },
+    "year": 2020,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS055"
   },
   {
     "id": "IS056",
@@ -50935,7 +51845,12 @@
       "aldehyde_content": "0.085g/L",
       "metanol_content": "0.28g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2021,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS056"
   },
   {
     "id": "IS057",
@@ -51213,7 +52128,12 @@
       "aldehyde_content": "0.018g/L",
       "metanol_content": "0.24g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2022,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS057"
   },
   {
     "id": "IS058",
@@ -51498,7 +52418,12 @@
       "aldehyde_content": "0.039g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "23年"
-    }
+    },
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS058"
   },
   {
     "id": "IS059",
@@ -51768,7 +52693,12 @@
       "aldehyde_content": "0.074g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2024,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS059"
   },
   {
     "id": "IS060",
@@ -52054,7 +52984,12 @@
       "aldehyde_content": "0.024g/L",
       "metanol_content": "0.42g/L",
       "reliable_shelf_life": "25年"
-    }
+    },
+    "year": 2021,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS060"
   },
   {
     "id": "IS061",
@@ -52324,7 +53259,12 @@
       "aldehyde_content": "0.062g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "23年"
-    }
+    },
+    "year": 2022,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS061"
   },
   {
     "id": "IS062",
@@ -52593,7 +53533,12 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.36g/L",
       "reliable_shelf_life": "39年"
-    }
+    },
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS062"
   },
   {
     "id": "IS063",
@@ -52870,7 +53815,12 @@
       "aldehyde_content": "0.018g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2024,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS063"
   },
   {
     "id": "IS064",
@@ -53139,7 +54089,12 @@
       "aldehyde_content": "0.099g/L",
       "metanol_content": "0.47g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2015,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS064"
   },
   {
     "id": "IS065",
@@ -53424,7 +54379,12 @@
       "aldehyde_content": "0.095g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQIS065"
   },
   {
     "id": "IS066",
@@ -53693,7 +54653,12 @@
       "aldehyde_content": "0.063g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "33年"
-    }
+    },
+    "year": 2017,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQIS066"
   },
   {
     "id": "IS067",
@@ -53962,7 +54927,12 @@
       "aldehyde_content": "0.091g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "50年"
-    }
+    },
+    "year": 2018,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "季克良",
+    "sku": "LIQIS067"
   },
   {
     "id": "IS068",
@@ -54248,7 +55218,12 @@
       "aldehyde_content": "0.024g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2019,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS068"
   },
   {
     "id": "IS069",
@@ -54533,7 +55508,12 @@
       "aldehyde_content": "0.034g/L",
       "metanol_content": "0.43g/L",
       "reliable_shelf_life": "41年"
-    }
+    },
+    "year": 2020,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS069"
   },
   {
     "id": "IS070",
@@ -54819,7 +55799,12 @@
       "aldehyde_content": "0.013g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2017,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS070"
   },
   {
     "id": "IS071",
@@ -55088,7 +56073,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.21g/L",
       "reliable_shelf_life": "18年"
-    }
+    },
+    "year": 2018,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS071"
   },
   {
     "id": "IS072",
@@ -55366,7 +56356,12 @@
       "aldehyde_content": "0.068g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "35年"
-    }
+    },
+    "year": 2019,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQIS072"
   },
   {
     "id": "MJ051",
@@ -55638,7 +56633,12 @@
       "aldehyde_content": "0.037g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "42年"
-    }
+    },
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ051"
   },
   {
     "id": "MJ052",
@@ -55909,7 +56909,12 @@
       "aldehyde_content": "0.083g/L",
       "metanol_content": "0.39g/L",
       "reliable_shelf_life": "29年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ052"
   },
   {
     "id": "MJ053",
@@ -56192,7 +57197,12 @@
       "aldehyde_content": "0.013g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "41年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ053"
   },
   {
     "id": "MJ054",
@@ -56476,7 +57486,12 @@
       "aldehyde_content": "0.040g/L",
       "metanol_content": "0.10g/L",
       "reliable_shelf_life": "19年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ054"
   },
   {
     "id": "MJ055",
@@ -56747,7 +57762,12 @@
       "aldehyde_content": "0.046g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "29年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ055"
   },
   {
     "id": "MJ056",
@@ -57030,7 +58050,12 @@
       "aldehyde_content": "0.083g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2021,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ056"
   },
   {
     "id": "MJ058",
@@ -57301,7 +58326,12 @@
       "aldehyde_content": "0.049g/L",
       "metanol_content": "0.28g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ058"
   },
   {
     "id": "MJ060",
@@ -57572,7 +58602,12 @@
       "aldehyde_content": "0.025g/L",
       "metanol_content": "0.28g/L",
       "reliable_shelf_life": "48年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ060"
   },
   {
     "id": "MJ061",
@@ -57855,7 +58890,12 @@
       "aldehyde_content": "0.056g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "20年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ061"
   },
   {
     "id": "MJ062",
@@ -58139,7 +59179,12 @@
       "aldehyde_content": "0.092g/L",
       "metanol_content": "0.31g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ062"
   },
   {
     "id": "MJ065",
@@ -58421,7 +59466,12 @@
       "aldehyde_content": "0.016g/L",
       "metanol_content": "0.26g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ065"
   },
   {
     "id": "MJ066",
@@ -58703,7 +59753,12 @@
       "aldehyde_content": "0.051g/L",
       "metanol_content": "0.13g/L",
       "reliable_shelf_life": "50年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ066"
   },
   {
     "id": "MJ067",
@@ -58974,7 +60029,12 @@
       "aldehyde_content": "0.015g/L",
       "metanol_content": "0.19g/L",
       "reliable_shelf_life": "33年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ067"
   },
   {
     "id": "MJ070",
@@ -59257,7 +60317,12 @@
       "aldehyde_content": "0.082g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ070"
   },
   {
     "id": "MJ071",
@@ -59540,7 +60605,12 @@
       "aldehyde_content": "0.054g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "44年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ071"
   },
   {
     "id": "MJ072",
@@ -59824,7 +60894,12 @@
       "aldehyde_content": "0.086g/L",
       "metanol_content": "0.47g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ072"
   },
   {
     "id": "MJ073",
@@ -60108,7 +61183,12 @@
       "aldehyde_content": "0.070g/L",
       "metanol_content": "0.49g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ073"
   },
   {
     "id": "MJ074",
@@ -60392,7 +61472,12 @@
       "aldehyde_content": "0.052g/L",
       "metanol_content": "0.10g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ074"
   },
   {
     "id": "MJ075",
@@ -60676,7 +61761,12 @@
       "aldehyde_content": "0.066g/L",
       "metanol_content": "0.16g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2022,
+    "price_range": "100元以下",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ075"
   },
   {
     "id": "MJ076",
@@ -60959,7 +62049,12 @@
       "aldehyde_content": "0.069g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2023,
+    "price_range": "100元以下",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ076"
   },
   {
     "id": "MJ077",
@@ -61242,7 +62337,12 @@
       "aldehyde_content": "0.014g/L",
       "metanol_content": "0.46g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ077"
   },
   {
     "id": "MJ078",
@@ -61525,7 +62625,12 @@
       "aldehyde_content": "0.090g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2015,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ078"
   },
   {
     "id": "MJ080",
@@ -61808,7 +62913,12 @@
       "aldehyde_content": "0.076g/L",
       "metanol_content": "0.50g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ080"
   },
   {
     "id": "MJ081",
@@ -62091,7 +63201,12 @@
       "aldehyde_content": "0.089g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ081"
   },
   {
     "id": "MJ082",
@@ -62374,7 +63489,12 @@
       "aldehyde_content": "0.095g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2015,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ082"
   },
   {
     "id": "MJ083",
@@ -62658,7 +63778,12 @@
       "aldehyde_content": "0.064g/L",
       "metanol_content": "0.31g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2016,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ083"
   },
   {
     "id": "MJ084",
@@ -62941,7 +64066,12 @@
       "aldehyde_content": "0.043g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ084"
   },
   {
     "id": "MJ085",
@@ -63224,7 +64354,12 @@
       "aldehyde_content": "0.063g/L",
       "metanol_content": "0.36g/L",
       "reliable_shelf_life": "37年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ085"
   },
   {
     "id": "MJ086",
@@ -63507,7 +64642,12 @@
       "aldehyde_content": "0.012g/L",
       "metanol_content": "0.49g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ086"
   },
   {
     "id": "MJ087",
@@ -63790,7 +64930,12 @@
       "aldehyde_content": "0.074g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "50年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ087"
   },
   {
     "id": "MJ088",
@@ -64073,7 +65218,12 @@
       "aldehyde_content": "0.075g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "22年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ088"
   },
   {
     "id": "MJ089",
@@ -64357,7 +65507,12 @@
       "aldehyde_content": "0.091g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "28年"
-    }
+    },
+    "year": 2022,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ089"
   },
   {
     "id": "MJ090",
@@ -64640,7 +65795,12 @@
       "aldehyde_content": "0.030g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ090"
   },
   {
     "id": "MJ091",
@@ -64923,7 +66083,12 @@
       "aldehyde_content": "0.080g/L",
       "metanol_content": "0.45g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2020,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ091"
   },
   {
     "id": "MJ092",
@@ -65206,7 +66371,12 @@
       "aldehyde_content": "0.079g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ092"
   },
   {
     "id": "MJ093",
@@ -65489,7 +66659,12 @@
       "aldehyde_content": "0.070g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "18年"
-    }
+    },
+    "year": 2022,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ093"
   },
   {
     "id": "MJ094",
@@ -65772,7 +66947,12 @@
       "aldehyde_content": "0.080g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ094"
   },
   {
     "id": "MJ095",
@@ -66055,7 +67235,12 @@
       "aldehyde_content": "0.056g/L",
       "metanol_content": "0.17g/L",
       "reliable_shelf_life": "28年"
-    }
+    },
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ095"
   },
   {
     "id": "MJ096",
@@ -66338,7 +67523,12 @@
       "aldehyde_content": "0.011g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "33年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ096"
   },
   {
     "id": "MJ097",
@@ -66621,7 +67811,12 @@
       "aldehyde_content": "0.084g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "37年"
-    }
+    },
+    "year": 2016,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ097"
   },
   {
     "id": "MJ098",
@@ -66904,7 +68099,12 @@
       "aldehyde_content": "0.092g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "48年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ098"
   },
   {
     "id": "MJ099",
@@ -67188,7 +68388,12 @@
       "aldehyde_content": "0.049g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2018,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ099"
   },
   {
     "id": "MJ100",
@@ -67459,7 +68664,12 @@
       "aldehyde_content": "0.052g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "39年"
-    }
+    },
+    "year": 2021,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ100"
   },
   {
     "id": "IS075",
@@ -67742,7 +68952,12 @@
       "aldehyde_content": "0.026g/L",
       "metanol_content": "0.39g/L",
       "reliable_shelf_life": "50年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS075"
   },
   {
     "id": "IS076",
@@ -68025,7 +69240,12 @@
       "aldehyde_content": "0.093g/L",
       "metanol_content": "0.24g/L",
       "reliable_shelf_life": "39年"
-    }
+    },
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS076"
   },
   {
     "id": "IS077",
@@ -68309,7 +69529,12 @@
       "aldehyde_content": "0.076g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "14年"
-    }
+    },
+    "year": 2024,
+    "price_range": "1000-3000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQIS077"
   },
   {
     "id": "IS078",
@@ -68592,7 +69817,12 @@
       "aldehyde_content": "0.089g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS078"
   },
   {
     "id": "IS079",
@@ -68875,7 +70105,12 @@
       "aldehyde_content": "0.072g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQIS079"
   },
   {
     "id": "IS080",
@@ -69158,7 +70393,12 @@
       "aldehyde_content": "0.025g/L",
       "metanol_content": "0.24g/L",
       "reliable_shelf_life": "48年"
-    }
+    },
+    "year": 2023,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS080"
   },
   {
     "id": "IS081",
@@ -69441,7 +70681,12 @@
       "aldehyde_content": "0.065g/L",
       "metanol_content": "0.21g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQIS081"
   },
   {
     "id": "IS082",
@@ -69725,7 +70970,12 @@
       "aldehyde_content": "0.025g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2015,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQIS082"
   },
   {
     "id": "IS083",
@@ -70008,7 +71258,12 @@
       "aldehyde_content": "0.089g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2016,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS083"
   },
   {
     "id": "IS084",
@@ -70291,7 +71546,12 @@
       "aldehyde_content": "0.080g/L",
       "metanol_content": "0.17g/L",
       "reliable_shelf_life": "32年"
-    }
+    },
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS084"
   },
   {
     "id": "IS085",
@@ -70575,7 +71835,12 @@
       "aldehyde_content": "0.096g/L",
       "metanol_content": "0.13g/L",
       "reliable_shelf_life": "25年"
-    }
+    },
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQIS085"
   },
   {
     "id": "IS086",
@@ -70858,7 +72123,12 @@
       "aldehyde_content": "0.042g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "30年"
-    }
+    },
+    "year": 2019,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS086"
   },
   {
     "id": "IS087",
@@ -71141,7 +72411,12 @@
       "aldehyde_content": "0.016g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2020,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQIS087"
   },
   {
     "id": "IS088",
@@ -71425,7 +72700,12 @@
       "aldehyde_content": "0.097g/L",
       "metanol_content": "0.11g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS088"
   },
   {
     "id": "IS089",
@@ -71708,7 +72988,12 @@
       "aldehyde_content": "0.069g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS089"
   },
   {
     "id": "IS090",
@@ -71991,7 +73276,12 @@
       "aldehyde_content": "0.030g/L",
       "metanol_content": "0.30g/L",
       "reliable_shelf_life": "47年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS090"
   },
   {
     "id": "IS091",
@@ -72274,7 +73564,12 @@
       "aldehyde_content": "0.052g/L",
       "metanol_content": "0.33g/L",
       "reliable_shelf_life": "23年"
-    }
+    },
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS091"
   },
   {
     "id": "IS092",
@@ -72557,7 +73852,12 @@
       "aldehyde_content": "0.025g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "季克良",
+    "sku": "LIQIS092"
   },
   {
     "id": "IS093",
@@ -72840,7 +74140,12 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "41年"
-    }
+    },
+    "year": 2022,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS093"
   },
   {
     "id": "IS094",
@@ -73123,7 +74428,12 @@
       "aldehyde_content": "0.055g/L",
       "metanol_content": "0.41g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2023,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS094"
   },
   {
     "id": "IS095",
@@ -73407,7 +74717,12 @@
       "aldehyde_content": "0.063g/L",
       "metanol_content": "0.45g/L",
       "reliable_shelf_life": "18年"
-    }
+    },
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQIS095"
   },
   {
     "id": "IS096",
@@ -73691,7 +75006,12 @@
       "aldehyde_content": "0.047g/L",
       "metanol_content": "0.14g/L",
       "reliable_shelf_life": "13年"
-    }
+    },
+    "year": 2015,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQIS096"
   },
   {
     "id": "IS097",
@@ -73974,7 +75294,12 @@
       "aldehyde_content": "0.096g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2016,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQIS097"
   },
   {
     "id": "IS098",
@@ -74257,7 +75582,12 @@
       "aldehyde_content": "0.096g/L",
       "metanol_content": "0.36g/L",
       "reliable_shelf_life": "15年"
-    }
+    },
+    "year": 2017,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS098"
   },
   {
     "id": "IS099",
@@ -74540,7 +75870,12 @@
       "aldehyde_content": "0.032g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQIS099"
   },
   {
     "id": "IS100",
@@ -74824,7 +76159,12 @@
       "aldehyde_content": "0.081g/L",
       "metanol_content": "0.50g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2021,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "王耀庭",
+    "sku": "LIQIS100"
   },
   {
     "id": "MJ301",
@@ -75094,7 +76434,12 @@
       "aldehyde_content": "0.015g/L",
       "metanol_content": "0.38g/L",
       "reliable_shelf_life": "36年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ301"
   },
   {
     "id": "MJ302",
@@ -75364,7 +76709,12 @@
       "aldehyde_content": "0.031g/L",
       "metanol_content": "0.44g/L",
       "reliable_shelf_life": "36年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ302"
   },
   {
     "id": "MJ303",
@@ -75634,7 +76984,12 @@
       "aldehyde_content": "0.085g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ303"
   },
   {
     "id": "MJ304",
@@ -75905,7 +77260,12 @@
       "aldehyde_content": "0.053g/L",
       "metanol_content": "0.30g/L",
       "reliable_shelf_life": "28年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ304"
   },
   {
     "id": "MJ305",
@@ -76176,7 +77536,12 @@
       "aldehyde_content": "0.012g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "34年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ305"
   },
   {
     "id": "MJ306",
@@ -76447,7 +77812,12 @@
       "aldehyde_content": "0.011g/L",
       "metanol_content": "0.29g/L",
       "reliable_shelf_life": "25年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ306"
   },
   {
     "id": "MJ307",
@@ -76717,7 +78087,12 @@
       "aldehyde_content": "0.083g/L",
       "metanol_content": "0.40g/L",
       "reliable_shelf_life": "43年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ307"
   },
   {
     "id": "MJ308",
@@ -76987,7 +78362,12 @@
       "aldehyde_content": "0.056g/L",
       "metanol_content": "0.22g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ308"
   },
   {
     "id": "MJ309",
@@ -77257,7 +78637,12 @@
       "aldehyde_content": "0.074g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "38年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ309"
   },
   {
     "id": "MJ310",
@@ -77528,7 +78913,12 @@
       "aldehyde_content": "0.029g/L",
       "metanol_content": "0.45g/L",
       "reliable_shelf_life": "22年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ310"
   },
   {
     "id": "MJ311",
@@ -77798,7 +79188,12 @@
       "aldehyde_content": "0.089g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ311"
   },
   {
     "id": "MJ312",
@@ -78068,7 +79463,12 @@
       "aldehyde_content": "0.081g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "21年"
-    }
+    },
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ312"
   },
   {
     "id": "MJ313",
@@ -78338,7 +79738,12 @@
       "aldehyde_content": "0.021g/L",
       "metanol_content": "0.48g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ313"
   },
   {
     "id": "MJ314",
@@ -78608,7 +80013,12 @@
       "aldehyde_content": "0.025g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "26年"
-    }
+    },
+    "year": 2023,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQMJ314"
   },
   {
     "id": "MJ315",
@@ -78878,7 +80288,12 @@
       "aldehyde_content": "0.019g/L",
       "metanol_content": "0.25g/L",
       "reliable_shelf_life": "33年"
-    }
+    },
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ315"
   },
   {
     "id": "MJ316",
@@ -79148,7 +80563,12 @@
       "aldehyde_content": "0.078g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "12年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ316"
   },
   {
     "id": "MJ317",
@@ -79418,7 +80838,12 @@
       "aldehyde_content": "0.059g/L",
       "metanol_content": "0.12g/L",
       "reliable_shelf_life": "24年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ317"
   },
   {
     "id": "MJ318",
@@ -79688,7 +81113,12 @@
       "aldehyde_content": "0.042g/L",
       "metanol_content": "0.24g/L",
       "reliable_shelf_life": "40年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "何英华",
+    "sku": "LIQMJ318"
   },
   {
     "id": "MJ319",
@@ -79958,7 +81388,12 @@
       "aldehyde_content": "0.035g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "45年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ319"
   },
   {
     "id": "MJ320",
@@ -80228,7 +81663,12 @@
       "aldehyde_content": "0.047g/L",
       "metanol_content": "0.23g/L",
       "reliable_shelf_life": "11年"
-    }
+    },
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "王耀庭",
+    "sku": "LIQMJ320"
   },
   {
     "id": "MJ321",
@@ -80499,7 +81939,12 @@
       "aldehyde_content": "0.075g/L",
       "metanol_content": "0.43g/L",
       "reliable_shelf_life": "17年"
-    }
+    },
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ321"
   },
   {
     "id": "MJ322",
@@ -80769,7 +82214,12 @@
       "aldehyde_content": "0.076g/L",
       "metanol_content": "0.35g/L",
       "reliable_shelf_life": "49年"
-    }
+    },
+    "year": 2017,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQMJ322"
   },
   {
     "id": "MJ323",
@@ -81039,7 +82489,12 @@
       "aldehyde_content": "0.035g/L",
       "metanol_content": "0.18g/L",
       "reliable_shelf_life": "10年"
-    }
+    },
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQMJ323"
   },
   {
     "id": "MJ324",
@@ -81309,6 +82764,3983 @@
       "aldehyde_content": "0.041g/L",
       "metanol_content": "0.20g/L",
       "reliable_shelf_life": "27年"
-    }
+    },
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQMJ324"
+  },
+  {
+    "id": "NEW293",
+    "name": "星辰大海2015",
+    "ename": "New liquor 0",
+    "type": "清香型",
+    "abv": 55,
+    "origin": "鄂省某市",
+    "region": "鄂",
+    "price": 1699,
+    "era": "近代",
+    "factory": "河北衡水老白干酿酒集团",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "清香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自鄂省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "5年陈酿",
+    "distillery": "鄂酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 76.8,
+    "aroma": 14,
+    "body": 16,
+    "taste": 18,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "3年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自鄂的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2015,
+    "price_range": "500-1000元",
+    "rarity": "普通",
+    "master_distiller": "汪华",
+    "sku": "LIQ202000293"
+  },
+  {
+    "id": "NEW294",
+    "name": "百年陈酿2016",
+    "ename": "New liquor 1",
+    "type": "董香型",
+    "abv": 42,
+    "origin": "闽省某市",
+    "region": "闽",
+    "price": 268,
+    "era": "现代",
+    "factory": "安徽古井贡酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自闽省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "6年陈酿",
+    "distillery": "闽酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 80.0,
+    "aroma": 14,
+    "body": 16,
+    "taste": 14,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "4年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自闽的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQ202100294"
+  },
+  {
+    "id": "NEW295",
+    "name": "金色年华2017",
+    "ename": "New liquor 2",
+    "type": "浓香型",
+    "abv": 52,
+    "origin": "沪省某市",
+    "region": "沪",
+    "price": 1999,
+    "era": "近代",
+    "factory": "河北衡水老白干酿酒集团",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自沪省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "7年陈酿",
+    "distillery": "沪酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 88.7,
+    "aroma": 17,
+    "body": 14,
+    "taste": 18,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "5年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自沪的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2017,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "李兴发",
+    "sku": "LIQ202200295"
+  },
+  {
+    "id": "NEW296",
+    "name": "梦回唐朝2018",
+    "ename": "New liquor 3",
+    "type": "酱香型",
+    "abv": 40,
+    "origin": "粤省某市",
+    "region": "粤",
+    "price": 99,
+    "era": "现代",
+    "factory": "安徽古井贡酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "酱香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自粤省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "8年陈酿",
+    "distillery": "粤酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 85.8,
+    "aroma": 13,
+    "body": 14,
+    "taste": 14,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "6年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自粤的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "普通",
+    "master_distiller": "李秋喜",
+    "sku": "LIQ202300296"
+  },
+  {
+    "id": "NEW297",
+    "name": "彩云追月2019",
+    "ename": "New liquor 4",
+    "type": "老白干香型",
+    "abv": 52,
+    "origin": "晋省某市",
+    "region": "晋",
+    "price": 199,
+    "era": "近代",
+    "factory": "山西汾酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "老白干香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自晋省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "9年陈酿",
+    "distillery": "晋酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 81.0,
+    "aroma": 16,
+    "body": 18,
+    "taste": 15,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "7年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自晋的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2019,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "张良",
+    "sku": "LIQ202400297"
+  },
+  {
+    "id": "NEW298",
+    "name": "元曲新声2020",
+    "ename": "New liquor 5",
+    "type": "浓香型",
+    "abv": 42,
+    "origin": "沪省某市",
+    "region": "沪",
+    "price": 199,
+    "era": "现代",
+    "factory": "四川水井坊股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自沪省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "10年陈酿",
+    "distillery": "沪酒厂",
+    "awards": [],
+    "score": 75.2,
+    "aroma": 13,
+    "body": 17,
+    "taste": 19,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "8年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自沪的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2020,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "赵东",
+    "sku": "LIQ202500298"
+  },
+  {
+    "id": "NEW299",
+    "name": "匠心之作2021",
+    "ename": "New liquor 6",
+    "type": "董香型",
+    "abv": 42,
+    "origin": "湘省某市",
+    "region": "湘",
+    "price": 688,
+    "era": "近代",
+    "factory": "江苏洋河酒厂股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自湘省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "11年陈酿",
+    "distillery": "湘酒厂",
+    "awards": [],
+    "score": 76.9,
+    "aroma": 17,
+    "body": 17,
+    "taste": 16,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "9年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自湘的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2021,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "王萍",
+    "sku": "LIQ202600299"
+  },
+  {
+    "id": "NEW300",
+    "name": "铂金版2022",
+    "ename": "New liquor 7",
+    "type": "豉香型",
+    "abv": 42,
+    "origin": "渝省某市",
+    "region": "渝",
+    "price": 888,
+    "era": "现代",
+    "factory": "湖北白云边酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "豉香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自渝省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "12年陈酿",
+    "distillery": "渝酒厂",
+    "awards": [],
+    "score": 89.9,
+    "aroma": 12,
+    "body": 14,
+    "taste": 16,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "10年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自渝的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2022,
+    "price_range": "100元以下",
+    "rarity": "普通",
+    "master_distiller": "王萍",
+    "sku": "LIQ202700300"
+  },
+  {
+    "id": "NEW301",
+    "name": "匠心之作2023",
+    "ename": "New liquor 8",
+    "type": "芝麻香型",
+    "abv": 54,
+    "origin": "豫省某市",
+    "region": "豫",
+    "price": 128,
+    "era": "现代",
+    "factory": "河北衡水老白干酿酒集团",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "芝麻香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自豫省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "13年陈酿",
+    "distillery": "豫酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 75.9,
+    "aroma": 17,
+    "body": 18,
+    "taste": 15,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "11年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自豫的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2023,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "刘明亮",
+    "sku": "LIQ202800301"
+  },
+  {
+    "id": "NEW302",
+    "name": "红色经典2024",
+    "ename": "New liquor 9",
+    "type": "清香型",
+    "abv": 52,
+    "origin": "琼省某市",
+    "region": "琼",
+    "price": 488,
+    "era": "近代",
+    "factory": "宜宾五粮液股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "清香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自琼省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "14年陈酿",
+    "distillery": "琼酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 81.6,
+    "aroma": 14,
+    "body": 15,
+    "taste": 18,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "12年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自琼的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2024,
+    "price_range": "100-300元",
+    "rarity": "珍稀",
+    "master_distiller": "周新虎",
+    "sku": "LIQ202900302"
+  },
+  {
+    "id": "NEW303",
+    "name": "蓝色梦幻2025",
+    "ename": "New liquor 10",
+    "type": "清香型",
+    "abv": 45,
+    "origin": "陕省某市",
+    "region": "陕",
+    "price": 888,
+    "era": "近代",
+    "factory": "四川郎酒集团",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "清香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自陕省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "15年陈酿",
+    "distillery": "陕酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 76.9,
+    "aroma": 13,
+    "body": 13,
+    "taste": 16,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "13年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自陕的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2025,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "王雁",
+    "sku": "LIQ202000303"
+  },
+  {
+    "id": "NEW304",
+    "name": "限量发行2026",
+    "ename": "New liquor 11",
+    "type": "酱香型",
+    "abv": 52,
+    "origin": "津省某市",
+    "region": "津",
+    "price": 1699,
+    "era": "近代",
+    "factory": "泸州老窖股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "酱香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自津省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "16年陈酿",
+    "distillery": "津酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 78.1,
+    "aroma": 17,
+    "body": 15,
+    "taste": 15,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "14年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自津的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2026,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "袁仁国",
+    "sku": "LIQ202100304"
+  },
+  {
+    "id": "NEW305",
+    "name": "窖藏封坛2027",
+    "ename": "New liquor 12",
+    "type": "酱香型",
+    "abv": 45,
+    "origin": "黔省某市",
+    "region": "黔",
+    "price": 99,
+    "era": "近代",
+    "factory": "江苏洋河酒厂股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "酱香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自黔省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "17年陈酿",
+    "distillery": "黔酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 78.5,
+    "aroma": 18,
+    "body": 18,
+    "taste": 18,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "15年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自黔的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2027,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "王萍",
+    "sku": "LIQ202200305"
+  },
+  {
+    "id": "NEW306",
+    "name": "窖藏封坛2028",
+    "ename": "New liquor 13",
+    "type": "浓香型",
+    "abv": 40,
+    "origin": "皖省某市",
+    "region": "皖",
+    "price": 99,
+    "era": "近代",
+    "factory": "江苏洋河酒厂股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自皖省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "18年陈酿",
+    "distillery": "皖酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 75.7,
+    "aroma": 16,
+    "body": 16,
+    "taste": 19,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "16年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自皖的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2028,
+    "price_range": "3000元以上",
+    "rarity": "普通",
+    "master_distiller": "王雁",
+    "sku": "LIQ202300306"
+  },
+  {
+    "id": "NEW307",
+    "name": "金奖荣誉2029",
+    "ename": "New liquor 14",
+    "type": "豉香型",
+    "abv": 38,
+    "origin": "鄂省某市",
+    "region": "鄂",
+    "price": 1699,
+    "era": "现代",
+    "factory": "四川水井坊股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "豉香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自鄂省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "19年陈酿",
+    "distillery": "鄂酒厂",
+    "awards": [],
+    "score": 83.9,
+    "aroma": 12,
+    "body": 18,
+    "taste": 14,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "17年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自鄂的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2029,
+    "price_range": "3000元以上",
+    "rarity": "绝版",
+    "master_distiller": "李兴发",
+    "sku": "LIQ202400307"
+  },
+  {
+    "id": "NEW308",
+    "name": "天成佳酿2015",
+    "ename": "New liquor 15",
+    "type": "豉香型",
+    "abv": 38,
+    "origin": "陕省某市",
+    "region": "陕",
+    "price": 168,
+    "era": "现代",
+    "factory": "湖北白云边酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "豉香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自陕省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "20年陈酿",
+    "distillery": "陕酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 89.7,
+    "aroma": 17,
+    "body": 16,
+    "taste": 14,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "3年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自陕的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2015,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "赵东",
+    "sku": "LIQ202500308"
+  },
+  {
+    "id": "NEW309",
+    "name": "彩云追月2016",
+    "ename": "New liquor 16",
+    "type": "浓香型",
+    "abv": 55,
+    "origin": "湘省某市",
+    "region": "湘",
+    "price": 1699,
+    "era": "近代",
+    "factory": "贵州茅台酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自湘省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "21年陈酿",
+    "distillery": "湘酒厂",
+    "awards": [],
+    "score": 89.3,
+    "aroma": 15,
+    "body": 12,
+    "taste": 16,
+    "afterglow": 15,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "4年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自湘的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2016,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "刘明亮",
+    "sku": "LIQ202600309"
+  },
+  {
+    "id": "NEW310",
+    "name": "天成佳酿2017",
+    "ename": "New liquor 17",
+    "type": "酱香型",
+    "abv": 46,
+    "origin": "渝省某市",
+    "region": "渝",
+    "price": 168,
+    "era": "近代",
+    "factory": "宜宾五粮液股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "酱香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自渝省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "22年陈酿",
+    "distillery": "渝酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 85.0,
+    "aroma": 16,
+    "body": 17,
+    "taste": 15,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "5年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自渝的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2017,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "李秋喜",
+    "sku": "LIQ202700310"
+  },
+  {
+    "id": "NEW311",
+    "name": "至臻佳酿2018",
+    "ename": "New liquor 18",
+    "type": "董香型",
+    "abv": 55,
+    "origin": "京省某市",
+    "region": "京",
+    "price": 1999,
+    "era": "近代",
+    "factory": "安徽古井贡酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自京省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "23年陈酿",
+    "distillery": "京酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 78.7,
+    "aroma": 12,
+    "body": 18,
+    "taste": 14,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "6年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自京的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2018,
+    "price_range": "3000元以上",
+    "rarity": "绝版",
+    "master_distiller": "陈建",
+    "sku": "LIQ202800311"
+  },
+  {
+    "id": "NEW312",
+    "name": "匠心之作2019",
+    "ename": "New liquor 19",
+    "type": "豉香型",
+    "abv": 45,
+    "origin": "皖省某市",
+    "region": "皖",
+    "price": 1999,
+    "era": "现代",
+    "factory": "宜宾五粮液股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "豉香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自皖省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "24年陈酿",
+    "distillery": "皖酒厂",
+    "awards": [],
+    "score": 79.8,
+    "aroma": 14,
+    "body": 13,
+    "taste": 16,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "7年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自皖的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2019,
+    "price_range": "3000元以上",
+    "rarity": "限量",
+    "master_distiller": "赵东",
+    "sku": "LIQ202900312"
+  },
+  {
+    "id": "NEW313",
+    "name": "锦绣前程2020",
+    "ename": "New liquor 20",
+    "type": "凤香型",
+    "abv": 54,
+    "origin": "皖省某市",
+    "region": "皖",
+    "price": 999,
+    "era": "近代",
+    "factory": "山西汾酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "凤香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自皖省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "25年陈酿",
+    "distillery": "皖酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 81.9,
+    "aroma": 14,
+    "body": 15,
+    "taste": 18,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "8年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自皖的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2020,
+    "price_range": "100-300元",
+    "rarity": "限量",
+    "master_distiller": "张良",
+    "sku": "LIQ202000313"
+  },
+  {
+    "id": "NEW314",
+    "name": "锦绣前程2021",
+    "ename": "New liquor 21",
+    "type": "兼香型",
+    "abv": 43,
+    "origin": "赣省某市",
+    "region": "赣",
+    "price": 358,
+    "era": "近代",
+    "factory": "贵州茅台酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "兼香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自赣省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "26年陈酿",
+    "distillery": "赣酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 82.5,
+    "aroma": 16,
+    "body": 14,
+    "taste": 17,
+    "afterglow": 15,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "9年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自赣的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2021,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "汪华",
+    "sku": "LIQ202100314"
+  },
+  {
+    "id": "NEW315",
+    "name": "青山翠谷2022",
+    "ename": "New liquor 22",
+    "type": "老白干香型",
+    "abv": 45,
+    "origin": "鲁省某市",
+    "region": "鲁",
+    "price": 1699,
+    "era": "现代",
+    "factory": "安徽古井贡酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "老白干香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自鲁省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "27年陈酿",
+    "distillery": "鲁酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 86.0,
+    "aroma": 17,
+    "body": 13,
+    "taste": 18,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "10年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自鲁的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2022,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "周庆",
+    "sku": "LIQ202200315"
+  },
+  {
+    "id": "NEW316",
+    "name": "天成佳酿2023",
+    "ename": "New liquor 23",
+    "type": "特香型",
+    "abv": 40,
+    "origin": "陕省某市",
+    "region": "陕",
+    "price": 199,
+    "era": "现代",
+    "factory": "湖北白云边酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "特香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自陕省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "28年陈酿",
+    "distillery": "陕酒厂",
+    "awards": [],
+    "score": 88.4,
+    "aroma": 17,
+    "body": 13,
+    "taste": 17,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "11年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自陕的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "张良",
+    "sku": "LIQ202300316"
+  },
+  {
+    "id": "NEW317",
+    "name": "锦绣前程2024",
+    "ename": "New liquor 24",
+    "type": "老白干香型",
+    "abv": 54,
+    "origin": "川省某市",
+    "region": "川",
+    "price": 1299,
+    "era": "现代",
+    "factory": "江苏洋河酒厂股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "老白干香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自川省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "29年陈酿",
+    "distillery": "川酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 86.4,
+    "aroma": 15,
+    "body": 18,
+    "taste": 15,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "12年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自川的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2024,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "王雁",
+    "sku": "LIQ202400317"
+  },
+  {
+    "id": "NEW318",
+    "name": "钻石级2025",
+    "ename": "New liquor 25",
+    "type": "特香型",
+    "abv": 52,
+    "origin": "沪省某市",
+    "region": "沪",
+    "price": 1999,
+    "era": "现代",
+    "factory": "贵州茅台酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "特香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自沪省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "30年陈酿",
+    "distillery": "沪酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 77.7,
+    "aroma": 18,
+    "body": 18,
+    "taste": 16,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "13年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自沪的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2025,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "徐占成",
+    "sku": "LIQ202500318"
+  },
+  {
+    "id": "NEW319",
+    "name": "青山翠谷2026",
+    "ename": "New liquor 26",
+    "type": "浓香型",
+    "abv": 43,
+    "origin": "黔省某市",
+    "region": "黔",
+    "price": 298,
+    "era": "近代",
+    "factory": "四川郎酒集团",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自黔省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "31年陈酿",
+    "distillery": "黔酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 85.6,
+    "aroma": 13,
+    "body": 17,
+    "taste": 18,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "14年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自黔的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2026,
+    "price_range": "100元以下",
+    "rarity": "珍稀",
+    "master_distiller": "周新虎",
+    "sku": "LIQ202600319"
+  },
+  {
+    "id": "NEW320",
+    "name": "彩云追月2027",
+    "ename": "New liquor 27",
+    "type": "特香型",
+    "abv": 43,
+    "origin": "鲁省某市",
+    "region": "鲁",
+    "price": 488,
+    "era": "现代",
+    "factory": "山东扳倒井股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "特香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自鲁省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "32年陈酿",
+    "distillery": "鲁酒厂",
+    "awards": [],
+    "score": 86.5,
+    "aroma": 16,
+    "body": 13,
+    "taste": 18,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "15年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自鲁的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2027,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "王奉孝",
+    "sku": "LIQ202700320"
+  },
+  {
+    "id": "NEW321",
+    "name": "至臻佳酿2028",
+    "ename": "New liquor 28",
+    "type": "兼香型",
+    "abv": 46,
+    "origin": "湘省某市",
+    "region": "湘",
+    "price": 488,
+    "era": "现代",
+    "factory": "湖北白云边酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "兼香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自湘省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "33年陈酿",
+    "distillery": "湘酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 83.6,
+    "aroma": 15,
+    "body": 13,
+    "taste": 16,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "16年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自湘的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2028,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "汪华",
+    "sku": "LIQ202800321"
+  },
+  {
+    "id": "NEW322",
+    "name": "彩云追月2029",
+    "ename": "New liquor 29",
+    "type": "凤香型",
+    "abv": 43,
+    "origin": "闽省某市",
+    "region": "闽",
+    "price": 888,
+    "era": "现代",
+    "factory": "泸州老窖股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "凤香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自闽省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "34年陈酿",
+    "distillery": "闽酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 76.5,
+    "aroma": 13,
+    "body": 12,
+    "taste": 15,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "17年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自闽的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2029,
+    "price_range": "300-500元",
+    "rarity": "珍稀",
+    "master_distiller": "季克良",
+    "sku": "LIQ202900322"
+  },
+  {
+    "id": "NEW323",
+    "name": "元曲新声2015",
+    "ename": "New liquor 30",
+    "type": "豉香型",
+    "abv": 53,
+    "origin": "鲁省某市",
+    "region": "鲁",
+    "price": 888,
+    "era": "近代",
+    "factory": "江苏洋河酒厂股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "豉香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自鲁省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "5年陈酿",
+    "distillery": "鲁酒厂",
+    "awards": [],
+    "score": 88.8,
+    "aroma": 15,
+    "body": 18,
+    "taste": 17,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "3年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自鲁的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2015,
+    "price_range": "100-300元",
+    "rarity": "绝版",
+    "master_distiller": "季克良",
+    "sku": "LIQ202000323"
+  },
+  {
+    "id": "NEW324",
+    "name": "星辰大海2016",
+    "ename": "New liquor 31",
+    "type": "董香型",
+    "abv": 52,
+    "origin": "云省某市",
+    "region": "云",
+    "price": 168,
+    "era": "现代",
+    "factory": "湖北白云边酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自云省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "6年陈酿",
+    "distillery": "云酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 75.2,
+    "aroma": 16,
+    "body": 15,
+    "taste": 17,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "4年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自云的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2016,
+    "price_range": "100元以下",
+    "rarity": "绝版",
+    "master_distiller": "张良",
+    "sku": "LIQ202100324"
+  },
+  {
+    "id": "NEW325",
+    "name": "梦回唐朝2017",
+    "ename": "New liquor 32",
+    "type": "特香型",
+    "abv": 55,
+    "origin": "京省某市",
+    "region": "京",
+    "price": 168,
+    "era": "现代",
+    "factory": "山东扳倒井股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "特香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自京省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "7年陈酿",
+    "distillery": "京酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 89.3,
+    "aroma": 14,
+    "body": 18,
+    "taste": 19,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "5年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自京的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2017,
+    "price_range": "100-300元",
+    "rarity": "普通",
+    "master_distiller": "王萍",
+    "sku": "LIQ202200325"
+  },
+  {
+    "id": "NEW326",
+    "name": "金色夕阳2018",
+    "ename": "New liquor 33",
+    "type": "董香型",
+    "abv": 43,
+    "origin": "闽省某市",
+    "region": "闽",
+    "price": 298,
+    "era": "现代",
+    "factory": "甘肃皇台酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自闽省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "8年陈酿",
+    "distillery": "闽酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 89.9,
+    "aroma": 17,
+    "body": 12,
+    "taste": 15,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "6年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自闽的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2018,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "何英华",
+    "sku": "LIQ202300326"
+  },
+  {
+    "id": "NEW327",
+    "name": "匠心之作2019",
+    "ename": "New liquor 34",
+    "type": "芝麻香型",
+    "abv": 46,
+    "origin": "鄂省某市",
+    "region": "鄂",
+    "price": 588,
+    "era": "近代",
+    "factory": "贵州茅台酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "芝麻香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自鄂省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "9年陈酿",
+    "distillery": "鄂酒厂",
+    "awards": [],
+    "score": 81.4,
+    "aroma": 13,
+    "body": 12,
+    "taste": 16,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "7年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自鄂的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2019,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "李兴发",
+    "sku": "LIQ202400327"
+  },
+  {
+    "id": "NEW328",
+    "name": "星辰大海2020",
+    "ename": "New liquor 35",
+    "type": "董香型",
+    "abv": 55,
+    "origin": "云省某市",
+    "region": "云",
+    "price": 358,
+    "era": "近代",
+    "factory": "河北衡水老白干酿酒集团",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自云省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "10年陈酿",
+    "distillery": "云酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 76.9,
+    "aroma": 18,
+    "body": 14,
+    "taste": 18,
+    "afterglow": 15,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "8年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自云的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2020,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "李聪",
+    "sku": "LIQ202500328"
+  },
+  {
+    "id": "NEW329",
+    "name": "银色年华2021",
+    "ename": "New liquor 36",
+    "type": "凤香型",
+    "abv": 38,
+    "origin": "川省某市",
+    "region": "川",
+    "price": 888,
+    "era": "现代",
+    "factory": "江苏洋河酒厂股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "凤香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自川省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "11年陈酿",
+    "distillery": "川酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 75.8,
+    "aroma": 15,
+    "body": 13,
+    "taste": 17,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "9年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自川的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2021,
+    "price_range": "100元以下",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQ202600329"
+  },
+  {
+    "id": "NEW330",
+    "name": "元曲新声2022",
+    "ename": "New liquor 37",
+    "type": "兼香型",
+    "abv": 52,
+    "origin": "陕省某市",
+    "region": "陕",
+    "price": 88,
+    "era": "近代",
+    "factory": "四川水井坊股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "兼香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自陕省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "12年陈酿",
+    "distillery": "陕酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 79.9,
+    "aroma": 18,
+    "body": 17,
+    "taste": 15,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "10年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自陕的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2022,
+    "price_range": "3000元以上",
+    "rarity": "绝版",
+    "master_distiller": "林锋",
+    "sku": "LIQ202700330"
+  },
+  {
+    "id": "NEW331",
+    "name": "盛世典藏2023",
+    "ename": "New liquor 38",
+    "type": "清香型",
+    "abv": 55,
+    "origin": "琼省某市",
+    "region": "琼",
+    "price": 358,
+    "era": "现代",
+    "factory": "贵州茅台酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "清香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自琼省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "13年陈酿",
+    "distillery": "琼酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 79.4,
+    "aroma": 15,
+    "body": 18,
+    "taste": 19,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "11年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自琼的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2023,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "汪华",
+    "sku": "LIQ202800331"
+  },
+  {
+    "id": "NEW332",
+    "name": "限量发行2024",
+    "ename": "New liquor 39",
+    "type": "老白干香型",
+    "abv": 43,
+    "origin": "渝省某市",
+    "region": "渝",
+    "price": 488,
+    "era": "近代",
+    "factory": "宜宾五粮液股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "老白干香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自渝省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "14年陈酿",
+    "distillery": "渝酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 87.7,
+    "aroma": 17,
+    "body": 15,
+    "taste": 18,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "12年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自渝的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2024,
+    "price_range": "500-1000元",
+    "rarity": "限量",
+    "master_distiller": "王奉孝",
+    "sku": "LIQ202900332"
+  },
+  {
+    "id": "NEW333",
+    "name": "星辰大海2025",
+    "ename": "New liquor 40",
+    "type": "兼香型",
+    "abv": 43,
+    "origin": "闽省某市",
+    "region": "闽",
+    "price": 168,
+    "era": "现代",
+    "factory": "四川水井坊股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "兼香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自闽省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "15年陈酿",
+    "distillery": "闽酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 79.1,
+    "aroma": 16,
+    "body": 14,
+    "taste": 16,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "13年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自闽的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2025,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "周庆",
+    "sku": "LIQ202000333"
+  },
+  {
+    "id": "NEW334",
+    "name": "金色年华2026",
+    "ename": "New liquor 41",
+    "type": "酱香型",
+    "abv": 43,
+    "origin": "豫省某市",
+    "region": "豫",
+    "price": 1999,
+    "era": "现代",
+    "factory": "四川水井坊股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "酱香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自豫省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "16年陈酿",
+    "distillery": "豫酒厂",
+    "awards": [],
+    "score": 84.5,
+    "aroma": 12,
+    "body": 16,
+    "taste": 17,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "14年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自豫的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2026,
+    "price_range": "3000元以上",
+    "rarity": "限量",
+    "master_distiller": "赵东",
+    "sku": "LIQ202100334"
+  },
+  {
+    "id": "NEW335",
+    "name": "碧海晴天2027",
+    "ename": "New liquor 42",
+    "type": "浓香型",
+    "abv": 45,
+    "origin": "冀省某市",
+    "region": "冀",
+    "price": 88,
+    "era": "近代",
+    "factory": "湖北白云边酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自冀省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "17年陈酿",
+    "distillery": "冀酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 78.7,
+    "aroma": 12,
+    "body": 14,
+    "taste": 17,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "15年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自冀的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2027,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "周新虎",
+    "sku": "LIQ202200335"
+  },
+  {
+    "id": "NEW336",
+    "name": "传奇佳酿2028",
+    "ename": "New liquor 43",
+    "type": "凤香型",
+    "abv": 46,
+    "origin": "浙省某市",
+    "region": "浙",
+    "price": 1299,
+    "era": "现代",
+    "factory": "河北衡水老白干酿酒集团",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "凤香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自浙省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "18年陈酿",
+    "distillery": "浙酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 89.9,
+    "aroma": 17,
+    "body": 12,
+    "taste": 18,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "16年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自浙的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2028,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "李聪",
+    "sku": "LIQ202300336"
+  },
+  {
+    "id": "NEW337",
+    "name": "紫色浪漫2029",
+    "ename": "New liquor 44",
+    "type": "董香型",
+    "abv": 52,
+    "origin": "桂省某市",
+    "region": "桂",
+    "price": 128,
+    "era": "近代",
+    "factory": "贵州茅台酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自桂省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "19年陈酿",
+    "distillery": "桂酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 85.3,
+    "aroma": 18,
+    "body": 17,
+    "taste": 17,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "17年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自桂的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2029,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "王萍",
+    "sku": "LIQ202400337"
+  },
+  {
+    "id": "NEW338",
+    "name": "绝版珍藏2015",
+    "ename": "New liquor 45",
+    "type": "浓香型",
+    "abv": 43,
+    "origin": "晋省某市",
+    "region": "晋",
+    "price": 398,
+    "era": "近代",
+    "factory": "四川水井坊股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自晋省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "20年陈酿",
+    "distillery": "晋酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 79.1,
+    "aroma": 18,
+    "body": 15,
+    "taste": 17,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "3年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自晋的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2015,
+    "price_range": "300-500元",
+    "rarity": "限量",
+    "master_distiller": "李聪",
+    "sku": "LIQ202500338"
+  },
+  {
+    "id": "NEW339",
+    "name": "明清风范2016",
+    "ename": "New liquor 46",
+    "type": "清香型",
+    "abv": 54,
+    "origin": "京省某市",
+    "region": "京",
+    "price": 168,
+    "era": "近代",
+    "factory": "山西汾酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "清香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自京省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "21年陈酿",
+    "distillery": "京酒厂",
+    "awards": [],
+    "score": 82.0,
+    "aroma": 13,
+    "body": 15,
+    "taste": 19,
+    "afterglow": 16,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "4年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自京的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2016,
+    "price_range": "1000-3000元",
+    "rarity": "绝版",
+    "master_distiller": "王雁",
+    "sku": "LIQ202600339"
+  },
+  {
+    "id": "NEW340",
+    "name": "窖藏封坛2017",
+    "ename": "New liquor 47",
+    "type": "特香型",
+    "abv": 40,
+    "origin": "苏省某市",
+    "region": "苏",
+    "price": 99,
+    "era": "近代",
+    "factory": "山西汾酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "特香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自苏省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "22年陈酿",
+    "distillery": "苏酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 77.3,
+    "aroma": 15,
+    "body": 16,
+    "taste": 16,
+    "afterglow": 15,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "5年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自苏的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2017,
+    "price_range": "3000元以上",
+    "rarity": "普通",
+    "master_distiller": "王雁",
+    "sku": "LIQ202700340"
+  },
+  {
+    "id": "NEW341",
+    "name": "福满中华2018",
+    "ename": "New liquor 48",
+    "type": "老白干香型",
+    "abv": 52,
+    "origin": "浙省某市",
+    "region": "浙",
+    "price": 488,
+    "era": "现代",
+    "factory": "山西汾酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "老白干香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自浙省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "23年陈酿",
+    "distillery": "浙酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 87.9,
+    "aroma": 15,
+    "body": 14,
+    "taste": 15,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "6年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自浙的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2018,
+    "price_range": "500-1000元",
+    "rarity": "珍稀",
+    "master_distiller": "刘明亮",
+    "sku": "LIQ202800341"
+  },
+  {
+    "id": "NEW342",
+    "name": "盛世典藏2019",
+    "ename": "New liquor 49",
+    "type": "酱香型",
+    "abv": 53,
+    "origin": "苏省某市",
+    "region": "苏",
+    "price": 88,
+    "era": "现代",
+    "factory": "甘肃皇台酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "酱香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自苏省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "24年陈酿",
+    "distillery": "苏酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 85.9,
+    "aroma": 13,
+    "body": 14,
+    "taste": 18,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "7年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自苏的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2019,
+    "price_range": "100元以下",
+    "rarity": "珍稀",
+    "master_distiller": "李秋喜",
+    "sku": "LIQ202900342"
+  },
+  {
+    "id": "NEW343",
+    "name": "金奖荣誉2020",
+    "ename": "New liquor 50",
+    "type": "老白干香型",
+    "abv": 55,
+    "origin": "浙省某市",
+    "region": "浙",
+    "price": 398,
+    "era": "近代",
+    "factory": "山西汾酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "老白干香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自浙省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "25年陈酿",
+    "distillery": "浙酒厂",
+    "awards": [],
+    "score": 76.2,
+    "aroma": 13,
+    "body": 12,
+    "taste": 18,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "8年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "入门",
+    "origin_story": "源自浙的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2020,
+    "price_range": "100元以下",
+    "rarity": "珍稀",
+    "master_distiller": "徐占成",
+    "sku": "LIQ202000343"
+  },
+  {
+    "id": "NEW344",
+    "name": "彩云追月2021",
+    "ename": "New liquor 51",
+    "type": "兼香型",
+    "abv": 45,
+    "origin": "津省某市",
+    "region": "津",
+    "price": 268,
+    "era": "近代",
+    "factory": "泸州老窖股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "兼香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自津省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "26年陈酿",
+    "distillery": "津酒厂",
+    "awards": [],
+    "score": 79.5,
+    "aroma": 15,
+    "body": 15,
+    "taste": 18,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "9年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自津的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2021,
+    "price_range": "500-1000元",
+    "rarity": "绝版",
+    "master_distiller": "刘淼",
+    "sku": "LIQ202100344"
+  },
+  {
+    "id": "NEW345",
+    "name": "福满中华2022",
+    "ename": "New liquor 52",
+    "type": "董香型",
+    "abv": 52,
+    "origin": "浙省某市",
+    "region": "浙",
+    "price": 168,
+    "era": "现代",
+    "factory": "江苏洋河酒厂股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "董香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自浙省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "27年陈酿",
+    "distillery": "浙酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 83.9,
+    "aroma": 15,
+    "body": 16,
+    "taste": 14,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "10年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自浙的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2022,
+    "price_range": "300-500元",
+    "rarity": "绝版",
+    "master_distiller": "王奉孝",
+    "sku": "LIQ202200345"
+  },
+  {
+    "id": "NEW346",
+    "name": "天成佳酿2023",
+    "ename": "New liquor 53",
+    "type": "特香型",
+    "abv": 52,
+    "origin": "鄂省某市",
+    "region": "鄂",
+    "price": 358,
+    "era": "近代",
+    "factory": "山东扳倒井股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "特香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自鄂省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "28年陈酿",
+    "distillery": "鄂酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 82.5,
+    "aroma": 15,
+    "body": 15,
+    "taste": 19,
+    "afterglow": 15,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "11年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "中端",
+    "origin_story": "源自鄂的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2023,
+    "price_range": "3000元以上",
+    "rarity": "绝版",
+    "master_distiller": "赵东",
+    "sku": "LIQ202300346"
+  },
+  {
+    "id": "NEW347",
+    "name": "碧海晴天2024",
+    "ename": "New liquor 54",
+    "type": "豉香型",
+    "abv": 43,
+    "origin": "皖省某市",
+    "region": "皖",
+    "price": 1699,
+    "era": "近代",
+    "factory": "四川水井坊股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "豉香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自皖省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "29年陈酿",
+    "distillery": "皖酒厂",
+    "awards": [
+      "中国国际酒业博览会金奖"
+    ],
+    "score": 88.4,
+    "aroma": 16,
+    "body": 14,
+    "taste": 15,
+    "afterglow": 17,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "12年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自皖的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2024,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "李兴发",
+    "sku": "LIQ202400347"
+  },
+  {
+    "id": "NEW348",
+    "name": "元曲新声2025",
+    "ename": "New liquor 55",
+    "type": "芝麻香型",
+    "abv": 42,
+    "origin": "皖省某市",
+    "region": "皖",
+    "price": 128,
+    "era": "近代",
+    "factory": "甘肃皇台酒业股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "芝麻香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自皖省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "30年陈酿",
+    "distillery": "皖酒厂",
+    "awards": [],
+    "score": 84.4,
+    "aroma": 17,
+    "body": 12,
+    "taste": 17,
+    "afterglow": 14,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "13年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "顶级",
+    "origin_story": "源自皖的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2025,
+    "price_range": "1000-3000元",
+    "rarity": "限量",
+    "master_distiller": "汪华",
+    "sku": "LIQ202500348"
+  },
+  {
+    "id": "NEW349",
+    "name": "蓝色梦幻2026",
+    "ename": "New liquor 56",
+    "type": "浓香型",
+    "abv": 46,
+    "origin": "湘省某市",
+    "region": "湘",
+    "price": 199,
+    "era": "近代",
+    "factory": "安徽古井贡酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "浓香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自湘省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "31年陈酿",
+    "distillery": "湘酒厂",
+    "awards": [
+      "地区优质产品奖"
+    ],
+    "score": 89.8,
+    "aroma": 12,
+    "body": 12,
+    "taste": 18,
+    "afterglow": 18,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "14年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自湘的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2026,
+    "price_range": "100元以下",
+    "rarity": "绝版",
+    "master_distiller": "刘明亮",
+    "sku": "LIQ202600349"
+  },
+  {
+    "id": "NEW350",
+    "name": "绿色生态2027",
+    "ename": "New liquor 57",
+    "type": "豉香型",
+    "abv": 55,
+    "origin": "京省某市",
+    "region": "京",
+    "price": 128,
+    "era": "近代",
+    "factory": "安徽古井贡酒股份有限公司",
+    "原料": "高粱、小麦、水",
+    "工艺": "固态发酵",
+    "description": "豉香型白酒，口感醇厚，回味悠长",
+    "tasting": [
+      "观色：清亮透明",
+      "闻香：香气协调",
+      "尝味：入口绵柔",
+      "定格：回味悠长"
+    ],
+    "pairing": [
+      "中餐",
+      "海鲜",
+      "火锅",
+      "烧烤"
+    ],
+    "glass": "白酒杯",
+    "tips": "适宜室温品鉴",
+    "history": "产自京省，历史悠久",
+    "image": "/images/默认酒款.jpg",
+    "age": "32年陈酿",
+    "distillery": "京酒厂",
+    "awards": [
+      "布鲁塞尔国际烈酒大赛金奖"
+    ],
+    "score": 76.0,
+    "aroma": 14,
+    "body": 12,
+    "taste": 14,
+    "afterglow": 15,
+    "flavor_tags": [
+      "醇厚",
+      "绵柔",
+      "回甘"
+    ],
+    "serving_temp": "15-20°C",
+    "aging": "15年陶坛窖藏",
+    "raw_materials": "高粱、小麦、水",
+    "production_cycle": "一年一个生产周期",
+    "scene": [
+      "自饮小酌",
+      "聚会宴请"
+    ],
+    "storage": "避光保存，恒温15-20°C",
+    "comparison": "",
+    "price_tier": "高端",
+    "origin_story": "源自京的传统酿造工艺",
+    "cultural_quote": "劝君更尽一杯酒",
+    "cocktail": {
+      "name": "无",
+      "method": "纯饮最佳"
+    },
+    "trivia": "白酒是中国传统蒸馏酒",
+    "year": 2027,
+    "price_range": "100元以下",
+    "rarity": "限量",
+    "master_distiller": "徐占成",
+    "sku": "LIQ202700350"
   }
 ]

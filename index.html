@@ -17,7 +17,7 @@
     /* ================================================
        世界烈酒图鉴 v4.1.0
        黑髪漆面 · 香槟金蕴 · Luxury Edition
-       Phase 2: 3D 动态 UI (30 项功能: f770-f799)
+       Phase 2: 3D 动态 UI + 60项功能升级 (f770-f799 + F01-F20 + T01-T07)
        ================================================ */
     :root {
       /* 主背景 - 黑髪漆面 */
@@ -1420,7 +1420,22 @@
     .card-density-expanded .liquor-card__meta {
       font-size: 0.8rem;
     }
+
+    /* ── 优化模块样式 ── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
+  <!-- T01-T07 优化模块加载 -->
+  <script src="./js/optimizations.js" async></script>
 </head>
 <body>
   <!-- Initial Loading -->
@@ -9971,16 +9986,22 @@
       f08_品鉴笔记();
       f09_历史记录();
       f10_成就系统升级();
-      f11_分享功能();
-      f12_夜间模式();
-      f13_数据导出优化();
-      f14_数据导入导出();
-      f15_快捷键();
+      f11_高级筛选();
+      f12_排序增强();
+      f13_分享功能();
+      f14_浏览器收藏夹();
+      f15_快捷键导航();
       f16_盲品模式();
       f17_酒款排名();
       f18_相关酒款推荐();
       f19_酿酒厂档案();
       f20_品鉴活动();
+      
+      // T01-T07 技术优化初始化
+      if (window.initAllOptimizations) {
+        initAllOptimizations();
+      }
+      
       console.log('✅ F01-F20 功能初始化完成');
     }
 
