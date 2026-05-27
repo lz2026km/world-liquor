@@ -1453,7 +1453,7 @@
         <a href="#" class="header__brand" onclick="goHome()">
           <div class="header__logo">🥃</div>
           <div class="header__titles">
-            <span class="header__title">世界烈酒图鉴 <span class="header__version">v4.0.1</span></span>
+            <span class="header__title">世界烈酒图鉴 <span class="header__version">v4.1.0</span></span>
             <span class="header__subtitle">World Liquor Gallery · 出品人：LZ</span>
           </div>
         </a>
@@ -1949,7 +1949,7 @@
 
   <script>
     // ═══════════════════════════════════════════════════════════════════
-    // 世界烈酒图鉴 v4.0.0 - 黑髪漆面·香槟金蕴
+    // 世界烈酒图鉴 v4.1.0 - 黑髪漆面·香槟金蕴
     // 深邃鎏金 · 奢华酒廊
     // 10项优化：键盘导航/URL参数/分享功能/性能优化/离线支持
     // ═══════════════════════════════════════════════════════════════════
@@ -3415,7 +3415,7 @@
     function f154_filterByFlavorTag(tag) { window.ACTIVE_FILTERS.flavor = tag; document.querySelectorAll('[data-flavor]').forEach(el => el.classList.toggle('active', el.dataset.flavor === tag)); f31_applyFilters(); }
     function f155_quickFilterPrice(min, max) { window.ACTIVE_FILTERS.priceMin = min; window.ACTIVE_FILTERS.priceMax = max || Infinity; f31_applyFilters(); }
     function f156_resetAllData() { if (!confirm('确定要重置所有数据吗？这将清除所有收藏、笔记和成就。')) return; window.FAVORITES = {}; window.FAVORITE_FOLDERS = {}; window.TASTING_NOTES = {}; window.ACHIEVEMENTS = {}; window.COMPARE_LIST = []; window.SEARCH_HISTORY = []; f15_saveAllStorage(); f32_updateStats(); f39_renderCards(); f125_renderNotesList(); f58_showToast('所有数据已重置'); }
-    function f157_showAbout() { alert('🥃 世界烈酒图鉴 v4.0.0\n\n黑髪漆面 · 香槟金蕴\n奢华酒款图鉴\n\n新增功能：\n• 奢华黑金主题重设计\n• 香槟金色调色板\n• 鎏金边框与微光效果\n• Playfair Display 排版\n• 瀑布流/骨架屏/3D翻转\n• 快捷键/滚动优化/多语言\n\n© 2025 World Liquor Gallery'); }
+    function f157_showAbout() { alert('🥃 世界烈酒图鉴 v4.1.0\n\n黑髪漆面 · 香槟金蕴\n奢华酒款图鉴\n\n新增功能：\n• 奢华黑金主题重设计\n• 香槟金色调色板\n• 鎏金边框与微光效果\n• Playfair Display 排版\n• 瀑布流/骨架屏/3D翻转\n• 快捷键/滚动优化/多语言\n\n© 2025 World Liquor Gallery'); }
     function f158_checkSystemAchievements() { f140_checkAchievement('first_fav'); f140_checkAchievement('first_note'); const types = [...new Set(window.DATA.map(d => d.type))]; const visitedTypes = new Set(window.FILTERED.map(d => d.type)); if (visitedTypes.size >= types.length) f140_checkAchievement('all_types'); }
     function f159_performanceMark(name) { if (window.performance && window.performance.mark) window.performance.mark(name); }
     function f160_performanceMeasure(name, startMark, endMark) { if (window.performance && window.performance.measure) window.performance.measure(name, startMark, endMark); }
