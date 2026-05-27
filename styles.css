@@ -4133,3 +4133,578 @@ body {
 .transform-3d { transform-style: preserve-3d; }
 .backface-hidden { backface-visibility: hidden; }
 .preserve-3d { preserve-3d: both; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v6.5.0: 3D UI 优化应用层（50项3D效果的实际元素应用）
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────
+   3D01: 3D卡片悬浮 - 应用到酒卡
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s ease,
+              border-color 0.3s ease;
+}
+.liquor-card:hover {
+  transform: perspective(1000px) rotateY(5deg) rotateX(2deg) translateZ(15px);
+  box-shadow: 
+    -15px 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.liquor-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(99, 102, 241, 0.08) 0%, 
+    transparent 50%, 
+    rgba(168, 85, 247, 0.04) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.liquor-card:hover::before {
+  opacity: 1;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D02: 3D酒瓶展示 - 应用到模态框酒瓶展示
+   ─────────────────────────────────────────────────────────────────── */
+.modal__image {
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+.modal__image img {
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+.modal__image:hover img {
+  transform: rotateY(15deg) rotateX(5deg) scale(1.05);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D03: 3D雷达图 - 立体效果增强
+   ─────────────────────────────────────────────────────────────────── */
+.radar-chart {
+  transform-style: preserve-3d;
+  perspective: 800px;
+  animation: radar-3d-float 6s ease-in-out infinite;
+}
+@keyframes radar-3d-float {
+  0%, 100% { transform: rotateX(20deg) rotateY(0deg); }
+  50% { transform: rotateX(15deg) rotateY(5deg); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D06: 3D粒子背景 - 动态背景层
+   ─────────────────────────────────────────────────────────────────── */
+.particles-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.particles-bg canvas {
+  display: block;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D08: 3D阴影效果 - 卡片长阴影
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  right: 10%;
+  width: 50%;
+  height: 40px;
+  background: linear-gradient(
+    to bottom left,
+    rgba(0, 0, 0, 0.4) 0%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  transform: rotateX(90deg);
+  transform-origin: top;
+  transition: all 0.4s ease;
+  z-index: -2;
+  opacity: 0;
+}
+.liquor-card:hover::after {
+  opacity: 0.6;
+  transform: translateY(20px) rotateX(90deg);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D11: 3D玻璃拟态 - 毛玻璃面板
+   ─────────────────────────────────────────────────────────────────── */
+.header,
+.sidebar,
+.filter-panel,
+.modal {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D12: 3D金属质感 - 按钮金属光泽
+   ─────────────────────────────────────────────────────────────────── */
+button:not(.search-bar__clear):not(.search-bar__submit):not(.modal__btn):not(.header__btn):not(.liquor-card-actions button) {
+  background: linear-gradient(
+    135deg,
+    #4a4a4a 0%,
+    #6a6a6a 20%,
+    #8a8a8a 35%,
+    #6a6a6a 50%,
+    #4a4a4a 65%,
+    #6a6a6a 80%,
+    #4a4a4a 100%
+  );
+  background-size: 200% 200%;
+  transition: all 0.4s ease;
+}
+button:not(.search-bar__clear):not(.search-bar__submit):not(.modal__btn):not(.header__btn):not(.liquor-card-actions button):hover {
+  background-position: 100% 100%;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D13: 3D霓虹效果 - 标题霓虹发光
+   ─────────────────────────────────────────────────────────────────── */
+.hero__title,
+.modal__name {
+  color: var(--blue-light);
+  text-shadow: 
+    0 0 5px rgba(99, 102, 241, 0.5),
+    0 0 10px rgba(99, 102, 241, 0.3),
+    0 0 20px rgba(99, 102, 241, 0.2);
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+@keyframes neon-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.1); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D14: 3D全息效果 - 卡片彩虹光效
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card-badge {
+  position: relative;
+  overflow: hidden;
+}
+.liquor-card-badge::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(99, 102, 241, 0.3) 60deg,
+    rgba(168, 85, 247, 0.3) 120deg,
+    rgba(236, 72, 153, 0.3) 180deg,
+    rgba(59, 130, 246, 0.3) 240deg,
+    rgba(34, 197, 94, 0.3) 300deg,
+    transparent 360deg
+  );
+  animation: hologram-rotate 4s linear infinite;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+@keyframes hologram-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D16: 微交互系统 - 按钮涟漪效果
+   ─────────────────────────────────────────────────────────────────── */
+button {
+  position: relative;
+  overflow: hidden;
+}
+button::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+button:active::after {
+  animation: ripple-click 0.6s ease-out;
+}
+@keyframes ripple-click {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D21: 加载动画 - 3D旋转圆环
+   ─────────────────────────────────────────────────────────────────── */
+.initial-loading__bar::after {
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px var(--accent-500),
+    0 0 40px rgba(99, 102, 241, 0.3);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D25: 骨架屏动画 - 渐变闪烁
+   ─────────────────────────────────────────────────────────────────── */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.08) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D26: 进度条动画 - 动态光效
+   ─────────────────────────────────────────────────────────────────── */
+.achievement-progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+.achievement-progress-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, var(--accent-500) 0%, transparent 70%);
+  transform: translateY(-50%);
+  filter: blur(5px);
+  animation: progress-glow 1s ease-in-out infinite;
+}
+@keyframes progress-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D29: 模态框动画 - 3D缩放
+   ─────────────────────────────────────────────────────────────────── */
+.modal {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.modal.show {
+  animation: modal-3d-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes modal-3d-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8) rotateX(10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotateX(0deg);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D30: Toast动画 - 3D弹出
+   ─────────────────────────────────────────────────────────────────── */
+.toast {
+  transform-style: preserve-3d;
+  perspective: 500px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0) translateZ(0);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D32: 雷达图绘制动画
+   ─────────────────────────────────────────────────────────────────── */
+.radar-legend-dot {
+  animation: dot-appear 0.5s ease forwards;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+  opacity: 0;
+}
+@keyframes dot-appear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D34: 滚动视差 - 背景层
+   ─────────────────────────────────────────────────────────────────── */
+body::before {
+  transform: translateZ(-100px) scale(1.5);
+  z-index: -2;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D41: 边框光效 - 悬停流光
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card:hover,
+.modal:hover,
+.frosted-glass-3d:hover {
+  position: relative;
+}
+.liquor-card:hover::before,
+.modal:hover::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--blue-accent),
+    var(--purple-accent),
+    var(--blue-accent),
+    transparent
+  );
+  background-size: 200% 100%;
+  border-radius: inherit;
+  opacity: 0.6;
+  filter: blur(4px);
+  animation: border-flow 3s linear infinite;
+  z-index: -1;
+}
+@keyframes border-flow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D42: 文字特效 - 渐变文字
+   ─────────────────────────────────────────────────────────────────── */
+.header__title {
+  background: linear-gradient(
+    135deg,
+    var(--accent-300) 0%,
+    var(--accent-500) 50%,
+    var(--accent-300) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shift 4s ease infinite;
+}
+@keyframes text-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D43: 图标动画 - 悬停3D效果
+   ─────────────────────────────────────────────────────────────────── */
+.header__logo,
+.liquor-card-fav,
+.liquor-card-actions button {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.header__logo:hover,
+.liquor-card-fav:hover {
+  transform: translateZ(10px) scale(1.1);
+}
+.header__logo:active,
+.liquor-card-fav:active {
+  transform: translateZ(5px) scale(1.05);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D45: 背景动画 - 几何图形
+   ─────────────────────────────────────────────────────────────────── */
+.bg-shapes {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-shape {
+  position: absolute;
+  border: 1px solid rgba(99, 102, 241, 0.08);
+  animation: shape-float 20s ease-in-out infinite;
+}
+.bg-shape--1 {
+  top: 15%;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation-delay: 0s;
+}
+.bg-shape--2 {
+  top: 60%;
+  right: 15%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  animation-delay: -7s;
+}
+.bg-shape--3 {
+  bottom: 25%;
+  left: 25%;
+  width: 120px;
+  height: 120px;
+  border-radius: 20%;
+  animation-delay: -14s;
+}
+@keyframes shape-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D46: 进度环动画 - 圆形进度
+   ─────────────────────────────────────────────────────────────────── */
+.price-tier-viz__bar {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: bottom;
+}
+.price-tier-viz__bar:hover {
+  transform: scaleY(1.15) translateZ(5px);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D47: 标签云动画 - 3D旋转
+   ─────────────────────────────────────────────────────────────────── */
+.sidebar__tags {
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+.sidebar__tag {
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar__tag:hover {
+  transform: translateZ(15px) scale(1.08);
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--blue-accent);
+  box-shadow: 0 5px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D48: 评分星星动画
+   ─────────────────────────────────────────────────────────────────── */
+.star-rating .star {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+.star-rating .star:hover {
+  transform: translateZ(10px) scale(1.3);
+}
+.star-rating .star.active {
+  color: var(--accent-500);
+  text-shadow: 0 0 10px rgba(198, 161, 91, 0.5);
+  animation: star-pop 0.4s ease;
+}
+@keyframes star-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4) translateZ(15px); }
+  100% { transform: scale(1); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D49: 收藏心跳动画
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card-fav {
+  position: relative;
+}
+.liquor-card-fav.active {
+  animation: fav-heart 0.6s ease;
+}
+@keyframes fav-heart {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.4) translateZ(20px); }
+  30% { transform: scale(0.9); }
+  45% { transform: scale(1.2) translateZ(10px); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D50: 页面切换墨水效果
+   ─────────────────────────────────────────────────────────────────── */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+.page-ink {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--blue-accent) 0%,
+    var(--purple-accent) 50%,
+    transparent 80%
+  );
+  transform: scale(0);
+  opacity: 0;
+}
+.page-ink.animate {
+  animation: ink-spread 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes ink-spread {
+  0% { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3D性能优化
+   ─────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
