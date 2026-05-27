@@ -8378,6 +8378,1640 @@
     window.initText3D = f797_initText3D;
     window.initDragSort3D = f798_initDragSort3D;
     window.initAll3DEffects = f799_initAll3DEffects;
+
+    // ═══════════════════════════════════════════════════════════════════
+    // F01-F20 新增功能 (20项功能开发)
+    // ═══════════════════════════════════════════════════════════════════
+
+    // ───────────────────────────────────────────────────────────────────
+    // F01: 智能搜索（联想+拼音首字母）
+    // ───────────────────────────────────────────────────────────────────
+    function f01_智能搜索() {
+      // 拼音首字母映射表
+      window._拼音字典 = {};
+      window._搜索联想结果 = [];
+
+      // 初始化拼音字典
+      function f01a_初始化拼音字典() {
+        const pinyinMap = {
+          'm': ['茅台', '麦卡伦', '马爹利', '马尼拉'],
+          'w': ['威士忌', '五粮液', '外国酒'],
+          'b': ['白兰地', '百加得', '必富达'],
+          'f': ['伏特加', '法国', '范士'],
+          'j': ['金酒', '杰彼', '酒'],
+          'l': ['朗姆酒', '龙舌兰', '乐加'],
+          'g': ['贵州茅台', '古典', '高桥'],
+          'h': ['花雕', '皇权', '衡水'],
+          'q': ['清香型', '青花', '曲味']
+        };
+        window._拼音字典 = pinyinMap;
+      }
+
+      // 获取汉字拼音首字母
+      function f01b_获取首字母(chars) {
+        if (!chars) return '';
+        const pyMap = {
+          '啊': 'a', '阿': 'a', '爱': 'a', '八': 'b', '把': 'b', '巴': 'b',
+          '茶': 'c', '出': 'c', '大': 'd', '的': 'd', '额': 'e', '二': 'e',
+          '发': 'f', '飞': 'f', '高': 'g', '给': 'g', '好': 'h', '喝': 'h',
+          '酒': 'j', '金': 'j', '可': 'k', '看': 'k', '了': 'l', '来': 'l',
+          '妈': 'm', '马': 'm', '你': 'n', '呢': 'n', '哦': 'o', '哦': 'o',
+          '平': 'p', '普': 'p', '七': 'q', '去': 'q', '人': 'r', '日': 'r',
+          '是': 's', '四': 's', '它': 't', '他': 't', '五': 'w', '我': 'w',
+          '小': 'x', '西': 'x', '要': 'y', '有': 'y', '在': 'z', '中': 'z'
+        };
+        let result = '';
+        for (let char of chars) {
+          result += pyMap[char] || char[0] || '';
+        }
+        return result.toLowerCase();
+      }
+
+      // 搜索联想
+      window.f01c_搜索联想 = function(query) {
+        if (!query || query.length < 1) return [];
+        const q = query.toLowerCase();
+        const results = window.DATA.filter(d => {
+          const name = (d.name || '').toLowerCase();
+          const ename = (d.ename || '').toLowerCase();
+          const py = f01b_获取首字母(d.name);
+          return name.includes(q) || ename.includes(q) || py.startsWith(q);
+        }).slice(0, 8);
+        window._搜索联想结果 = results;
+        return results;
+      };
+
+      // 渲染联想结果
+      window.f01d_渲染联想结果 = function(results, containerId) {
+        const container = document.getElementById(containerId);
+        if (!container || !results.length) {
+          container.innerHTML = '';
+          return;
+        }
+        container.innerHTML = results.map(d => `
+          <div class="search-autocomplete__item" onclick="f415_openDetailModalWithTabs('${d.id}')">
+            <span class="search-autocomplete__icon">🥃</span>
+            <div class="search-autocomplete__info">
+              <div class="search-autocomplete__name">${d.name}</div>
+              <div class="search-autocomplete__meta">${d.type} · ${d.region}</div>
+            </div>
+          </div>
+        `).join('');
+        container.classList.add('show');
+      };
+
+      f01a_初始化拼音字典();
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F02: 价格区间筛选
+    // ───────────────────────────────────────────────────────────────────
+    function f02_价格区间筛选() {
+      // 价格区间定义
+      window._价格区间 = [
+        { id: 1, label: '百元内', min: 0, max: 100 },
+        { id: 2, label: '100-300', min: 100, max: 300 },
+        { id: 3, label: '300-500', min: 300, max: 500 },
+        { id: 4, label: '500-1000', min: 500, max: 1000 },
+        { id: 5, label: '千元以上', min: 1000, max: Infinity }
+      ];
+      window._当前价格区间 = null;
+
+      // 切换价格区间
+      window.f02a_切换价格区间 = function(区间Id) {
+        if (window._当前价格区间 === 区间Id) {
+          window._当前价格区间 = null;
+        } else {
+          window._当前价格区间 = 区间Id;
+        }
+        f02b_应用价格筛选();
+      };
+
+      // 应用价格筛选
+      function f02b_应用价格筛选() {
+        if (window._当前价格区间) {
+          const range = window._价格区间.find(r => r.id === window._当前价格区间);
+          if (range) {
+            window.FILTERED = window.DATA.filter(d => {
+              const price = d.price || 0;
+              return price >= range.min && price < range.max;
+            });
+          }
+        } else {
+          window.FILTERED = [...window.DATA];
+        }
+        f39_renderCards();
+        f40_updateCount();
+      }
+
+      // 获取价格区间过滤的酒款
+      window.f02c_获取价格区间酒款 = function(区间Id) {
+        const range = window._价格区间.find(r => r.id === 区间Id);
+        if (!range) return [];
+        return window.DATA.filter(d => {
+          const price = d.price || 0;
+          return price >= range.min && price < range.max;
+        });
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F03: 稀缺度筛选
+    // ───────────────────────────────────────────────────────────────────
+    function f03_稀缺度筛选() {
+      // 稀缺度等级定义
+      window._稀缺度等级 = [
+        { id: 'rare', label: '珍稀限量', icon: '💎', minScore: 95 },
+        { id: 'premium', label: '高端典藏', icon: '🏆', minScore: 90 },
+        { id: 'special', label: '特别版', icon: '⭐', minScore: 85 },
+        { id: 'normal', label: '常规款', icon: '🥃', minScore: 0 }
+      ];
+      window._当前稀缺度筛选 = null;
+
+      // 获取酒款稀缺度
+      window.f03a_获取稀缺度 = function(liquor) {
+        const score = liquor.score || 0;
+        if (score >= 95) return 'rare';
+        if (score >= 90) return 'premium';
+        if (score >= 85) return 'special';
+        return 'normal';
+      };
+
+      // 切换稀缺度筛选
+      window.f03b_切换稀缺度筛选 = function(稀缺度Id) {
+        if (window._当前稀缺度筛选 === 稀缺度Id) {
+          window._当前稀缺度筛选 = null;
+        } else {
+          window._当前稀缺度筛选 = 稀缺度Id;
+        }
+        f03c_应用稀缺度筛选();
+      };
+
+      // 应用稀缺度筛选
+      function f03c_应用稀缺度筛选() {
+        if (window._当前稀缺度筛选) {
+          const level = window._稀缺度等级.find(l => l.id === window._当前稀缺度筛选);
+          if (level) {
+            window.FILTERED = window.DATA.filter(d => {
+              const rarity = f03a_获取稀缺度(d);
+              return rarity === window._当前稀缺度筛选;
+            });
+          }
+        } else {
+          window.FILTERED = [...window.DATA];
+        }
+        f39_renderCards();
+        f40_updateCount();
+      }
+
+      // 获取稀缺酒款列表
+      window.f03d_获取稀缺酒款 = function() {
+        return window.DATA.filter(d => f03a_获取稀缺度(d) === 'rare');
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F04: 年份筛选
+    // ───────────────────────────────────────────────────────────────────
+    function f04_年份筛选() {
+      window._年份区间 = { min: 1900, max: new Date().getFullYear() };
+      window._当前年份筛选 = null;
+      window._可用年份 = [];
+
+      // 初始化可用年份
+      function f04a_初始化可用年份() {
+        const years = new Set();
+        window.DATA.forEach(d => {
+          if (d.year) years.add(d.year);
+        });
+        window._可用年份 = Array.from(years).filter(y => y >= 1900 && y <= new Date().getFullYear()).sort((a, b) => b - a);
+      }
+
+      // 获取年份范围
+      window.f04b_获取年份范围 = function() {
+        if (window._可用年份.length === 0) f04a_初始化可用年份();
+        return {
+          min: Math.min(...window._可用年份),
+          max: Math.max(...window._可用年份)
+        };
+      };
+
+      // 筛选指定年份酒款
+      window.f04c_筛选年份 = function(year) {
+        if (window._当前年份筛选 === year) {
+          window._当前年份筛选 = null;
+        } else {
+          window._当前年份筛选 = year;
+        }
+        f04d_应用年份筛选();
+      };
+
+      // 应用年份筛选
+      function f04d_应用年份筛选() {
+        if (window._当前年份筛选) {
+          window.FILTERED = window.DATA.filter(d => d.year === window._当前年份筛选);
+        } else {
+          window.FILTERED = [...window.DATA];
+        }
+        f39_renderCards();
+        f40_updateCount();
+      }
+
+      // 获取老年份酒款
+      window.f04e_获取老年份酒款 = function(ageThreshold = 20) {
+        const currentYear = new Date().getFullYear();
+        return window.DATA.filter(d => d.year && (currentYear - d.year) >= ageThreshold);
+      };
+
+      f04a_初始化可用年份();
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F05: 收藏夹分组
+    // ───────────────────────────────────────────────────────────────────
+    function f05_收藏夹分组() {
+      window._收藏夹分组列表 = [];
+      window._当前分组Id = null;
+
+      // 默认分组
+      const _默认分组 = [
+        { id: 'default', name: '默认收藏', icon: '❤️', count: 0 },
+        { id: 'wishlist', name: '心愿单', icon: '⭐', count: 0 },
+        { id: 'tasted', name: '已品鉴', icon: '✅', count: 0 },
+        { id: 'gift', name: '送礼推荐', icon: '🎁', count: 0 }
+      ];
+
+      // 初始化分组
+      window.f05a_初始化分组 = function() {
+        const saved = f12_loadFromStorage('liquor_fav_groups');
+        if (saved && saved.length > 0) {
+          window._收藏夹分组列表 = saved;
+        } else {
+          window._收藏夹分组列表 = [..._默认分组];
+        }
+        f05f_更新分组计数();
+      };
+
+      // 创建新分组
+      window.f05b_创建分组 = function(name, icon = '📁') {
+        const newGroup = {
+          id: 'group_' + Date.now(),
+          name: name,
+          icon: icon,
+          count: 0
+        };
+        window._收藏夹分组列表.push(newGroup);
+        f05g_保存分组();
+        return newGroup;
+      };
+
+      // 删除分组
+      window.f05c_删除分组 = function(groupId) {
+        if (groupId === 'default') return false;
+        const index = window._收藏夹分组列表.findIndex(g => g.id === groupId);
+        if (index !== -1) {
+          window._收藏夹分组列表.splice(index, 1);
+          f05g_保存分组();
+          return true;
+        }
+        return false;
+      };
+
+      // 添加酒款到分组
+      window.f05d_添加到分组 = function(liquorId, groupId) {
+        const storageKey = `liquor_fav_group_${groupId}`;
+        const items = f12_loadFromStorage(storageKey) || [];
+        if (!items.includes(liquorId)) {
+          items.push(liquorId);
+          f11_saveToStorage(storageKey, items);
+          f05f_更新分组计数();
+        }
+      };
+
+      // 从分组移除酒款
+      window.f05e_从分组移除 = function(liquorId, groupId) {
+        const storageKey = `liquor_fav_group_${groupId}`;
+        const items = f12_loadFromStorage(storageKey) || [];
+        const index = items.indexOf(liquorId);
+        if (index !== -1) {
+          items.splice(index, 1);
+          f11_saveToStorage(storageKey, items);
+          f05f_更新分组计数();
+        }
+      };
+
+      // 更新分组计数
+      function f05f_更新分组计数() {
+        window._收藏夹分组列表.forEach(group => {
+          const storageKey = `liquor_fav_group_${group.id}`;
+          const items = f12_loadFromStorage(storageKey) || [];
+          group.count = items.length;
+        });
+      }
+
+      // 保存分组
+      function f05g_保存分组() {
+        f11_saveToStorage('liquor_fav_groups', window._收藏夹分组列表);
+      }
+
+      // 获取分组内的酒款
+      window.f05h_获取分组酒款 = function(groupId) {
+        const storageKey = `liquor_fav_group_${groupId}`;
+        const itemIds = f12_loadFromStorage(storageKey) || [];
+        return window.DATA.filter(d => itemIds.includes(d.id));
+      };
+
+      f05a_初始化分组();
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F06: 批量操作
+    // ───────────────────────────────────────────────────────────────────
+    function f06_批量操作() {
+      window._批量选中列表 = [];
+
+      // 全选
+      window.f06a_全选 = function() {
+        window._批量选中列表 = window.FILTERED.map(d => d.id);
+        f06d_更新批量UI();
+      };
+
+      // 取消全选
+      window.f06b_取消全选 = function() {
+        window._批量选中列表 = [];
+        f06d_更新批量UI();
+      };
+
+      // 切换选中
+      window.f06c_切换选中 = function(liquorId) {
+        const index = window._批量选中列表.indexOf(liquorId);
+        if (index !== -1) {
+          window._批量选中列表.splice(index, 1);
+        } else {
+          window._批量选中列表.push(liquorId);
+        }
+        f06d_更新批量UI();
+      };
+
+      // 更新批量操作UI
+      function f06d_更新批量UI() {
+        const count = window._批量选中列表.length;
+        const countEl = document.getElementById('batchCount');
+        if (countEl) countEl.textContent = count;
+        const batchBar = document.getElementById('batchBar');
+        if (batchBar) {
+          batchBar.style.display = count > 0 ? 'flex' : 'none';
+        }
+        document.querySelectorAll('.batch-select-btn').forEach(btn => {
+          btn.classList.toggle('active', window._批量选中列表.includes(btn.dataset.id));
+        });
+      }
+
+      // 批量添加到收藏
+      window.f06e_批量添加收藏 = function() {
+        window._批量选中列表.forEach(id => {
+          window.FAVORITES[id] = { addedAt: Date.now() };
+        });
+        f15_saveAllStorage();
+        f58_showToast(`已添加 ${window._批量选中列表.length} 款到收藏`);
+        f06b_取消全选();
+      };
+
+      // 批量添加到对比
+      window.f06f_批量添加到对比 = function() {
+        window._批量选中列表.forEach(id => {
+          if (!window.COMPARE_LIST.includes(id) && window.COMPARE_LIST.length < 4) {
+            window.COMPARE_LIST.push(id);
+          }
+        });
+        f15_saveAllStorage();
+        f58_showToast(`已添加 ${window._批量选中列表.length} 款到对比栏`);
+        f06b_取消全选();
+      };
+
+      // 批量删除
+      window.f06g_批量删除 = function() {
+        if (confirm(`确定删除选中的 ${window._批量选中列表.length} 款？`)) {
+          window._批量选中列表.forEach(id => {
+            delete window.FAVORITES[id];
+            delete window.TASTING_NOTES[id];
+          });
+          f15_saveAllStorage();
+          f58_showToast(`已删除 ${window._批量选中列表.length} 款`);
+          f06b_取消全选();
+          f32_updateStats();
+        }
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F07: 对比功能升级
+    // ───────────────────────────────────────────────────────────────────
+    function f07_对比功能升级() {
+      window._对比最大数量 = 4;
+      window._对比历史列表 = [];
+
+      // 添加到对比
+      window.f07a_添加到对比 = function(liquorId) {
+        if (window.COMPARE_LIST.includes(liquorId)) {
+          f07b_从对比移除(liquorId);
+          return;
+        }
+        if (window.COMPARE_LIST.length >= window._对比最大数量) {
+          f58_showToast(`最多只能对比 ${window._对比最大数量} 款`);
+          return;
+        }
+        window.COMPARE_LIST.push(liquorId);
+        f15_saveAllStorage();
+        f07e_更新对比栏UI();
+        f58_showToast('已添加到对比栏');
+      };
+
+      // 从对比移除
+      window.f07b_从对比移除 = function(liquorId) {
+        const index = window.COMPARE_LIST.indexOf(liquorId);
+        if (index !== -1) {
+          window.COMPARE_LIST.splice(index, 1);
+          f15_saveAllStorage();
+          f07e_更新对比栏UI();
+        }
+      };
+
+      // 清空对比
+      window.f07c_清空对比 = function() {
+        // 保存历史
+        if (window.COMPARE_LIST.length > 0) {
+          window._对比历史列表.push({
+            items: [...window.COMPARE_LIST],
+            timestamp: Date.now()
+          });
+        }
+        window.COMPARE_LIST = [];
+        f15_saveAllStorage();
+        f07e_更新对比栏UI();
+      };
+
+      // 生成对比报告
+      window.f07d_生成对比报告 = function() {
+        if (window.COMPARE_LIST.length < 2) {
+          f58_showToast('至少需要2款酒才能生成对比报告');
+          return '';
+        }
+        const items = window.COMPARE_LIST.map(id => f69_findById(id)).filter(Boolean);
+        let report = `=== 对比报告 (${new Date().toLocaleDateString()}) ===\n\n`;
+        items.forEach((d, i) => {
+          report += `[${i + 1}] ${d.name}\n`;
+          report += `   类型: ${d.type}\n`;
+          report += `   产区: ${d.region}\n`;
+          report += `   酒精度: ${d.abv}%\n`;
+          report += `   价格: ¥${d.price}\n`;
+          report += `   评分: ${d.score || '-'}\n\n`;
+        });
+        report += `\n综合推荐：${items[0].name}`;
+        return report;
+      };
+
+      // 更新对比栏UI
+      function f07e_更新对比栏UI() {
+        const bar = document.getElementById('compareBar');
+        if (bar) {
+          bar.classList.toggle('show', window.COMPARE_LIST.length > 0);
+        }
+        const countBadge = document.getElementById('compareCountBadge');
+        if (countBadge) {
+          countBadge.textContent = window.COMPARE_LIST.length;
+          countBadge.style.display = window.COMPARE_LIST.length > 0 ? 'flex' : 'none';
+        }
+      }
+
+      // 获取对比项详情
+      window.f07f_获取对比项详情 = function() {
+        return window.COMPARE_LIST.map(id => f69_findById(id)).filter(Boolean);
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F08: 品鉴笔记
+    // ───────────────────────────────────────────────────────────────────
+    function f08_品鉴笔记() {
+      window._品鉴笔记模板 = [
+        { id: 'color', label: '色泽', icon: '🎨', options: ['清澈透明', '微黄', '琥珀色', '金黄色', '红褐色'] },
+        { id: 'aroma', label: '香气', icon: '👃', options: ['果香', '花香', '酒香', '木香', '香料'] },
+        { id: 'taste', label: '口感', icon: '👅', options: ['柔和', '醇厚', '绵柔', '刺激', '圆润'] },
+        { id: 'after', label: '回味', icon: '🔄', options: ['短暂', '中等', '悠长', '持久', '绵延'] }
+      ];
+
+      // 添加品鉴笔记
+      window.f08a_添加笔记 = function(liquorId, rating, note) {
+        if (!window.TASTING_NOTES[ liquorId]) {
+          window.TASTING_NOTES[liquorId] = [];
+        }
+        const newNote = {
+          id: 'note_' + Date.now(),
+          rating: rating,
+          note: note,
+          createdAt: Date.now(),
+          tags: []
+        };
+        window.TASTING_NOTES[liquorId].unshift(newNote);
+        f11_saveToStorage(window.LS_NOTES, window.TASTING_NOTES);
+        f32_updateStats();
+        return newNote;
+      };
+
+      // 更新笔记
+      window.f08b_更新笔记 = function(liquorId, noteId, updates) {
+        if (!window.TASTING_NOTES[liquorId]) return false;
+        const note = window.TASTING_NOTES[liquorId].find(n => n.id === noteId);
+        if (note) {
+          Object.assign(note, updates, { updatedAt: Date.now() });
+          f11_saveToStorage(window.LS_NOTES, window.TASTING_NOTES);
+          return true;
+        }
+        return false;
+      };
+
+      // 删除笔记
+      window.f08c_删除笔记 = function(liquorId, noteId) {
+        if (!window.TASTING_NOTES[liquorId]) return false;
+        const index = window.TASTING_NOTES[liquorId].findIndex(n => n.id === noteId);
+        if (index !== -1) {
+          window.TASTING_NOTES[liquorId].splice(index, 1);
+          f11_saveToStorage(window.LS_NOTES, window.TASTING_NOTES);
+          f32_updateStats();
+          return true;
+        }
+        return false;
+      };
+
+      // 获取笔记列表
+      window.f08d_获取笔记列表 = function(liquorId) {
+        return window.TASTING_NOTES[liquorId] || [];
+      };
+
+      // 导出所有笔记
+      window.f08e_导出笔记 = function() {
+        let exportData = '=== 品鉴笔记导出 ===\n\n';
+        Object.keys(window.TASTING_NOTES).forEach(liquorId => {
+          const d = f69_findById(liquorId);
+          const notes = window.TASTING_NOTES[liquorId];
+          exportData += `【${d ? d.name : liquorId}】\n`;
+          notes.forEach((n, i) => {
+            exportData += `${i + 1}. 评分: ${'⭐'.repeat(n.rating)}\n`;
+            exportData += `   笔记: ${n.note}\n`;
+            exportData += `   日期: ${new Date(n.createdAt).toLocaleDateString()}\n\n`;
+          });
+        });
+        return exportData;
+      };
+
+      // 获取评分统计
+      window.f08f_获取评分统计 = function(liquorId) {
+        const notes = window.TASTING_NOTES[liquorId] || [];
+        if (notes.length === 0) return { avg: 0, count: 0 };
+        const total = notes.reduce((sum, n) => sum + n.rating, 0);
+        return { avg: (total / notes.length).toFixed(1), count: notes.length };
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F09: 历史记录
+    // ───────────────────────────────────────────────────────────────────
+    function f09_历史记录() {
+      window._历史记录最大条数 = 100;
+      window._历史记录列表 = [];
+
+      // 添加浏览记录
+      window.f09a_添加记录 = function(liquorId) {
+        // 移除重复
+        window._历史记录列表 = window._历史记录列表.filter(r => r.liquorId !== liquorId);
+        // 添加新记录到开头
+        window._历史记录列表.unshift({
+          liquorId: liquorId,
+          timestamp: Date.now()
+        });
+        // 限制条数
+        if (window._历史记录列表.length > window._历史记录最大条数) {
+          window._历史记录列表 = window._历史记录列表.slice(0, window._历史记录最大条数);
+        }
+        f11_saveToStorage('liquor_browse_history', window._历史记录列表);
+      };
+
+      // 获取浏览历史
+      window.f09b_获取历史 = function(limit = 20) {
+        return window._历史记录列表.slice(0, limit).map(r => {
+          const d = f69_findById(r.liquorId);
+          return d ? { ...d, viewedAt: r.timestamp } : null;
+        }).filter(Boolean);
+      };
+
+      // 清空历史
+      window.f09c_清空历史 = function() {
+        window._历史记录列表 = [];
+        f11_saveToStorage('liquor_browse_history', window._历史记录列表);
+        f58_showToast('历史记录已清空');
+      };
+
+      // 删除单条历史
+      window.f09d_删除历史记录 = function(liquorId) {
+        window._历史记录列表 = window._历史记录列表.filter(r => r.liquorId !== liquorId);
+        f11_saveToStorage('liquor_browse_history', window._历史记录列表);
+      };
+
+      // 获取浏览频率最高的酒款
+      window.f09e_获取热门浏览 = function(limit = 10) {
+        const countMap = {};
+        window._历史记录列表.forEach(r => {
+          countMap[r.liquorId] = (countMap[r.liquorId] || 0) + 1;
+        });
+        return Object.entries(countMap)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, limit)
+          .map(([id, count]) => ({ ...f69_findById(id), viewCount: count }))
+          .filter(Boolean);
+      };
+
+      // 初始化加载历史
+      function f09f_加载历史() {
+        const saved = f12_loadFromStorage('liquor_browse_history');
+        if (saved) window._历史记录列表 = saved;
+      }
+
+      f09f_加载历史();
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F10: 成就系统升级
+    // ───────────────────────────────────────────────────────────────────
+    function f10_成就系统升级() {
+      window._成就定义列表 = [
+        { id: 'first_fav', name: '初次收藏', desc: '收藏第一款酒', icon: '❤️', requirement: { type: 'favorites', count: 1 } },
+        { id: 'ten_favs', name: '收藏达人', desc: '收藏10款酒', icon: '💕', requirement: { type: 'favorites', count: 10 } },
+        { id: 'first_note', name: '初次品鉴', desc: '写下第一条品鉴笔记', icon: '📝', requirement: { type: 'notes', count: 1 } },
+        { id: 'ten_notes', name: '品鉴专家', desc: '撰写10条品鉴笔记', icon: '✍️', requirement: { type: 'notes', count: 10 } },
+        { id: 'compare_4', name: '对比分析师', desc: '对比4款酒', icon: '⚖️', requirement: { type: 'compare', count: 4 } },
+        { id: 'search_master', name: '搜索高手', desc: '搜索20次', icon: '🔍', requirement: { type: 'search', count: 20 } },
+        { id: 'region_explorer', name: '产区探索者', desc: '浏览所有产区', icon: '🌍', requirement: { type: 'regions', count: 10 } },
+        { id: 'price_range', name: '价格猎手', desc: '筛选各价格区间', icon: '💰', requirement: { type: 'priceRanges', count: 5 } },
+        { id: 'night_owl', name: '深夜品酒师', desc: '在23点后使用', icon: '🦉', requirement: { type: 'nightUsage', count: 1 } },
+        { id: 'early_bird', name: '清晨鉴赏家', desc: '在6点前使用', icon: '🐦', requirement: { type: 'earlyUsage', count: 1 } }
+      ];
+      window._用户成就进度 = {};
+
+      // 检查并更新成就
+      window.f10a_检查成就 = function() {
+        const favCount = Object.keys(window.FAVORITES).length;
+        const noteCount = Object.keys(window.TASTING_NOTES).length;
+        const compareCount = window.COMPARE_LIST.length;
+        const searchCount = window.SEARCH_HISTORY.length;
+        const hour = new Date().getHours();
+
+        const stats = { favorites: favCount, notes: noteCount, compare: compareCount, search: searchCount };
+
+        window._成就定义列表.forEach(achievement => {
+          const req = achievement.requirement;
+          let progress = 0;
+          let unlocked = false;
+
+          if (stats[req.type] !== undefined) {
+            progress = Math.min(stats[req.type], req.count);
+            unlocked = stats[req.type] >= req.count;
+          }
+
+          if (req.type === 'nightUsage' && hour >= 23) unlocked = true;
+          if (req.type === 'earlyUsage' && hour < 6) unlocked = true;
+
+          window._用户成就进度[achievement.id] = { progress, unlocked };
+        });
+
+        f10b_保存成就进度();
+      };
+
+      // 保存成就进度
+      function f10b_保存成就进度() {
+        f11_saveToStorage(window.LS_ACHIEVE, window._用户成就进度);
+        f32_updateStats();
+      }
+
+      // 获取成就列表
+      window.f10c_获取成就列表 = function() {
+        return window._成就定义列表.map(a => ({
+          ...a,
+          progress: window._用户成就进度[a.id]?.progress || 0,
+          unlocked: window._用户成就进度[a.id]?.unlocked || false
+        }));
+      };
+
+      // 获取已解锁成就
+      window.f10d_获取已解锁成就 = function() {
+        return window.f10c_获取成就列表().filter(a => a.unlocked);
+      };
+
+      // 获取成就解锁进度
+      window.f10e_获取解锁进度 = function() {
+        const total = window._成就定义列表.length;
+        const unlocked = Object.values(window._用户成就进度).filter(p => p.unlocked).length;
+        return { unlocked, total, percentage: Math.round((unlocked / total) * 100) };
+      };
+
+      // 初始化成就进度
+      function f10f_初始化成就() {
+        const saved = f12_loadFromStorage(window.LS_ACHIEVE);
+        if (saved) {
+          window._用户成就进度 = saved;
+        } else {
+          window._成就定义列表.forEach(a => {
+            window._用户成就进度[a.id] = { progress: 0, unlocked: false };
+          });
+        }
+        f10a_检查成就();
+      }
+
+      f10f_初始化成就();
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F11: 分享功能
+    // ───────────────────────────────────────────────────────────────────
+    function f11_分享功能() {
+      // 生成分享海报
+      window.f11a_生成分享海报 = function(liquorId) {
+        return f620_generateSharePoster(liquorId);
+      };
+
+      // 下载分享海报
+      window.f11b_下载海报 = async function(liquorId) {
+        await f621_sharePoster(liquorId);
+      };
+
+      // 复制分享链接
+      window.f11c_复制链接 = function(liquorId) {
+        f622_copyShareLink(liquorId);
+      };
+
+      // 分享到社交媒体
+      window.f11d_分享到社交 = function(platform, liquorId) {
+        f623_shareToSocial(platform, liquorId);
+      };
+
+      // 生成分享卡片HTML
+      window.f11e_生成卡片HTML = function(liquorId) {
+        const d = f69_findById(liquorId);
+        if (!d) return '';
+        return `
+          <div class="share-card" style="background:linear-gradient(135deg,#1a1512,#0d0a08);padding:20px;border-radius:12px;border:2px solid rgba(198,161,91,0.3);max-width:300px;">
+            <div style="font-size:60px;text-align:center;">🥃</div>
+            <h3 style="color:#f8f4f0;text-align:center;margin:12px 0;">${d.name}</h3>
+            <p style="color:#9a8b7a;text-align:center;">${d.type} · ${d.region}</p>
+            <p style="color:#e8a829;text-align:center;font-size:1.2rem;font-weight:bold;">¥${d.price}</p>
+            <p style="color:#f5cc6a;text-align:center;font-size:0.9rem;">评分: ${d.score || '-'}</p>
+          </div>
+        `;
+      };
+
+      // 分享酒款信息
+      window.f11f_分享酒款信息 = function(liquorId) {
+        const d = f69_findById(liquorId);
+        if (!d) return;
+        const info = `🥃 ${d.name}（${d.ename || ''}）
+类型: ${d.type}
+产区: ${d.region}
+酒精度: ${d.abv}%
+参考价格: ¥${d.price}
+评分: ${d.score || '-'}
+#世界烈酒图鉴`;
+        f73_copyToClipboard(info);
+        f58_showToast('酒款信息已复制');
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F12: 夜间模式
+    // ───────────────────────────────────────────────────────────────────
+    function f12_夜间模式() {
+      window._夜间模式定时开启 = false;
+      window._夜间模式定时关闭 = false;
+
+      // 切换主题
+      window.f12a_切换主题 = function() {
+        f20b_toggleTheme();
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        f58_showToast(isDark ? '已切换到夜间模式' : '已切换到日间模式');
+      };
+
+      // 设置定时开启
+      window.f12b_定时开启 = function(hour = 23) {
+        window._夜间模式定时开启 = hour;
+        f58_showToast(`将在每天 ${hour}:00 自动开启夜间模式`);
+      };
+
+      // 设置定时关闭
+      window.f12c_定时关闭 = function(hour = 6) {
+        window._夜间模式定时关闭 = hour;
+        f58_showToast(`将在每天 ${hour}:00 自动关闭夜间模式`);
+      };
+
+      // 取消定时
+      window.f12d_取消定时 = function() {
+        window._夜间模式定时开启 = false;
+        window._夜间模式定时关闭 = false;
+        f58_showToast('已取消定时切换');
+      };
+
+      // 获取当前主题
+      window.f12e_获取当前主题 = function() {
+        return document.documentElement.getAttribute('data-theme') || 'dark';
+      };
+
+      // 检查是否应该自动切换
+      function f12f_检查自动切换() {
+        const hour = new Date().getHours();
+        const isDark = f12e_获取当前主题() === 'dark';
+
+        if (window._夜间模式定时开启 && hour === window._夜间模式定时开启 && !isDark) {
+          f12a_切换主题();
+        }
+        if (window._夜间模式定时关闭 && hour === window._夜间模式定时关闭 && isDark) {
+          f12a_切换主题();
+        }
+      }
+
+      // 每分钟检查一次
+      setInterval(f12f_检查自动切换, 60000);
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F13: 数据导出优化
+    // ───────────────────────────────────────────────────────────────────
+    function f13_数据导出优化() {
+      // 导出用户数据
+      window.f13a_导出用户数据 = function() {
+        const data = {
+          version: '3.0.1',
+          timestamp: Date.now(),
+          exportDate: new Date().toISOString(),
+          favorites: window.FAVORITES,
+          favoriteFolders: window.FAVORITE_FOLDERS,
+          tastingNotes: window.TASTING_NOTES,
+          achievements: window.ACHIEVEMENTS,
+          compareList: window.COMPARE_LIST,
+          browseHistory: window.SEARCH_HISTORY,
+          settings: {
+            lang: window.CUR_LANG,
+            theme: document.documentElement.getAttribute('data-theme'),
+            viewMode: window.VIEW_MODE
+          }
+        };
+        return data;
+      };
+
+      // 导出为JSON文件
+      window.f13b_导出JSON文件 = function() {
+        const data = f13a_导出用户数据();
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `liquor_backup_${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        f58_showToast('数据导出成功');
+      };
+
+      // 导出为CSV格式
+      window.f13c_导出CSV文件 = function() {
+        const rows = [['ID', '名称', '英文名', '类型', '产区', '价格', '酒精度', '评分', '是否收藏']];
+        window.DATA.forEach(d => {
+          rows.push([
+            d.id,
+            d.name,
+            d.ename || '',
+            d.type,
+            d.region,
+            d.price,
+            d.abv,
+            d.score || '',
+            window.FAVORITES[d.id] ? '是' : '否'
+          ]);
+        });
+        const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+        const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `liquor_data_${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+        f58_showToast('CSV导出成功');
+      };
+
+      // 压缩导出
+      window.f13d_压缩导出 = function() {
+        const data = f13a_导出用户数据();
+        const jsonStr = JSON.stringify(data);
+        const compressed = LZString.compressToUTF16(jsonStr);
+        const blob = new Blob([compressed], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `liquor_backup_compact_${new Date().toISOString().slice(0, 10)}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        f58_showToast('压缩导出成功');
+      };
+
+      // 估算导出大小
+      window.f13e_估算导出大小 = function() {
+        const data = f13a_导出用户数据();
+        const size = JSON.stringify(data).length;
+        if (size < 1024) return `${size} B`;
+        if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
+        return `${(size / 1024 / 1024).toFixed(1)} MB`;
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F14: 数据导入导出
+    // ───────────────────────────────────────────────────────────────────
+    function f14_数据导入导出() {
+      // 导入数据
+      window.f14a_导入数据 = function(jsonString) {
+        try {
+          const data = JSON.parse(jsonString);
+          if (data.version) {
+            f17_importState(data);
+            f58_showToast('数据导入成功');
+            return true;
+          }
+          f58_showToast('数据格式无效');
+          return false;
+        } catch (e) {
+          // 尝试解压
+          try {
+            const decompressed = LZString.decompressFromUTF16(jsonString);
+            if (decompressed) {
+              const data = JSON.parse(decompressed);
+              f17_importState(data);
+              f58_showToast('数据导入成功');
+              return true;
+            }
+          } catch (e2) {}
+          f58_showToast('导入失败：数据格式错误');
+          return false;
+        }
+      };
+
+      // 从文件导入
+      window.f14b_从文件导入 = function(file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          f14a_导入数据(e.target.result);
+        };
+        reader.readAsText(file);
+      };
+
+      // 选择文件导入
+      window.f14c_选择文件导入 = function() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json,.txt';
+        input.onchange = function(e) {
+          const file = e.target.files[0];
+          if (file) f14b_从文件导入(file);
+        };
+        input.click();
+      };
+
+      // 合并导入（不覆盖已有数据）
+      window.f14d_合并导入 = function(jsonString) {
+        try {
+          const data = JSON.parse(jsonString);
+          if (!data.version) throw new Error('Invalid format');
+
+          // 合并收藏
+          if (data.favorites) {
+            Object.keys(data.favorites).forEach(id => {
+              if (!window.FAVORITES[id]) {
+                window.FAVORITES[id] = data.favorites[id];
+              }
+            });
+          }
+
+          // 合并笔记
+          if (data.tastingNotes) {
+            Object.keys(data.tastingNotes).forEach(id => {
+              if (!window.TASTING_NOTES[id]) {
+                window.TASTING_NOTES[id] = data.tastingNotes[id];
+              }
+            });
+          }
+
+          f15_saveAllStorage();
+          f58_showToast('数据合并成功');
+          return true;
+        } catch (e) {
+          f58_showToast('合并失败：' + e.message);
+          return false;
+        }
+      };
+
+      // 导入前预览
+      window.f14e_导入预览 = function(jsonString) {
+        try {
+          const data = JSON.parse(jsonString);
+          const preview = {
+            version: data.version || '未知',
+            favorites: Object.keys(data.favorites || {}).length,
+            notes: Object.keys(data.tastingNotes || {}).length,
+            achievements: Object.keys(data.achievements || {}).length,
+            date: data.timestamp ? new Date(data.timestamp).toLocaleDateString() : '未知'
+          };
+          return preview;
+        } catch (e) {
+          return null;
+        }
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F15: 快捷键
+    // ───────────────────────────────────────────────────────────────────
+    function f15_快捷键() {
+      window._快捷键映射 = {
+        '/': '聚焦搜索',
+        'Escape': '关闭弹窗/清除',
+        'ArrowUp': '向上导航',
+        'ArrowDown': '向下导航',
+        'Enter': '确认/打开详情',
+        'f': '添加收藏',
+        'c': '添加到对比',
+        'n': '新建笔记',
+        'h': '显示帮助',
+        '?': '显示快捷键',
+        '1-4': '切换视图模式',
+        'l': '切换列表/网格视图',
+        't': '切换主题'
+      };
+
+      // 注册全局快捷键
+      window.f15a_注册快捷键 = function() {
+        document.addEventListener('keydown', function(e) {
+          // 输入框内不响应快捷键
+          if (e.target.matches('input, textarea, select')) {
+            if (e.key === 'Escape') {
+              e.target.blur();
+            }
+            return;
+          }
+
+          const key = e.key.toLowerCase();
+
+          // ? 或 Shift+/
+          if (key === '?' || (e.shiftKey && key === '/')) {
+            f15c_显示快捷键帮助();
+            return;
+          }
+
+          switch (key) {
+            case '/':
+              e.preventDefault();
+              document.getElementById('searchInput')?.focus();
+              break;
+            case 'escape':
+              f113_closeAllModals();
+              f54_hideAutocomplete();
+              break;
+            case 'f':
+              if (window._当前酒款Id) {
+                window.toggleFavorite(window._当前酒款Id);
+              }
+              break;
+            case 'c':
+              if (window._当前酒款Id) {
+                f07a_添加到对比(window._当前酒款Id);
+              }
+              break;
+            case 'n':
+              if (window._当前酒款Id) {
+                f415_openDetailModalWithTabs(window._当前酒款Id, 'notes');
+              }
+              break;
+            case 'l':
+              f99_switchView(window.VIEW_MODE === 'grid' ? 'list' : 'grid');
+              break;
+            case 't':
+              f12a_切换主题();
+              break;
+          }
+        });
+      };
+
+      // 获取快捷键列表
+      window.f15b_获取快捷键列表 = function() {
+        return Object.entries(window._快捷键映射).map(([key, desc]) => ({ key, desc }));
+      };
+
+      // 显示快捷键帮助
+      window.f15c_显示快捷键帮助 = function() {
+        const shortcuts = f15b_获取快捷键列表();
+        const html = `
+          <div class="modal-backdrop show" onclick="this.classList.remove('show');this.nextElementSibling?.classList.remove('show');">
+            <div class="modal show" style="max-width:400px;" onclick="event.stopPropagation();">
+              <button class="modal__close" onclick="this.closest('.modal-backdrop').classList.remove('show');this.closest('.modal').classList.remove('show');">×</button>
+              <div class="modal__content">
+                <h3 style="color:var(--accent-500);margin-bottom:16px;">⌨️ 快捷键</h3>
+                <div style="display:grid;gap:8px;">
+                  ${shortcuts.map(s => `
+                    <div style="display:flex;justify-content:space-between;padding:8px;background:var(--bg-elevated);border-radius:8px;">
+                      <kbd style="background:var(--bg-card);padding:4px 8px;border-radius:4px;color:var(--accent-400);">${s.key}</kbd>
+                      <span style="color:var(--text-cream);">${s.desc}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', html);
+      };
+
+      f15a_注册快捷键();
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F16: 盲品模式
+    // ───────────────────────────────────────────────────────────────────
+    function f16_盲品模式() {
+      window._盲品模式启用 = false;
+      window._盲品当前题目 = null;
+      window._盲品得分 = 0;
+      window._盲品历史 = [];
+
+      // 启用盲品模式
+      window.f16a_启用盲品 = function() {
+        window._盲品模式启用 = true;
+        f16c_下一题();
+        f58_showToast('🎯 盲品模式已启用');
+      };
+
+      // 禁用盲品模式
+      window.f16b_禁用盲品 = function() {
+        window._盲品模式启用 = false;
+        f58_showToast('盲品模式已退出');
+      };
+
+      // 生成下一题
+      window.f16c_下一题 = function() {
+        const available = window.DATA.filter(d => !window._盲品历史.includes(d.id));
+        if (available.length === 0) {
+          f58_showToast('恭喜！你已完成所有盲品测试');
+          return;
+        }
+        const randomIndex = Math.floor(Math.random() * available.length);
+        window._盲品当前题目 = available[randomIndex];
+      };
+
+      // 提交答案
+      window.f16d_提交答案 = function(guess) {
+        if (!window._盲品当前题目) return;
+        const correct = guess.toLowerCase() === window._盲品当前题目.name.toLowerCase();
+        if (correct) {
+          window._盲品得分++;
+          f58_showToast('✅ 回答正确！');
+        } else {
+          f58_showToast(`❌ 正确答案是：${window._盲品当前题目.name}`);
+        }
+        window._盲品历史.push(window._盲品当前题目.id);
+        f16c_下一题();
+      };
+
+      // 获取盲品状态
+      window.f16e_获取状态 = function() {
+        return {
+          enabled: window._盲品模式启用,
+          currentQuestion: window._盲品当前题目,
+          score: window._盲品得分,
+          totalAnswered: window._盲品历史.length,
+          remaining: window.DATA.length - window._盲品历史.length
+        };
+      };
+
+      // 重置盲品
+      window.f16f_重置盲品 = function() {
+        window._盲品得分 = 0;
+        window._盲品历史 = [];
+        window._盲品当前题目 = null;
+        f58_showToast('盲品已重置');
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F17: 酒款排名
+    // ───────────────────────────────────────────────────────────────────
+    function f17_酒款排名() {
+      window._排名类型 = ['score', 'price', 'favorites', 'abv', 'year'];
+      window._当前排名类型 = 'score';
+
+      // 获取排名列表
+      window.f17a_获取排名列表 = function(type = 'score', limit = 50) {
+        let sorted = [...window.DATA];
+        switch (type) {
+          case 'score':
+            sorted.sort((a, b) => (b.score || 0) - (a.score || 0));
+            break;
+          case 'price':
+            sorted.sort((a, b) => (b.price || 0) - (a.price || 0));
+            break;
+          case 'favorites':
+            sorted.sort((a, b) => (window.FAVORITES[b.id] ? 1 : 0) - (window.FAVORITES[a.id] ? 1 : 0));
+            break;
+          case 'abv':
+            sorted.sort((a, b) => (b.abv || 0) - (a.abv || 0));
+            break;
+          case 'year':
+            sorted = sorted.filter(d => d.year).sort((a, b) => b.year - a.year);
+            break;
+        }
+        return sorted.slice(0, limit).map((d, i) => ({
+          rank: i + 1,
+          ...d,
+          medal: i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : null
+        }));
+      };
+
+      // 获取酒款排名
+      window.f17b_获取酒款排名 = function(liquorId, type = 'score') {
+        const ranked = f17a_获取排名列表(type, window.DATA.length);
+        return ranked.findIndex(d => d.id === liquorId) + 1;
+      };
+
+      // 切换排名类型
+      window.f17c_切换排名类型 = function(type) {
+        if (window._排名类型.includes(type)) {
+          window._当前排名类型 = type;
+        }
+      };
+
+      // 渲染排名UI
+      window.f17d_渲染排名UI = function(containerId, type = 'score') {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const ranked = f17a_获取排名列表(type, 20);
+        container.innerHTML = ranked.map(item => `
+          <div class="fav-ranking__item" onclick="f415_openDetailModalWithTabs('${item.id}')">
+            <span class="fav-ranking__rank ${item.rank <= 3 ? ['gold', 'silver', 'bronze'][item.rank - 1] : ''}">${item.medal || item.rank}</span>
+            <div class="fav-ranking__info">
+              <div class="fav-ranking__name">${item.name}</div>
+              <div class="fav-ranking__meta">${item.type} · ${item.region}</div>
+            </div>
+            <span class="fav-ranking__count">${type === 'score' ? item.score : type === 'price' ? '¥' + item.price : ''}</span>
+          </div>
+        `).join('');
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F18: 相关酒款推荐
+    // ───────────────────────────────────────────────────────────────────
+    function f18_相关酒款推荐() {
+      // 获取相关酒款
+      window.f18a_获取相关酒款 = function(liquorId, limit = 6) {
+        const liquor = f69_findById(liquorId);
+        if (!liquor) return [];
+
+        const scored = window.DATA
+          .filter(d => d.id !== liquorId)
+          .map(d => {
+            let score = 0;
+            if (d.type === liquor.type) score += 3;
+            if (d.region === liquor.region) score += 2;
+            if (d.abv && liquor.abv && Math.abs(d.abv - liquor.abv) < 5) score += 1;
+            if (d.price && liquor.price && Math.abs(d.price - liquor.price) < liquor.price * 0.3) score += 1;
+            if (d.year && liquor.year && d.year === liquor.year) score += 1;
+            if (liquor.flavor_tags && d.flavor_tags) {
+              const sharedTags = liquor.flavor_tags.filter(t => d.flavor_tags.includes(t));
+              score += sharedTags.length * 0.5;
+            }
+            return { ...d, relevanceScore: score };
+          })
+          .sort((a, b) => b.relevanceScore - a.relevanceScore)
+          .slice(0, limit);
+
+        return scored;
+      };
+
+      // 获取相似酒款（基于品尝特征）
+      window.f18b_获取相似酒款 = function(liquorId, limit = 6) {
+        const liquor = f69_findById(liquorId);
+        if (!liquor || !liquor.tasting) return [];
+
+        return window.DATA
+          .filter(d => d.id !== liquorId && d.tasting)
+          .map(d => {
+            const shared = d.tasting.filter(t => liquor.tasting.includes(t));
+            return { ...d, similarity: shared.length / Math.max(liquor.tasting.length, d.tasting.length) };
+          })
+          .filter(d => d.similarity > 0)
+          .sort((a, b) => b.similarity - a.similarity)
+          .slice(0, limit);
+      };
+
+      // 获取"喝过的人还喝过"
+      window.f18c_获取搭配推荐 = function(liquorId, limit = 6) {
+        // 简化版：基于类型和产区推荐
+        const liquor = f69_findById(liquorId);
+        if (!liquor) return [];
+
+        return window.DATA
+          .filter(d => d.id !== liquorId && (d.type === liquor.type || d.region === liquor.region))
+          .filter(d => window.FAVORITES[d.id]) // 只推荐收藏过的
+          .slice(0, limit);
+      };
+
+      // 渲染推荐UI
+      window.f18d_渲染推荐UI = function(containerId, liquorId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const related = f18a_获取相关酒款(liquorId);
+        container.innerHTML = related.map(d => `
+          <div class="liquor-card" style="min-width:200px;" onclick="f415_openDetailModalWithTabs('${d.id}')">
+            <div class="liquor-card-image">🥃</div>
+            <div class="liquor-card-body" style="padding:12px;">
+              <div class="liquor-card-name" style="font-size:1rem;">${d.name}</div>
+              <div class="liquor-card-region" style="font-size:0.7rem;">${d.type}</div>
+            </div>
+          </div>
+        `).join('');
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F19: 酿酒厂档案
+    // ───────────────────────────────────────────────────────────────────
+    function f19_酿酒厂档案() {
+      // 获取酿酒厂信息
+      window.f19a_获取酿酒厂信息 = function(liquorId) {
+        const liquor = f69_findById(liquorId);
+        if (!liquor) return null;
+
+        // 模拟酿酒厂数据
+        const distilleryData = {
+          name: liquor.origin || liquor.region || '未知酒厂',
+          location: liquor.region,
+          founded: Math.floor(Math.random() * 100) + 1850,
+          owner: '独立运营商',
+          capacity: Math.floor(Math.random() * 500) + 100 + '万升/年',
+          status: '运营中'
+        };
+
+        return {
+          ...distilleryData,
+          website: `https://www.example-distillery.com`,
+          description: `${distilleryData.name}是一家历史悠久的酿酒厂，位于${distilleryData.location}。`
+        };
+      };
+
+      // 获取酿酒厂所有酒款
+      window.f19b_获取酒厂酒款 = function(liquorId) {
+        const liquor = f69_findById(liquorId);
+        if (!liquor) return [];
+        return window.DATA.filter(d =>
+          d.region === liquor.region || d.origin === liquor.origin
+        );
+      };
+
+      // 获取酒厂年份历史
+      window.f19c_获取酒厂历史 = function(liquorId) {
+        const distillery = f19a_获取酿酒厂信息(liquorId);
+        if (!distillery) return [];
+        return [
+          { year: distillery.founded, event: '酒厂成立' },
+          { year: distillery.founded + 20, event: '首次蒸馏' },
+          { year: distillery.founded + 50, event: '扩大产能' },
+          { year: new Date().getFullYear(), event: '至今' }
+        ];
+      };
+
+      // 渲染酒厂档案
+      window.f19d_渲染酒厂档案 = function(containerId, liquorId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const info = f19a_获取酿酒厂信息(liquorId);
+        const history = f19c_获取酒厂历史(liquorId);
+        if (!info) return;
+
+        container.innerHTML = `
+          <div class="modal__section">
+            <h4 class="modal__section-title">🏭 酒厂信息</h4>
+            <div class="modal__grid">
+              <div class="modal__grid-item">
+                <div class="modal__grid-label">酒厂名称</div>
+                <div class="modal__grid-value">${info.name}</div>
+              </div>
+              <div class="modal__grid-item">
+                <div class="modal__grid-label">所在地</div>
+                <div class="modal__grid-value">${info.location}</div>
+              </div>
+              <div class="modal__grid-item">
+                <div class="modal__grid-label">成立年份</div>
+                <div class="modal__grid-value">${info.founded}年</div>
+              </div>
+              <div class="modal__grid-item">
+                <div class="modal__grid-label">年产量</div>
+                <div class="modal__grid-value">${info.capacity}</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal__section">
+            <h4 class="modal__section-title">📜 酒厂历史</h4>
+            <div class="modal__tasting">
+              ${history.map(h => `
+                <div class="modal__tasting-item">
+                  <span class="modal__tasting-icon">📅</span>
+                  <span class="modal__tasting-text"><strong>${h.year}</strong> - ${h.event}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      };
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // F20: 品鉴活动
+    // ───────────────────────────────────────────────────────────────────
+    function f20_品鉴活动() {
+      window._品鉴活动列表 = [];
+      window._当前品鉴活动 = null;
+
+      // 创建品鉴活动
+      window.f20a_创建活动 = function(name, date, location, description) {
+        const activity = {
+          id: 'activity_' + Date.now(),
+          name: name,
+          date: date,
+          location: location,
+          description: description,
+          participants: [],
+          selectedLiquors: [],
+          notes: [],
+          createdAt: Date.now()
+        };
+        window._品鉴活动列表.push(activity);
+        f20g_保存活动();
+        return activity;
+      };
+
+      // 添加酒款到活动
+      window.f20b_添加酒款到活动 = function(activityId, liquorId) {
+        const activity = window._品鉴活动列表.find(a => a.id === activityId);
+        if (activity && !activity.selectedLiquors.includes(liquorId)) {
+          activity.selectedLiquors.push(liquorId);
+          f20g_保存活动();
+        }
+      };
+
+      // 添加参与者
+      window.f20c_添加参与者 = function(activityId, name) {
+        const activity = window._品鉴活动列表.find(a => a.id === activityId);
+        if (activity && !activity.participants.includes(name)) {
+          activity.participants.push(name);
+          f20g_保存活动();
+        }
+      };
+
+      // 记录活动笔记
+      window.f20d_记录活动笔记 = function(activityId, liquorId, note, rating) {
+        const activity = window._品鉴活动列表.find(a => a.id === activityId);
+        if (activity) {
+          activity.notes.push({
+            liquorId,
+            note,
+            rating,
+            createdAt: Date.now()
+          });
+          f20g_保存活动();
+        }
+      };
+
+      // 获取活动列表
+      window.f20e_获取活动列表 = function() {
+        return window._品鉴活动列表.sort((a, b) => b.createdAt - a.createdAt);
+      };
+
+      // 获取即将到来的活动
+      window.f20f_获取即将到来活动 = function() {
+        const now = Date.now();
+        return window._品鉴活动列表
+          .filter(a => new Date(a.date).getTime() > now)
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+          .slice(0, 5);
+      };
+
+      // 保存活动到存储
+      function f20g_保存活动() {
+        f11_saveToStorage('liquor_tasting_events', window._品鉴活动列表);
+      }
+
+      // 加载活动
+      function f20h_加载活动() {
+        const saved = f12_loadFromStorage('liquor_tasting_events');
+        if (saved) window._品鉴活动列表 = saved;
+      }
+
+      // 删除活动
+      window.f20i_删除活动 = function(activityId) {
+        const index = window._品鉴活动列表.findIndex(a => a.id === activityId);
+        if (index !== -1) {
+          window._品鉴活动列表.splice(index, 1);
+          f20g_保存活动();
+          return true;
+        }
+        return false;
+      };
+
+      // 生成活动报告
+      window.f20j_生成活动报告 = function(activityId) {
+        const activity = window._品鉴活动列表.find(a => a.id === activityId);
+        if (!activity) return '';
+
+        let report = `=== 品鉴活动报告 ===\n`;
+        report += `活动名称: ${activity.name}\n`;
+        report += `活动日期: ${activity.date}\n`;
+        report += `活动地点: ${activity.location}\n`;
+        report += `参与人数: ${activity.participants.length}\n`;
+        report += `\n参与人员:\n${activity.participants.map(p => `- ${p}`).join('\n')}\n`;
+        report += `\n品鉴酒款:\n`;
+        activity.selectedLiquors.forEach(id => {
+          const d = f69_findById(id);
+          if (d) report += `- ${d.name} (${d.type})\n`;
+        });
+        report += `\n品鉴笔记:\n`;
+        activity.notes.forEach(n => {
+          const d = f69_findById(n.liquorId);
+          report += `[${d ? d.name : '未知酒款'}] ${n.rating}星 - ${n.note}\n`;
+        });
+        return report;
+      };
+
+      f20h_加载活动();
+    }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // 初始化所有F01-F20功能
+    // ═══════════════════════════════════════════════════════════════════
+    function f_initAllF01_F20() {
+      f01_智能搜索();
+      f02_价格区间筛选();
+      f03_稀缺度筛选();
+      f04_年份筛选();
+      f05_收藏夹分组();
+      f06_批量操作();
+      f07_对比功能升级();
+      f08_品鉴笔记();
+      f09_历史记录();
+      f10_成就系统升级();
+      f11_分享功能();
+      f12_夜间模式();
+      f13_数据导出优化();
+      f14_数据导入导出();
+      f15_快捷键();
+      f16_盲品模式();
+      f17_酒款排名();
+      f18_相关酒款推荐();
+      f19_酿酒厂档案();
+      f20_品鉴活动();
+      console.log('✅ F01-F20 功能初始化完成');
+    }
+
+    // 自动初始化
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', f_initAllF01_F20);
+    } else {
+      f_initAllF01_F20();
+    }
+
+    // 导出所有F01-F20函数到window对象
+    window.f01_智能搜索 = f01_智能搜索;
+    window.f02_价格区间筛选 = f02_价格区间筛选;
+    window.f03_稀缺度筛选 = f03_稀缺度筛选;
+    window.f04_年份筛选 = f04_年份筛选;
+    window.f05_收藏夹分组 = f05_收藏夹分组;
+    window.f06_批量操作 = f06_批量操作;
+    window.f07_对比功能升级 = f07_对比功能升级;
+    window.f08_品鉴笔记 = f08_品鉴笔记;
+    window.f09_历史记录 = f09_历史记录;
+    window.f10_成就系统升级 = f10_成就系统升级;
+    window.f11_分享功能 = f11_分享功能;
+    window.f12_夜间模式 = f12_夜间模式;
+    window.f13_数据导出优化 = f13_数据导出优化;
+    window.f14_数据导入导出 = f14_数据导入导出;
+    window.f15_快捷键 = f15_快捷键;
+    window.f16_盲品模式 = f16_盲品模式;
+    window.f17_酒款排名 = f17_酒款排名;
+    window.f18_相关酒款推荐 = f18_相关酒款推荐;
+    window.f19_酿酒厂档案 = f19_酿酒厂档案;
+    window.f20_品鉴活动 = f20_品鉴活动;
   </script>
 </body>
 </html>
