@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>世界烈酒图鉴 v6.6.0 · World Liquor Gallery</title>
+  <title>世界烈酒图鉴 v6.7.0 · World Liquor Gallery</title>
   <meta name="description" content="探索全球800款顶级烈酒 - 茅台、五粮液、威士忌、白兰地、伏特加、金酒、朗姆酒、龙舌兰。含品鉴笔记、雷达图分析、成就系统">
   <meta name="keywords" content="世界烈酒,白酒,威士忌,白兰地,伏特加,金酒,朗姆酒,龙舌兰,品鉴,调酒">
   <meta property="og:title" content="世界烈酒图鉴">
   <meta property="og:description" content="探索全球200款顶级烈酒">
   <meta name="theme-color" content="#0c0d10">
   <meta name="author" content="姜维（OpenCode）">
-  <meta name="version" content="v6.6.0 - UI全面简化优化">
+  <meta name="version" content="v6.7.0 - UI全面简化优化">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -18,7 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
   <style>
     /* ================================================
-       世界烈酒图鉴 v6.6.0
+       世界烈酒图鉴 v6.7.0
        现代蓝紫调 · 简洁大气 · 姜维+赵云
        Phase 7: UI全面简化优化 · 主公偏好优先
        ================================================ */
@@ -128,7 +128,6 @@
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; outline: none; }
     img { display: block; max-width: 100%; }
-    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(168, 85, 247, 0.03) 0%, transparent 50%), linear-gradient(180deg, var(--bg-deepest) 0%, var(--bg-deep) 50%, var(--bg-deepest) 100%); pointer-events: none; z-index: -1; }
     /* ===== INITIAL LOADING ===== */
     .initial-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 20px; }
     .initial-loading__icon { font-size: 56px; animation: float 2s ease-in-out infinite; }
@@ -232,7 +231,7 @@
     .notes-action-btn { flex: 1; padding: var(--space-sm); border-radius: var(--radius-md); background: var(--bg-card); border: 1px solid var(--border-accent); color: var(--accent-500); font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: var(--space-xs); transition: all var(--transition-fast); }
     .notes-action-btn:hover { background: rgba(15, 124, 245, 0.15); border-color: var(--accent-600); }
     /* ===== FAVORITES BAR ===== */
-    .favorites-bar { display: none; }
+    .favorites-bar { position: fixed; left: 0; top: 65px; bottom: 0; width: 44px; z-index: 110; display: none; }
     .favorites-bar__btn { width: 36px; height: 36px; border-radius: var(--radius-md); background: rgba(26, 21, 18, 0.6); border: 1px solid var(--border-accent); color: var(--midnight-400); font-size: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition-fast); }
     .favorites-bar__btn:hover { background: rgba(15, 124, 245, 0.15); border-color: var(--accent-500); color: var(--accent-500); }
     .favorites-bar__btn.active { background: rgba(15, 124, 245, 0.15); border-color: var(--accent-500); color: var(--accent-500); }
@@ -1482,7 +1481,7 @@
         <a href="#" class="header__brand" onclick="goHome()">
           <div class="header__logo">🥃</div>
           <div class="header__titles">
-            <span class="header__title">世界烈酒图鉴 <span class="header__version">v6.6.0</span></span>
+            <span class="header__title">世界烈酒图鉴 <span class="header__version">v6.7.0</span></span>
             <span class="header__subtitle">World Liquor Gallery · 出品人：LZ</span>
           </div>
         </a>
@@ -3274,7 +3273,7 @@
       const wuXingClass = f422_getWuXingClass(d);
       const cardBadges = f423_renderCardBadges(d);
       
-      return `<div class="liquor-card ${wuXingClass}" data-id="${d.id}" onclick="f415_openDetailModalWithTabs('${d.id}')" style="animation-delay:${Math.min(index * 50, 300)}ms">
+      return `<div class="liquor-card ${wuXingClass}" data-id="${d.id}" onclick="event.stopPropagation();f415_openDetailModalWithTabs('${d.id}')" style="animation-delay:${Math.min(index * 50, 300)}ms">
         <div class="liquor-card-image">
           ${d.image ? `<img src="${d.image}" alt="${f63_escHtml(d.name)}" loading="lazy" onerror="f651_handleImageError(this)">` : '<span class="img-placeholder">🥃</span>'}
           <span class="liquor-card-badge">${f63_escHtml(type)}</span>
