@@ -1,11 +1,11 @@
 /* ================================================
-   世界烈酒图鉴 v4.1.0
+   世界烈酒图鉴 v5.0.0
    黑髪漆面 · 香槟金蕴 · Luxury Edition
-   Phase 2: 3D 动态 UI + 60项功能升级 (f770-f799 + F01-F20 + T01-T07)
+   Phase 3: UI优化18项 + 现代简约蓝紫调
    ================================================ */
 
 /* ================================================
-   1. CSS Variables - 奢华黑金配色
+   1. CSS Variables - 奢华黑金配色（优化版）
    ================================================ */
 :root {
   /* 主背景 - 黑髪漆面 */
@@ -15,7 +15,7 @@
   --bg-elevated: #1c1813;
   --bg-glass: rgba(8, 7, 6, 0.88);
 
-  /* 强调色 - 香槟金蕴 */
+  /* 强调色 - 香槟金蕴（优化：减少土气金色） */
   --accent-50: #fdf8f0;
   --accent-100: #f5ebd0;
   --accent-200: #e8d4a0;
@@ -25,61 +25,36 @@
   --accent-600: #b08a42;
   --accent-700: #9a7a3f;
 
+  /* 新增：蓝紫调强调色（商业软件气息） */
+  --blue-accent: #6366f1;
+  --blue-light: #818cf8;
+  --blue-dark: #4f46e5;
+  --purple-accent: #a855f7;
+  --purple-light: #c084fc;
+
   /* 文字色 - 暖白宣纸 */
   --text-primary: #fff8ea;
   --text-secondary: #d8cdb7;
   --text-muted: #9f927c;
   --text-subtle: #6a5f4e;
 
-  /* 边框 - 鎏金微光 */
+  /* 边框 - 鎏金微光（优化：更现代） */
   --border-subtle: rgba(198, 161, 91, 0.08);
   --border-default: #282217;
   --border-hover: #3a3020;
+  /* 新增：蓝紫边框 */
+  --border-blue: rgba(99, 102, 241, 0.2);
+  --border-blue-hover: rgba(99, 102, 241, 0.4);
 
-  /* 阴影 - 深邃奢华 */
+  /* 阴影 - 深邃奢华（优化：蓝紫光晕） */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
   --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.8);
-
-  /* 间距 - 从容奢华 */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 36px;
-  --space-2xl: 56px;
-  --space-3xl: 80px;
-
-  /* 圆角 - 温润雅致 */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
-  --radius-2xl: 36px;
-  --radius-full: 9999px;
-
-  /* 字体 */
-  --font-display: "Playfair Display", "Noto Serif SC", "Songti SC", serif;
-  --font-body: "Avenir Next", "Inter", "Noto Sans SC", "PingFang SC", sans-serif;
-  --font-accent: "Playfair Display", "Noto Serif SC", serif;
-
-  /* 动画 */
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --transition-fast: 180ms var(--ease-smooth);
-  --transition-normal: 300ms var(--ease-smooth);
-  --transition-slow: 500ms var(--ease-smooth);
-
-  /* z-index */
-  --z-base: 1;
-  --z-card: 10;
-  --z-header: 100;
-  --z-dropdown: 200;
-  --z-modal-backdrop: 300;
-  --z-modal: 400;
-  --z-toast: 500;
+  /* 新增：蓝紫发光效果 */
+  --glow-blue: 0 0 20px rgba(99, 102, 241, 0.3);
+  --glow-blue-strong: 0 0 40px rgba(99, 102, 241, 0.4), 0 0 80px rgba(99, 102, 241, 0.15);
+  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
 
   /* 兼容性别名 - 旧版映射 */
   --midnight-100: var(--text-primary);
@@ -93,9 +68,9 @@
   --midnight-900: #0f0d0a;
   --midnight-950: #080706;
   --text-cream: var(--text-primary);
-  --glow-accent: 0 0 20px rgba(198, 161, 91, 0.2);
-  --glow-accent-strong: 0 0 40px rgba(198, 161, 91, 0.25), 0 0 80px rgba(198, 161, 91, 0.1);
-  --border-accent: rgba(198, 161, 91, 0.2);
+  --glow-accent: var(--glow-blue);
+  --glow-accent-strong: var(--glow-blue-strong);
+  --border-accent: var(--border-blue);
   --copper-800: #5c4a2a;
 }
 
@@ -2704,56 +2679,692 @@ input, select, textarea {
 }
 
 /* ───────────────────────────────────────────────────────────────────
-   f771: 酒液动态效果
+   卡片悬浮效果 - 蓝紫光晕（非土气金色）
    ─────────────────────────────────────────────────────────────────── */
-.liquid-wave {
-  position: relative;
+.liquor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
   overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
 }
-.liquid-wave-inner {
+
+.liquor-card::before {
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: -10%;
-  width: 120%;
-  height: 60%;
-  background: linear-gradient(180deg, transparent 0%, rgba(198,161,91,0.3) 50%, rgba(198,161,91,0.5) 100%);
-  border-radius: 50% 50% 0 0;
-  animation: liquidWave 3s ease-in-out infinite;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
 }
-@keyframes liquidWave {
-  0%, 100% { transform: translateY(0) scaleY(1); }
-  50% { transform: translateY(-15px) scaleY(1.1); }
+
+.liquor-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--border-blue);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--glow-blue);
+}
+
+.liquor-card:hover::before {
+  opacity: 1;
 }
 
 /* ───────────────────────────────────────────────────────────────────
-   f772: 3D 产区地形图
+   UI优化：骨架屏加载
    ─────────────────────────────────────────────────────────────────── */
-.region-3d-terrain {
-  perspective: 1200px;
-  perspective-origin: center center;
-  overflow: hidden;
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elevated) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+  height: 360px;
+  border-radius: var(--radius-xl);
+}
+
+.skeleton-text {
+  height: 16px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-text.short {
+  width: 60%;
+}
+
+.skeleton-image {
+  height: 180px;
   border-radius: var(--radius-lg);
 }
-.region-3d-terrain .terrain-inner {
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
+
+/* ═══════════════════════════════════════════════════════════════════
+   v5.0.0 Phase 3: UI优化18项
+   现代简约蓝紫调 · 商业软件气息
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────
+   U01: 卡片布局优化 - 减少金色渐变滥用，改为蓝紫光晕边框
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.liquor-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.liquor-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--border-blue);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--glow-blue);
+}
+
+.liquor-card:hover::before {
+  opacity: 1;
 }
 
 /* ───────────────────────────────────────────────────────────────────
-   f773: 香气粒子系统
+   U02: 颜色系统重构 - 新增蓝紫调色板
    ─────────────────────────────────────────────────────────────────── */
-.aroma-particles {
-  position: relative;
-  overflow: hidden;
-  border-radius: inherit;
+/* 蓝紫强调色系已通过CSS变量定义，替代部分金色 */
+:root {
+  /* 新增蓝紫强调色（商业软件气息） */
+  --blue-accent: #6366f1;
+  --blue-light: #818cf8;
+  --blue-dark: #4f46e5;
+  --purple-accent: #a855f7;
+  --purple-light: #c084fc;
 }
-.aroma-particles canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+
+/* ───────────────────────────────────────────────────────────────────
+   U05: 动画微交互 - 卡片hover/点击微妙动效
+   ─────────────────────────────────────────────────────────────────── */
+.liquor-card {
+  transition: transform 0.3s var(--ease-smooth), 
+              box-shadow 0.3s var(--ease-smooth),
+              border-color 0.3s var(--ease-smooth);
+}
+
+.liquor-card:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* 按钮点击反馈 */
+button:active {
+  transform: scale(0.96);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U06: 过渡动画 - 页面切换淡入淡出
+   ─────────────────────────────────────────────────────────────────── */
+.page-fade-in {
+  animation: fadeIn 0.4s var(--ease-smooth);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal {
+  animation: modalFadeIn 0.3s var(--ease-spring);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U08: 骨架屏加载
+   ─────────────────────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elevated) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+  height: 360px;
+  border-radius: var(--radius-xl);
+}
+
+.skeleton-text {
+  height: 16px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-text.short {
+  width: 60%;
+}
+
+.skeleton-image {
+  height: 180px;
+  border-radius: var(--radius-lg);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U10: 空状态设计 - 无结果/错误状态插画+文案
+   ─────────────────────────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.empty-state__icon {
+  font-size: 72px;
+  opacity: 0.4;
+  filter: grayscale(0.5);
+}
+
+.empty-state__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.empty-state__desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 320px;
+}
+
+.empty-state__action {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-xl);
+  background: var(--blue-accent);
+  border: none;
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.empty-state__action:hover {
+  background: var(--blue-dark);
+  box-shadow: var(--glow-blue);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U11: Toast提示 - 统一操作反馈样式
+   ─────────────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-blue);
+  border-radius: var(--radius-full);
+  padding: var(--space-md) var(--space-xl);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  z-index: var(--z-toast);
   pointer-events: none;
+  opacity: 0;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  box-shadow: var(--shadow-lg), var(--glow-blue);
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast__icon {
+  font-size: 20px;
+}
+
+.toast--success {
+  border-color: #22c55e;
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+.toast--error {
+  border-color: #ef4444;
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U13: 进度指示 - 优雅进度条
+   ─────────────────────────────────────────────────────────────────── */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue-dark), var(--blue-accent));
+  border-radius: 3px;
+  transition: width 0.5s var(--ease-smooth);
+}
+
+.progress-bar--striped .progress-bar__fill {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--blue-accent),
+    var(--blue-accent) 10px,
+    var(--blue-dark) 10px,
+    var(--blue-dark) 20px
+  );
+  background-size: 28px 28px;
+  animation: progressStripe 1s linear infinite;
+}
+
+@keyframes progressStripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 28px 0; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U14: 页脚设计 - 版本信息+数据更新时间
+   ─────────────────────────────────────────────────────────────────── */
+.footer {
+  padding: var(--space-xl);
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+
+.footer__version {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.footer__version span {
+  color: var(--blue-accent);
+  font-weight: 500;
+}
+
+.footer__update {
+  font-size: 0.7rem;
+  color: var(--text-subtle);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U18: 暗色模式 - 优化对比度确保可读性
+   ─────────────────────────────────────────────────────────────────── */
+body {
+  --bg-deepest: #080706;
+  --bg-deep: #0f0d0a;
+  --bg-card: #151310;
+  --bg-elevated: #1c1813;
+  
+  /* 确保文字有足够对比度 */
+  --text-primary: #fff8ea;
+  --text-secondary: #d8cdb7;
+  --text-muted: #9f927c;
+  --text-subtle: #6a5f4e;
+}
+
+/* 对比度优化：高对比度文字 */
+.text-high-contrast {
+  color: var(--text-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   响应式改进 - 移动端适配优化
+   ─────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* 增大触摸区域 */
+  .filter-chip,
+  .sidebar__tag,
+  .liquor-card-actions button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 卡片间距调整 */
+  .card-grid {
+    gap: var(--space-md);
+  }
+  
+  /* 搜索框优化 */
+  .search-bar {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  /* 模态框全屏 */
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U04: 骨架屏加载（占位符样式）
+   ─────────────────────────────────────────────────────────────────── */
+/* 列表加载骨架 */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.skeleton-list__item {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+}
+
+.skeleton-list__image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.skeleton-list__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U09: 搜索框增强 - 下拉建议
+   ─────────────────────────────────────────────────────────────────── */
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-blue);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-sm);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown);
+  display: none;
+  overflow: hidden;
+}
+
+.search-suggestions.show {
+  display: block;
+  animation: slideDown 0.2s var(--ease-smooth);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.search-suggestions__item {
+  padding: var(--space-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background var(--transition-fast);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.search-suggestions__item:last-child {
+  border-bottom: none;
+}
+
+.search-suggestions__item:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.search-suggestions__item-icon {
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+.search-suggestions__item-highlight {
+  color: var(--blue-light);
+  font-weight: 500;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U16: 对比页重构 - 雷达图并排+差异高亮
+   ─────────────────────────────────────────────────────────────────── */
+.compare-radar-container {
+  display: flex;
+  gap: var(--space-xl);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.compare-radar-item {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+}
+
+.compare-radar-item.highlight {
+  border: 2px solid var(--blue-accent);
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+  box-shadow: var(--glow-blue);
+}
+
+.stat-difference {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.stat-difference.positive {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.stat-difference.negative {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U17: 详情页重构 - 信息分层，点击展开
+   ─────────────────────────────────────────────────────────────────── */
+.detail-section {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+}
+
+.detail-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: var(--space-md);
+}
+
+.detail-section__title {
+  font-size: 0.85rem;
+  color: var(--blue-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.detail-section__toggle {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.detail-section.open .detail-section__toggle {
+  transform: rotate(180deg);
+}
+
+.detail-section__content {
+  display: none;
+}
+
+.detail-section.open .detail-section__content {
+  display: block;
+  animation: fadeIn 0.3s var(--ease-smooth);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U12: 模态框优化 - 改为侧滑抽屉
+   ─────────────────────────────────────────────────────────────────── */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 480px;
+  max-width: 100%;
+  height: 100%;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-blue);
+  z-index: var(--z-modal);
+  transform: translateX(100%);
+  transition: transform var(--transition-normal);
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+}
+
+.drawer.show {
+  transform: translateX(0);
+}
+
+.drawer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  background: var(--bg-card);
+  z-index: 1;
+}
+
+.drawer__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.drawer__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.drawer__close:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.drawer__content {
+  padding: var(--space-lg);
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   U15: 收藏夹UI - 分组标签式管理
+   ─────────────────────────────────────────────────────────────────── */
+.favorites-tabs {
+  display: flex;
+  gap: var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
+  overflow-x: auto;
+}
+
+.favorites-tab {
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.favorites-tab:hover {
+  border-color: var(--border-blue);
+  color: var(--blue-light);
+}
+
+.favorites-tab.active {
+  background: var(--blue-accent);
+  border-color: var(--blue-accent);
+  color: #fff;
+}
+
+.favorites-tab__count {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
 }
 
 /* ───────────────────────────────────────────────────────────────────
