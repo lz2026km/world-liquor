@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>世界烈酒图鉴 v6.7.0 · World Liquor Gallery</title>
+  <title>世界烈酒图鉴 v6.7.1 · World Liquor Gallery</title>
   <meta name="description" content="探索全球800款顶级烈酒 - 茅台、五粮液、威士忌、白兰地、伏特加、金酒、朗姆酒、龙舌兰。含品鉴笔记、雷达图分析、成就系统">
   <meta name="keywords" content="世界烈酒,白酒,威士忌,白兰地,伏特加,金酒,朗姆酒,龙舌兰,品鉴,调酒">
   <meta property="og:title" content="世界烈酒图鉴">
   <meta property="og:description" content="探索全球200款顶级烈酒">
   <meta name="theme-color" content="#0c0d10">
   <meta name="author" content="姜维（OpenCode）">
-  <meta name="version" content="v6.7.0 - UI全面简化优化">
+  <meta name="version" content="v6.7.1 - UI全面简化优化">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -18,98 +18,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
   <style>
     /* ================================================
-       世界烈酒图鉴 v6.7.0
+       世界烈酒图鉴 v6.7.1
        现代蓝紫调 · 简洁大气 · 姜维+赵云
        Phase 7: UI全面简化优化 · 主公偏好优先
        ================================================ */
-    :root {
-      /* 主背景 - 黑髪漆面 */
-      --bg-deepest: #080706;
-      --bg-deep: #0f0d0a;
-      --bg-card: #151310;
-      --bg-elevated: #1c1813;
-      --bg-glass: rgba(8, 7, 6, 0.88);
-
-      /* 强调色 - 香槟金蕴 */
-      --accent-50: #fdf8f0;
-      --accent-100: #f5ebd0;
-      --accent-200: #e8d4a0;
-      --accent-300: #d8b87a;
-      --accent-400: #cfa85e;
-      --accent-500: #c6a15b;
-      --accent-600: #b08a42;
-      --accent-700: #9a7a3f;
-
-      /* 文字色 - 暖白宣纸 */
-      --text-primary: #fff8ea;
-      --text-secondary: #d8cdb7;
-      --text-muted: #9f927c;
-      --text-subtle: #6a5f4e;
-
-      /* 边框 - 鎏金微光 */
-      --border-subtle: rgba(198, 161, 91, 0.08);
-      --border-default: #282217;
-      --border-hover: #3a3020;
-
-      /* 阴影 - 深邃奢华 */
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
-      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
-      --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.8);
-
-      /* 间距 - 从容奢华 */
-      --space-xs: 4px;
-      --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 36px;
-      --space-2xl: 56px;
-      --space-3xl: 80px;
-
-      /* 圆角 - 温润雅致 */
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --radius-2xl: 36px;
-      --radius-full: 9999px;
-
-      /* 字体 */
-      --font-display: "Playfair Display", "Noto Serif SC", "Songti SC", serif;
-      --font-body: "Avenir Next", "Inter", "Noto Sans SC", "PingFang SC", sans-serif;
-      --font-accent: "Playfair Display", "Noto Serif SC", serif;
-
-      /* 动画 */
-      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      --transition-normal: 300ms var(--ease-smooth);
-      --transition-slow: 500ms var(--ease-smooth);
-
-      /* z-index */
-      --z-base: 1;
-      --z-card: 10;
-      --z-header: 100;
-      --z-dropdown: 200;
-      --z-modal-backdrop: 300;
-      --z-modal: 400;
-      --z-toast: 500;
-
-      /* 兼容性别名 - 旧版映射 */
-      --midnight-100: var(--text-primary);
-      --midnight-200: var(--text-secondary);
-      --midnight-300: var(--text-muted);
-      --midnight-400: var(--text-muted);
-      --midnight-500: var(--text-subtle);
-      --midnight-600: #4a4030;
-      --midnight-700: #1c1813;
-      --midnight-800: #151310;
-      --midnight-900: #0f0d0a;
-      --midnight-950: #080706;
-      --text-cream: var(--text-primary);
-      --copper-800: #5c4a2a;
-    }
-    /* OLED纯黑主题 */
+    /* CSS Variables removed - using styles.css */
     [data-theme="oled"] {
       --bg-deepest: #000000;
       --bg-deep: #000000;
@@ -1516,20 +1429,6 @@
                 <button class="header__dropdown-item" onclick="openGuideModal('c04')">🍸 调酒艺术</button>
                 <button class="header__dropdown-item" onclick="openGuideModal('c05')">🥂 酒具指南</button>
                 <button class="header__dropdown-item" onclick="openGuideModal('c06')">💎 收藏指南</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c07')">🍽️ 配餐文化</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c08')">📜 品牌故事</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c09')">📰 行业新闻</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c10')">🎬 视频内容</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c11')">🏭 3D酒厂</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c12')">🎓 品鉴课程</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c13')">📊 行业报告</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c14')">✍️ 酒评家专栏</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c15')">👨‍🔬 酿酒师访谈</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c16')">📷 产区摄影</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c17')">📜 历史文献</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c18')">⚙️ 工艺解析</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c19')">🔨 收藏拍卖</button>
-                <button class="header__dropdown-item" onclick="openGuideModal('c20')">📅 活动日历</button>
               </div>
             </div>
           </div>
@@ -1561,8 +1460,6 @@
           <div class="sidebar__tags" id="typeFilters"></div>
         </div>
 
-        <div class="sidebar__divider"></div>
-
         <div class="sidebar__section">
           <div class="sidebar__title">产区<span class="count" id="regionFilterCount">0</span></div>
           <div class="region-selector" id="regionSelector">
@@ -1579,8 +1476,6 @@
           </div>
           <div class="sidebar__tags" id="regionFilters"></div>
         </div>
-
-        <div class="sidebar__divider"></div>
 
         <div class="sidebar__section">
           <div class="sidebar__title">价格区间</div>
@@ -1601,14 +1496,10 @@
           <div class="sidebar__tags" id="flavorFilters"></div>
         </div>
 
-        <div class="sidebar__divider"></div>
-
         <div class="sidebar__section">
           <div class="sidebar__title">收藏排行</div>
           <div class="fav-ranking" id="favRanking"></div>
         </div>
-
-        <div class="sidebar__divider"></div>
 
         <div class="sidebar__section">
           <div class="sidebar__title">🏆 已获成就</div>
@@ -1622,14 +1513,10 @@
           <div class="hot-search" id="hotSearchWords"></div>
         </div>
 
-        <div class="sidebar__divider"></div>
-
         <div class="sidebar__section">
           <div class="sidebar__title">❓ FAQ</div>
           <div id="sidebarFAQ"></div>
         </div>
-
-        <div class="sidebar__divider"></div>
 
         <div class="sidebar__section">
           <div class="sidebar__title">快捷链接</div>

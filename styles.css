@@ -1,5 +1,5 @@
 /* ================================================
-   世界烈酒图鉴 v6.7.0
+   世界烈酒图鉴 v6.7.1
    现代蓝紫调 · 简洁大气 · 姜维+赵云
    Phase 7: UI全面简化优化 · 主公偏好优先
    ================================================ */
@@ -9,21 +9,21 @@
    ================================================ */
 :root {
   /* 主背景 - 黑髪漆面 */
-  --bg-deepest: #080706;
+  --bg-deepest: #0a0a0f;
   --bg-deep: #0f0d0a;
   --bg-card: #151310;
   --bg-elevated: #1c1813;
   --bg-glass: rgba(8, 7, 6, 0.88);
 
-  /* 强调色 - 香槟金蕴（优化：减少土气金色，保留基础金色） */
-  --accent-50: #fdf8f0;
-  --accent-100: #f5ebd0;
-  --accent-200: #e8d4a0;
-  --accent-300: #d8b87a;
-  --accent-400: #cfa85e;
-  --accent-500: #c6a15b;
-  --accent-600: #b08a42;
-  --accent-700: #9a7a3f;
+  /* 强调色 - 蓝紫调（商业软件气息 - 主公偏好） */
+  --accent-50: #f0f2f5;
+  --accent-100: #e0e4f0;
+  --accent-200: #c7d0f5;
+  --accent-300: #a5b4f0;
+  --accent-400: #8991e8;
+  --accent-500: #6366f1;
+  --accent-600: #4f46e5;
+  --accent-700: #4338ca;
 
   /* 蓝紫调强调色（商业软件气息 - 主公偏好） */
   --blue-accent: #6366f1;
@@ -32,14 +32,14 @@
   --purple-accent: #a855f7;
   --purple-light: #c084fc;
 
-  /* 文字色 - 暖白宣纸 */
-  --text-primary: #fff8ea;
+  /* 文字色 - 冷白宣纸 */
+  --text-primary: #f0f2f5;
   --text-secondary: #d8cdb7;
   --text-muted: #9f927c;
   --text-subtle: #6a5f4e;
 
-  /* 边框 - 蓝紫微光（替代土气金色边框） */
-  --border-subtle: rgba(99, 102, 241, 0.08);
+  /* 边框 - 蓝紫微光 */
+  --border-subtle: rgba(99, 102, 241, 0.12);
   --border-default: #282217;
   --border-hover: #3a3020;
   --border-blue: rgba(99, 102, 241, 0.25);
@@ -55,21 +55,10 @@
   --glow-purple: 0 0 20px rgba(168, 85, 247, 0.25);
 
   /* 兼容性别名 - 旧版映射 */
-  --midnight-100: var(--text-primary);
-  --midnight-200: var(--text-secondary);
-  --midnight-300: var(--text-muted);
-  --midnight-400: var(--text-muted);
-  --midnight-500: var(--text-subtle);
-  --midnight-600: #4a4030;
-  --midnight-700: #1c1813;
-  --midnight-800: #151310;
-  --midnight-900: #0f0d0a;
-  --midnight-950: #080706;
   --text-cream: var(--text-primary);
   --glow-accent: var(--glow-blue);
   --glow-accent-strong: var(--glow-blue-strong);
   --border-accent: var(--border-blue);
-  --copper-800: #5c4a2a;
 }
 
 /* OLED纯黑主题支持 */
@@ -508,8 +497,8 @@ input, select, textarea {
 }
 
 .header__btn {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-md);
   background: var(--bg-card);
   border: 1px solid var(--border-blue);

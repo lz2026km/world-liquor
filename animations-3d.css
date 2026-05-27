@@ -1,5 +1,5 @@
 /* ================================================
-   世界烈酒图鉴 v6.5.0
+   世界烈酒图鉴 v6.7.1
    3D UI 动画优化文件
    黑髪漆面 · 香槟金蕴 · 现代蓝紫调
    Phase 6.5: 3D UI优化50项 · 姜维（OpenCode）
@@ -21,7 +21,7 @@
 }
 
 .card-3d-hover:hover {
-  transform: perspective(1000px) rotateY(8deg) rotateX(3deg) translateZ(20px);
+  transform: perspective(1000px) rotateY(3deg) rotateX(1deg);
   box-shadow: 
     -20px 20px 60px rgba(0, 0, 0, 0.6),
     0 0 40px rgba(99, 102, 241, 0.2),
