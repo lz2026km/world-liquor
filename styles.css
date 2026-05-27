@@ -1,7 +1,7 @@
 /* ================================================
-   世界烈酒图鉴 v6.5.0
-   黑髪漆面 · 香槟金蕴 · 现代蓝紫调
-   Phase 6: 功能增强60项 · 姜维（OpenCode）
+   世界烈酒图鉴 v6.6.0
+   现代蓝紫调 · 简洁大气 · 姜维+赵云
+   Phase 7: UI全面简化优化 · 主公偏好优先
    ================================================ */
 
 /* ================================================
@@ -241,15 +241,15 @@ input, select, textarea {
 }
 
 .header__logo {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--blue-accent), var(--blue-dark));
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  border: 1px solid var(--border-default);
+  font-size: 20px;
+  box-shadow: var(--glow-blue);
 }
 
 .header__titles {
@@ -259,20 +259,20 @@ input, select, textarea {
 
 .header__title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 .header__version {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 500;
-  color: var(--accent-700);
-  background: rgba(17, 17, 19, 0.7);
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-left: 8px;
+  color: var(--blue-light);
+  background: rgba(99, 102, 241, 0.15);
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
   letter-spacing: 0;
   vertical-align: middle;
 }
@@ -286,7 +286,7 @@ input, select, textarea {
 
 .header__search {
   flex: 1;
-  max-width: 460px;
+  max-width: 60%;
   position: relative;
 }
 
@@ -294,15 +294,16 @@ input, select, textarea {
   display: flex;
   align-items: center;
   background: var(--bg-card);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-blue);
   border-radius: var(--radius-full);
-  padding: var(--space-sm) var(--space-md);
-  gap: var(--space-sm);
+  padding: 10px 16px;
+  gap: 10px;
   transition: all var(--transition-fast);
 }
 
 .search-bar:focus-within {
-  color: var(--accent-700);
+  border-color: var(--blue-accent);
+  box-shadow: var(--glow-blue);
   background: var(--bg-elevated);
 }
 
@@ -507,13 +508,13 @@ input, select, textarea {
 }
 
 .header__btn {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-md);
   background: var(--bg-card);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-blue);
   color: var(--text-muted);
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -521,15 +522,15 @@ input, select, textarea {
 }
 
 .header__btn:hover {
-  background: var(--bg-elevated);
-  border-color: var(--border-hover);
-  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.12);
+  border-color: var(--blue-accent);
+  color: var(--blue-light);
 }
 
 .header__btn.active {
-  background: rgba(15, 124, 245, 0.1);
-  border-color: var(--accent-500);
-  color: var(--accent-500);
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--blue-accent);
+  color: var(--blue-accent);
 }
 
 .lang-btn {
@@ -655,20 +656,20 @@ input, select, textarea {
    7. Sidebar
    ================================================ */
 .sidebar {
-  width: 390px;
-  min-width: 390px;
+  width: 260px;
+  min-width: 260px;
   background: var(--bg-glass);
   backdrop-filter: blur(16px);
   border-right: 1px solid var(--border-subtle);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   overflow-y: auto;
-  overflow-x: auto;
+  overflow-x: hidden;
   max-height: calc(100vh - 65px);
   position: sticky;
   top: 65px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   transition: all var(--transition-normal);
 }
 
@@ -709,13 +710,14 @@ input, select, textarea {
 }
 
 .sidebar__title {
-  font-size: 0.7rem;
-  color: var(--accent-700);
+  font-size: 0.65rem;
+  color: var(--blue-accent);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
   margin-bottom: var(--space-xs);
   padding-left: var(--space-sm);
+  border-left: 2px solid var(--blue-accent);
 }
 
 .sidebar__tags {
@@ -725,26 +727,28 @@ input, select, textarea {
 }
 
 .sidebar__tag {
-  padding: 5px 10px;
+  padding: 4px 10px;
   border-radius: var(--radius-full);
-  background: var(--bg-card);
-  border: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-blue);
   color: var(--text-secondary);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .sidebar__tag:hover {
-  background: var(--bg-elevated);
-  border-color: var(--border-hover);
-  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--blue-accent);
+  color: var(--blue-light);
 }
 
 .sidebar__tag.active {
-  background: var(--accent-600);
-  border-color: var(--accent-500);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--blue-accent), var(--blue-dark));
+  border-color: var(--blue-accent);
+  color: #ffffff;
+  box-shadow: var(--glow-blue);
 }
 
 .sidebar__divider {
@@ -873,23 +877,23 @@ input, select, textarea {
    ================================================ */
 .hero {
   text-align: center;
-  padding: var(--space-2xl) 0;
-  margin-bottom: var(--space-xl);
+  padding: var(--space-xl) 0;
+  margin-bottom: var(--space-lg);
 }
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
   letter-spacing: 0.02em;
 }
 
 .hero__subtitle {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -898,51 +902,62 @@ input, select, textarea {
    ================================================ */
 .filter-panel {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--space-md);
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   background: var(--bg-glass);
   backdrop-filter: blur(16px);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-blue);
   margin-bottom: var(--space-xl);
+  overflow-x: auto;
 }
 
 .filter-bar {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
-  flex-wrap: wrap;
+  gap: var(--space-md);
+  flex-wrap: nowrap;
   width: 100%;
 }
 
 .filter-group {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.filter-group__label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0.7;
 }
 
 .filter-chips {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  gap: 4px;
+  flex-wrap: nowrap;
 }
 
 .filter-chip {
-  padding: 5px 12px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-default);
+  padding: 4px 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-blue);
   border-radius: var(--radius-full);
   color: var(--text-secondary);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .filter-chip:hover {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: var(--border-blue);
-  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.12);
+  border-color: var(--blue-accent);
+  color: var(--blue-light);
 }
 
 .filter-chip.active {
@@ -1151,8 +1166,8 @@ input, select, textarea {
    ================================================ */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-xl);
 }
 
 .liquor-card {
@@ -1202,14 +1217,14 @@ input, select, textarea {
 
 .liquor-card-badge {
   position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  padding: 3px 10px;
-  background: rgba(17, 17, 19, 0.7);
-  border: 1px solid var(--border-default);
+  top: var(--space-sm);
+  right: var(--space-sm);
+  padding: 2px 8px;
+  background: rgba(99, 102, 241, 0.85);
+  border: 1px solid var(--blue-accent);
   border-radius: var(--radius-full);
-  color: var(--text-secondary);
-  font-size: 0.65rem;
+  color: #ffffff;
+  font-size: 0.6rem;
   letter-spacing: 0.08em;
   z-index: 2;
   backdrop-filter: blur(4px);
@@ -1217,13 +1232,13 @@ input, select, textarea {
 
 .liquor-card-fav {
   position: absolute;
-  top: var(--space-md);
-  left: var(--space-md);
-  width: 30px;
-  height: 30px;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(17, 17, 19, 0.7);
-  border: 1px solid var(--border-default);
+  background: rgba(15, 15, 20, 0.8);
+  border: 1px solid var(--border-blue);
   color: var(--text-muted);
   font-size: 14px;
   display: flex;
@@ -1236,14 +1251,14 @@ input, select, textarea {
 }
 
 .liquor-card-fav:hover {
-  background: rgba(15, 124, 245, 0.2);
-  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.3);
+  color: var(--blue-light);
 }
 
 .liquor-card-fav.active {
-  background: rgba(15, 124, 245, 0.15);
-  border-color: var(--accent-500);
-  color: var(--accent-500);
+  background: rgba(99, 102, 241, 0.25);
+  border-color: var(--blue-accent);
+  color: var(--blue-accent);
 }
 
 .liquor-card-body {
@@ -4230,7 +4245,7 @@ body {
 .preserve-3d { preserve-3d: both; }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   v6.5.0: 3D UI 优化应用层（50项3D效果的实际元素应用）
+   v6.6.0: 3D UI 优化应用层（50项3D效果的实际元素应用）
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ───────────────────────────────────────────────────────────────────
