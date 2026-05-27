@@ -1508,28 +1508,36 @@
           <button class="header__btn" id="favHeaderBtn" onclick="toggleFavorites()" title="收藏">❤️<span class="badge" id="favBadge" style="display:none">0</span></button>
           <button class="header__btn" id="notesHeaderBtn" onclick="toggleNotes()" title="品鉴笔记">📝</button>
           <button class="header__btn" id="achieveHeaderBtn" onclick="showAchievements()" title="成就">🏆</button>
-          <button class="header__btn lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
+          <button class="header__btn" id="compareHeaderBtn" onclick="openCompare()" title="对比">⚖️</button>
+          <div class="header__dropdown" id="guideDropdown">
+            <button class="header__btn header__btn--dropdown" onclick="toggleGuideMenu()" title="指南">📖</button>
+            <div class="header__dropdown-menu" id="guideMenu">
+              <div class="header__dropdown-grid">
+                <button class="header__dropdown-item" onclick="openGuideModal('c01')">📖 品鉴指南</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c02')">🗺️ 产区介绍</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c03')">🏺 酿酒文化</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c04')">🍸 调酒艺术</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c05')">🥂 酒具指南</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c06')">💎 收藏指南</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c07')">🍽️ 配餐文化</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c08')">📜 品牌故事</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c09')">📰 行业新闻</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c10')">🎬 视频内容</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c11')">🏭 3D酒厂</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c12')">🎓 品鉴课程</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c13')">📊 行业报告</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c14')">✍️ 酒评家专栏</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c15')">👨‍🔬 酿酒师访谈</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c16')">📷 产区摄影</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c17')">📜 历史文献</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c18')">⚙️ 工艺解析</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c19')">🔨 收藏拍卖</button>
+                <button class="header__dropdown-item" onclick="openGuideModal('c20')">📅 活动日历</button>
+              </div>
+            </div>
+          </div>
           <button class="header__btn" onclick="randomPick()" title="随机推荐">🎲</button>
-          <button class="header__btn" onclick="openGuideModal('c01')" title="品鉴指南">📖</button>
-          <button class="header__btn" onclick="openGuideModal('c02')" title="产区介绍">🗺️</button>
-          <button class="header__btn" onclick="openGuideModal('c03')" title="酿酒文化">🏺</button>
-          <button class="header__btn" onclick="openGuideModal('c04')" title="调酒艺术">🍸</button>
-          <button class="header__btn" onclick="openGuideModal('c05')" title="酒具指南">🥂</button>
-          <button class="header__btn" onclick="openGuideModal('c06')" title="收藏指南">💎</button>
-          <button class="header__btn" onclick="openGuideModal('c07')" title="配餐文化">🍽️</button>
-          <button class="header__btn" onclick="openGuideModal('c08')" title="品牌故事">📜</button>
-          <button class="header__btn" onclick="openGuideModal('c09')" title="行业新闻">📰</button>
-          <button class="header__btn" onclick="openGuideModal('c10')" title="视频内容">🎬</button>
-          <button class="header__btn" onclick="openGuideModal('c11')" title="3D酒厂">🏭</button>
-          <button class="header__btn" onclick="openGuideModal('c12')" title="品鉴课程">🎓</button>
-          <button class="header__btn" onclick="openGuideModal('c13')" title="行业报告">📊</button>
-          <button class="header__btn" onclick="openGuideModal('c14')" title="酒评家专栏">✍️</button>
-          <button class="header__btn" onclick="openGuideModal('c15')" title="酿酒师访谈">👨‍🔬</button>
-          <button class="header__btn" onclick="openGuideModal('c16')" title="产区摄影">📷</button>
-          <button class="header__btn" onclick="openGuideModal('c17')" title="历史文献">📜</button>
-          <button class="header__btn" onclick="openGuideModal('c18')" title="工艺解析">⚙️</button>
-          <button class="header__btn" onclick="openGuideModal('c19')" title="收藏拍卖">🔨</button>
-          <button class="header__btn" onclick="openGuideModal('c20')" title="活动日历">📅</button>
+          <button class="header__btn lang-btn active" id="langBtn" onclick="toggleLang()">中</button>
           <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">
             <span class="theme-toggle__icon sun">☀️</span>
             <span class="theme-toggle__icon moon">🌙</span>
@@ -1672,31 +1680,21 @@
         <section class="filter-panel">
           <div class="filter-bar">
             <div class="filter-group">
-              <span class="filter-group__label">类型</span>
-              <div id="filterTypeChips"></div>
+              <div class="filter-chips" id="filterTypeChips"></div>
             </div>
-            <div class="filter-divider"></div>
             <div class="filter-group">
-              <span class="filter-group__label">产区</span>
-              <div id="filterRegionChips"></div>
+              <div class="filter-chips" id="filterRegionChips"></div>
             </div>
-            <div class="filter-divider"></div>
             <div class="filter-group">
-              <span class="filter-group__label">价格</span>
-              <div class="price-quick-chips" id="priceChips"></div>
+              <div class="filter-chips" id="priceChips"></div>
             </div>
             <div class="filter-sort">
               <select id="sortSelect" onchange="handleSort(this.value)">
-                <option value="default">默认排序</option>
+                <option value="default">默认</option>
                 <option value="price-asc">价格 ↑</option>
                 <option value="price-desc">价格 ↓</option>
-                <option value="score-desc">评分最高</option>
-                <option value="abv-desc">酒精度数</option>
-                <option value="fav-count">收藏量</option>
-                <option value="region-asc">产区 A-Z</option>
-                <option value="name-asc">名称 A-Z</option>
+                <option value="score-desc">评分</option>
               </select>
-              <button class="filter-clear" onclick="clearFilters()">重置</button>
             </div>
           </div>
         </section>
@@ -12171,6 +12169,23 @@
       if (backdrop) backdrop.classList.remove('show');
       if (modal) modal.classList.remove('show');
     };
+
+    // 切换指南下拉菜单
+    function toggleGuideMenu() {
+      const menu = document.getElementById('guideMenu');
+      if (menu) {
+        menu.classList.toggle('show');
+      }
+    }
+
+    // 点击空白处关闭下拉菜单
+    document.addEventListener('click', function(e) {
+      const dropdown = document.getElementById('guideDropdown');
+      const menu = document.getElementById('guideMenu');
+      if (dropdown && menu && !dropdown.contains(e.target)) {
+        menu.classList.remove('show');
+      }
+    });
   </script>
 </body>
 </html>
