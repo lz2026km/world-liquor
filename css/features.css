@@ -1,0 +1,2076 @@
+/**
+ * 世界烈酒图鉴 v6.5.0 - 功能增强样式
+ * 姜维（OpenCode）开发
+ * 60项功能增强样式补充
+ */
+
+/* ================================================
+   F01 智能搜索增强样式
+   ================================================ */
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-xs);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown);
+  display: none;
+  overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.search-suggestions.show {
+  display: block;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.search-suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.15s ease;
+}
+
+.search-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.search-suggestion-item:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.search-suggestion-item.active {
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.suggestion-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.suggestion-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggestion-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.suggestion-name .match {
+  color: var(--accent-500);
+  background: rgba(99, 102, 241, 0.15);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.suggestion-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.suggestion-type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.suggestion-match-type {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  color: var(--text-muted);
+}
+
+.suggestion-match-type.pinyin {
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--purple-accent);
+}
+
+/* ================================================
+   F02-F03 高级筛选增强样式
+   ================================================ */
+.filter-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.filter-section {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.filter-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.filter-section__title {
+  font-size: 0.75rem;
+  color: var(--accent-600);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+  font-weight: 600;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.filter-chip {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.filter-chip:hover {
+  border-color: var(--accent-600);
+  color: var(--accent-400);
+  background: var(--bg-elevated);
+}
+
+.filter-chip.active {
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  border-color: var(--accent-500);
+  color: var(--accent-200);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.filter-chip .chip-close {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.filter-chip:hover .chip-close,
+.filter-chip.active .chip-close {
+  opacity: 1;
+}
+
+.filter-chip__count {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  margin-left: 4px;
+}
+
+/* 价格区间快速选择 */
+.price-quick-select {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.price-range-slider {
+  width: 120px;
+  height: 4px;
+  background: var(--bg-card);
+  border-radius: 2px;
+  appearance: none;
+  outline: none;
+}
+
+.price-range-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.price-range-display {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  min-width: 80px;
+}
+
+/* 筛选历史面板 */
+.filter-history {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.filter-history__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.filter-history__title {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.filter-history__clear {
+  font-size: 0.75rem;
+  color: var(--accent-600);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-history__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.filter-history__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.filter-history__item:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.filter-history__item-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.filter-history__item-summary {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ================================================
+   F04 收藏夹增强样式
+   ================================================ */
+.favorites-manager {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-default);
+  z-index: 300;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.favorites-manager.show {
+  transform: translateX(0);
+}
+
+.favorites-manager__header {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorites-manager__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.favorites-manager__close {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorites-manager__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 var(--space-lg);
+}
+
+.favorites-manager__tab {
+  padding: var(--space-md) var(--space-lg);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.favorites-manager__tab:hover {
+  color: var(--text-secondary);
+}
+
+.favorites-manager__tab.active {
+  color: var(--accent-500);
+  border-bottom-color: var(--accent-500);
+}
+
+.favorites-manager__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+.folder-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.folder-card:hover {
+  border-color: var(--accent-600);
+  transform: translateY(-2px);
+}
+
+.folder-card.active {
+  border-color: var(--accent-500);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.folder-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.folder-card__icon {
+  font-size: 28px;
+}
+
+.folder-card__info {
+  flex: 1;
+}
+
+.folder-card__name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.folder-card__count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.folder-card__actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.folder-card__btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.folder-card__btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-500);
+}
+
+.folder-card__btn.delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.folder-card__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.folder-card__item-tag {
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.folder-card__item-tag:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-400);
+}
+
+/* ================================================
+   F05 对比功能增强样式
+   ================================================ */
+.compare-radar-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.compare-radar-chart {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+}
+
+.compare-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.compare-table th {
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  color: var(--accent-200);
+  padding: var(--space-md);
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+
+.compare-table td {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.compare-table tr:hover td {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.compare-table .highlight-diff {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.compare-table .highlight-best {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.compare-stat-bar {
+  height: 8px;
+  background: var(--bg-card);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.compare-stat-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-700), var(--accent-500));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* ================================================
+   F06-F07 品鉴笔记样式
+   ================================================ */
+.tasting-notes-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  margin-top: var(--space-lg);
+}
+
+.tasting-notes-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.tasting-notes-panel__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tasting-notes-panel__add {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  border: 1px solid var(--accent-500);
+  color: var(--accent-200);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.tasting-notes-panel__add:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.tasting-note-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tasting-note-card:hover {
+  border-color: var(--accent-600);
+  transform: translateY(-2px);
+}
+
+.tasting-note-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+}
+
+.tasting-note-card__liquor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.tasting-note-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.tasting-note-card__info {
+  flex: 1;
+}
+
+.tasting-note-card__name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.tasting-note-card__meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.tasting-note-card__rating {
+  display: flex;
+  gap: 2px;
+}
+
+.tasting-note-card__rating .star {
+  color: var(--accent-500);
+  font-size: 16px;
+}
+
+.tasting-note-card__rating .star.empty {
+  color: var(--midnight-600);
+}
+
+.tasting-note-card__content {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+.tasting-note-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tasting-note-card__date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.tasting-note-card__actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.tasting-note-card__btn {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tasting-note-card__btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-500);
+}
+
+.tasting-note-card__btn.delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* 品鉴日历样式 */
+.tasting-calendar {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+}
+
+.tasting-calendar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.tasting-calendar__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tasting-calendar__nav {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.tasting-calendar__nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.tasting-calendar__nav-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-500);
+}
+
+.tasting-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+}
+
+.tasting-calendar__day-header {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: var(--space-sm);
+  font-weight: 600;
+}
+
+.tasting-calendar__day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.tasting-calendar__day:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.tasting-calendar__day.today {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-500);
+  font-weight: 600;
+}
+
+.tasting-calendar__day.has-record {
+  position: relative;
+}
+
+.tasting-calendar__day.has-record::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  position: absolute;
+  bottom: 4px;
+}
+
+.tasting-calendar__day.empty {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.tasting-calendar__summary {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+}
+
+/* ================================================
+   F08 成就系统样式
+   ================================================ */
+.achievements-container {
+  padding: var(--space-xl);
+}
+
+.achievements-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.achievements-header__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.achievements-header__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.achievements-count {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.achievements-count__item {
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  font-size: 0.85rem;
+}
+
+.achievements-count__item.unlocked {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.achievements-count__item.locked {
+  background: rgba(107, 114, 128, 0.15);
+  color: #6b7280;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.achievement-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-700), var(--accent-500));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.achievement-card:hover::before {
+  transform: scaleX(1);
+}
+
+.achievement-card:hover {
+  border-color: var(--accent-600);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-card.unlocked {
+  border-color: var(--accent-500);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), transparent);
+}
+
+.achievement-card.unlocked::before {
+  transform: scaleX(1);
+}
+
+.achievement-card.locked {
+  opacity: 0.6;
+}
+
+.achievement-card__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-lg);
+  border-radius: 50%;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  position: relative;
+}
+
+.achievement-card.unlocked .achievement-card__icon {
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-500));
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+.achievement-card__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+}
+
+.achievement-card__name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.achievement-card__description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.achievement-card__progress {
+  margin-top: var(--space-md);
+}
+
+.achievement-card__progress-bar {
+  height: 8px;
+  background: var(--bg-card);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: var(--space-xs);
+}
+
+.achievement-card__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-700), var(--accent-500));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.achievement-card__progress-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* 成就排行榜 */
+.achievement-leaderboard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.achievement-leaderboard__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.achievement-leaderboard__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.achievement-leaderboard__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+}
+
+.achievement-leaderboard__rank {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.achievement-leaderboard__rank.gold {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+}
+
+.achievement-leaderboard__rank.silver {
+  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  color: white;
+}
+
+.achievement-leaderboard__rank.bronze {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: white;
+}
+
+.achievement-leaderboard__info {
+  flex: 1;
+}
+
+.achievement-leaderboard__name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.achievement-leaderboard__score {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.achievement-leaderboard__count {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-500);
+}
+
+/* ================================================
+   F09 盲品模式样式
+   ================================================ */
+.blind-mode-indicator {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  gap: var(--space-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: pulse 2s infinite;
+}
+
+.blind-mode-indicator.show {
+  display: flex;
+}
+
+.blind-mode-indicator__icon {
+  font-size: 18px;
+}
+
+.blind-mode-indicator__text {
+  letter-spacing: 0.1em;
+}
+
+.liquor-card.blind-mode .liquor-card-name,
+.liquor-card.blind-mode .liquor-card-name-en,
+.liquor-card.blind-mode .liquor-card-price {
+  filter: blur(8px);
+  user-select: none;
+}
+
+.liquor-card.blind-mode .liquor-card-badge {
+  background: linear-gradient(135deg, rgba(50, 50, 50, 0.9), rgba(30, 30, 30, 0.95));
+}
+
+/* ================================================
+   F10 分享卡片样式
+   ================================================ */
+.share-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.share-card__preview {
+  aspect-ratio: 1.91/1;
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+}
+
+.share-card__icon {
+  font-size: 64px;
+  margin-bottom: var(--space-md);
+  opacity: 0.8;
+}
+
+.share-card__name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+  text-align: center;
+}
+
+.share-card__meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.share-card__stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: var(--space-lg);
+}
+
+.share-card__stat {
+  text-align: center;
+}
+
+.share-card__stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-500);
+}
+
+.share-card__stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.share-card__actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.share-card__btn {
+  flex: 1;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.share-card__btn.copy {
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  border: 1px solid var(--accent-500);
+  color: var(--accent-200);
+}
+
+.share-card__btn.copy:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.share-card__btn.social {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+}
+
+.share-card__btn.social:hover {
+  border-color: var(--accent-600);
+  color: var(--accent-400);
+}
+
+/* ================================================
+   F18 风味雷达图样式
+   ================================================ */
+.radar-chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.radar-chart-canvas {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+}
+
+.radar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.radar-legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.radar-legend__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.radar-legend__dot.primary {
+  background: rgba(99, 102, 241, 1);
+}
+
+.radar-legend__dot.secondary {
+  background: rgba(168, 85, 247, 1);
+}
+
+/* ================================================
+   F28-F30 可视化图表样式
+   ================================================ */
+.chart-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chart-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.chart-control {
+  padding: 4px 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.chart-control:hover,
+.chart-control.active {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent-500);
+  color: var(--accent-500);
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 250px;
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-xs);
+  height: 200px;
+  padding: var(--space-md) 0;
+}
+
+.bar-chart__bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--accent-500), var(--accent-700));
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  min-height: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.bar-chart__bar:hover {
+  opacity: 0.8;
+  transform: scaleY(1.05);
+}
+
+.bar-chart__bar-label {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.bar-chart__bar-value {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--accent-500);
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.bar-chart__bar:hover .bar-chart__bar-value {
+  opacity: 1;
+}
+
+.pie-chart {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ================================================
+   F31 调酒配方样式
+   ================================================ */
+.cocktail-recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.cocktail-recipe-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cocktail-recipe-card:hover {
+  border-color: var(--accent-600);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cocktail-recipe-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--bg-card);
+}
+
+.cocktail-recipe-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.cocktail-recipe-card__info {
+  flex: 1;
+}
+
+.cocktail-recipe-card__name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.cocktail-recipe-card__base {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.cocktail-recipe-card__difficulty {
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cocktail-recipe-card__difficulty.easy {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.cocktail-recipe-card__difficulty.medium {
+  background: rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+
+.cocktail-recipe-card__difficulty.hard {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.cocktail-recipe-card__body {
+  padding: var(--space-lg);
+}
+
+.cocktail-recipe-card__section {
+  margin-bottom: var(--space-md);
+}
+
+.cocktail-recipe-card__section:last-child {
+  margin-bottom: 0;
+}
+
+.cocktail-recipe-card__section-title {
+  font-size: 0.75rem;
+  color: var(--accent-600);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-xs);
+}
+
+.cocktail-recipe-card__section-content {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.cocktail-recipe-card__ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.cocktail-recipe-card__ingredient {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ================================================
+   F41 智能问答样式
+   ================================================ */
+.ai-assistant {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 360px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  z-index: 250;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ai-assistant.show {
+  display: flex;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-assistant__header {
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ai-assistant__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+  color: var(--accent-200);
+}
+
+.ai-assistant__icon {
+  font-size: 20px;
+}
+
+.ai-assistant__close {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--accent-200);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.ai-assistant__messages {
+  flex: 1;
+  padding: var(--space-lg);
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.ai-assistant__message {
+  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-assistant__message.user {
+  align-items: flex-end;
+}
+
+.ai-assistant__message-content {
+  max-width: 85%;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.ai-assistant__message.user .ai-assistant__message-content {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--text-primary);
+  border-bottom-right-radius: 4px;
+}
+
+.ai-assistant__message.assistant .ai-assistant__message-content {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border-bottom-left-radius: 4px;
+}
+
+.ai-assistant__input-area {
+  padding: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.ai-assistant__input {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.ai-assistant__input:focus {
+  border-color: var(--accent-500);
+}
+
+.ai-assistant__send {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  border: none;
+  color: var(--accent-200);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.ai-assistant__send:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* ================================================
+   F54 投资组合样式
+   ================================================ */
+.investment-portfolio {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+}
+
+.investment-portfolio__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.investment-portfolio__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.investment-portfolio__summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.investment-portfolio__stat {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.investment-portfolio__stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.investment-portfolio__stat-value.positive {
+  color: #22c55e;
+}
+
+.investment-portfolio__stat-value.negative {
+  color: #ef4444;
+}
+
+.investment-portfolio__stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.investment-portfolio__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.investment-portfolio__table th {
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.investment-portfolio__table td {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.investment-portfolio__table tr:hover td {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+/* ================================================
+   快捷键提示样式
+   ================================================ */
+.shortcuts-hint {
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+  z-index: 100;
+  transition: opacity 0.2s;
+}
+
+.shortcuts-hint:hover {
+  opacity: 1;
+}
+
+.shortcuts-hint__title {
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.shortcuts-hint__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: 4px;
+}
+
+.shortcuts-hint__item:last-child {
+  margin-bottom: 0;
+}
+
+.shortcuts-hint__key {
+  min-width: 24px;
+  padding: 2px 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-500);
+  text-align: center;
+}
+
+/* ================================================
+   Toast 提示样式
+   ================================================ */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  pointer-events: none;
+}
+
+.toast {
+  padding: var(--space-md) var(--space-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  box-shadow: var(--shadow-lg);
+  pointer-events: auto;
+  animation: toastIn 0.3s ease;
+}
+
+.toast.hide {
+  animation: toastOut 0.3s ease forwards;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+.toast.success {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.toast.success .toast__icon {
+  color: #22c55e;
+}
+
+.toast.error {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.toast.error .toast__icon {
+  color: #ef4444;
+}
+
+.toast.warning {
+  border-color: rgba(234, 179, 8, 0.3);
+}
+
+.toast.warning .toast__icon {
+  color: #eab308;
+}
+
+.toast__icon {
+  font-size: 18px;
+}
+
+.toast__close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  margin-left: var(--space-sm);
+}
+
+/* ================================================
+   空状态样式
+   ================================================ */
+.empty-state {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--text-muted);
+}
+
+.empty-state__icon {
+  font-size: 64px;
+  margin-bottom: var(--space-lg);
+  opacity: 0.5;
+}
+
+.empty-state__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.empty-state__text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.empty-state__action {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-700), var(--accent-600));
+  border: 1px solid var(--accent-500);
+  color: var(--accent-200);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.empty-state__action:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* ================================================
+   加载状态样式
+   ================================================ */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-default);
+  border-top-color: var(--accent-500);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: 0s; }
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ================================================
+   模态框增强样式
+   ================================================ */
+.modal-slide-in {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 90%;
+  max-width: 500px;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-default);
+  z-index: 400;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-slide-in.show {
+  transform: translateX(0);
+}
+
+.modal-slide-in__header {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-slide-in__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-slide-in__close {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-slide-in__close:hover {
+  color: var(--text-primary);
+}
+
+.modal-slide-in__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+.modal-slide-in__footer {
+  padding: var(--space-lg);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: var(--space-md);
+}
+
+/* ================================================
+   响应式增强
+   ================================================ */
+@media (max-width: 1024px) {
+  .favorites-manager {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .ai-assistant {
+    width: calc(100% - 40px);
+    right: 20px;
+    left: 20px;
+  }
+  
+  .filter-panel {
+    padding: var(--space-md);
+  }
+  
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cocktail-recipes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-suggestions {
+    position: fixed;
+    top: 70px;
+    left: var(--space-md);
+    right: var(--space-md);
+    max-height: 50vh;
+  }
+  
+  .filter-section__title {
+    font-size: 0.7rem;
+  }
+  
+  .investment-portfolio__summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .share-card {
+    max-width: 100%;
+  }
+  
+  .shortcuts-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-chips {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: var(--space-sm);
+  }
+  
+  .filter-chip {
+    flex-shrink: 0;
+  }
+  
+  .achievement-card {
+    padding: var(--space-lg);
+  }
+  
+  .achievement-card__icon {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+}
